@@ -1,0 +1,94 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary: aqua;
+    --dark-bg-content: #292929;
+    --white: #fff;
+    --grey: #ccc;
+
+    --header-height: 80px;
+}
+
+* {
+    font-family: 'Poppins', 'Sans Serif Collection';
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    color: var(--white);
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg-content);
+}
+
+/* Header CSS */
+.header {
+    height: var(--header-height);
+    background-color: #323232;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.header a {
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.6rem;
+}
+
+.header-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logoImg {
+    height: 70px;
+}
+
+.header-navItem, .header-userNavItem {
+    padding: 4px 12px;
+}
+.header-navItem:hover, .header-userNavItem:hover {
+    color: var(--primary);
+}
+
+
+/* Footer CSS */
+.footer {
+    padding: 24px 0;
+    background-color: #323232;
+}
+
+.footer-bigLogoImg {
+    width: 50%;
+}
+
+.footer-heading {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--grey);
+}
+
+.footer-lineLink, .footer-line {
+    font-size: 1.4rem;
+    font-weight: 300;
+    display: block;
+    text-decoration: none;
+    color: var(--grey);
+    margin-top: 16px;
+}
+
+/* Content CSS */
+.content {
+    margin-top: var(--header-height);
+    padding: 24px 0;
+}
