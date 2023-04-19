@@ -13,5 +13,10 @@ namespace eProject.Controllers
         {
             return View();
         }
+
+        public ActionResult HowToOrderAService()
+        {
+            return View();
+        }
     }
 }
