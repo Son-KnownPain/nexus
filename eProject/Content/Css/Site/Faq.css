@@ -1,0 +1,13 @@
+﻿*{
+    font-size: 1.6rem;
+}
+
+.col {
+    display: table-cell;
+    padding: 1rem;
+    display: block;
+}
+
+div{
+    text-indent: 2rem;
+}

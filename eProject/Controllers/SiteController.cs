@@ -18,5 +18,10 @@ namespace eProject.Controllers
         {
             return View();
         }
+        
+        public ActionResult Faq()
+        {
+            return View();
+        }
     }
 }
