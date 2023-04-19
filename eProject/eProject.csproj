@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Auth\AuthManager.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -129,12 +130,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\Account\Login.css" />
+    <Content Include="Content\Css\Account\Register.css" />
     <Content Include="Content\Css\Site\Index.css" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
     <Content Include="Content\Images\logo-nobg.jpg" />
     <Content Include="Content\Images\logo-removebg.png" />
     <Content Include="Content\Images\logo-with-text.png" />
+    <Content Include="Content\Images\user-login.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -159,6 +163,8 @@
     <Content Include="Views\Shared\Partials\Header.cshtml" />
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
