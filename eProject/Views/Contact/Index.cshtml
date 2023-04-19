@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Contact us";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Contact/Index.css" />
+}
+
+<div class="container">
+    <h1 class="page-title">
+        <i class="fa-solid fa-envelope"></i>
+        Contact Us
+    </h1>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="rightBox boxSection">
+                <h2 class="companyName">
+                    Nexus Communication System
+                </h2>
+                <p class="explain">
+                    Send us contact information if you have a need to register for the installation of services, questions or unresolved issues!
+                </p>
+                <p class="infoLine">
+                    Phone: 0389845752
+                </p>
+                <p class="infoLine">
+                    Email: nexusservice@gmail.com
+                </p>
+                <p class="infoLine">
+                    Address: Ly Tu Trong, Ninh Kieu, Can Tho
+                </p>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            @using (Html.BeginForm("Store", "Contact", FormMethod.Post, new { @class = "contactForm" }))
+            {
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input class="form-input" placeholder="Enter your name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input class="form-input" placeholder="Enter your phone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input class="form-input" placeholder="Enter your email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <input class="form-input" placeholder="Enter your message" />
+                </div>
+                <button class="form-btn">
+                    Send
+                </button>
+            }
+        </div>
+    </div>
+</div>

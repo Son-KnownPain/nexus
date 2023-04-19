@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Register Account";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Account/Register.css" />
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4">
+            <img src="~/Content/Images/user-login.png" alt="user image" style="width: 60%" />
+            <p class="page-title">Register Account</p>
+        </div>
+        <div class="col-xl-8">
+            <div class="formBox">
+                @using (Html.BeginForm("Store", "Account", FormMethod.Post, new { @class = "loginForm" }))
+                {
+                    <div class="form-group">
+                        <label class="form-label">
+                            Username
+                        </label>
+                        <input class="form-input" placeholder="Enter your username" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            Password
+                        </label>
+                        <input class="form-input" placeholder="Enter your password" type="password" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            Confirm Password
+                        </label>
+                        <input class="form-input" placeholder="Enter your password confirm" type="password" />
+                    </div>
+                    <button class="form-button">
+                        Login
+                    </button>
+
+                    <p class="form-additionInfo">
+                        If you have an account, you can sign in <a href="/Account/Login">here</a>
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
