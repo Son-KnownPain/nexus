@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\Site\Faq.css" />
     <Content Include="Content\Css\Site\Index.css" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
@@ -159,6 +160,7 @@
     <Content Include="Views\Shared\Partials\Header.cshtml" />
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
+    <Content Include="Views\Site\Faq.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
