@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d28135b1b65b44c5a25c29ec506b54b1" Name="Diagram1">
+        <EntityTypeShape EntityType="NexusModel.Account" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Billing" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Connect" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Contact" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Customer" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.DeviceRetailStore" Width="1.5" PointX="15.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Device" Width="1.5" PointX="13" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.DeviceWarehous" Width="1.5" PointX="15.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.EmployeeRetailStore" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Employee" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.EmployeeWarehous" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Order" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Package" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Payment" Width="1.5" PointX="7.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Plan" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.RetailStore" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Supplier" Width="1.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NexusModel.Warehouse" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <AssociationConnector Association="NexusModel.FK_Customers_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Employees_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Billilngs_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Billings_Packages" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Payments_Billings" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Connects_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Connects_Packages" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Orders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_DeviceRetailStores_DeviceRetailStores" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_DeviceRetailStores_Devices" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Devices_Suppliers" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_DeviceWarehouses_Devices" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_DeviceWarehouses_Warehouses" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_EmployeeRetailStores_EmployeeRetailStores" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_EmployeeRetailStores_RetailStores" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_EmployeeWarehouses_EmployeeWarehouses" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Payments_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_EmployeeWarehouses_Warehouses" ManuallyRouted="false" />
+        <AssociationConnector Association="NexusModel.FK_Orders_Packages" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

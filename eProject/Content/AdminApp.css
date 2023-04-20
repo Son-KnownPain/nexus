@@ -5,8 +5,9 @@
     --dark-bg-content: #292929;
     --white: #fff;
     --grey: #ccc;
-
     --header-height: 80px;
+
+    --sidebar-width: 360px;
 }
 
 * {
@@ -54,51 +55,35 @@ body {
     height: 70px;
 }
 
-.header-navItem, .header-userNavItem {
-    padding: 4px 12px;
-}
-.header-navItem:hover, .header-userNavItem:hover {
-    color: var(--primary);
-}
-
-
-/* Footer CSS */
-.footer {
-    padding: 24px 0;
-    background-color: #323232;
-}
-
-.footer-bigLogoImg {
-    width: 50%;
-}
-
-.footer-heading {
+.header-logoText, .header-logoText i {
+    color: var(--grey);
     font-size: 1.8rem;
-    font-weight: 600;
+}
+
+.header-navItem {
+    padding: 4px 12px;
     color: var(--grey);
 }
 
-.footer-lineLink, .footer-line {
-    font-size: 1.4rem;
-    font-weight: 300;
-    display: block;
-    text-decoration: none;
-    color: var(--grey);
-    margin-top: 16px;
-}
-
-.copyrightText {
-    font-size: 1.6rem;
-    color: #666;
-    margin-top: 24px;
-}
-
-.copyrightText i {
-    color: #666;
+.header-navItem:hover {
+    color: var(--primary);
 }
 
 /* Content CSS */
 .content {
     margin-top: var(--header-height);
-    padding: 24px 0;
+}
+
+.content-main {
+    margin-left: var(--sidebar-width);
+}
+
+/* Sidebar CSS */
+.sidebar {
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    background-color: #252525;
+    position: fixed;
+    z-index: 10;
+    box-shadow: 2px 2px 4px #55555544;
 }
