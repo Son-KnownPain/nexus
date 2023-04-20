@@ -87,3 +87,28 @@ body {
     z-index: 10;
     box-shadow: 2px 2px 4px #55555544;
 }
+
+.sidebar-heading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--grey);
+    padding: 12px;
+}
+
+.sidebar-menu {
+    margin-top: 12px;
+}
+
+.sidebar-menuItem {
+    padding: 12px 0 12px 18px;
+    font-size: 1.6rem;
+    display: block;
+    text-decoration: none;
+    color: var(--grey);
+    transition: padding-left ease-in-out .1s;
+}
+
+.sidebar-menuItem:hover {    
+    color: var(--primary);
+    padding-left: 20px;
+}

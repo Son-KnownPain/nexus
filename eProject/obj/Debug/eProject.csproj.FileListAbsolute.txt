@@ -235,3 +235,7 @@ D:\ASP\Nexus\nexus\eProject\obj\Debug\eProject.csproj.CoreCompileInputs.cache
 D:\ASP\Nexus\nexus\eProject\obj\Debug\eProject.csproj.CopyComplete
 D:\ASP\Nexus\nexus\eProject\obj\Debug\eProject.dll
 D:\ASP\Nexus\nexus\eProject\obj\Debug\eProject.pdb
+D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.dll
+D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.SqlServer.dll
+D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.xml
+D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.SqlServer.xml
