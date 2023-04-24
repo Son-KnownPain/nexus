@@ -12,19 +12,15 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Bill
     {
-        public string OrderID { get; set; }
-        public int ServiceID { get; set; }
-        public string CustomerID { get; set; }
+        public int BillID { get; set; }
+        public int ConnectionID { get; set; }
+        public int AmountPaid { get; set; }
+        public string PaidContent { get; set; }
         public string Status { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public string AddressDetail { get; set; }
-        public int ConnectQuantity { get; set; }
-        public System.DateTime OrderDate { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual Service Service { get; set; }
+        public virtual Connection Connection { get; set; }
     }
 }

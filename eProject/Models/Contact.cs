@@ -11,14 +11,24 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Contact
     {
+        // validate
         public int ContactID { get; set; }
+        [DisplayName("Contact Name")]
+        [Required(ErrorMessage = "Contact name can not empty")]
         public string ContactName { get; set; }
+        [Required(ErrorMessage = "Phone can not empty")]
         public string Phone { get; set; }
+        [Required(ErrorMessage = "Email can not empty")]
         public string Email { get; set; }
+        [DisplayName("Message")]
+        [Required(ErrorMessage = "Message can not empty")]
         public string Content { get; set; }
+        public string Status { get; set; }
         public System.DateTime ContactedAt { get; set; }
     }
 }

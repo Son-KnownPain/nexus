@@ -1,4 +1,5 @@
-﻿@{
+﻿@model eProject.Models.Contact
+@{
     ViewBag.Title = "Contact us";
 }
 @section styles {
@@ -34,20 +35,24 @@
             @using (Html.BeginForm("Store", "Contact", FormMethod.Post, new { @class = "contactForm" }))
             {
                 <div class="form-group">
-                    <label class="form-label">Your Name</label>
-                    <input class="form-input" placeholder="Enter your name" />
+                    @Html.LabelFor(c => c.ContactName, new { @class = "form-label" })
+                    @Html.EditorFor(c => c.ContactName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your name" } })
+                    @Html.ValidationMessageFor(c => c.ContactName, null, new { @class = "invalidMessage" })
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Phone</label>
-                    <input class="form-input" placeholder="Enter your phone" />
+                    @Html.LabelFor(c => c.Phone, new { @class = "form-label" })
+                    @Html.EditorFor(c => c.Phone, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your phone" } })
+                    @Html.ValidationMessageFor(c => c.Phone, null, new { @class = "invalidMessage" })
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input class="form-input" placeholder="Enter your email" />
+                    @Html.LabelFor(c => c.Email, new { @class = "form-label" })
+                    @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your email" } })
+                    @Html.ValidationMessageFor(c => c.Email, null, new { @class = "invalidMessage" })
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Message</label>
-                    <input class="form-input" placeholder="Enter your message" />
+                    @Html.LabelFor(c => c.Content, new { @class = "form-label" })
+                    @Html.TextAreaFor(c => c.Content, new { @class = "form-input", placeHolder = "Enter your message" })
+                    @Html.ValidationMessageFor(c => c.Content, null, new { @class = "invalidMessage" })
                 </div>
                 <button class="form-btn">
                     Send

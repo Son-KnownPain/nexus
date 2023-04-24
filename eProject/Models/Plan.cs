@@ -14,11 +14,19 @@ namespace eProject.Models
     
     public partial class Plan
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Plan()
+        {
+            this.PlanDetails = new HashSet<PlanDetail>();
+        }
+    
         public int PlanID { get; set; }
+        public int ServiceID { get; set; }
         public string PlanName { get; set; }
-        public string Summary { get; set; }
-        public string OwnerName { get; set; }
-        public string Content { get; set; }
-        public System.DateTime CreatedDate { get; set; }
+        public string Description { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlanDetail> PlanDetails { get; set; }
+        public virtual Service Service { get; set; }
     }
 }

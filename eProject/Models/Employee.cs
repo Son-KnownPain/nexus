@@ -17,28 +17,24 @@ namespace eProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.EmployeeRetailStores = new HashSet<EmployeeRetailStore>();
-            this.EmployeeWarehouses = new HashSet<EmployeeWarehous>();
-            this.Payments = new HashSet<Payment>();
+            this.RetailShowRoomEmployees = new HashSet<RetailShowRoomEmployee>();
         }
     
         public int EmployeeID { get; set; }
-        public int AccountID { get; set; }
         public string Fullname { get; set; }
+        public bool StillWorking { get; set; }
         public string Department { get; set; }
+        public int Role { get; set; }
+        public string RoleName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
         public string Address { get; set; }
-        public System.DateTime Birthday { get; set; }
+        public string Avatar { get; set; }
         public System.DateTime CreatedAt { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public System.DateTime UpdatedAt { get; set; }
     
-        public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeRetailStore> EmployeeRetailStores { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeWarehous> EmployeeWarehouses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<RetailShowRoomEmployee> RetailShowRoomEmployees { get; set; }
     }
 }

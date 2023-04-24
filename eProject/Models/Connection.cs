@@ -12,29 +12,27 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Connection
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Connection()
         {
-            this.Connections = new HashSet<Connection>();
-            this.Orders = new HashSet<Order>();
+            this.Bills = new HashSet<Bill>();
+            this.ConnectionPaymentPlans = new HashSet<ConnectionPaymentPlan>();
         }
     
+        public int ConnectionID { get; set; }
+        public int ServiceID { get; set; }
         public string CustomerID { get; set; }
-        public string Fullname { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string AddressDetail { get; set; }
-        public string Avatar { get; set; }
-        public System.DateTime CreatedAt { get; set; }
-        public System.DateTime UpdatedAt { get; set; }
+        public string Status { get; set; }
+        public string ContactNumber { get; set; }
+        public System.DateTime ConnectedAt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Connection> Connections { get; set; }
+        public virtual ICollection<Bill> Bills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<ConnectionPaymentPlan> ConnectionPaymentPlans { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Service Service { get; set; }
     }
 }

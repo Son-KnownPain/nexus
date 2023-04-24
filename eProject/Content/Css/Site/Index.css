@@ -20,16 +20,16 @@
 }
 
 .content-section {
-    margin: 36px;
+    margin: 48px 0;
 }
 
 .content-sectionTitle {
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 600;
     color: var(--grey);
     text-align: center;
     padding: 12px 0;
-    margin-bottom: 24px;
+    border-bottom: 1px solid #555;
 }
 
 /* Card Item */
@@ -74,4 +74,77 @@
 
 .cardItem-detailBtn i {
     color: #333;
+}
+
+/* Services CSS */
+.serviceItem {
+    margin-top: 42px;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px #55555588;
+}
+
+.serviceItem-name {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.serviceItem-summary {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--grey);
+    margin-bottom: 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.serviceItem-deposit {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--grey);
+    margin-bottom: 16px;
+}
+
+.serviceItem-depositValue {
+    color: #fbceb1;
+}
+
+.serviceItem-detailBtn {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #333;
+    background-color: var(--primary);
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    margin-top: 12px;
+    display: inline-block;
+}
+.serviceItem-detailBtn i {
+    color: #333;
+}
+
+.serviceItem-detailBtn:hover {
+    color: #333;
+    opacity: .8;
+}
+
+/* Reasons */
+.reasons {
+    margin-top: 36px;
+}
+
+.reasonItem {
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.reasonItem i {
+    color: #a4c639;
+    margin-right: 8px;
 }

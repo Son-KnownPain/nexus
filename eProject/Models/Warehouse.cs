@@ -17,18 +17,15 @@ namespace eProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Warehouse()
         {
-            this.DeviceWarehouses = new HashSet<DeviceWarehous>();
-            this.EmployeeWarehouses = new HashSet<EmployeeWarehous>();
+            this.WarehouseEquipments = new HashSet<WarehouseEquipment>();
         }
     
         public int WarehouseID { get; set; }
-        public string WarehouseName { get; set; }
+        public string Name { get; set; }
         public string Address { get; set; }
-        public string Image { get; set; }
+        public string ContactNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeviceWarehous> DeviceWarehouses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeWarehous> EmployeeWarehouses { get; set; }
+        public virtual ICollection<WarehouseEquipment> WarehouseEquipments { get; set; }
     }
 }

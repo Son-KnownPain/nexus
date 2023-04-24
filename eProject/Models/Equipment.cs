@@ -12,23 +12,22 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Supplier
+    public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supplier()
+        public Equipment()
         {
-            this.Equipments = new HashSet<Equipment>();
+            this.WarehouseEquipments = new HashSet<WarehouseEquipment>();
         }
     
+        public int EquipmentID { get; set; }
         public int SupplierID { get; set; }
-        public string CompanyName { get; set; }
-        public string ContactName { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string ContactUrl { get; set; }
+        public string EquipmentName { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
     
+        public virtual Supplier Supplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
+        public virtual ICollection<WarehouseEquipment> WarehouseEquipments { get; set; }
     }
 }
