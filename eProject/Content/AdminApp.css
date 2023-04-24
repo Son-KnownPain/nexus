@@ -1,0 +1,114 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary: aqua;
+    --dark-bg-content: #292929;
+    --white: #fff;
+    --grey: #ccc;
+    --header-height: 80px;
+
+    --sidebar-width: 360px;
+}
+
+* {
+    font-family: 'Poppins', 'Sans Serif Collection';
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    color: var(--white);
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg-content);
+}
+
+/* Header CSS */
+.header {
+    height: var(--header-height);
+    background-color: #323232;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.header a {
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.6rem;
+}
+
+.header-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logoImg {
+    height: 70px;
+}
+
+.header-logoText, .header-logoText i {
+    color: var(--grey);
+    font-size: 1.8rem;
+}
+
+.header-navItem {
+    padding: 4px 12px;
+    color: var(--grey);
+}
+
+.header-navItem:hover {
+    color: var(--primary);
+}
+
+/* Content CSS */
+.content {
+    margin-top: var(--header-height);
+}
+
+.content-main {
+    margin-left: var(--sidebar-width);
+}
+
+/* Sidebar CSS */
+.sidebar {
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    background-color: #252525;
+    position: fixed;
+    z-index: 10;
+    box-shadow: 2px 2px 4px #55555544;
+}
+
+.sidebar-heading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--grey);
+    padding: 12px;
+}
+
+.sidebar-menu {
+    margin-top: 12px;
+}
+
+.sidebar-menuItem {
+    padding: 12px 0 12px 18px;
+    font-size: 1.6rem;
+    display: block;
+    text-decoration: none;
+    color: var(--grey);
+    transition: padding-left ease-in-out .1s;
+}
+
+.sidebar-menuItem:hover {    
+    color: var(--primary);
+    padding-left: 20px;
+}

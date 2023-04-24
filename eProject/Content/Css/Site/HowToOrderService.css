@@ -13,6 +13,11 @@
 
 .content-section {
     margin: 36px;
+    font-size: 1.6rem;
+}
+
+.fw300 {
+    font-weight: 300;
 }
 
 .content-sectionTitle {
@@ -26,9 +31,4 @@
 
 .pd-12 {
     padding: 12px 0;
-}
-
-* {
-    font-size: 1.6rem;
-    font-weight: 300;
 }

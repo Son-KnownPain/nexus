@@ -87,17 +87,18 @@ body {
     margin-top: 16px;
 }
 
-/* Content CSS */
-.content {
-    margin-top: var(--header-height);
-    padding: 24px 0;
-}
-
 .copyrightText {
     font-size: 1.6rem;
     color: #666;
     margin-top: 24px;
 }
+
 .copyrightText i {
     color: #666;
+}
+
+/* Content CSS */
+.content {
+    margin-top: var(--header-height);
+    padding: 24px 0;
 }

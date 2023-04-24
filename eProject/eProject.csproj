@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,34 +128,123 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\RetailStoresController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerRegister.cs" />
+    <Compile Include="Models\Bill.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Charge.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Connection.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConnectionPaymentPlan.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contact.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipment.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NexusModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NexusModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NexusModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NexusModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NexusModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Plan.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlanDetail.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RetailShowRoom.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RetailShowRoomEmployee.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SimpleProxyCustomer.cs" />
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Warehouse.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WarehouseEquipment.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminApp.css" />
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\RetailStores\Index.css" />
+    <Content Include="Content\Css\Customer\Login.css" />
+    <Content Include="Content\Css\Customer\Register.css" />
     <Content Include="Content\Css\Site\Faq.css" />
-    <Content Include="Content\Css\Account\Login.css" />
-    <Content Include="Content\Css\Account\Register.css" />
     <Content Include="Content\Css\Contact\Index.css" />
     <Content Include="Content\Css\Package\Detail.css" />
     <Content Include="Content\Css\Site\HowToOrderService.css" />
     <Content Include="Content\Css\Site\Index.css" />
+    <Content Include="Content\ImageRetailsStore\dangkhoi.jpg" />
+    <Content Include="Content\ImageRetailsStore\vienthonga.jpg" />
+    <Content Include="Content\ImageRetailsStore\vnpt.jpg" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
     <Content Include="Content\Images\logo-nobg.jpg" />
     <Content Include="Content\Images\logo-removebg.png" />
     <Content Include="Content\Images\logo-with-text.png" />
     <Content Include="Content\Images\user-login.png" />
+    <Content Include="Content\Libraries\ToastMessage\ToastMessage.css" />
+    <Content Include="Content\Libraries\ToastMessage\ToastMessage.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\NexusModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NexusModel.edmx</DependentUpon>
+      <LastGenOutput>NexusModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\NexusModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NexusModel.edmx</DependentUpon>
+      <LastGenOutput>NexusModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Uploads\CustomerAvatars\default-user-avatar.png" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -155,8 +252,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Content\Css\AdminCss\" />
     <Folder Include="Filters\" />
-    <Folder Include="Models\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
@@ -164,23 +262,40 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Partials\Header.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Partials\Sidebar.cshtml" />
+    <EntityDeploy Include="Models\NexusModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NexusModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NexusModel.edmx.diagram">
+      <DependentUpon>NexusModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
-    <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
     <Content Include="Views\Site\Faq.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Package\Detail.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\RetailStores\Index.cshtml" />
     <Content Include="Views\Site\HowToOrderAService.cshtml" />
+    <Content Include="Views\Shared\Partials\Footer.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

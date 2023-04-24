@@ -6,16 +6,15 @@ using System.Web.Mvc;
 
 namespace eProject.Controllers
 {
-    public class AccountController : Controller
+    public class RetailStoresController : Controller
     {
-        // GET: Account/Login
-        public ActionResult Login()
+        // GET: RetailStores
+        public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Account/Register
-        public ActionResult Register()
+        public ActionResult DetailsRetailsStore()
         {
             return View();
         }
