@@ -1,0 +1,41 @@
+﻿@model eProject.Models.SimpleProxyCustomer
+@{
+    ViewBag.Title = "Login";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Customer/Login.css" />
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4">
+            <img src="~/Content/Images/user-login.png" alt="user image" style="width: 60%" />
+            <p class="page-title">Account Login</p>
+        </div>
+        <div class="col-xl-8">
+            <div class="formBox">
+                @using (Html.BeginForm("Check", "Customer", FormMethod.Post, new { @class = "loginForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(acc => acc.Phone, new { @class = "form-label" })
+                        @Html.EditorFor(acc => acc.Phone, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your phone" } })
+                        @Html.ValidationMessageFor(acc => acc.Phone, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(acc => acc.Password, new { @class = "form-label" })
+                        @Html.PasswordFor(acc => acc.Password, new { @class = "form-input", placeHolder = "Enter your password" })
+                        @Html.ValidationMessageFor(acc => acc.Password, null, new { @class = "invalidMessage" })
+                    </div>
+                    <button class="form-button">
+                        Login
+                    </button>
+
+                    <p class="form-additionInfo">
+                        If you don't have an account, you can sign up <a href="/Customer/Register">here</a>
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

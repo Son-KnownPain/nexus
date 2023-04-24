@@ -1,0 +1,34 @@
+﻿
+.introduce-text {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.introduce-name {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.content-section {
+    margin: 36px;
+    font-size: 1.6rem;
+}
+
+.fw300 {
+    font-weight: 300;
+}
+
+.content-sectionTitle {
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: var(--grey);
+    text-align: center;
+    padding: 12px 0;
+    margin-bottom: 24px;
+}
+
+.pd-12 {
+    padding: 12px 0;
+}

@@ -5,16 +5,24 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Security;
 using System.Web.SessionState;
+using eProject.Models;
 
 namespace eProject.Auth
 {
     public static class AuthManager
     {
-        public static bool IsAuthenticated
+        public static bool IsCustomerAuthenticated
         {
             get
             {
-                return HttpContext.Current.Session["UserLogin"] != null;
+                return HttpContext.Current.Session["CustomerLogin"] != null;
+            }
+        }
+        public static bool IsEmployeeAuthenticated
+        {
+            get
+            {
+                return HttpContext.Current.Session["EmployeeLogin"] != null;
             }
         }
         public static class Chef
@@ -23,40 +31,48 @@ namespace eProject.Auth
             {
                 get => "hs0226";
             }
-            public static string AUTH_USER_DATA_KEY
+            public static string AUTH_CUSTOMER_DATA_KEY
             {
-                get => "auth_user_data";
+                get => "auth_customer_data";
             }
-            public static string AUTH_HASHED_KEY
+            public static string AUTH_CUSTOMER_HASHED_KEY
             {
-                get => "auth_hashed";
+                get => "auth_customer_hashed";
+            }
+            public static string AUTH_EMPLOYEE_DATA_KEY
+            {
+                get => "auth_employee_data";
+            }
+            public static string AUTH_EMPLOYEE_HASHED_KEY
+            {
+                get => "auth_employee_hashed";
             }
             public static string GetMixing(string data)
             {
                 return data + SECRET_KEY;
             }
-            public static bool PreservationUserCookies(object userData)
+            public static bool PreservationCustomerCookies(Customer accountData)
             {
-                HttpCookie authUsernameCookie = new HttpCookie(
-                    AUTH_USER_DATA_KEY,
-                    "data of user is unique"
+                HttpCookie authCustomerCookie = new HttpCookie(
+                    AUTH_CUSTOMER_DATA_KEY,
+                    accountData.CustomerID
                 );
-                HttpContext.Current.Response.Cookies.Add(authUsernameCookie);
+                HttpContext.Current.Response.Cookies.Add(authCustomerCookie);
 
-                HttpCookie authHash = new HttpCookie(
-                    AUTH_HASHED_KEY,
-                    Crypto.HashPassword(AuthManager.Chef.GetMixing("data of user is unique"))
+                HttpCookie authCustomerHash = new HttpCookie(
+                    AUTH_CUSTOMER_HASHED_KEY,
+                    Crypto.HashPassword(AuthManager.Chef.GetMixing(accountData.CustomerID))
                 );
-                HttpContext.Current.Response.Cookies.Add(authHash);
+                HttpContext.Current.Response.Cookies.Add(authCustomerHash);
 
-                AuthManager.CurrentUser.Update(userData);
+                AuthManager.CurrentCustomer.Update(accountData);
 
                 return true;
             }
-            public static bool Spoiled()
+            public static bool SpoiledCustomer()
             {
-                HttpCookie authUsernameCookie = new HttpCookie(AUTH_USER_DATA_KEY);
-                HttpCookie authHash = new HttpCookie(AUTH_HASHED_KEY);
+                HttpCookie authUsernameCookie = new HttpCookie(AUTH_CUSTOMER_DATA_KEY);
+                HttpCookie authHash = new HttpCookie(AUTH_CUSTOMER_HASHED_KEY);
 
                 authUsernameCookie.Expires = DateTime.Now.AddDays(-1);
                 authHash.Expires = DateTime.Now.AddDays(-1);
@@ -64,36 +80,53 @@ namespace eProject.Auth
                 HttpContext.Current.Response.Cookies.Add(authHash);
                 HttpContext.Current.Response.Cookies.Add(authUsernameCookie);
 
-                AuthManager.CurrentUser.Destroy();
+                AuthManager.CurrentCustomer.Destroy();
+
+                return true;
+            }
+            public static bool PreservationEmployeeCookies(Employee accountData)
+            {
+                HttpCookie authUsernameCookie = new HttpCookie(
+                    AUTH_EMPLOYEE_DATA_KEY,
+                    accountData.EmployeeID + ""
+                );
+                HttpContext.Current.Response.Cookies.Add(authUsernameCookie);
+
+                HttpCookie authHash = new HttpCookie(
+                    AUTH_EMPLOYEE_HASHED_KEY,
+                    Crypto.HashPassword(AuthManager.Chef.GetMixing(accountData.EmployeeID + ""))
+                );
+                HttpContext.Current.Response.Cookies.Add(authHash);
+
+                AuthManager.CurrentEmployee.Update(accountData);
+
+                return true;
+            }
+            public static bool SpoiledEmployee()
+            {
+                HttpCookie authUsernameCookie = new HttpCookie(AUTH_EMPLOYEE_DATA_KEY);
+                HttpCookie authHash = new HttpCookie(AUTH_EMPLOYEE_HASHED_KEY);
+
+                authUsernameCookie.Expires = DateTime.Now.AddDays(-1);
+                authHash.Expires = DateTime.Now.AddDays(-1);
+
+                HttpContext.Current.Response.Cookies.Add(authHash);
+                HttpContext.Current.Response.Cookies.Add(authUsernameCookie);
+
+                AuthManager.CurrentEmployee.Destroy();
 
                 return true;
             }
         }
-        public static class CurrentUser
+        public static class CurrentCustomer
         {
-            public static bool IsAdmin
+            public static Customer GetCustomer
             {
                 get
                 {
-                    if (HttpContext.Current.Session["UserLogin"] != null)
+                    if (HttpContext.Current.Session["CustomerLogin"] != null)
                     {
-                        // Your code
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            public static object GetUser
-            {
-                get
-                {
-                    if (HttpContext.Current.Session["UserLogin"] != null)
-                    {
-                        // object is your user class model
-                        return new { };
+                        return HttpContext.Current.Session["CustomerLogin"] as Customer;
                     }
                     else
                     {
@@ -101,20 +134,57 @@ namespace eProject.Auth
                     }
                 }
             }
-            public static void Update(object newUser)
+            public static void Update(Customer newAccount)
             {
                 // object is your user class model
-                HttpContext.Current.Session["UserLogin"] = newUser;
+                HttpContext.Current.Session["CustomerLogin"] = newAccount;
             }
             public static void Destroy()
             {
-                if (HttpContext.Current.Session["UserLogin"] != null)
+                if (HttpContext.Current.Session["CustomerLogin"] != null)
                 {
-                    HttpContext.Current.Session.Remove("UserLogin");
+                    HttpContext.Current.Session.Remove("CustomerLogin");
                 }
             }
         }
-        public static class Roles
+        public static class CurrentEmployee
+        {
+            public static bool IsEmployee
+            {
+                get => GetEmployee.Role == EmployeeRoles.EmployeeRole;
+            }
+            public static bool IsAdmin
+            {
+                get => GetEmployee.Role == EmployeeRoles.AdminRole;
+            }
+            public static Employee GetEmployee
+            {
+                get
+                {
+                    if (HttpContext.Current.Session["EmployeeLogin"] != null)
+                    {
+                        return HttpContext.Current.Session["EmployeeLogin"] as Employee;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            public static void Update(Employee newAccount)
+            {
+                // object is your user class model
+                HttpContext.Current.Session["EmployeeLogin"] = newAccount;
+            }
+            public static void Destroy()
+            {
+                if (HttpContext.Current.Session["EmployeeLogin"] != null)
+                {
+                    HttpContext.Current.Session.Remove("EmployeeLogin");
+                }
+            }
+        }
+        public static class EmployeeRoles
         {
             public static int AdminRole
             {
