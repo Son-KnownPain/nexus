@@ -8,6 +8,8 @@
     display: block;
 }
 
-div{
+div {
     text-indent: 2rem;
+    padding: inherit;
+    padding-left: 4rem;
 }

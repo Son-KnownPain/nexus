@@ -124,6 +124,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\RetailStoresController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,12 +133,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\RetailStores\Index.css" />
     <Content Include="Content\Css\Site\Faq.css" />
     <Content Include="Content\Css\Account\Login.css" />
     <Content Include="Content\Css\Account\Register.css" />
     <Content Include="Content\Css\Contact\Index.css" />
     <Content Include="Content\Css\Package\Detail.css" />
     <Content Include="Content\Css\Site\Index.css" />
+    <Content Include="Content\ImageRetailsStore\dangkhoi.jpg" />
+    <Content Include="Content\ImageRetailsStore\vienthonga.jpg" />
+    <Content Include="Content\ImageRetailsStore\vnpt.jpg" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
     <Content Include="Content\Images\logo-nobg.jpg" />
@@ -173,6 +178,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Package\Detail.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\RetailStores\Index.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
