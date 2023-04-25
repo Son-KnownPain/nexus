@@ -1,0 +1,66 @@
+﻿@model eProject.Models.Service
+@{
+    ViewBag.Title = "Edit service";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Service/Edit.css" />
+}
+@section scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Handle preview thumbnail
+        const imgFileInput = document.querySelector("#thumbnailFileInput");
+        imgFileInput.onchange = e => {
+            const [file] = imgFileInput.files;
+            if (file) {
+                const imgPreview = document.querySelector("#previewThumbnail");
+                imgPreview.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
+}
+
+<h1 class="page-title">
+    Edit Service
+</h1>
+
+@using (Html.BeginForm("Update", "Service", new { area = "Admin" }, FormMethod.Post, new { @class = "serviceForm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HttpMethodOverride("PUT")
+    @Html.HiddenFor(service => service.ServiceID)
+    <div class="form-group">
+        @Html.LabelFor(service => service.ServiceName, new { @class = "form-label" })
+        @Html.EditorFor(service => service.ServiceName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter name" } })
+        @Html.ValidationMessageFor(service => service.ServiceName, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(service => service.Summary, new { @class = "form-label" })
+        @Html.EditorFor(service => service.Summary, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter summary" } })
+        @Html.ValidationMessageFor(service => service.Summary, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(service => service.Deposit, new { @class = "form-label" })
+        @Html.EditorFor(service => service.Deposit, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter deposit" } })
+        @Html.ValidationMessageFor(service => service.Deposit, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(service => service.Description, new { @class = "form-label" })
+        @Html.TextAreaFor(service => service.Description, new { @class = "form-input", placeHolder = "Enter description", @id = "editor" })
+        @Html.ValidationMessageFor(service => service.Description, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(service => service.Thumbnail, new { @class = "form-label" })
+        <img id="previewThumbnail" src="~/Uploads/ServiceThumbnails/@Model.Thumbnail" alt="THumbnail preview" />
+        <input type="file" name="ThumbnailFile" class="form-inputFile" id="thumbnailFileInput" />
+    </div>
+    <button class="form-btn">
+        Update
+    </button>
+}
