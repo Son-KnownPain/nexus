@@ -239,3 +239,7 @@ D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.dl
 D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.SqlServer.dll
 D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.xml
 D:\== ProjectBasic\AspDotNetMVC\eProjectSolution\eProject\bin\EntityFramework.SqlServer.xml
+D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.dll
+D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.SqlServer.dll
+D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.xml
+D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.SqlServer.xml
