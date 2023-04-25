@@ -1,0 +1,186 @@
+﻿@{
+    ViewBag.Title = "Service Detail";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Service/Detail.css" />
+}
+
+<div class="container">
+    <h1 class="page-title">
+        Information Detail Dial-up Service
+    </h1>
+    <div class="summaryInfoBox">
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="summaryInfoItem">
+                    <p class="summaryInfoItem-heading">
+                        Service Name
+                    </p>
+                    <h3 class="summaryInfoItem-value">
+                        <i class="fa-solid fa-globe"></i>
+                        Dial-up
+                    </h3>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="summaryInfoItem">
+                    <p class="summaryInfoItem-heading">
+                        Deposit
+                    </p>
+                    <h3 class="summaryInfoItem-value">
+                        <i class="fa-solid fa-money-bill"></i>
+                        325$
+                    </h3>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="summaryInfoItem">
+                    <p class="summaryInfoItem-heading">
+                        Average Speed
+                    </p>
+                    <h3 class="summaryInfoItem-value">
+                        <i class="fa-solid fa-gauge"></i>
+                        40-50 kbit/s
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="infoBox">
+        <div class="row">
+            <div class="col-xl-4">
+                <img style="width: 100%;" class="infoThumbnail" src="~/Content/Images/demo.jpg" alt="Package Thumbnail" />
+            </div>
+            <div class="col-xl-8">
+                <div class="descriptionBox">
+                    <h3 class="descriptionTitle">
+                        Advantages of service provided by Nexus:
+                    </h3>
+                    <div class="descriptionContent">
+                        <ul>
+                            <li>Equipment for the duration of use.</li>
+                            <li>Free installation and free up to 4 months of freight when customers pay in advance.</li>
+                            <li>Quick installation, 24/7 customer support.</li>
+                            <li>Equal Download/Upload speeds can be up to hundreds of Mbps.</li>
+                            <li>Registration is easy and convenient via call center or at Viettel stores nationwide.</li>
+                            <li>Contact details: 0121685741 (Free).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="paymentPlansBox">
+        <h1 class="boxTitle">
+            <i class="fa-solid fa-credit-card"></i>
+            Payment plans
+        </h1>
+
+        <div class="paymentPlansBox-content">
+            <div class="paymentPlanItem">
+                <h3 class="paymentPlanItem-title">
+                    <i class="fa-solid fa-caret-down"></i>
+                    Hourly basis
+                </h3>
+                <ul class="paymentPlanItem-childrenList">
+                    <li class="paymentPlanItem-childrenItem">
+                        10 Hours - 50$ (Validity is for 1 month)
+                    </li>
+                    <li class="paymentPlanItem-childrenItem">
+                        30 Hours - 130$ (Validity is for 3 month)
+                    </li>
+                    <li class="paymentPlanItem-childrenItem">
+                        60 Hours - 260$ (Validity is for 6 month)
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="paymentPlansBox-content">
+            <div class="paymentPlanItem active">
+                <h3 class="paymentPlanItem-title">
+                    <i class="fa-solid fa-caret-down"></i>
+                    Unlimited 28Kbps
+                </h3>
+                <ul class="paymentPlanItem-childrenList">
+                    <li class="paymentPlanItem-childrenItem active">
+                        Monthly - 75$
+                    </li>
+                    <li class="paymentPlanItem-childrenItem">
+                        Quarterly (equivalent to 3 months) - 150$
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="paymentPlansBox-content">
+            <div class="paymentPlanItem">
+                <h3 class="paymentPlanItem-title">
+                    <i class="fa-solid fa-caret-down"></i>
+                    Unlimited 56Kbps
+                </h3>
+                <ul class="paymentPlanItem-childrenList">
+                    <li class="paymentPlanItem-childrenItem ">
+                        Monthly - 100$
+                    </li>
+                    <li class="paymentPlanItem-childrenItem">
+                        Quarterly (equivalent to 3 months) - 180$
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="currentPayment">
+            Current payment plan is
+            <span class="currentPayment-plan">
+                Unlimited 28Kbps
+            </span>
+            /
+            <span class="currentPayment-planDetail">
+                Monthly - 75$
+            </span>
+        </p>
+        
+        <a class="registerBtn" href="/">
+            <i class="fa-solid fa-inbox"></i>
+            Register service
+        </a>
+    </div>
+    <div class="otherPackagesBox">
+        <h1 class="boxTitle">
+            Other services
+        </h1>
+
+        <div class="row mt-5">
+            <div class="col-xl-3">
+                <div class="cardItem" href="/">
+                    <h3 class="cardItem-headingName">
+                        Broadband
+                    </h3>
+                    <img class="cardItem-thumbnail" src="~/Content/Images/demo.jpg" alt="Thumbnail" />
+                    <p class="cardItem-price">
+                        <i class="fa-solid fa-money-bill"></i>
+                        Deposit: 500$
+                    </p>
+                    <a class="cardItem-detailBtn" href="/">
+                        View Detail <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="cardItem" href="/">
+                    <h3 class="cardItem-headingName">
+                        Landline
+                    </h3>
+                    <img class="cardItem-thumbnail" src="~/Content/Images/demo.jpg" alt="Thumbnail" />
+                    <p class="cardItem-price">
+                        <i class="fa-solid fa-money-bill"></i>
+                        Deposit: 250$
+                    </p>
+                    <a class="cardItem-detailBtn" href="/">
+                        View Detail <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
