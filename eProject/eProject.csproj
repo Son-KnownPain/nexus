@@ -129,11 +129,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\RetailStoresController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -212,9 +214,13 @@
   <ItemGroup>
     <Content Include="Content\AdminApp.css" />
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\AdminCss\Service\Add.css" />
+    <Content Include="Content\Css\AdminCss\Service\Edit.css" />
+    <Content Include="Content\Css\AdminCss\Service\Index.css" />
     <Content Include="Content\Css\RetailStores\Index.css" />
     <Content Include="Content\Css\Customer\Login.css" />
     <Content Include="Content\Css\Customer\Register.css" />
+    <Content Include="Content\Css\Service\Detail.css" />
     <Content Include="Content\Css\Site\Faq.css" />
     <Content Include="Content\Css\Contact\Index.css" />
     <Content Include="Content\Css\Package\Detail.css" />
@@ -229,6 +235,7 @@
     <Content Include="Content\Images\logo-removebg.png" />
     <Content Include="Content\Images\logo-with-text.png" />
     <Content Include="Content\Images\user-login.png" />
+    <Content Include="Content\Js\Service\Detail.js" />
     <Content Include="Content\Libraries\ToastMessage\ToastMessage.css" />
     <Content Include="Content\Libraries\ToastMessage\ToastMessage.js" />
     <Content Include="favicon.ico" />
@@ -253,9 +260,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Content\Css\AdminCss\" />
     <Folder Include="Filters\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Uploads\ServiceThumbnails\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -275,6 +282,9 @@
     <Content Include="Models\NexusModel.edmx.diagram">
       <DependentUpon>NexusModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Service\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
@@ -287,6 +297,7 @@
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\Service\Detail.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

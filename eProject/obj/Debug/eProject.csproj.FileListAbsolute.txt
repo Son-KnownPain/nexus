@@ -243,3 +243,7 @@ D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.dll
 D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.SqlServer.dll
 D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.xml
 D:\ASP\Nexus\nexus\eProject\bin\EntityFramework.SqlServer.xml
+D:\Nexus_eproject\nexus\eProject\bin\EntityFramework.dll
+D:\Nexus_eproject\nexus\eProject\bin\EntityFramework.SqlServer.dll
+D:\Nexus_eproject\nexus\eProject\bin\EntityFramework.xml
+D:\Nexus_eproject\nexus\eProject\bin\EntityFramework.SqlServer.xml

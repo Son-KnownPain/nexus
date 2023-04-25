@@ -1,0 +1,99 @@
+﻿.content-main {
+    padding: 12px;
+}
+
+.serviceForm {
+}
+
+.form-group {
+    padding: 12px 0;
+}
+
+.form-label, .form-input, .form-btn {
+    font-size: 1.6rem;
+}
+
+.form-label {
+    display: block;
+}
+
+.form-input {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    color: #333;
+    outline: none;
+}
+
+.ck-content * {
+    color: #333;
+    font-size: 1.6rem;
+}
+
+.ck-content h2 {
+    font-size: 2rem;
+}
+
+.ck-content h3 {
+    font-size: 2.4rem;
+}
+
+.ck-content h3 {
+    font-size: 2.8rem;
+}
+
+.form-btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #333;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+    margin-top: 16px;
+}
+
+    .form-btn:hover {
+        opacity: .8;
+    }
+
+.invalidMessage {
+    font-size: 1.6rem;
+    color: red;
+    animation: ringring ease-out .3s;
+}
+
+@keyframes ringring {
+    0% {
+        margin-left: 0;
+    }
+
+    25% {
+        margin-left: 10px;
+    }
+
+    50% {
+        margin-left: -10px;
+    }
+
+    75% {
+        margin-left: 10px;
+    }
+
+    100% {
+        margin-left: -10px;
+    }
+}
+
+#thumbnailFileInput {
+    font-size: 1.6rem;
+    margin-top: 12px;
+}
+
+#previewThumbnail {
+    max-width: 400px;
+    display: block;
+}
