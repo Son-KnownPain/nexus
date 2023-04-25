@@ -1,0 +1,197 @@
+﻿.page-title {
+    font-size: 3.6rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0;
+    padding: 120px 10px;
+    background-color: #21abcd33;
+    border-radius: 2px;
+}
+
+.summaryInfoBox {
+    margin: 0 auto;
+    background-color: #444;
+    padding: 48px;
+    position: relative;
+    top: -40px;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    box-shadow: 0 0 6px #666;
+}
+
+.summaryInfoItem-heading, .summaryInfoItem-value {
+    text-align: center;
+}
+
+.summaryInfoItem-heading {
+    font-weight: 300;
+    color: var(--grey);
+}
+
+.summaryInfoItem-value {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #f1f1f1;
+    margin-top: 24px;
+}
+
+.infoBox {
+    margin: 16px auto 0;
+}
+
+.infoBox, .summaryInfoBox, .registerBox {
+    min-width: 400px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.descriptionTitle {
+    font-size: 2rem;
+}
+
+.descriptionContent {
+    padding: 12px;
+    font-size: 1.6rem;
+}
+
+.descriptionContent li {
+    font-weight: 300;
+}
+
+/* Payment plans */
+.paymentPlansBox {
+    margin-top: 60px;
+}
+
+.paymentPlanItem {
+    padding: 24px;
+    margin-top: 24px;
+    box-shadow: 0 0 10px #55555588;
+    border-radius: 8px;
+}
+.paymentPlanItem.active {
+    box-shadow: 0 0 15px #7fffd488;
+}
+
+.paymentPlanItem-title, .paymentPlanItem-childrenItem {
+    font-size: 1.6rem;
+    color: var(--grey);
+}
+
+.paymentPlanItem-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 16px 0;
+}
+.paymentPlanItem-title i {
+    margin-right: 4px;
+}
+
+.paymentPlanItem-childrenItem {
+    font-weight: 300;
+    padding: 8px;
+    margin-left: 8px;
+    margin-top: 12px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.paymentPlanItem-childrenItem.active {
+    border-color: var(--primary);
+}
+
+.currentPayment {
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+}
+
+.currentPayment, .currentPayment-plan, .currentPayment-planDetail {
+    margin-top: 36px;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.currentPayment-plan {
+    color: #7fffd4;
+}
+
+.currentPayment-planDetail {
+    color: #89cff0;
+}
+
+.registerBtn {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 12px;
+    margin-top: 32px;
+    border-radius: 6px;
+    background-color: var(--primary);
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+}
+.registerBtn i {
+    color: #333;
+}
+
+.registerBtn:hover {
+    opacity: .8;
+    color: #333;
+}
+
+.otherPackagesBox {
+    margin-top: 60px;
+    margin-bottom: 88px;
+}
+
+.boxTitle {
+    font-size: 2.2rem;
+    color: var(--grey);
+}
+
+.cardItem {
+    display: block;
+    text-decoration: none;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 12px 0;
+    box-shadow: 0 0 6px #666;
+    background-color: #303030;
+}
+
+.cardItem-headingName {
+    font-size: 2rem;
+    color: var(--white);
+    padding: 16px 4px;
+}
+
+.cardItem-thumbnail {
+    width: 100%;
+}
+
+.cardItem-price {
+    font-size: 1.6rem;
+    color: var(--white);
+    padding: 16px 4px;
+}
+
+.cardItem-detailBtn {
+    text-decoration: none;
+    display: block;
+    width: 96%;
+    background-color: var(--primary);
+    color: #333;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0 auto 12px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.cardItem-detailBtn i {
+    color: #333;
+}
+

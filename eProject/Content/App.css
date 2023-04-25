@@ -87,6 +87,10 @@ body {
     margin-top: 16px;
 }
 
+.footer-lineLink:hover {
+    color: var(--primary);
+}
+
 .copyrightText {
     font-size: 1.6rem;
     color: #666;
