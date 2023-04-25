@@ -135,6 +135,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\RetailStoresController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,6 +213,7 @@
   <ItemGroup>
     <Content Include="Content\AdminApp.css" />
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\RetailStores\Index.css" />
     <Content Include="Content\Css\Customer\Login.css" />
     <Content Include="Content\Css\Customer\Register.css" />
     <Content Include="Content\Css\Service\Detail.css" />
@@ -220,6 +222,9 @@
     <Content Include="Content\Css\Package\Detail.css" />
     <Content Include="Content\Css\Site\HowToOrderService.css" />
     <Content Include="Content\Css\Site\Index.css" />
+    <Content Include="Content\ImageRetailsStore\dangkhoi.jpg" />
+    <Content Include="Content\ImageRetailsStore\vienthonga.jpg" />
+    <Content Include="Content\ImageRetailsStore\vnpt.jpg" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
     <Content Include="Content\Images\logo-nobg.jpg" />
@@ -279,6 +284,7 @@
     <Content Include="Views\Site\Faq.cshtml" />
     <Content Include="Views\Package\Detail.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\RetailStores\Index.cshtml" />
     <Content Include="Views\Site\HowToOrderAService.cshtml" />
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
