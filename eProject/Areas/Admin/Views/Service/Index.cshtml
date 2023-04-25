@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Service Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Service/Index.css" />
+}
+
+<h1 class="page-title">
+    Service Management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/Service/Add">
+        <i class="fa-solid fa-plus"></i>
+        Add new service
+    </a>
+    <a class="topNav-btnItem" href="/Admin/Service/Add">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Search
+    </a>
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List service
+    </h3>
+
+    <div class="services">
+        @foreach (var service in ViewBag.services)
+        {
+            <div class="serviceItem">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <img class="serviceItem-img" src="~/Uploads/ServiceThumbnails/@service.Thumbnail" alt="Thumbnail" />
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="serviceItem-body">
+                            <h3 class="serviceItem-name">@service.ServiceName</h3>
+                            <p class="serviceItem-summary">
+                                @service.Summary
+                            </p>
+                            <p class="serviceItem-deposit">
+                                Deposit: @service.Deposit $
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="serviceItem-actions">
+                            <a class="serviceItem-action" href="/Admin/Service/Edit?serviceID=@service.ServiceID">
+                                Edit
+                            </a>
+                            <a class="serviceItem-action dlt" href="/Admin/Service/Detail">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
