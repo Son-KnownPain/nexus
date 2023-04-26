@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using eProject.Filters;
 
 namespace eProject.Controllers
 {
@@ -18,7 +19,7 @@ namespace eProject.Controllers
         {
             return View();
         }
-        
+
         public ActionResult Faq()
         {
             return View();

@@ -14,13 +14,23 @@ namespace eProject.Models
     
     public partial class Bill
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Bill()
+        {
+            this.Charges = new HashSet<Charge>();
+        }
+    
         public int BillID { get; set; }
-        public int ConnectionID { get; set; }
+        public string ConnectionID { get; set; }
+        public int InitialDueAmount { get; set; }
+        public int VatCost { get; set; }
         public int AmountPaid { get; set; }
         public string PaidContent { get; set; }
         public string Status { get; set; }
         public System.DateTime CreatedDate { get; set; }
     
         public virtual Connection Connection { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Charge> Charges { get; set; }
     }
 }

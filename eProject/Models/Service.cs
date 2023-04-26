@@ -22,9 +22,9 @@ namespace eProject.Models
         {
             this.Connections = new HashSet<Connection>();
             this.Orders = new HashSet<Order>();
-            this.Plans = new HashSet<Plan>();
+            this.PaymentPlans = new HashSet<PaymentPlan>();
         }
-    
+
         public int ServiceID { get; set; }
 
         [DisplayName("Service Name")]
@@ -43,12 +43,12 @@ namespace eProject.Models
         public string Thumbnail { get; set; }
 
         public HttpPostedFileBase ThumbnailFile { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Connection> Connections { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Plan> Plans { get; set; }
+        public virtual ICollection<PaymentPlan> PaymentPlans { get; set; }
     }
 }

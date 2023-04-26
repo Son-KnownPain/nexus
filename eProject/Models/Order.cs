@@ -16,7 +16,7 @@ namespace eProject.Models
     {
         public string OrderID { get; set; }
         public int ServiceID { get; set; }
-        public string CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public string Status { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }

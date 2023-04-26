@@ -15,9 +15,12 @@ namespace eProject.Models
     public partial class Charge
     {
         public int ChargeID { get; set; }
+        public int BillID { get; set; }
         public string ChargeName { get; set; }
         public int Value { get; set; }
         public string Description { get; set; }
         public System.DateTime CreatedAt { get; set; }
+    
+        public virtual Bill Bill { get; set; }
     }
 }

@@ -7,7 +7,7 @@
     border-bottom: 1px solid #555;
 }
 
-.topNav-btnItem {
+.topNav-btnItem, .searchForm-btn {
     display: inline-block;
     color: #333;
     background-color: var(--bgcl-btn);
@@ -16,17 +16,33 @@
     border-radius: 6px;
     text-decoration: none;
 }
-.topNav-btnItem i {
+.topNav-btnItem i, .searchForm-btn i {
     color: #333;
 }
 .topNav-btnItem:not(:first-child) {
     margin-left: 12px;
 }
 
-.topNav-btnItem:hover {
+.topNav-btnItem:hover, .searchForm-btn:hover {
     color: #333;
     opacity: .8;
 }
+
+.topNav-search {
+    display: inline-block;
+}
+
+.searchForm-input {
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 12px;
+    border-radius: 6px;
+    width: 400px;
+    outline: none;
+    color: #333;
+}
+
+/*  */
 
 .dataBox {
     margin-top: 16px;

@@ -15,12 +15,12 @@ namespace eProject.Models
     public partial class ConnectionPaymentPlan
     {
         public int ID { get; set; }
-        public int ConnectionID { get; set; }
-        public int PlanDetailID { get; set; }
+        public string ConnectionID { get; set; }
+        public int PaymentPlanDetailID { get; set; }
         public System.DateTime DueDate { get; set; }
         public int DueAmount { get; set; }
     
         public virtual Connection Connection { get; set; }
-        public virtual PlanDetail PlanDetail { get; set; }
+        public virtual PaymentPlanDetail PaymentPlanDetail { get; set; }
     }
 }

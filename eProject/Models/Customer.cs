@@ -21,7 +21,7 @@ namespace eProject.Models
             this.Orders = new HashSet<Order>();
         }
     
-        public string CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public string Fullname { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
