@@ -232,9 +232,9 @@
     <Content Include="Content\Css\Package\Detail.css" />
     <Content Include="Content\Css\Site\HowToOrderService.css" />
     <Content Include="Content\Css\Site\Index.css" />
-    <Content Include="Content\ImageRetailsStore\dangkhoi.jpg" />
-    <Content Include="Content\ImageRetailsStore\vienthonga.jpg" />
-    <Content Include="Content\ImageRetailsStore\vnpt.jpg" />
+    <Content Include="Content\Images\ImageRetailsStore\dangkhoi.jpg" />
+    <Content Include="Content\Images\ImageRetailsStore\vienthonga.jpg" />
+    <Content Include="Content\Images\ImageRetailsStore\vnpt.jpg" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
     <Content Include="Content\Images\logo-nobg.jpg" />
