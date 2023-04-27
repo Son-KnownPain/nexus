@@ -12,21 +12,21 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Plan
+    public partial class PaymentPlan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Plan()
+        public PaymentPlan()
         {
-            this.PlanDetails = new HashSet<PlanDetail>();
+            this.PaymentPlanDetails = new HashSet<PaymentPlanDetail>();
         }
     
-        public int PlanID { get; set; }
+        public int PaymentPlanID { get; set; }
         public int ServiceID { get; set; }
         public string PlanName { get; set; }
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlanDetail> PlanDetails { get; set; }
+        public virtual ICollection<PaymentPlanDetail> PaymentPlanDetails { get; set; }
         public virtual Service Service { get; set; }
     }
 }

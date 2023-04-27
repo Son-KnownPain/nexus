@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using eProject.Filters;
 
 namespace eProject
 {
@@ -8,6 +9,9 @@ namespace eProject
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            // Auto re-sign in
+            filters.Add(new AutoSignIn());
         }
     }
 }

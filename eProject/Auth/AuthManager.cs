@@ -55,13 +55,13 @@ namespace eProject.Auth
             {
                 HttpCookie authCustomerCookie = new HttpCookie(
                     AUTH_CUSTOMER_DATA_KEY,
-                    accountData.CustomerID
+                    accountData.CustomerID + ""
                 );
                 HttpContext.Current.Response.Cookies.Add(authCustomerCookie);
 
                 HttpCookie authCustomerHash = new HttpCookie(
                     AUTH_CUSTOMER_HASHED_KEY,
-                    Crypto.HashPassword(AuthManager.Chef.GetMixing(accountData.CustomerID))
+                    Crypto.HashPassword(AuthManager.Chef.GetMixing(accountData.CustomerID + ""))
                 );
                 HttpContext.Current.Response.Cookies.Add(authCustomerHash);
 
@@ -149,9 +149,9 @@ namespace eProject.Auth
         }
         public static class CurrentEmployee
         {
-            public static bool IsEmployee
+            public static bool IsRetailStoreEmployeeRole
             {
-                get => GetEmployee.Role == EmployeeRoles.EmployeeRole;
+                get => GetEmployee.Role == EmployeeRoles.RetailStoreEmployeeRole;
             }
             public static bool IsAdmin
             {
@@ -190,7 +190,7 @@ namespace eProject.Auth
             {
                 get => 10;
             }
-            public static int EmployeeRole
+            public static int RetailStoreEmployeeRole
             {
                 get => 5;
             }

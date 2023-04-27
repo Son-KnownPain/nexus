@@ -130,19 +130,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SiteController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\RetailStoresController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Filters\AutoSignIn.cs" />
+    <Compile Include="Filters\CustomerAuthorization.cs" />
+    <Compile Include="Filters\EmployeeAuthorization.cs" />
+    <Compile Include="Filters\EmployeeRetailStoreAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomerRegister.cs" />
     <Compile Include="Models\Bill.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -155,10 +158,11 @@
     <Compile Include="Models\ConnectionPaymentPlan.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Contact.cs">
+    <Compile Include="Models\Customer.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Customer.cs">
+    <Compile Include="Models\CustomerRegister.cs" />
+    <Compile Include="Models\Contact.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
@@ -185,10 +189,10 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Plan.cs">
+    <Compile Include="Models\PaymentPlan.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PlanDetail.cs">
+    <Compile Include="Models\PaymentPlanDetail.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetailShowRoom.cs">
@@ -201,6 +205,7 @@
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SimpleProxyCustomer.cs" />
+    <Compile Include="Models\SimpleProxyEmployee.cs" />
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -218,6 +223,7 @@
     <Content Include="Content\Css\AdminCss\Contact\ContactDetail.css" />
     <Content Include="Content\Css\AdminCss\Contact\Index.css" />
     <Content Include="Content\Css\AdminCss\Contact\SearchCotact.css" />
+    <Content Include="Content\Css\AdminCss\Employee\SignIn.css" />
     <Content Include="Content\Css\AdminCss\Service\Add.css" />
     <Content Include="Content\Css\AdminCss\Service\Edit.css" />
     <Content Include="Content\Css\AdminCss\Service\Index.css" />
@@ -264,7 +270,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Filters\" />
     <Folder Include="Scripts\" />
     <Folder Include="Uploads\ServiceThumbnails\" />
   </ItemGroup>
@@ -276,7 +281,7 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Site\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Partials\Header.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Partials\Sidebar.cshtml" />
     <EntityDeploy Include="Models\NexusModel.edmx">
@@ -292,12 +297,13 @@
     <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Contact\DetailsContact.cshtml" />
     <Content Include="Areas\Admin\Views\Contact\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\SignIn.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_SignInLayout.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
     <Content Include="Views\Site\Faq.cshtml" />
-    <Content Include="Views\Package\Detail.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\RetailStores\Index.cshtml" />
     <Content Include="Views\Site\HowToOrderAService.cshtml" />

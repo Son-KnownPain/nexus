@@ -5,37 +5,38 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2b4d0d53653c48e6a4e48ed3bd655a45" Name="Diagram1">
-        <EntityTypeShape EntityType="NexusModel.Bill" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NexusModel.Charge" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NexusModel.ConnectionPaymentPlan" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="NexusModel.Connection" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.Contact" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NexusModel.Customer" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.Employee" Width="1.5" PointX="8.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.Equipment" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NexusModel.Order" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="NexusModel.PlanDetail" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NexusModel.Plan" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.RetailShowRoomEmployee" Width="1.5" PointX="11" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.RetailShowRoom" Width="1.5" PointX="8.75" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.Service" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.Supplier" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.WarehouseEquipment" Width="1.5" PointX="7.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NexusModel.Warehouse" Width="1.5" PointX="5" PointY="17.25" IsExpanded="true" />
-        <AssociationConnector Association="NexusModel.FK_Bills_Connections" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_ConnectionPaymentPlans_Connections" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_ConnectionPaymentPlans_PlanDetails" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_Connections_Customers" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_Connections_Services" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_Orders_Customers" ManuallyRouted="false" />
         <AssociationConnector Association="NexusModel.FK_RetailShowRoomEmployees_Employees" ManuallyRouted="false" />
         <AssociationConnector Association="NexusModel.FK_Equipments_Suppliers" ManuallyRouted="false" />
         <AssociationConnector Association="NexusModel.FK_WarehouseEquipments_Equipments" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_Orders_Services" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_PlanDetails_Plans" ManuallyRouted="false" />
-        <AssociationConnector Association="NexusModel.FK_Plans_Services" ManuallyRouted="false" />
         <AssociationConnector Association="NexusModel.FK_RetailShowRoomEmployees_RetailShowRooms" ManuallyRouted="false" />
         <AssociationConnector Association="NexusModel.FK_WarehouseEquipments_Warehouses" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NexusModel.Bill" Width="1.5" PointX="8.25" PointY="17.25" />
+        <EntityTypeShape EntityType="NexusModel.Charge" Width="1.5" PointX="10.5" PointY="17.5" />
+        <EntityTypeShape EntityType="NexusModel.ConnectionPaymentPlan" Width="1.5" PointX="11.25" PointY="13" />
+        <EntityTypeShape EntityType="NexusModel.Connection" Width="1.5" PointX="6" PointY="6.125" />
+        <EntityTypeShape EntityType="NexusModel.Customer" Width="1.5" PointX="3.75" PointY="10" />
+        <EntityTypeShape EntityType="NexusModel.Order" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="NexusModel.PaymentPlanDetail" Width="1.5" PointX="5.25" PointY="14.25" />
+        <EntityTypeShape EntityType="NexusModel.PaymentPlan" Width="1.5" PointX="3" PointY="14.125" />
+        <AssociationConnector Association="NexusModel.FK_Bills_Connections" />
+        <AssociationConnector Association="NexusModel.FK_Charges_Bills" />
+        <AssociationConnector Association="NexusModel.FK_ConnectionPaymentPlans_Connections" />
+        <AssociationConnector Association="NexusModel.FK_ConnectionPaymentPlans_PlanDetails" />
+        <AssociationConnector Association="NexusModel.FK_Connections_Customers" />
+        <AssociationConnector Association="NexusModel.FK_Connections_Services" />
+        <AssociationConnector Association="NexusModel.FK_Orders_Customers" />
+        <AssociationConnector Association="NexusModel.FK_Orders_Services" />
+        <AssociationConnector Association="NexusModel.FK_PlanDetails_Plans" />
+        <AssociationConnector Association="NexusModel.FK_Plans_Services" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

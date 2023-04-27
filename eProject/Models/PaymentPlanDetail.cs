@@ -12,20 +12,20 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PlanDetail
+    public partial class PaymentPlanDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PlanDetail()
+        public PaymentPlanDetail()
         {
             this.ConnectionPaymentPlans = new HashSet<ConnectionPaymentPlan>();
         }
     
-        public int PlanDetailID { get; set; }
-        public int PlanID { get; set; }
+        public int PaymentPlanDetailID { get; set; }
+        public int PaymentPlanID { get; set; }
         public string Content { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConnectionPaymentPlan> ConnectionPaymentPlans { get; set; }
-        public virtual Plan Plan { get; set; }
+        public virtual PaymentPlan PaymentPlan { get; set; }
     }
 }

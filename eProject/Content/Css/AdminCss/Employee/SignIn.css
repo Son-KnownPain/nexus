@@ -1,0 +1,103 @@
+﻿.signInModal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000088;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.signInContainer {
+    margin-top: 24px;
+    width: 600px;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: #292929;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #ffffff33;
+    animation: fadeDownIn ease-in-out .5s;
+}
+
+.signInForm {
+    padding: 24px;
+}
+
+.form-group:not(:first-child) {
+    margin-top: 24px;
+}
+
+.form-label {
+    display: block;
+    font-size: 1.6rem;
+}
+
+.form-input {
+    font-weight: 400;
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: #f2f3f4;
+    color: #333;
+    outline: none;
+}
+
+.form-btn {
+    margin-top: 16px;
+    font-size: 1.6rem;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: #333;
+    outline: none;
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+}
+.form-btn:hover {
+    opacity: .8;
+}
+
+@keyframes fadeDownIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.invalidMessage {
+    font-size: 1.6rem;
+    color: red;
+    animation: ringring ease-out .3s;
+}
+
+@keyframes ringring {
+    0% {
+        margin-left: 0;
+    }
+
+    25% {
+        margin-left: 10px;
+    }
+
+    50% {
+        margin-left: -10px;
+    }
+
+    75% {
+        margin-left: 10px;
+    }
+
+    100% {
+        margin-left: -10px;
+    }
+}

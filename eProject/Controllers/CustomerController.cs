@@ -70,7 +70,6 @@ namespace eProject.Controllers
             if (!ModelState.IsValid) return View("Register");
 
             Customer customer = new Customer();
-            customer.CustomerID = GenerateCustomerID();
             customer.Phone = data.Phone;
             customer.Fullname = data.Fullname;
             customer.Email = "";
