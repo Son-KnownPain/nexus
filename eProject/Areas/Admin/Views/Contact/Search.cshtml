@@ -1,0 +1,76 @@
+﻿@model IEnumerable<eProject.Models.Contact>
+@{
+    ViewBag.Title = "Search";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Contact/SearchCotact.css" />
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Contact/Index.css" />
+}
+
+
+<div class="container">
+    <h1 class="page-heading">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Search
+    </h1>
+    <div class="searchFilterBox">
+        @using (Html.BeginForm("Search", "Contact", FormMethod.Get, new { @class = "searchForm" }))
+        {
+            <div class="searchInputBox">
+                <input class="searchInput" type="text" name="searchValue" placeholder="Enter your keyword..." />
+                <button class="searchBtn">Search</button>
+            </div>
+        }
+    </div>
+
+    <div class="searchResultBox">
+        @if (ViewBag.Contacts != null && ViewBag.Contacts.Count != 0)
+        {
+            <div class="contact">
+                <hr />
+                @foreach (var contact in ViewBag.Contacts)
+                {
+                    <div class="blogsResult resultItemBox">
+                        <h1 class="result-title">Contacts</h1>
+                        <div class="contactItem">
+                            <div class="row">
+                                <div class="col-xl-9">
+                                    <div class="contactItem-body">
+                                        <p class="contact-sentDate">
+                                            @contact.ContactedAt
+                                        </p>
+                                        <h3 class="contactItem-name">@contact.ContactName</h3>
+                                        <p class="contactItem-summary">
+                                            @contact.Content
+                                        </p>
+                                        <p class="contactItem-summary">
+                                            @if (contact.Status.Equals("Sent"))
+                                            {
+                                                <span>Not seen</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="contactItem-actions">
+                                        <a class="contactItem-action" href="~/Admin/Contact/DetailsContact?contactID=@contact.ContactID">
+                                            View
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            }
+            else if (ViewBag.Contacts != null && ViewBag.Contacts.Count == 0)
+            {
+                <div class="blogsResult resultItemBox">
+                    <h1 class="result-title">Contacts</h1>
+                    <p class="noResultMessage">No result</p>
+                </div>
+            }
+    </div>
+</div>

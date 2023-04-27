@@ -1,0 +1,68 @@
+﻿@model IEnumerable<eProject.Models.Contact>
+@{
+    ViewBag.Title = "Contact Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Contact/Index.css" />
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Contact/SearchCotact.css" />
+
+}
+
+<h1 class="page-title">
+    Contact Management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/Contact/Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search
+        </a>
+    @*<div class="searchFilterBox">
+        @using (Html.BeginForm("Index", "Contact", FormMethod.Get, new { @class = "searchForm" }))
+        {
+            <div class="searchInputBox">
+                <input class="searchInput" type="text" name="searchValue" placeholder="Enter your keyword..." />
+                <button class="searchBtn">Search</button>
+            </div>
+        }
+    </div>*@
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List contact
+    </h3>
+
+    <div class="contact">
+        @foreach (var contact in ViewBag.contactList)
+        {
+            <div class="contactItem">
+                <div class="row">
+                    <div class="col-xl-9">
+                        <div class="contactItem-body">
+                            <p class="contact-sentDate">
+                                @contact.ContactedAt
+                            </p>
+                            <h3 class="contactItem-name">@contact.ContactName</h3>
+                            <p class="contactItem-summary">
+                                @contact.Content
+                            </p>
+                            <p class="contactItem-summary">
+                                @if (contact.Status.Equals("Sent"))
+                                {
+                                    <span>Not seen</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="contactItem-actions">
+                            <a class="contactItem-action" href="~/Admin/Contact/DetailsContact?contactID=@contact.ContactID">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

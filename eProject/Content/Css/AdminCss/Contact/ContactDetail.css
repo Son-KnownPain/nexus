@@ -1,4 +1,18 @@
-﻿.content-main {
+﻿.contact-email {
+    font-size: 1rem;
+    margin-left: 40px;
+}
+
+.contact-sentDate {
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+.contactItem-body, .contactItem-actions {
+    padding: 12px 0 0 10px;
+}
+
+.content-main {
     padding: 12px;
 }
 
@@ -35,56 +49,50 @@
 }
 
 .dataBox-heading {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: var(--grey);
     margin-bottom: 16px;
 }
 
-.services {
+.contact {
     padding: 12px;
 }
 
-.serviceItem {
+.contactItem {
     box-shadow: 0 0 10px #55555588;
     border-radius: 4px;
 }
 
-    .serviceItem:not(:first-child) {
+    .contactItem:not(:first-child) {
         margin-top: 12px;
     }
 
-.serviceItem-img {
-    width: 100%;
-    border-radius: 4px;
-}
 
-.serviceItem-body, .serviceItem-actions {
-    padding: 12px 0;
-}
 
-.serviceItem-name {
+.contactItem-name {
     font-size: 2.2rem;
 }
 
-.serviceItem-summary, .serviceItem-deposit {
+.contactItem-summary {
     font-size: 1.4rem;
     font-weight: 400;
     color: var(--grey);
     margin-top: 10px;
+    margin-left: 20px;
 }
 
-.serviceItem-summary {
+.contactItem-summary {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
-.serviceItem-actions {
-    margin-top: -8px;
+.contactItem-actions {
+    margin-top: 30px;
 }
 
-.serviceItem-action {
+.contactItem-action {
     display: inline-block;
     font-size: 1.6rem;
     padding: 8px;
@@ -93,18 +101,20 @@
     color: #333;
     background-color: #e9d66b;
     margin-top: 8px;
+    width: 100px;
+    text-align: center;
 }
 
-.serviceItem-action {
-    margin-left: 10px;
+.contactItem-action {
+    margin-left: 120px;
 }
 
-    .serviceItem-action.dlt {
-        background-color: #ff2052;
-        color: #fff;
-    }
+.contactItem-action.dlt {
+    background-color: #ff2052;
+    color: #fff;
+}
 
-    .serviceItem-action:hover {
-        opacity: .8;
-        color: #444;
-    }
+.contactItem-action:hover {
+    opacity: .8;
+    color: #444;
+}

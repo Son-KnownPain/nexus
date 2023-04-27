@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
@@ -214,6 +215,9 @@
   <ItemGroup>
     <Content Include="Content\AdminApp.css" />
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\AdminCss\Contact\ContactDetail.css" />
+    <Content Include="Content\Css\AdminCss\Contact\Index.css" />
+    <Content Include="Content\Css\AdminCss\Contact\SearchCotact.css" />
     <Content Include="Content\Css\AdminCss\Service\Add.css" />
     <Content Include="Content\Css\AdminCss\Service\Edit.css" />
     <Content Include="Content\Css\AdminCss\Service\Index.css" />
@@ -285,6 +289,9 @@
     <Content Include="Areas\Admin\Views\Service\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\DetailsContact.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\Search.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
