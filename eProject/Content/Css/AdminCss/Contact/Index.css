@@ -7,7 +7,7 @@
     border-bottom: 1px solid #555;
 }
 
-.topNav-btnItem, .searchForm-btn {
+.topNav-btnItem {
     display: inline-block;
     color: #333;
     background-color: var(--bgcl-btn);
@@ -16,89 +16,70 @@
     border-radius: 6px;
     text-decoration: none;
 }
-.topNav-btnItem i, .searchForm-btn i {
-    color: #333;
-}
-.topNav-btnItem:not(:first-child) {
-    margin-left: 12px;
-}
 
-.topNav-btnItem:hover, .searchForm-btn:hover {
-    color: #333;
-    opacity: .8;
-}
+    .topNav-btnItem i {
+        color: #333;
+    }
 
-.topNav-search {
-    display: inline-block;
-}
+    .topNav-btnItem:not(:first-child) {
+        margin-left: 12px;
+    }
 
-.searchForm-input {
-    font-size: 1.6rem;
-    font-weight: 400;
-    padding: 12px;
-    border-radius: 6px;
-    width: 400px;
-    outline: none;
-    color: #333;
-}
-
-/*  */
+    .topNav-btnItem:hover {
+        color: #333;
+        opacity: .8;
+    }
 
 .dataBox {
     margin-top: 16px;
 }
 
 .dataBox-heading {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: var(--grey);
     margin-bottom: 16px;
 }
 
-.services {
+.contact {
     padding: 12px;
 }
 
-.serviceItem {
+.contactItem {
     box-shadow: 0 0 10px #55555588;
     border-radius: 4px;
 }
 
-    .serviceItem:not(:first-child) {
+    .contactItem:not(:first-child) {
         margin-top: 12px;
     }
 
-.serviceItem-img {
-    width: 100%;
-    border-radius: 4px;
+.contactItem-body, .contactItem-actions {
+    padding: 12px 0 0 10px;
 }
 
-.serviceItem-body, .serviceItem-actions {
-    padding: 12px 0;
-}
-
-.serviceItem-name {
+.contactItem-name {
     font-size: 2.2rem;
 }
 
-.serviceItem-summary, .serviceItem-deposit {
+.contactItem-summary {
     font-size: 1.4rem;
     font-weight: 400;
     color: var(--grey);
     margin-top: 10px;
 }
 
-.serviceItem-summary {
+.contactItem-summary {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
-.serviceItem-actions {
-    margin-top: -8px;
+.contactItem-actions {
+    margin-top: 20px;
 }
 
-.serviceItem-action {
+.contactItem-action {
     display: inline-block;
     font-size: 1.6rem;
     padding: 8px;
@@ -107,18 +88,32 @@
     color: #333;
     background-color: #e9d66b;
     margin-top: 8px;
+    width: 100px;
+    text-align: center;
 }
 
-.serviceItem-action {
-    margin-left: 10px;
+.contactItem-action {
+    margin-left: 120px;
 }
 
-    .serviceItem-action.dlt {
+    .contactItem-action.dlt {
         background-color: #ff2052;
         color: #fff;
     }
 
-    .serviceItem-action:hover {
+    .contactItem-action:hover {
         opacity: .8;
         color: #444;
     }
+
+.contact-sentDate {
+    font-size: 1rem;
+    margin-left: 5px;
+}
+
+.invalidMessage {
+    font-size: 1.6rem;
+    color: red;
+    animation: ringring ease-out .3s;
+}
+

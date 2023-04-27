@@ -1,4 +1,5 @@
-﻿using eProject.Models;
+﻿using eProject.Filters;
+using eProject.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace eProject.Areas.Admin.Controllers
 {
+    //[EmployeeAuthorization]
     public class ServiceController : Controller
     {
         private NexusEntities context = new NexusEntities();
@@ -139,5 +141,28 @@ namespace eProject.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Admin/Service/Delete
+        public ActionResult Delete(int? serviceID)
+        {
+            //if (serviceID == null) return RedirectToAction("Index");
+            //Service serviceToDelete = context.Services.FirstOrDefault(s => s.ServiceID == serviceID);
+            //if (serviceToDelete == null) return RedirectToAction("Index");
+
+            // Handle remove relationships of Service
+
+            //context.Services.Remove(serviceToDelete);
+
+            TempData["Error"] = "Delete function is not work now";
+
+            return RedirectToAction("Index");
+        }
+
+        // POST: Admin/Service/Search
+        [HttpPost]
+        public ActionResult Search(string keyword)
+        {
+            ViewBag.services = context.Services.Where(s => s.ServiceName.Contains(keyword)).ToList();
+            return View("Index");
+        }
     }
 }

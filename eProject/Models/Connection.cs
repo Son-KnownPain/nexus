@@ -21,9 +21,9 @@ namespace eProject.Models
             this.ConnectionPaymentPlans = new HashSet<ConnectionPaymentPlan>();
         }
     
-        public int ConnectionID { get; set; }
+        public string ConnectionID { get; set; }
         public int ServiceID { get; set; }
-        public string CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public string Status { get; set; }
         public string ContactNumber { get; set; }
         public System.DateTime ConnectedAt { get; set; }

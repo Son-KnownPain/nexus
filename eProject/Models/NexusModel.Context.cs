@@ -25,22 +25,22 @@ namespace eProject.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Bill> Bills { get; set; }
-        public virtual DbSet<Charge> Charges { get; set; }
-        public virtual DbSet<ConnectionPaymentPlan> ConnectionPaymentPlans { get; set; }
-        public virtual DbSet<Connection> Connections { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<PlanDetail> PlanDetails { get; set; }
-        public virtual DbSet<Plan> Plans { get; set; }
         public virtual DbSet<RetailShowRoomEmployee> RetailShowRoomEmployees { get; set; }
         public virtual DbSet<RetailShowRoom> RetailShowRooms { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<WarehouseEquipment> WarehouseEquipments { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<Charge> Charges { get; set; }
+        public virtual DbSet<ConnectionPaymentPlan> ConnectionPaymentPlans { get; set; }
+        public virtual DbSet<Connection> Connections { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<PaymentPlanDetail> PaymentPlanDetails { get; set; }
+        public virtual DbSet<PaymentPlan> PaymentPlans { get; set; }
     }
 }

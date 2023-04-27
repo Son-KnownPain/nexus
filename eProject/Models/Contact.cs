@@ -11,12 +11,11 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel;
 
     public partial class Contact
     {
-        // validate
         public int ContactID { get; set; }
         [DisplayName("Contact Name")]
         [Required(ErrorMessage = "Contact name can not empty")]
