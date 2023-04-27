@@ -12,19 +12,15 @@
     Contact Management
 </h1>
 <nav class="topNav">
-    <a class="topNav-btnItem" href="/Admin/Contact/Search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Search
-        </a>
-    @*<div class="searchFilterBox">
-        @using (Html.BeginForm("Index", "Contact", FormMethod.Get, new { @class = "searchForm" }))
-        {
-            <div class="searchInputBox">
-                <input class="searchInput" type="text" name="searchValue" placeholder="Enter your keyword..." />
-                <button class="searchBtn">Search</button>
-            </div>
-        }
-    </div>*@
+    <div class="searchFilterBox">
+            @using (Html.BeginForm("Search", "Contact", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+            {
+                <div class="searchInputBox">
+                    <input class="searchInput" type="text" name="searchValue" placeholder="Enter your keyword..." />
+                    <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            }
+        </div>
 </nav>
 <div class="dataBox">
     <h3 class="dataBox-heading">
@@ -48,7 +44,10 @@
                             <p class="contactItem-summary">
                                 @if (contact.Status.Equals("Sent"))
                                 {
-                                    <span>Not seen</span>
+                                    <span>Sent</span>
+                                } else if (contact.Status.Equals("Seen"))
+                                {
+                                    <span>Seen</span>
                                 }
                             </p>
                         </div>

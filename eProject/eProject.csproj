@@ -296,7 +296,6 @@
     <Content Include="Areas\Admin\Views\Service\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Contact\DetailsContact.cshtml" />
-    <Content Include="Areas\Admin\Views\Contact\Search.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\SignIn.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SignInLayout.cshtml" />
     <None Include="packages.config" />

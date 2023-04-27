@@ -26,13 +26,15 @@ namespace eProject.Areas.Admin.Controllers
             if (contactID == null) return RedirectToAction("Index");
             Contact contactDetail = context.Contacts.FirstOrDefault(s => s.ContactID == contactID);
             if (contactDetail == null) return RedirectToAction("Index");
+            contactDetail.Status = "Seen";
+            context.SaveChanges();
             return View(contactDetail);
         }
 
         public ActionResult Search(string searchValue)
         {
-            ViewBag.Contacts = context.Contacts.Where(c => c.ContactName.Contains(searchValue) || searchValue == null).ToList();
-            return View();
+            ViewBag.contactList = context.Contacts.Where(c => c.ContactName.Contains(searchValue) || c.Content.Contains(searchValue)).ToList();
+            return View("Index");
         }
 
         

@@ -30,6 +30,7 @@
 .searchInput {
     flex: 1;
     border: 1px solid #999;
+    color: black;
 }
 
 .searchBtn {
@@ -38,6 +39,8 @@
     background-color: var(--primary-color);
     color: #fff;
     border: 1px solid #999;
+    background: #00e3ff;
+    width: 10%;
 }
 
     .searchBtn:hover {
