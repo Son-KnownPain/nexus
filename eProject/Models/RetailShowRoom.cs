@@ -17,7 +17,7 @@ namespace eProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RetailShowRoom()
         {
-            this.RetailShowRoomEmployees = new HashSet<RetailShowRoomEmployee>();
+            this.Employees = new HashSet<Employee>();
         }
     
         public int RetailShowRoomID { get; set; }
@@ -28,6 +28,6 @@ namespace eProject.Models
         public int EmployeeQuantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RetailShowRoomEmployee> RetailShowRoomEmployees { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

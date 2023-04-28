@@ -90,6 +90,7 @@ namespace eProject.Areas.Admin.Controllers
 
             Employee employee = new Employee();
 
+            employee.RetailShowRoomID = null;
             employee.Fullname = data.Fullname;
             employee.StillWorking = true;
             switch(data.Role)
@@ -290,9 +291,6 @@ namespace eProject.Areas.Admin.Controllers
                 System.IO.File.Delete(uploadFolderPath + "/" + employeeData.Avatar);
             }
 
-            // Remove relationships / foreign key
-            context.RetailShowRoomEmployees.RemoveRange(context.RetailShowRoomEmployees.Where(rd => rd.EmployeeID == employeeID));
-
             context.Employees.Remove(employeeData);
 
             try
@@ -356,8 +354,10 @@ namespace eProject.Areas.Admin.Controllers
         [EmployeeAuthorization]
         public ActionResult MyProfile()
         {
-            int MyID = AuthManager.CurrentEmployee.GetEmployee.EmployeeID;
-            return View();
+            int MyProfileID = AuthManager.CurrentEmployee.GetEmployee.EmployeeID;
+            Employee model = context.Employees.FirstOrDefault(e => e.EmployeeID == MyProfileID);
+            if (model == null) return Redirect("/Admin");
+            return View(model);
         }
 
         // GET: Admin/Employee/SignOut

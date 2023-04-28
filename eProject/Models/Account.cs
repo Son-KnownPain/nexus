@@ -12,26 +12,28 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Connection
+    public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Connection()
+        public Account()
         {
             this.Bills = new HashSet<Bill>();
-            this.ConnectionPaymentPlans = new HashSet<ConnectionPaymentPlan>();
         }
     
-        public string ConnectionID { get; set; }
+        public string AccountID { get; set; }
+        public string OrderID { get; set; }
         public int ServiceID { get; set; }
+        public int PaymentPlanDetailID { get; set; }
         public int CustomerID { get; set; }
         public string Status { get; set; }
         public string ContactNumber { get; set; }
         public System.DateTime ConnectedAt { get; set; }
+        public System.DateTime DueDate { get; set; }
     
+        public virtual Order Order { get; set; }
+        public virtual PaymentPlanDetail PaymentPlanDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConnectionPaymentPlan> ConnectionPaymentPlans { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Service Service { get; set; }
     }

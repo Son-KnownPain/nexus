@@ -1,0 +1,51 @@
+﻿@model eProject.Models.Employee
+@{
+    ViewBag.Title = "My Profile";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Employee/MyProfile.css" />
+}
+
+<h1 class="page-title">
+    My Profile
+</h1>
+<div class="profileBox">
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="profile-avatar" style="background-image: url('/Uploads/EmployeeAvatars/@Model.Avatar')"></div>
+        </div>
+
+        <div class="col-xl-5">
+            <div class="profile-info">
+                <h1 class="profile-fullname">
+                    @Model.Fullname
+                </h1>
+                <p class="profile-line">
+                    <i class="fa-solid fa-phone"></i>
+                    @Model.Phone
+                </p>
+                <p class="profile-line">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    @Model.Email
+                </p>
+                <p class="profile-line">
+                    <i class="fa-solid fa-location-dot"></i>
+                    @Model.Address
+                </p>
+                <p class="profile-line">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                    @Model.Department
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xl-3">
+            <div class="profile-rightActions">
+                <a class="profile-rightActionItem" href="/Admin/Employee/ChangeMyPassword">
+                    <i class="fa-solid fa-gear"></i>
+                    Change Password
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

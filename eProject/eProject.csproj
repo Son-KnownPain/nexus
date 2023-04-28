@@ -147,16 +147,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Bill.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CallCharge.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CallChargeType.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Charge.cs">
-      <DependentUpon>NexusModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Connection.cs">
-      <DependentUpon>NexusModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ConnectionPaymentPlan.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
@@ -202,15 +205,15 @@
     <Compile Include="Models\RetailShowRoom.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RetailShowRoomEmployee.cs">
-      <DependentUpon>NexusModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Service.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SimpleProxyCustomer.cs" />
     <Compile Include="Models\SimpleProxyEmployee.cs" />
     <Compile Include="Models\Supplier.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Warehouse.cs">
@@ -231,6 +234,7 @@
     <Content Include="Content\Css\AdminCss\Contact\ContactDetail.css" />
     <Content Include="Content\Css\AdminCss\Contact\Index.css" />
     <Content Include="Content\Css\AdminCss\Contact\SearchCotact.css" />
+    <Content Include="Content\Css\AdminCss\Employee\MyProfile.css" />
     <Content Include="Content\Css\AdminCss\Employee\SignIn.css" />
     <Content Include="Content\Css\AdminCss\Service\Add.css" />
     <Content Include="Content\Css\AdminCss\Service\Edit.css" />
@@ -313,6 +317,7 @@
     <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\MyProfile.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

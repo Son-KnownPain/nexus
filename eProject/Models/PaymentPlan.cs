@@ -25,8 +25,8 @@ namespace eProject.Models
         public string PlanName { get; set; }
         public string Description { get; set; }
     
+        public virtual Service Service { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentPlanDetail> PaymentPlanDetails { get; set; }
-        public virtual Service Service { get; set; }
     }
 }

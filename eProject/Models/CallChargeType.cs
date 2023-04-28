@@ -12,27 +12,18 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Bill
+    public partial class CallChargeType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Bill()
+        public CallChargeType()
         {
-            this.Charges = new HashSet<Charge>();
+            this.CallCharges = new HashSet<CallCharge>();
         }
     
-        public int BillID { get; set; }
-        public string AccountID { get; set; }
-        public int EmployeeID { get; set; }
-        public int InitialDueAmount { get; set; }
-        public int AmountPaid { get; set; }
-        public int VatCost { get; set; }
-        public string PaidContent { get; set; }
-        public string Status { get; set; }
-        public System.DateTime CreatedDate { get; set; }
+        public int CallChargeTypeID { get; set; }
+        public string TypeName { get; set; }
     
-        public virtual Account Account { get; set; }
-        public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Charge> Charges { get; set; }
+        public virtual ICollection<CallCharge> CallCharges { get; set; }
     }
 }
