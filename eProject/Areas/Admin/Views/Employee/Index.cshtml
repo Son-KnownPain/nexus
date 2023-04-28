@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Employee Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Employee/Index.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $("#deleteEmployeeBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete that employee")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
+
+<h1 class="page-title">
+    Employee Management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/Employee/Add">
+        <i class="fa-solid fa-plus"></i>
+        Add new employee
+    </a>
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "Employee", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input class="searchForm-input" name="keyword" placeholder="Enter name, phone,..." />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List employee
+    </h3>
+
+    <div class="persons">
+        @foreach (eProject.Models.Employee employee in ViewBag.employees)
+        {
+            <div class="personItem">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="personItem-avt" style="background-image: url('/Uploads/EmployeeAvatars/@employee.Avatar');"></div>
+                    </div>
+                    <div class="col-xl-8">
+                        <div class="personItem-body">
+                            <h2 class="personItem-name">
+                                @employee.Fullname
+                                @if (employee.StillWorking)
+                                {
+                                    <span class="personItem-status work">
+                                        Still working
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="personItem-status">
+                                        Quit job
+                                    </span>
+                                }
+                            </h2>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        <i class="fa-solid fa-phone"></i>
+                                        @employee.Phone
+                                    </p>
+                                </div>
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        Join work date: @employee.CreatedAt.ToString("dd/MM/yyyy")
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                        sonhong443@gmail.com
+                                    </p>
+                                </div>
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        Updated date: @employee.UpdatedAt.ToString("dd/MM/yyyy")
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="personItem-line">
+                                <i class="fa-solid fa-location-dot"></i>
+                                @employee.Address
+                            </p>
+                            <p class="personItem-line">
+                                <i class="fa-solid fa-clipboard-user"></i>
+                                @employee.Department
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="personItem-actions">
+                            <a href="/Admin/Employee/Edit?employeeID=@employee.EmployeeID" class="personItem-actionItem edit">
+                                Edit
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                            <a href="/Admin/Employee/Delete?employeeID=@employee.EmployeeID" class="personItem-actionItem delete" id="deleteEmployeeBtn">
+                                Delete
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <a href="/Admin/Employee/ChangePassword?employeeID=@employee.EmployeeID" class="personItem-actionItem" id="deleteEmployeeBtn">
+                                Change Password
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

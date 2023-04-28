@@ -27,7 +27,8 @@ namespace eProject.Filters
                 if (isValidAuth)
                 {
                     NexusEntities context = new NexusEntities();
-                    Customer customer = context.Customers.FirstOrDefault(c => c.CustomerID == Convert.ToInt32(customerID));
+                    int customerIDInt = Convert.ToInt32(customerID);
+                    Customer customer = context.Customers.FirstOrDefault(c => c.CustomerID == customerIDInt);
                     if (customer != null)
                     {
                         AuthManager.CurrentCustomer.Update(customer);
@@ -48,7 +49,8 @@ namespace eProject.Filters
                 if (isValidAuth)
                 {
                     NexusEntities context = new NexusEntities();
-                    Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeID == Convert.ToInt32(employeeID));
+                    int employeeIDInt = Convert.ToInt32(employeeID);
+                    Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeID == employeeIDInt);
                     if (employee != null)
                     {
                         AuthManager.CurrentEmployee.Update(employee);

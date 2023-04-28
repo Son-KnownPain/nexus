@@ -1,4 +1,6 @@
-﻿<div class="sidebar">
+﻿@using eProject.Auth
+
+<div class="sidebar">
     <h4 class="sidebar-heading">
         <i class="fa-solid fa-bars-staggered"></i>
         Management Menu
@@ -7,5 +9,11 @@
         <a class="sidebar-menuItem" href="/Admin/Service">
             Service management
         </a>
+        @if (AuthManager.CurrentEmployee.IsAdmin)
+        {
+            <a class="sidebar-menuItem" href="/Admin/Employee">
+                Employee management
+            </a>
+        }
     </nav>
 </div>

@@ -36,10 +36,11 @@ namespace eProject.Filters
                     AuthManager.CurrentCustomer.Update(null);
                     filterContext.Result = new HttpUnauthorizedResult();
                 }
-                else if (!AuthManager.IsCustomerAuthenticated)
+                else
                 {
                     NexusEntities context = new NexusEntities();
-                    Customer customer = context.Customers.FirstOrDefault(c => c.CustomerID == Convert.ToInt32(customerID));
+                    int customerIDInt = Convert.ToInt32(customerID);
+                    Customer customer = context.Customers.FirstOrDefault(c => c.CustomerID == customerIDInt);
                     if (customer != null)
                     {
                         AuthManager.CurrentCustomer.Update(customer);
