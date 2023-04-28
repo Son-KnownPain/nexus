@@ -65,16 +65,31 @@
     margin-top: 12px;
 }
 
-.contactItem-name {
-    font-size: 2.2rem;
+.contact-label {
+    font-size: 1.2rem;
+    color: var(--grey);
+    margin-top: 24px;
+    display: block;
 }
 
-.contactItem-summary {
-    font-size: 1.4rem;
+.dataLine {
+    margin-left: 24px;
+}
+
+.contactItem-name {
+    font-size: 2.4rem;
+}
+
+.contactItem-content {
+    font-size: 1.6rem;
     font-weight: 400;
     color: var(--grey);
     margin-top: 10px;
-    margin-left: 20px;
+}
+
+.contactItem-link {
+    display: inline-block;
+    text-decoration: none;
 }
 
 .contactItem-summary {

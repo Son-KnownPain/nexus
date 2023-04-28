@@ -9,35 +9,46 @@
 <h1 class="page-title">
     Contact Detail Management
 </h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/Contact/">
+        Exit
+    </a>
+</nav>
 <div class="dataBox">
     <div class="contact">
-            <div class="contactItem">
-                <div class="row">
-                    <div class="col-xl-9">
-                        <div class="contactItem-body">
-                            <p class="contact-sentDate">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                @Model.ContactedAt.ToString("dd/MM/yyyy")
-                            </p>
-                            <h4 class="contactItem-name">
-                                @Model.ContactName
-                            </h4>
+        <p class="contact-sentDate">
+            <i class="fa-solid fa-calendar-days"></i>
+            @Model.ContactedAt.ToString("dd/MM/yyyy")
+        </p>
+        <label class="contact-label">
+            Contact Name
+        </label>
+        <h4 class="contactItem-name dataLine">
+            @Model.ContactName
+        </h4>
 
-                            <p class="contactItem-summary">
-                                @Model.Content <br /> @Model.Phone
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="contactItem-actions">
-                            <a class="contactItem-action" href="~/Admin/Contact/Index">
-                                Exit
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         
+        <label class="contact-label">
+            Message
+        </label>
+        <p class="contactItem-content dataLine">
+            @Model.Content
+        </p>
+
+        <label class="contact-label">
+            Phone
+        </label>
+        <a class="contactItem-link contactItem-content dataLine" href="tel:@Model.Phone">
+            <i class="fa-solid fa-phone-flip"></i>
+            @Model.Phone
+        </a>
+
+        <label class="contact-label">
+            Email
+        </label>
+        <a class="contactItem-link contactItem-content dataLine" href="mailto:@Model.Email">
+            <i class="fa-solid fa-paper-plane"></i>
+            @Model.Email
+        </a>
     </div>
 </div>
 
