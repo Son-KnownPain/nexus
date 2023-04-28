@@ -36,7 +36,5 @@ namespace eProject.Areas.Admin.Controllers
             ViewBag.contactList = context.Contacts.Where(c => c.ContactName.Contains(searchValue) || c.Content.Contains(searchValue)).ToList();
             return View("Index");
         }
-
-        
     }
 }

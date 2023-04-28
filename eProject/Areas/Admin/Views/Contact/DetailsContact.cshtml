@@ -16,12 +16,12 @@
                     <div class="col-xl-9">
                         <div class="contactItem-body">
                             <p class="contact-sentDate">
-                                @Model.ContactedAt
+                                <i class="fa-solid fa-calendar-days"></i>
+                                @Model.ContactedAt.ToString("dd/MM/yyyy")
                             </p>
-                            <h4 class="contactItem-name"><i class="fa-solid fa-user-plus"></i> @Model.ContactName <i style="font-size: 1rem; color:gainsboro;"> @Model.Email </i></h4>
-                            <p class="contact-email">
-                                to: nexusservice@gmail.com
-                            </p>
+                            <h4 class="contactItem-name">
+                                @Model.ContactName
+                            </h4>
 
                             <p class="contactItem-summary">
                                 @Model.Content <br /> @Model.Phone

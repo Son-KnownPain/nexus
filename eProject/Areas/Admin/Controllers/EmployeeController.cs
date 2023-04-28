@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using eProject.Auth;
 using eProject.Models;
 using eProject.Filters;
+using Microsoft.Ajax.Utilities;
 
 namespace eProject.Areas.Admin.Controllers
 {
@@ -349,6 +350,14 @@ namespace eProject.Areas.Admin.Controllers
             {
                 throw e;
             }
+        }
+
+        // GET: Admin/Employee/MyProfile
+        [EmployeeAuthorization]
+        public ActionResult MyProfile()
+        {
+            int MyID = AuthManager.CurrentEmployee.GetEmployee.EmployeeID;
+            return View();
         }
 
         // GET: Admin/Employee/SignOut

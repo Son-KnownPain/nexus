@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace eProject.Areas.Admin.Controllers
 {
-    //[EmployeeAuthorization]
+    [EmployeeAuthorization]
     public class ServiceController : Controller
     {
         private NexusEntities context = new NexusEntities();
