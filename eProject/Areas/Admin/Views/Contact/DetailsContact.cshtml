@@ -1,0 +1,43 @@
+﻿@model eProject.Models.Contact
+@{
+    ViewBag.Title = "Contact Details Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Contact/ContactDetail.css" />
+}
+
+<h1 class="page-title">
+    Contact Detail Management
+</h1>
+<div class="dataBox">
+    <div class="contact">
+            <div class="contactItem">
+                <div class="row">
+                    <div class="col-xl-9">
+                        <div class="contactItem-body">
+                            <p class="contact-sentDate">
+                                @Model.ContactedAt
+                            </p>
+                            <h4 class="contactItem-name"><i class="fa-solid fa-user-plus"></i> @Model.ContactName <i style="font-size: 1rem; color:gainsboro;"> @Model.Email </i></h4>
+                            <p class="contact-email">
+                                to: nexusservice@gmail.com
+                            </p>
+
+                            <p class="contactItem-summary">
+                                @Model.Content <br /> @Model.Phone
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="contactItem-actions">
+                            <a class="contactItem-action" href="~/Admin/Contact/Index">
+                                Exit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+    </div>
+</div>
+

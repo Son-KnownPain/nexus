@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteController.cs" />
@@ -227,6 +228,9 @@
     <Content Include="Content\Css\AdminCss\Employee\ChangePassword.css" />
     <Content Include="Content\Css\AdminCss\Employee\Edit.css" />
     <Content Include="Content\Css\AdminCss\Employee\Index.css" />
+    <Content Include="Content\Css\AdminCss\Contact\ContactDetail.css" />
+    <Content Include="Content\Css\AdminCss\Contact\Index.css" />
+    <Content Include="Content\Css\AdminCss\Contact\SearchCotact.css" />
     <Content Include="Content\Css\AdminCss\Employee\SignIn.css" />
     <Content Include="Content\Css\AdminCss\Service\Add.css" />
     <Content Include="Content\Css\AdminCss\Service\Edit.css" />
@@ -301,6 +305,8 @@
     <Content Include="Areas\Admin\Views\Service\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Contact\DetailsContact.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\SignIn.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SignInLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
