@@ -16,7 +16,7 @@ namespace eProject.Areas.Admin.Controllers
         // GET: Admin/Contact
         public ActionResult Index()
         {
-            List<Contact> contactList = context.Contacts.ToList();
+            List<Contact> contactList = context.Contacts.OrderByDescending(c => c.ContactID).ToList();
             ViewBag.contactList = contactList;
             return View();
         }
@@ -36,7 +36,5 @@ namespace eProject.Areas.Admin.Controllers
             ViewBag.contactList = context.Contacts.Where(c => c.ContactName.Contains(searchValue) || c.Content.Contains(searchValue)).ToList();
             return View("Index");
         }
-
-        
     }
 }

@@ -17,18 +17,18 @@
     text-decoration: none;
 }
 
-    .topNav-btnItem i {
-        color: #333;
-    }
+.topNav-btnItem i {
+    color: #333;
+}
 
-    .topNav-btnItem:not(:first-child) {
-        margin-left: 12px;
-    }
+.topNav-btnItem:not(:first-child) {
+    margin-left: 12px;
+}
 
-    .topNav-btnItem:hover {
-        color: #333;
-        opacity: .8;
-    }
+.topNav-btnItem:hover {
+    color: #333;
+    opacity: .8;
+}
 
 .dataBox {
     margin-top: 16px;
@@ -49,9 +49,9 @@
     border-radius: 4px;
 }
 
-    .contactItem:not(:first-child) {
-        margin-top: 12px;
-    }
+.contactItem:not(:first-child) {
+    margin-top: 12px;
+}
 
 .contactItem-body, .contactItem-actions {
     padding: 12px 0 0 10px;
@@ -92,19 +92,23 @@
     text-align: center;
 }
 
+.contactStatus.seen, .contactStatus.seen i {
+    color: #7fffd4;
+}
+
 .contactItem-action {
     margin-left: 120px;
 }
 
-    .contactItem-action.dlt {
-        background-color: #ff2052;
-        color: #fff;
-    }
+.contactItem-action.dlt {
+    background-color: #ff2052;
+    color: #fff;
+}
 
-    .contactItem-action:hover {
-        opacity: .8;
-        color: #444;
-    }
+.contactItem-action:hover {
+    opacity: .8;
+    color: #444;
+}
 
 .contact-sentDate {
     font-size: 1rem;

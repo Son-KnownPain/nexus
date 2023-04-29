@@ -12,13 +12,14 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RetailShowRoomEmployee
+    public partial class CallCharge
     {
-        public int ID { get; set; }
-        public int RetailShowRoomID { get; set; }
-        public int EmployeeID { get; set; }
+        public int CallChargeID { get; set; }
+        public int PaymentPlanDetailID { get; set; }
+        public int CallChargeTypeID { get; set; }
+        public int CostPerMinute { get; set; }
     
-        public virtual Employee Employee { get; set; }
-        public virtual RetailShowRoom RetailShowRoom { get; set; }
+        public virtual CallChargeType CallChargeType { get; set; }
+        public virtual PaymentPlanDetail PaymentPlanDetail { get; set; }
     }
 }

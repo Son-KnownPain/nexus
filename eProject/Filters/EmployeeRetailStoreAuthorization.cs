@@ -15,8 +15,8 @@ namespace eProject.Filters
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            HttpCookie authEmployeeCookie = filterContext.HttpContext.Request.Cookies.Get(AuthManager.Chef.AUTH_CUSTOMER_DATA_KEY);
-            HttpCookie authEmployeeHash = filterContext.HttpContext.Request.Cookies.Get(AuthManager.Chef.AUTH_CUSTOMER_HASHED_KEY);
+            HttpCookie authEmployeeCookie = filterContext.HttpContext.Request.Cookies.Get(AuthManager.Chef.AUTH_EMPLOYEE_DATA_KEY);
+            HttpCookie authEmployeeHash = filterContext.HttpContext.Request.Cookies.Get(AuthManager.Chef.AUTH_EMPLOYEE_HASHED_KEY);
 
             bool isNullCookies = authEmployeeCookie == null && authEmployeeHash == null;
             if (isNullCookies)
@@ -36,10 +36,11 @@ namespace eProject.Filters
                     AuthManager.CurrentEmployee.Update(null);
                     filterContext.Result = new HttpUnauthorizedResult();
                 }
-                else if (!AuthManager.IsEmployeeAuthenticated)
+                else
                 {
                     NexusEntities context = new NexusEntities();
-                    Employee employee = context.Employees.FirstOrDefault(c => c.EmployeeID == Convert.ToInt32(employeeID));
+                    int employeeIDInt = Convert.ToInt32(employeeID);
+                    Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeID == employeeIDInt);
                     if (employee != null && employee.Role == AuthManager.EmployeeRoles.RetailStoreEmployeeRole)
                     {
                         AuthManager.CurrentEmployee.Update(employee);

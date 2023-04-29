@@ -1,17 +1,17 @@
-﻿using eProject.Auth;
-using eProject.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc.Filters;
 using System.Web.Mvc;
+using eProject.Auth;
+using eProject.Models;
+using System.Web.Helpers;
 using System.Web.Routing;
 
 namespace eProject.Filters
 {
-    public class EmployeeAuthorization : ActionFilterAttribute, IAuthenticationFilter
+    public class AdministratorAuthorization : ActionFilterAttribute, IAuthenticationFilter
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
@@ -21,7 +21,7 @@ namespace eProject.Filters
             bool isNullCookies = authEmployeeCookie == null && authEmployeeHash == null;
             if (isNullCookies)
             {
-                AuthManager.CurrentCustomer.Update(null);
+                AuthManager.CurrentEmployee.Update(null);
                 filterContext.Result = new HttpUnauthorizedResult();
             }
             else
@@ -41,11 +41,10 @@ namespace eProject.Filters
                     NexusEntities context = new NexusEntities();
                     int employeeIDInt = Convert.ToInt32(employeeID);
                     Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeID == employeeIDInt);
-                    if (employee != null)
+                    if (employee != null && employee.Role == AuthManager.EmployeeRoles.AdminRole)
                     {
                         AuthManager.CurrentEmployee.Update(employee);
-                    }
-                    else
+                    } else
                     {
                         AuthManager.CurrentEmployee.Update(null);
                         filterContext.Result = new HttpUnauthorizedResult();
@@ -58,6 +57,7 @@ namespace eProject.Filters
         {
             if (filterContext.Result == null || filterContext.Result is HttpUnauthorizedResult)
             {
+                filterContext.Controller.TempData["Error"] = "You do not have sufficient permissions to operate";
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
                 {
                     { "area", "Admin" },

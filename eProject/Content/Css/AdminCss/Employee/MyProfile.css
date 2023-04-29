@@ -1,0 +1,58 @@
+﻿.content-main {
+    padding: 12px;
+}
+
+.profile {
+    margin-top: 24px;
+}
+
+.profile-avatar {
+    width: 100%;
+    padding-top: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 4px #ffffff44;
+}
+
+.profile-info {
+    padding: 12px;
+}
+
+.profile-fullname {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.profile-line {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--grey);
+    margin-top: 16px;
+}
+
+.profile-rightActions {
+    padding: 12px;
+}
+
+.profile-rightActionItem {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--grey);
+    padding: 8px;
+    display: block;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+}
+.profile-rightActionItem i {
+    color: #333;
+}
+
+.profile-rightActionItem:not(:first-child) {
+    margin-top: 12px;
+}

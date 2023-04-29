@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace eProject.Areas.Admin.Controllers
 {
-    //[EmployeeAuthorization]
+    [EmployeeAuthorization]
     public class ServiceController : Controller
     {
         private NexusEntities context = new NexusEntities();
@@ -23,6 +23,7 @@ namespace eProject.Areas.Admin.Controllers
         }
 
         // GET: Admin/Service/Add
+        [AdministratorAuthorization]
         public ActionResult Add()
         {
             return View();
@@ -30,6 +31,7 @@ namespace eProject.Areas.Admin.Controllers
 
         // POST: Admin/Service/Store
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
+        [AdministratorAuthorization]
         public ActionResult Store(Service serviceData, HttpPostedFileBase ThumbnailFile)
         {
             if (!ModelState.IsValid) return View("Add");
@@ -79,6 +81,7 @@ namespace eProject.Areas.Admin.Controllers
         }
 
         // GET: Admin/Service/Edit
+        [AdministratorAuthorization]
         public ActionResult Edit(int? serviceID)
         {
             if (serviceID == null) return RedirectToAction("Index");
@@ -89,6 +92,7 @@ namespace eProject.Areas.Admin.Controllers
 
         // PUT: Admin/Service/Update
         [HttpPut, ValidateAntiForgeryToken, ValidateInput(false)]
+        [AdministratorAuthorization]
         public ActionResult Update(Service serviceData, HttpPostedFileBase ThumbnailFile)
         {
             if (!ModelState.IsValid) return View("Edit");
@@ -142,6 +146,7 @@ namespace eProject.Areas.Admin.Controllers
         }
 
         // GET: Admin/Service/Delete
+        [AdministratorAuthorization]
         public ActionResult Delete(int? serviceID)
         {
             //if (serviceID == null) return RedirectToAction("Index");

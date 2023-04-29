@@ -35,7 +35,7 @@
                     <div class="col-xl-9">
                         <div class="contactItem-body">
                             <p class="contact-sentDate">
-                                @contact.ContactedAt
+                                @contact.ContactedAt.ToString("dd/MM/yyyy")
                             </p>
                             <h3 class="contactItem-name">@contact.ContactName</h3>
                             <p class="contactItem-summary">
@@ -44,10 +44,16 @@
                             <p class="contactItem-summary">
                                 @if (contact.Status.Equals("Sent"))
                                 {
-                                    <span>Sent</span>
+                                    <span class="contactStatus">
+                                        <i class="fa-regular fa-circle-check"></i>
+                                        Not Read
+                                    </span>
                                 } else if (contact.Status.Equals("Seen"))
                                 {
-                                    <span>Seen</span>
+                                    <span class="contactStatus seen">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        Seen
+                                    </span>
                                 }
                             </p>
                         </div>
@@ -55,7 +61,7 @@
                     <div class="col-xl-3">
                         <div class="contactItem-actions">
                             <a class="contactItem-action" href="~/Admin/Contact/DetailsContact?contactID=@contact.ContactID">
-                                View
+                                Read
                             </a>
                         </div>
                     </div>

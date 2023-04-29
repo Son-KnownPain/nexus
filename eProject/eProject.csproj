@@ -143,20 +143,24 @@
     <Compile Include="Filters\AutoSignIn.cs" />
     <Compile Include="Filters\CustomerAuthorization.cs" />
     <Compile Include="Filters\EmployeeAuthorization.cs" />
+    <Compile Include="Filters\AdministratorAuthorization.cs" />
     <Compile Include="Filters\EmployeeRetailStoreAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Bill.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CallCharge.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CallChargeType.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Charge.cs">
-      <DependentUpon>NexusModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Connection.cs">
-      <DependentUpon>NexusModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ConnectionPaymentPlan.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
@@ -169,6 +173,8 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeInteraction.cs" />
+    <Compile Include="Models\EmployeeViewEditModel.cs" />
     <Compile Include="Models\Equipment.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -190,6 +196,7 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PasswordEditViewModel.cs" />
     <Compile Include="Models\PaymentPlan.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -199,15 +206,15 @@
     <Compile Include="Models\RetailShowRoom.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RetailShowRoomEmployee.cs">
-      <DependentUpon>NexusModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Service.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SimpleProxyCustomer.cs" />
     <Compile Include="Models\SimpleProxyEmployee.cs" />
     <Compile Include="Models\Supplier.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Warehouse.cs">
@@ -221,9 +228,14 @@
   <ItemGroup>
     <Content Include="Content\AdminApp.css" />
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\AdminCss\Employee\Add.css" />
+    <Content Include="Content\Css\AdminCss\Employee\ChangePassword.css" />
+    <Content Include="Content\Css\AdminCss\Employee\Edit.css" />
+    <Content Include="Content\Css\AdminCss\Employee\Index.css" />
     <Content Include="Content\Css\AdminCss\Contact\ContactDetail.css" />
     <Content Include="Content\Css\AdminCss\Contact\Index.css" />
     <Content Include="Content\Css\AdminCss\Contact\SearchCotact.css" />
+    <Content Include="Content\Css\AdminCss\Employee\MyProfile.css" />
     <Content Include="Content\Css\AdminCss\Employee\SignIn.css" />
     <Content Include="Content\Css\AdminCss\RetailShowRoom\EditRetailShowRoom.css" />
     <Content Include="Content\Css\AdminCss\RetailShowRoom\Index.css" />
@@ -270,6 +282,10 @@
     <Content Include="Uploads\RetailShowRoomImage\280420231643051307_retailShowRoom-image1984787930.jpg" />
     <Content Include="Uploads\RetailShowRoomImage\280420232043083247_retailShowRoom-image328490236.jpg" />
     <Content Include="Uploads\RetailShowRoomImage\280420232302257630_retailShowRoom-image844238618.jpg" />
+    <Content Include="Uploads\EmployeeAvatars\default-employee-avatar.png" />
+    <Content Include="Uploads\ServiceThumbnails\260420231603014365_service-thumbnail102911442.png" />
+    <Content Include="Uploads\ServiceThumbnails\260420231603098623_service-thumbnail1962623907.jpg" />
+    <Content Include="Uploads\ServiceThumbnails\260420231603281519_service-thumbnail796902549.png" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -279,7 +295,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Uploads\ServiceThumbnails\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -309,6 +324,11 @@
     <Content Include="Areas\Admin\Views\RetailShowRoom\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RetailShowRoom\AddRetailStore.cshtml" />
     <Content Include="Areas\Admin\Views\RetailShowRoom\EditRetailStore.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\MyProfile.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

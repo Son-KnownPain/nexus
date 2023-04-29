@@ -5,18 +5,49 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="NexusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+          <Property Name="PaymentPlanDetailID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ConnectedAt" Type="date" Nullable="false" />
+          <Property Name="DueDate" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Bills">
           <Key>
             <PropertyRef Name="BillID" />
           </Key>
           <Property Name="BillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ConnectionID" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="AccountID" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="InitialDueAmount" Type="int" Nullable="false" />
-          <Property Name="VatCost" Type="int" Nullable="false" />
           <Property Name="AmountPaid" Type="int" Nullable="false" />
+          <Property Name="VatCost" Type="int" Nullable="false" />
           <Property Name="PaidContent" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CreatedDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CallCharges">
+          <Key>
+            <PropertyRef Name="CallChargeID" />
+          </Key>
+          <Property Name="CallChargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentPlanDetailID" Type="int" Nullable="false" />
+          <Property Name="CallChargeTypeID" Type="int" Nullable="false" />
+          <Property Name="CostPerMinute" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CallChargeTypes">
+          <Key>
+            <PropertyRef Name="CallChargeTypeID" />
+          </Key>
+          <Property Name="CallChargeTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Charges">
           <Key>
@@ -28,27 +59,6 @@
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ConnectionPaymentPlans">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ConnectionID" Type="varchar" MaxLength="16" Nullable="false" />
-          <Property Name="PaymentPlanDetailID" Type="int" Nullable="false" />
-          <Property Name="DueDate" Type="date" Nullable="false" />
-          <Property Name="DueAmount" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Connections">
-          <Key>
-            <PropertyRef Name="ConnectionID" />
-          </Key>
-          <Property Name="ConnectionID" Type="varchar" MaxLength="16" Nullable="false" />
-          <Property Name="ServiceID" Type="int" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
-          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ContactNumber" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="ConnectedAt" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Contacts">
           <Key>
@@ -82,6 +92,7 @@
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RetailShowRoomID" Type="int" />
           <Property Name="Fullname" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="StillWorking" Type="bit" Nullable="false" />
           <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
@@ -112,6 +123,7 @@
           <Property Name="OrderID" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="ServiceID" Type="int" Nullable="false" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="PaymentPlanDetailID" Type="int" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -126,6 +138,8 @@
           <Property Name="PaymentPlanDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentPlanID" Type="int" Nullable="false" />
           <Property Name="Content" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RentalCost" Type="int" Nullable="false" />
+          <Property Name="VadilityDays" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentPlans">
           <Key>
@@ -135,14 +149,6 @@
           <Property Name="ServiceID" Type="int" Nullable="false" />
           <Property Name="PlanName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RetailShowRoomEmployees">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RetailShowRoomID" Type="int" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RetailShowRooms">
           <Key>
@@ -178,6 +184,16 @@
           <Property Name="Fax" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactUrl" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="WarehouseEquipments">
           <Key>
             <PropertyRef Name="ID" />
@@ -196,15 +212,75 @@
           <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="ContactNumber" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Bills_Connections">
-          <End Role="Connections" Type="Self.Connections" Multiplicity="1" />
+        <Association Name="FK_Accounts_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_PaymentPlanDetails">
+          <End Role="PaymentPlanDetails" Type="Self.PaymentPlanDetails" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPlanDetails">
+              <PropertyRef Name="PaymentPlanDetailID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="PaymentPlanDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
           <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Connections">
-              <PropertyRef Name="ConnectionID" />
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountID" />
             </Principal>
             <Dependent Role="Bills">
-              <PropertyRef Name="ConnectionID" />
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CallCharges_CallChargeTypes">
+          <End Role="CallChargeTypes" Type="Self.CallChargeTypes" Multiplicity="1" />
+          <End Role="CallCharges" Type="Self.CallCharges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CallChargeTypes">
+              <PropertyRef Name="CallChargeTypeID" />
+            </Principal>
+            <Dependent Role="CallCharges">
+              <PropertyRef Name="CallChargeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CallCharges_PaymentPlanDetails">
+          <End Role="PaymentPlanDetails" Type="Self.PaymentPlanDetails" Multiplicity="1" />
+          <End Role="CallCharges" Type="Self.CallCharges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPlanDetails">
+              <PropertyRef Name="PaymentPlanDetailID" />
+            </Principal>
+            <Dependent Role="CallCharges">
+              <PropertyRef Name="PaymentPlanDetailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -220,51 +296,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ConnectionPaymentPlans_Connections">
-          <End Role="Connections" Type="Self.Connections" Multiplicity="1" />
-          <End Role="ConnectionPaymentPlans" Type="Self.ConnectionPaymentPlans" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Connections">
-              <PropertyRef Name="ConnectionID" />
-            </Principal>
-            <Dependent Role="ConnectionPaymentPlans">
-              <PropertyRef Name="ConnectionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ConnectionPaymentPlans_PlanDetails">
-          <End Role="PaymentPlanDetails" Type="Self.PaymentPlanDetails" Multiplicity="1" />
-          <End Role="ConnectionPaymentPlans" Type="Self.ConnectionPaymentPlans" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentPlanDetails">
-              <PropertyRef Name="PaymentPlanDetailID" />
-            </Principal>
-            <Dependent Role="ConnectionPaymentPlans">
-              <PropertyRef Name="PaymentPlanDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Connections_Customers">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="Connections" Type="Self.Connections" Multiplicity="*" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
               <PropertyRef Name="CustomerID" />
             </Principal>
-            <Dependent Role="Connections">
+            <Dependent Role="Accounts">
               <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Connections_Services">
           <End Role="Services" Type="Self.Services" Multiplicity="1" />
-          <End Role="Connections" Type="Self.Connections" Multiplicity="*" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="ServiceID" />
             </Principal>
-            <Dependent Role="Connections">
+            <Dependent Role="Accounts">
               <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_RetailShowRooms">
+          <End Role="RetailShowRooms" Type="Self.RetailShowRooms" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RetailShowRooms">
+              <PropertyRef Name="RetailShowRoomID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="RetailShowRoomID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -289,6 +353,18 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_PaymentPlanDetails">
+          <End Role="PaymentPlanDetails" Type="Self.PaymentPlanDetails" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPlanDetails">
+              <PropertyRef Name="PaymentPlanDetailID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentPlanDetailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -328,30 +404,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RetailShowRoomEmployees_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="RetailShowRoomEmployees" Type="Self.RetailShowRoomEmployees" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="RetailShowRoomEmployees">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RetailShowRoomEmployees_RetailShowRooms">
-          <End Role="RetailShowRooms" Type="Self.RetailShowRooms" Multiplicity="1" />
-          <End Role="RetailShowRoomEmployees" Type="Self.RetailShowRoomEmployees" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RetailShowRooms">
-              <PropertyRef Name="RetailShowRoomID" />
-            </Principal>
-            <Dependent Role="RetailShowRoomEmployees">
-              <PropertyRef Name="RetailShowRoomID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_WarehouseEquipments_Equipments">
           <End Role="Equipments" Type="Self.Equipments" Multiplicity="1" />
           <End Role="WarehouseEquipments" Type="Self.WarehouseEquipments" Multiplicity="*" />
@@ -377,10 +429,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NexusModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallCharges" EntityType="Self.CallCharges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallChargeTypes" EntityType="Self.CallChargeTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Charges" EntityType="Self.Charges" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ConnectionPaymentPlans" EntityType="Self.ConnectionPaymentPlans" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Connections" EntityType="Self.Connections" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
@@ -388,35 +441,51 @@
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentPlanDetails" EntityType="Self.PaymentPlanDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentPlans" EntityType="Self.PaymentPlans" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RetailShowRoomEmployees" EntityType="Self.RetailShowRoomEmployees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RetailShowRooms" EntityType="Self.RetailShowRooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseEquipments" EntityType="Self.WarehouseEquipments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Bills_Connections" Association="Self.FK_Bills_Connections">
-            <End Role="Connections" EntitySet="Connections" />
+          <AssociationSet Name="FK_Accounts_Orders" Association="Self.FK_Accounts_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_PaymentPlanDetails" Association="Self.FK_Accounts_PaymentPlanDetails">
+            <End Role="PaymentPlanDetails" EntitySet="PaymentPlanDetails" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Accounts" Association="Self.FK_Bills_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
             <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Employees" Association="Self.FK_Bills_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CallCharges_CallChargeTypes" Association="Self.FK_CallCharges_CallChargeTypes">
+            <End Role="CallChargeTypes" EntitySet="CallChargeTypes" />
+            <End Role="CallCharges" EntitySet="CallCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CallCharges_PaymentPlanDetails" Association="Self.FK_CallCharges_PaymentPlanDetails">
+            <End Role="PaymentPlanDetails" EntitySet="PaymentPlanDetails" />
+            <End Role="CallCharges" EntitySet="CallCharges" />
           </AssociationSet>
           <AssociationSet Name="FK_Charges_Bills" Association="Self.FK_Charges_Bills">
             <End Role="Bills" EntitySet="Bills" />
             <End Role="Charges" EntitySet="Charges" />
           </AssociationSet>
-          <AssociationSet Name="FK_ConnectionPaymentPlans_Connections" Association="Self.FK_ConnectionPaymentPlans_Connections">
-            <End Role="Connections" EntitySet="Connections" />
-            <End Role="ConnectionPaymentPlans" EntitySet="ConnectionPaymentPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ConnectionPaymentPlans_PlanDetails" Association="Self.FK_ConnectionPaymentPlans_PlanDetails">
-            <End Role="PaymentPlanDetails" EntitySet="PaymentPlanDetails" />
-            <End Role="ConnectionPaymentPlans" EntitySet="ConnectionPaymentPlans" />
-          </AssociationSet>
           <AssociationSet Name="FK_Connections_Customers" Association="Self.FK_Connections_Customers">
             <End Role="Customers" EntitySet="Customers" />
-            <End Role="Connections" EntitySet="Connections" />
+            <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
           <AssociationSet Name="FK_Connections_Services" Association="Self.FK_Connections_Services">
             <End Role="Services" EntitySet="Services" />
-            <End Role="Connections" EntitySet="Connections" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_RetailShowRooms" Association="Self.FK_Employees_RetailShowRooms">
+            <End Role="RetailShowRooms" EntitySet="RetailShowRooms" />
+            <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_Equipments_Suppliers" Association="Self.FK_Equipments_Suppliers">
             <End Role="Suppliers" EntitySet="Suppliers" />
@@ -424,6 +493,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
             <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_PaymentPlanDetails" Association="Self.FK_Orders_PaymentPlanDetails">
+            <End Role="PaymentPlanDetails" EntitySet="PaymentPlanDetails" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Services" Association="Self.FK_Orders_Services">
@@ -437,14 +510,6 @@
           <AssociationSet Name="FK_Plans_Services" Association="Self.FK_Plans_Services">
             <End Role="Services" EntitySet="Services" />
             <End Role="PaymentPlans" EntitySet="PaymentPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RetailShowRoomEmployees_Employees" Association="Self.FK_RetailShowRoomEmployees_Employees">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="RetailShowRoomEmployees" EntitySet="RetailShowRoomEmployees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RetailShowRoomEmployees_RetailShowRooms" Association="Self.FK_RetailShowRoomEmployees_RetailShowRooms">
-            <End Role="RetailShowRooms" EntitySet="RetailShowRooms" />
-            <End Role="RetailShowRoomEmployees" EntitySet="RetailShowRoomEmployees" />
           </AssociationSet>
           <AssociationSet Name="FK_WarehouseEquipments_Equipments" Association="Self.FK_WarehouseEquipments_Equipments">
             <End Role="Equipments" EntitySet="Equipments" />
@@ -471,25 +536,6 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ContactedAt" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="EmployeeID" />
-          </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fullname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StillWorking" Type="Boolean" Nullable="false" />
-          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Role" Type="Int32" Nullable="false" />
-          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="RetailShowRoomEmployees" Relationship="Self.FK_RetailShowRoomEmployees_Employees" FromRole="Employees" ToRole="RetailShowRoomEmployees" />
-        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentID" />
@@ -502,16 +548,6 @@
           <NavigationProperty Name="Supplier" Relationship="Self.FK_Equipments_Suppliers" FromRole="Equipments" ToRole="Suppliers" />
           <NavigationProperty Name="WarehouseEquipments" Relationship="Self.FK_WarehouseEquipments_Equipments" FromRole="Equipments" ToRole="WarehouseEquipments" />
         </EntityType>
-        <EntityType Name="RetailShowRoomEmployee">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RetailShowRoomID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_RetailShowRoomEmployees_Employees" FromRole="RetailShowRoomEmployees" ToRole="Employees" />
-          <NavigationProperty Name="RetailShowRoom" Relationship="Self.FK_RetailShowRoomEmployees_RetailShowRooms" FromRole="RetailShowRoomEmployees" ToRole="RetailShowRooms" />
-        </EntityType>
         <EntityType Name="RetailShowRoom">
           <Key>
             <PropertyRef Name="RetailShowRoomID" />
@@ -522,7 +558,7 @@
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmployeeQuantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RetailShowRoomEmployees" Relationship="Self.FK_RetailShowRoomEmployees_RetailShowRooms" FromRole="RetailShowRooms" ToRole="RetailShowRoomEmployees" />
+          <NavigationProperty Name="Employees" Relationship="NexusModel.FK_Employees_RetailShowRooms" FromRole="RetailShowRoom" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -534,9 +570,9 @@
           <Property Name="Summary" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Connections" Relationship="NexusModel.FK_Connections_Services" FromRole="Service" ToRole="Connection" />
-          <NavigationProperty Name="Orders" Relationship="NexusModel.FK_Orders_Services" FromRole="Service" ToRole="Order" />
           <NavigationProperty Name="PaymentPlans" Relationship="NexusModel.FK_Plans_Services" FromRole="Service" ToRole="PaymentPlan" />
+          <NavigationProperty Name="Accounts" Relationship="NexusModel.FK_Connections_Services" FromRole="Service" ToRole="Account" />
+          <NavigationProperty Name="Orders" Relationship="NexusModel.FK_Orders_Services" FromRole="Service" ToRole="Order" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -572,18 +608,6 @@
           <Property Name="ContactNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="WarehouseEquipments" Relationship="Self.FK_WarehouseEquipments_Warehouses" FromRole="Warehouses" ToRole="WarehouseEquipments" />
         </EntityType>
-        <Association Name="FK_RetailShowRoomEmployees_Employees">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
-          <End Role="RetailShowRoomEmployees" Type="Self.RetailShowRoomEmployee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="RetailShowRoomEmployees">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Equipments_Suppliers">
           <End Role="Suppliers" Type="Self.Supplier" Multiplicity="1" />
           <End Role="Equipments" Type="Self.Equipment" Multiplicity="*" />
@@ -608,18 +632,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RetailShowRoomEmployees_RetailShowRooms">
-          <End Role="RetailShowRooms" Type="Self.RetailShowRoom" Multiplicity="1" />
-          <End Role="RetailShowRoomEmployees" Type="Self.RetailShowRoomEmployee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RetailShowRooms">
-              <PropertyRef Name="RetailShowRoomID" />
-            </Principal>
-            <Dependent Role="RetailShowRoomEmployees">
-              <PropertyRef Name="RetailShowRoomID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_WarehouseEquipments_Warehouses">
           <End Role="Warehouses" Type="Self.Warehouse" Multiplicity="1" />
           <End Role="WarehouseEquipments" Type="Self.WarehouseEquipment" Multiplicity="*" />
@@ -634,18 +646,12 @@
         </Association>
         <EntityContainer Name="NexusEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
-          <EntitySet Name="RetailShowRoomEmployees" EntityType="Self.RetailShowRoomEmployee" />
           <EntitySet Name="RetailShowRooms" EntityType="Self.RetailShowRoom" />
           <EntitySet Name="Services" EntityType="Self.Service" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="WarehouseEquipments" EntityType="Self.WarehouseEquipment" />
           <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
-          <AssociationSet Name="FK_RetailShowRoomEmployees_Employees" Association="Self.FK_RetailShowRoomEmployees_Employees">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="RetailShowRoomEmployees" EntitySet="RetailShowRoomEmployees" />
-          </AssociationSet>
           <AssociationSet Name="FK_Equipments_Suppliers" Association="Self.FK_Equipments_Suppliers">
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Equipments" EntitySet="Equipments" />
@@ -654,48 +660,71 @@
             <End Role="Equipments" EntitySet="Equipments" />
             <End Role="WarehouseEquipments" EntitySet="WarehouseEquipments" />
           </AssociationSet>
-          <AssociationSet Name="FK_RetailShowRoomEmployees_RetailShowRooms" Association="Self.FK_RetailShowRoomEmployees_RetailShowRooms">
-            <End Role="RetailShowRooms" EntitySet="RetailShowRooms" />
-            <End Role="RetailShowRoomEmployees" EntitySet="RetailShowRoomEmployees" />
-          </AssociationSet>
           <AssociationSet Name="FK_WarehouseEquipments_Warehouses" Association="Self.FK_WarehouseEquipments_Warehouses">
             <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="WarehouseEquipments" EntitySet="WarehouseEquipments" />
           </AssociationSet>
-          <EntitySet Name="Bills" EntityType="NexusModel.Bill" />
-          <EntitySet Name="Charges" EntityType="NexusModel.Charge" />
-          <EntitySet Name="ConnectionPaymentPlans" EntityType="NexusModel.ConnectionPaymentPlan" />
-          <EntitySet Name="Connections" EntityType="NexusModel.Connection" />
           <EntitySet Name="Customers" EntityType="NexusModel.Customer" />
+          <EntitySet Name="PaymentPlans" EntityType="NexusModel.PaymentPlan" />
+          <AssociationSet Name="FK_Plans_Services" Association="NexusModel.FK_Plans_Services">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="PaymentPlan" EntitySet="PaymentPlans" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="NexusModel.Account" />
+          <EntitySet Name="Bills" EntityType="NexusModel.Bill" />
+          <EntitySet Name="CallCharges" EntityType="NexusModel.CallCharge" />
+          <EntitySet Name="CallChargeTypes" EntityType="NexusModel.CallChargeType" />
+          <EntitySet Name="Charges" EntityType="NexusModel.Charge" />
+          <EntitySet Name="Employees" EntityType="NexusModel.Employee" />
           <EntitySet Name="Orders" EntityType="NexusModel.Order" />
           <EntitySet Name="PaymentPlanDetails" EntityType="NexusModel.PaymentPlanDetail" />
-          <EntitySet Name="PaymentPlans" EntityType="NexusModel.PaymentPlan" />
-          <AssociationSet Name="FK_Bills_Connections" Association="NexusModel.FK_Bills_Connections">
-            <End Role="Connection" EntitySet="Connections" />
+          <EntitySet Name="sysdiagrams" EntityType="NexusModel.sysdiagram" />
+          <AssociationSet Name="FK_Accounts_Orders" Association="NexusModel.FK_Accounts_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_PaymentPlanDetails" Association="NexusModel.FK_Accounts_PaymentPlanDetails">
+            <End Role="PaymentPlanDetail" EntitySet="PaymentPlanDetails" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Accounts" Association="NexusModel.FK_Bills_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Connections_Customers" Association="NexusModel.FK_Connections_Customers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Connections_Services" Association="NexusModel.FK_Connections_Services">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Employees" Association="NexusModel.FK_Bills_Employees">
+            <End Role="Employee" EntitySet="Employees" />
             <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
           <AssociationSet Name="FK_Charges_Bills" Association="NexusModel.FK_Charges_Bills">
             <End Role="Bill" EntitySet="Bills" />
             <End Role="Charge" EntitySet="Charges" />
           </AssociationSet>
-          <AssociationSet Name="FK_ConnectionPaymentPlans_Connections" Association="NexusModel.FK_ConnectionPaymentPlans_Connections">
-            <End Role="Connection" EntitySet="Connections" />
-            <End Role="ConnectionPaymentPlan" EntitySet="ConnectionPaymentPlans" />
+          <AssociationSet Name="FK_CallCharges_CallChargeTypes" Association="NexusModel.FK_CallCharges_CallChargeTypes">
+            <End Role="CallChargeType" EntitySet="CallChargeTypes" />
+            <End Role="CallCharge" EntitySet="CallCharges" />
           </AssociationSet>
-          <AssociationSet Name="FK_ConnectionPaymentPlans_PlanDetails" Association="NexusModel.FK_ConnectionPaymentPlans_PlanDetails">
+          <AssociationSet Name="FK_CallCharges_PaymentPlanDetails" Association="NexusModel.FK_CallCharges_PaymentPlanDetails">
             <End Role="PaymentPlanDetail" EntitySet="PaymentPlanDetails" />
-            <End Role="ConnectionPaymentPlan" EntitySet="ConnectionPaymentPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Connections_Customers" Association="NexusModel.FK_Connections_Customers">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Connection" EntitySet="Connections" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Connections_Services" Association="NexusModel.FK_Connections_Services">
-            <End Role="Service" EntitySet="Services" />
-            <End Role="Connection" EntitySet="Connections" />
+            <End Role="CallCharge" EntitySet="CallCharges" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Customers" Association="NexusModel.FK_Orders_Customers">
             <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_RetailShowRooms" Association="NexusModel.FK_Employees_RetailShowRooms">
+            <End Role="RetailShowRoom" EntitySet="RetailShowRooms" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_PaymentPlanDetails" Association="NexusModel.FK_Orders_PaymentPlanDetails">
+            <End Role="PaymentPlanDetail" EntitySet="PaymentPlanDetails" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Services" Association="NexusModel.FK_Orders_Services">
@@ -706,65 +735,7 @@
             <End Role="PaymentPlan" EntitySet="PaymentPlans" />
             <End Role="PaymentPlanDetail" EntitySet="PaymentPlanDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Plans_Services" Association="NexusModel.FK_Plans_Services">
-            <End Role="Service" EntitySet="Services" />
-            <End Role="PaymentPlan" EntitySet="PaymentPlans" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Bill">
-          <Key>
-            <PropertyRef Name="BillID" />
-          </Key>
-          <Property Name="BillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConnectionID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="InitialDueAmount" Type="Int32" Nullable="false" />
-          <Property Name="VatCost" Type="Int32" Nullable="false" />
-          <Property Name="AmountPaid" Type="Int32" Nullable="false" />
-          <Property Name="PaidContent" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Connection" Relationship="NexusModel.FK_Bills_Connections" FromRole="Bill" ToRole="Connection" />
-          <NavigationProperty Name="Charges" Relationship="NexusModel.FK_Charges_Bills" FromRole="Bill" ToRole="Charge" />
-        </EntityType>
-        <EntityType Name="Charge">
-          <Key>
-            <PropertyRef Name="ChargeID" />
-          </Key>
-          <Property Name="ChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BillID" Type="Int32" Nullable="false" />
-          <Property Name="ChargeName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Bill" Relationship="NexusModel.FK_Charges_Bills" FromRole="Charge" ToRole="Bill" />
-        </EntityType>
-        <EntityType Name="ConnectionPaymentPlan">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConnectionID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentPlanDetailID" Type="Int32" Nullable="false" />
-          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DueAmount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Connection" Relationship="NexusModel.FK_ConnectionPaymentPlans_Connections" FromRole="ConnectionPaymentPlan" ToRole="Connection" />
-          <NavigationProperty Name="PaymentPlanDetail" Relationship="NexusModel.FK_ConnectionPaymentPlans_PlanDetails" FromRole="ConnectionPaymentPlan" ToRole="PaymentPlanDetail" />
-        </EntityType>
-        <EntityType Name="Connection">
-          <Key>
-            <PropertyRef Name="ConnectionID" />
-          </Key>
-          <Property Name="ConnectionID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="ServiceID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ConnectedAt" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Bills" Relationship="NexusModel.FK_Bills_Connections" FromRole="Connection" ToRole="Bill" />
-          <NavigationProperty Name="ConnectionPaymentPlans" Relationship="NexusModel.FK_ConnectionPaymentPlans_Connections" FromRole="Connection" ToRole="ConnectionPaymentPlan" />
-          <NavigationProperty Name="Customer" Relationship="NexusModel.FK_Connections_Customers" FromRole="Connection" ToRole="Customer" />
-          <NavigationProperty Name="Service" Relationship="NexusModel.FK_Connections_Services" FromRole="Connection" ToRole="Service" />
-        </EntityType>
+          </EntityContainer>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -779,34 +750,8 @@
           <Property Name="Avatar" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Connections" Relationship="NexusModel.FK_Connections_Customers" FromRole="Customer" ToRole="Connection" />
+          <NavigationProperty Name="Accounts" Relationship="NexusModel.FK_Connections_Customers" FromRole="Customer" ToRole="Account" />
           <NavigationProperty Name="Orders" Relationship="NexusModel.FK_Orders_Customers" FromRole="Customer" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="OrderID" />
-          </Key>
-          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="ServiceID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="AddressDetail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ConnectQuantity" Type="Int32" Nullable="false" />
-          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Customer" Relationship="NexusModel.FK_Orders_Customers" FromRole="Order" ToRole="Customer" />
-          <NavigationProperty Name="Service" Relationship="NexusModel.FK_Orders_Services" FromRole="Order" ToRole="Service" />
-        </EntityType>
-        <EntityType Name="PaymentPlanDetail">
-          <Key>
-            <PropertyRef Name="PaymentPlanDetailID" />
-          </Key>
-          <Property Name="PaymentPlanDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentPlanID" Type="Int32" Nullable="false" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ConnectionPaymentPlans" Relationship="NexusModel.FK_ConnectionPaymentPlans_PlanDetails" FromRole="PaymentPlanDetail" ToRole="ConnectionPaymentPlan" />
-          <NavigationProperty Name="PaymentPlan" Relationship="NexusModel.FK_PlanDetails_Plans" FromRole="PaymentPlanDetail" ToRole="PaymentPlan" />
         </EntityType>
         <EntityType Name="PaymentPlan">
           <Key>
@@ -816,18 +761,221 @@
           <Property Name="ServiceID" Type="Int32" Nullable="false" />
           <Property Name="PlanName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PaymentPlanDetails" Relationship="NexusModel.FK_PlanDetails_Plans" FromRole="PaymentPlan" ToRole="PaymentPlanDetail" />
           <NavigationProperty Name="Service" Relationship="NexusModel.FK_Plans_Services" FromRole="PaymentPlan" ToRole="Service" />
+          <NavigationProperty Name="PaymentPlanDetails" Relationship="NexusModel.FK_PlanDetails_Plans" FromRole="PaymentPlan" ToRole="PaymentPlanDetail" />
         </EntityType>
-        <Association Name="FK_Bills_Connections">
-          <End Type="NexusModel.Connection" Role="Connection" Multiplicity="1" />
+        <Association Name="FK_Plans_Services">
+          <End Type="NexusModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="NexusModel.PaymentPlan" Role="PaymentPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="PaymentPlan">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentPlanDetailID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ConnectedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Order" Relationship="NexusModel.FK_Accounts_Orders" FromRole="Account" ToRole="Order" />
+          <NavigationProperty Name="PaymentPlanDetail" Relationship="NexusModel.FK_Accounts_PaymentPlanDetails" FromRole="Account" ToRole="PaymentPlanDetail" />
+          <NavigationProperty Name="Bills" Relationship="NexusModel.FK_Bills_Accounts" FromRole="Account" ToRole="Bill" />
+          <NavigationProperty Name="Customer" Relationship="NexusModel.FK_Connections_Customers" FromRole="Account" ToRole="Customer" />
+          <NavigationProperty Name="Service" Relationship="NexusModel.FK_Connections_Services" FromRole="Account" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="BillID" />
+          </Key>
+          <Property Name="BillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="InitialDueAmount" Type="Int32" Nullable="false" />
+          <Property Name="AmountPaid" Type="Int32" Nullable="false" />
+          <Property Name="VatCost" Type="Int32" Nullable="false" />
+          <Property Name="PaidContent" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Account" Relationship="NexusModel.FK_Bills_Accounts" FromRole="Bill" ToRole="Account" />
+          <NavigationProperty Name="Employee" Relationship="NexusModel.FK_Bills_Employees" FromRole="Bill" ToRole="Employee" />
+          <NavigationProperty Name="Charges" Relationship="NexusModel.FK_Charges_Bills" FromRole="Bill" ToRole="Charge" />
+        </EntityType>
+        <EntityType Name="CallCharge">
+          <Key>
+            <PropertyRef Name="CallChargeID" />
+          </Key>
+          <Property Name="CallChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentPlanDetailID" Type="Int32" Nullable="false" />
+          <Property Name="CallChargeTypeID" Type="Int32" Nullable="false" />
+          <Property Name="CostPerMinute" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CallChargeType" Relationship="NexusModel.FK_CallCharges_CallChargeTypes" FromRole="CallCharge" ToRole="CallChargeType" />
+          <NavigationProperty Name="PaymentPlanDetail" Relationship="NexusModel.FK_CallCharges_PaymentPlanDetails" FromRole="CallCharge" ToRole="PaymentPlanDetail" />
+        </EntityType>
+        <EntityType Name="CallChargeType">
+          <Key>
+            <PropertyRef Name="CallChargeTypeID" />
+          </Key>
+          <Property Name="CallChargeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CallCharges" Relationship="NexusModel.FK_CallCharges_CallChargeTypes" FromRole="CallChargeType" ToRole="CallCharge" />
+        </EntityType>
+        <EntityType Name="Charge">
+          <Key>
+            <PropertyRef Name="ChargeID" />
+          </Key>
+          <Property Name="ChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillID" Type="Int32" Nullable="false" />
+          <Property Name="ChargeName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Bill" Relationship="NexusModel.FK_Charges_Bills" FromRole="Charge" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RetailShowRoomID" Type="Int32" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StillWorking" Type="Boolean" Nullable="false" />
+          <Property Name="Department" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Bills" Relationship="NexusModel.FK_Bills_Employees" FromRole="Employee" ToRole="Bill" />
+          <NavigationProperty Name="RetailShowRoom" Relationship="NexusModel.FK_Employees_RetailShowRooms" FromRole="Employee" ToRole="RetailShowRoom" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentPlanDetailID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AddressDetail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ConnectQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Accounts" Relationship="NexusModel.FK_Accounts_Orders" FromRole="Order" ToRole="Account" />
+          <NavigationProperty Name="Customer" Relationship="NexusModel.FK_Orders_Customers" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="PaymentPlanDetail" Relationship="NexusModel.FK_Orders_PaymentPlanDetails" FromRole="Order" ToRole="PaymentPlanDetail" />
+          <NavigationProperty Name="Service" Relationship="NexusModel.FK_Orders_Services" FromRole="Order" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="PaymentPlanDetail">
+          <Key>
+            <PropertyRef Name="PaymentPlanDetailID" />
+          </Key>
+          <Property Name="PaymentPlanDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentPlanID" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RentalCost" Type="Int32" Nullable="false" />
+          <Property Name="VadilityDays" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="NexusModel.FK_Accounts_PaymentPlanDetails" FromRole="PaymentPlanDetail" ToRole="Account" />
+          <NavigationProperty Name="CallCharges" Relationship="NexusModel.FK_CallCharges_PaymentPlanDetails" FromRole="PaymentPlanDetail" ToRole="CallCharge" />
+          <NavigationProperty Name="Orders" Relationship="NexusModel.FK_Orders_PaymentPlanDetails" FromRole="PaymentPlanDetail" ToRole="Order" />
+          <NavigationProperty Name="PaymentPlan" Relationship="NexusModel.FK_PlanDetails_Plans" FromRole="PaymentPlanDetail" ToRole="PaymentPlan" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Accounts_Orders">
+          <End Type="NexusModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="NexusModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_PaymentPlanDetails">
+          <End Type="NexusModel.PaymentPlanDetail" Role="PaymentPlanDetail" Multiplicity="1" />
+          <End Type="NexusModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPlanDetail">
+              <PropertyRef Name="PaymentPlanDetailID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="PaymentPlanDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Accounts">
+          <End Type="NexusModel.Account" Role="Account" Multiplicity="1" />
           <End Type="NexusModel.Bill" Role="Bill" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Connection">
-              <PropertyRef Name="ConnectionID" />
+            <Principal Role="Account">
+              <PropertyRef Name="AccountID" />
             </Principal>
             <Dependent Role="Bill">
-              <PropertyRef Name="ConnectionID" />
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Connections_Customers">
+          <End Type="NexusModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="NexusModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Connections_Services">
+          <End Type="NexusModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="NexusModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Employees">
+          <End Type="NexusModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="NexusModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -843,51 +991,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ConnectionPaymentPlans_Connections">
-          <End Type="NexusModel.Connection" Role="Connection" Multiplicity="1" />
-          <End Type="NexusModel.ConnectionPaymentPlan" Role="ConnectionPaymentPlan" Multiplicity="*" />
+        <Association Name="FK_CallCharges_CallChargeTypes">
+          <End Type="NexusModel.CallChargeType" Role="CallChargeType" Multiplicity="1" />
+          <End Type="NexusModel.CallCharge" Role="CallCharge" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Connection">
-              <PropertyRef Name="ConnectionID" />
+            <Principal Role="CallChargeType">
+              <PropertyRef Name="CallChargeTypeID" />
             </Principal>
-            <Dependent Role="ConnectionPaymentPlan">
-              <PropertyRef Name="ConnectionID" />
+            <Dependent Role="CallCharge">
+              <PropertyRef Name="CallChargeTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ConnectionPaymentPlans_PlanDetails">
+        <Association Name="FK_CallCharges_PaymentPlanDetails">
           <End Type="NexusModel.PaymentPlanDetail" Role="PaymentPlanDetail" Multiplicity="1" />
-          <End Type="NexusModel.ConnectionPaymentPlan" Role="ConnectionPaymentPlan" Multiplicity="*" />
+          <End Type="NexusModel.CallCharge" Role="CallCharge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentPlanDetail">
               <PropertyRef Name="PaymentPlanDetailID" />
             </Principal>
-            <Dependent Role="ConnectionPaymentPlan">
+            <Dependent Role="CallCharge">
               <PropertyRef Name="PaymentPlanDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Connections_Customers">
-          <End Type="NexusModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="NexusModel.Connection" Role="Connection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="Connection">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Connections_Services">
-          <End Type="NexusModel.Service" Role="Service" Multiplicity="1" />
-          <End Type="NexusModel.Connection" Role="Connection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="ServiceID" />
-            </Principal>
-            <Dependent Role="Connection">
-              <PropertyRef Name="ServiceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -900,6 +1024,30 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_RetailShowRooms">
+          <End Type="NexusModel.RetailShowRoom" Role="RetailShowRoom" Multiplicity="0..1" />
+          <End Type="NexusModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RetailShowRoom">
+              <PropertyRef Name="RetailShowRoomID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="RetailShowRoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_PaymentPlanDetails">
+          <End Type="NexusModel.PaymentPlanDetail" Role="PaymentPlanDetail" Multiplicity="1" />
+          <End Type="NexusModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPlanDetail">
+              <PropertyRef Name="PaymentPlanDetailID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PaymentPlanDetailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -927,19 +1075,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Plans_Services">
-          <End Type="NexusModel.Service" Role="Service" Multiplicity="1" />
-          <End Type="NexusModel.PaymentPlan" Role="PaymentPlan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="ServiceID" />
-            </Principal>
-            <Dependent Role="PaymentPlan">
-              <PropertyRef Name="ServiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -958,25 +1094,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="NexusModel.Employee">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="StillWorking" ColumnName="StillWorking" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
             <EntityTypeMapping TypeName="NexusModel.Equipment">
               <MappingFragment StoreEntitySet="Equipments">
@@ -985,15 +1102,6 @@
                 <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RetailShowRoomEmployees">
-            <EntityTypeMapping TypeName="NexusModel.RetailShowRoomEmployee">
-              <MappingFragment StoreEntitySet="RetailShowRoomEmployees">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RetailShowRoomID" ColumnName="RetailShowRoomID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1054,55 +1162,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Bills">
-            <EntityTypeMapping TypeName="NexusModel.Bill">
-              <MappingFragment StoreEntitySet="Bills">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="PaidContent" ColumnName="PaidContent" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="VatCost" ColumnName="VatCost" />
-                <ScalarProperty Name="InitialDueAmount" ColumnName="InitialDueAmount" />
-                <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Charges">
-            <EntityTypeMapping TypeName="NexusModel.Charge">
-              <MappingFragment StoreEntitySet="Charges">
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="ChargeName" ColumnName="ChargeName" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="ChargeID" ColumnName="ChargeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ConnectionPaymentPlans">
-            <EntityTypeMapping TypeName="NexusModel.ConnectionPaymentPlan">
-              <MappingFragment StoreEntitySet="ConnectionPaymentPlans">
-                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
-                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-                <ScalarProperty Name="PaymentPlanDetailID" ColumnName="PaymentPlanDetailID" />
-                <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Connections">
-            <EntityTypeMapping TypeName="NexusModel.Connection">
-              <MappingFragment StoreEntitySet="Connections">
-                <ScalarProperty Name="ConnectedAt" ColumnName="ConnectedAt" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
-                <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="NexusModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
@@ -1119,6 +1178,96 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PaymentPlans">
+            <EntityTypeMapping TypeName="NexusModel.PaymentPlan">
+              <MappingFragment StoreEntitySet="PaymentPlans">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="PaymentPlanID" ColumnName="PaymentPlanID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="NexusModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="ConnectedAt" ColumnName="ConnectedAt" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PaymentPlanDetailID" ColumnName="PaymentPlanDetailID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="NexusModel.Bill">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PaidContent" ColumnName="PaidContent" />
+                <ScalarProperty Name="VatCost" ColumnName="VatCost" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="InitialDueAmount" ColumnName="InitialDueAmount" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallCharges">
+            <EntityTypeMapping TypeName="NexusModel.CallCharge">
+              <MappingFragment StoreEntitySet="CallCharges">
+                <ScalarProperty Name="CostPerMinute" ColumnName="CostPerMinute" />
+                <ScalarProperty Name="CallChargeTypeID" ColumnName="CallChargeTypeID" />
+                <ScalarProperty Name="PaymentPlanDetailID" ColumnName="PaymentPlanDetailID" />
+                <ScalarProperty Name="CallChargeID" ColumnName="CallChargeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallChargeTypes">
+            <EntityTypeMapping TypeName="NexusModel.CallChargeType">
+              <MappingFragment StoreEntitySet="CallChargeTypes">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="CallChargeTypeID" ColumnName="CallChargeTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Charges">
+            <EntityTypeMapping TypeName="NexusModel.Charge">
+              <MappingFragment StoreEntitySet="Charges">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ChargeName" ColumnName="ChargeName" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="ChargeID" ColumnName="ChargeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="NexusModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="StillWorking" ColumnName="StillWorking" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="RetailShowRoomID" ColumnName="RetailShowRoomID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="NexusModel.Order">
               <MappingFragment StoreEntitySet="Orders">
@@ -1128,6 +1277,7 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PaymentPlanDetailID" ColumnName="PaymentPlanDetailID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -1137,19 +1287,22 @@
           <EntitySetMapping Name="PaymentPlanDetails">
             <EntityTypeMapping TypeName="NexusModel.PaymentPlanDetail">
               <MappingFragment StoreEntitySet="PaymentPlanDetails">
+                <ScalarProperty Name="VadilityDays" ColumnName="VadilityDays" />
+                <ScalarProperty Name="RentalCost" ColumnName="RentalCost" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="PaymentPlanID" ColumnName="PaymentPlanID" />
                 <ScalarProperty Name="PaymentPlanDetailID" ColumnName="PaymentPlanDetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PaymentPlans">
-            <EntityTypeMapping TypeName="NexusModel.PaymentPlan">
-              <MappingFragment StoreEntitySet="PaymentPlans">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
-                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
-                <ScalarProperty Name="PaymentPlanID" ColumnName="PaymentPlanID" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NexusModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

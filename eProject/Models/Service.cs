@@ -20,9 +20,9 @@ namespace eProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service()
         {
-            this.Connections = new HashSet<Connection>();
-            this.Orders = new HashSet<Order>();
             this.PaymentPlans = new HashSet<PaymentPlan>();
+            this.Accounts = new HashSet<Account>();
+            this.Orders = new HashSet<Order>();
         }
 
         public int ServiceID { get; set; }
@@ -45,10 +45,10 @@ namespace eProject.Models
         public HttpPostedFileBase ThumbnailFile { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Connection> Connections { get; set; }
+        public virtual ICollection<PaymentPlan> PaymentPlans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Account> Accounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentPlan> PaymentPlans { get; set; }
     }
 }

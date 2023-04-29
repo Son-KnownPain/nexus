@@ -153,6 +153,14 @@ namespace eProject.Auth
             {
                 get => GetEmployee.Role == EmployeeRoles.RetailStoreEmployeeRole;
             }
+            public static bool IsTechnicalEmployeeRole
+            {
+                get => GetEmployee.Role == EmployeeRoles.TechnicalEmployeeRole;
+            }
+            public static bool IsAccountEmployeeRole
+            {
+                get => GetEmployee.Role == EmployeeRoles.AccountEmployeeRole;
+            }
             public static bool IsAdmin
             {
                 get => GetEmployee.Role == EmployeeRoles.AdminRole;
@@ -190,9 +198,17 @@ namespace eProject.Auth
             {
                 get => 10;
             }
+            public static int AccountEmployeeRole
+            {
+                get => 3;
+            }
+            public static int TechnicalEmployeeRole
+            {
+                get => 2;
+            }
             public static int RetailStoreEmployeeRole
             {
-                get => 5;
+                get => 1;
             }
         }
     }

@@ -12,15 +12,12 @@ namespace eProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ConnectionPaymentPlan
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public string ConnectionID { get; set; }
-        public int PaymentPlanDetailID { get; set; }
-        public System.DateTime DueDate { get; set; }
-        public int DueAmount { get; set; }
-    
-        public virtual Connection Connection { get; set; }
-        public virtual PaymentPlanDetail PaymentPlanDetail { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
