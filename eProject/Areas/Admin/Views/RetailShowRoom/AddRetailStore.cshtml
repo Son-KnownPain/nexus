@@ -1,0 +1,64 @@
+﻿@model eProject.Models.RetailShowRoom
+
+@section Styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/RetailShowRoom/AddRetailStore.css" />
+}
+@{
+    ViewBag.Title = "Create Retail Show Room";
+}
+
+<div class="container">
+    <nav class="topNav">
+        <h1 class="page-heading">
+            <i class="fa-solid fa-plus"></i>
+            Create Retail Show Room
+        </h1>
+    </nav>
+    
+    <div class="content-body">
+        @using (Html.BeginForm("Store", "RetailShowRoom", FormMethod.Post, new {enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(retaistore => retaistore.Name, new { @class = "form-label" })
+                        @Html.EditorFor(retaistore => retaistore.Name, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter name" } })
+                        @Html.ValidationMessageFor(retaistore => retaistore.Name, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(retaistore => retaistore.Phone, new { @class = "form-label" })
+                        @Html.EditorFor(retaistore => retaistore.Phone, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter phone" } })
+                        @Html.ValidationMessageFor(retaistore => retaistore.Phone, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(retaistore => retaistore.Address, new { @class = "form-label" })
+                        @Html.EditorFor(retaistore => retaistore.Address, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter address" } })
+                        @Html.ValidationMessageFor(retaistore => retaistore.Address, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(retaistore => retaistore.EmployeeQuantity, new { @class = "form-label" })
+                        @Html.EditorFor(retaistore => retaistore.EmployeeQuantity, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter employee quantity" } })
+                        @Html.ValidationMessageFor(retaistore => retaistore.EmployeeQuantity, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(retaistore => retaistore.Image, new { @class = "form-label" })
+                        <input type="file" name="imageFile" class="form-inputFile" />
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="form-group">
+                        <button class="form-btn">Add</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

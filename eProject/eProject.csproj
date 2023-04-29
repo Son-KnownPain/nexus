@@ -131,6 +131,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RetailShowRoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
@@ -224,9 +225,12 @@
     <Content Include="Content\Css\AdminCss\Contact\Index.css" />
     <Content Include="Content\Css\AdminCss\Contact\SearchCotact.css" />
     <Content Include="Content\Css\AdminCss\Employee\SignIn.css" />
+    <Content Include="Content\Css\AdminCss\RetailShowRoom\EditRetailShowRoom.css" />
+    <Content Include="Content\Css\AdminCss\RetailShowRoom\Index.css" />
     <Content Include="Content\Css\AdminCss\Service\Add.css" />
     <Content Include="Content\Css\AdminCss\Service\Edit.css" />
     <Content Include="Content\Css\AdminCss\Service\Index.css" />
+    <Content Include="Content\Css\AdminCss\RetailShowRoom\AddRetailStore.css" />
     <Content Include="Content\Css\RetailStores\Index.css" />
     <Content Include="Content\Css\Customer\Login.css" />
     <Content Include="Content\Css\Customer\Register.css" />
@@ -262,6 +266,10 @@
       <LastGenOutput>NexusModel.cs</LastGenOutput>
     </Content>
     <Content Include="Uploads\CustomerAvatars\default-user-avatar.png" />
+    <Content Include="Uploads\RetailShowRoomImage\280420231051308503_retailShowRoom-image1807563635.jpg" />
+    <Content Include="Uploads\RetailShowRoomImage\280420231643051307_retailShowRoom-image1984787930.jpg" />
+    <Content Include="Uploads\RetailShowRoomImage\280420232043083247_retailShowRoom-image328490236.jpg" />
+    <Content Include="Uploads\RetailShowRoomImage\280420232302257630_retailShowRoom-image844238618.jpg" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -298,18 +306,21 @@
     <Content Include="Areas\Admin\Views\Contact\DetailsContact.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\SignIn.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SignInLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\RetailShowRoom\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RetailShowRoom\AddRetailStore.cshtml" />
+    <Content Include="Areas\Admin\Views\RetailShowRoom\EditRetailStore.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
     <Content Include="Views\Site\Faq.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\RetailStores\Index.cshtml" />
     <Content Include="Views\Site\HowToOrderAService.cshtml" />
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Service\Detail.cshtml" />
+    <Content Include="Views\RetailStores\Index.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -20,7 +20,7 @@
 }
 
 .content-section {
-    margin: 36px 0; /*phải trái*/
+    margin: 36px 0 0 10px; /* trêm dưới phải trái.*/
 }
 
 .content-sectionTitle {
@@ -66,11 +66,11 @@
     border-radius: 4px;
 }
 
-.cardItem-detailBtn i {
-    color: #333;
-}
+    .cardItem-detailBtn i {
+        color: #333;
+    }
 
-.cardItem-body{
+.cardItem-body {
     padding: 12px;
 }
 
@@ -80,7 +80,7 @@ h2 {
     color: #ccc;
 }
 
-.topNav-btn{
+.topNav-btn, .searchForm-btn {
     display: inline-block;
     color: #333;
     background-color: #00ffff;
@@ -90,16 +90,81 @@ h2 {
     text-decoration: none;
 }
 
-.topNav-btn i{
+.topNav-btn i {
     color: #333;
 }
 
 .topNav-btn:not(:first-child) {
-    margin-left: 80%;
+    margin-left: 12px;
 }
 
-.topNav-btn:hover{
-     color: #333;
-     opacity: .8;
+.topNav-btn:hover {
+    color: #333;
+    opacity: .8;
 }
 
+.card-action {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background-color: #00ffff;
+    margin-top: 8px;
+    width: 25%;
+    text-align: center;
+}
+
+.card-action {
+    margin-left: 10px;
+}
+
+
+.card-action:hover {
+    opacity: .8;
+    color: #444;
+}
+
+.topNav-search {
+    display: inline-block;
+}
+
+.searchForm-btn i {
+    color: #333;
+}
+
+.searchForm-btn:hover {
+    color: #333;
+    opacity: .8;
+}
+
+.searchForm-input {
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 12px;
+    border-radius: 6px;
+    width: 400px;
+    outline: none;
+    color: #333;
+}
+
+.cardItem-thumbnail {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.topNav {
+    padding: 12px 0;
+    border-bottom: 1px solid #555;
+    margin-left: 12px;
+}
+
+.page-title{
+    margin-left: 12px;
+}
+
+.cardItem-eq {
+    padding: 5px 4px;
+    font-size: 1.6rem;
+}
