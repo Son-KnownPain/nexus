@@ -5,6 +5,22 @@
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/AdminCss/Employee/MyProfile.css" />
 }
+@section scripts {
+    <script>
+        const avtFileInput = document.getElementById("avatarFileInput");
+        avtFileInput.onchange = e => {
+            const [file] = avtFileInput.files;
+            if (file) {
+                const avtImg = document.querySelector(".profile-avatar");
+                avtImg.style.backgroundImage = `url('${URL.createObjectURL(file)}')`;
+                avtImg.classList.add("new")
+                $("#avatarFileLabel").hide();
+                $("#avatarChangeSubmitBtn").show();
+
+            }
+        }
+    </script>
+}
 
 <h1 class="page-title">
     My Profile
@@ -36,12 +52,25 @@
                     <i class="fa-solid fa-clipboard-user"></i>
                     @Model.Department
                 </p>
+                @using (Html.BeginForm("ChangeMyAvatar", "Employee", new { area = "Admin" }, FormMethod.Post, new { @class = "avatarForm", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HttpMethodOverride("PUT")
+                    <label id="avatarFileLabel" for="avatarFileInput">
+                        <i class="fa-solid fa-upload"></i>
+                        Upload new avatar
+                    </label>
+                    <input id="avatarFileInput" name="AvatarFile" type="file" style="display: none;" />
+                    <button id="avatarChangeSubmitBtn" style="display: none;">
+                        Post
+                    </button>
+                }
             </div>
         </div>
 
         <div class="col-xl-3">
             <div class="profile-rightActions">
-                <a class="profile-rightActionItem" href="/Admin/Employee/ChangeMyPassword">
+                <a class="profile-rightActionItem" href="/Admin/Employee/EditMyPassword">
                     <i class="fa-solid fa-gear"></i>
                     Change Password
                 </a>

@@ -2,7 +2,7 @@
     padding: 12px;
 }
 
-.profile {
+.profileBox {
     margin-top: 24px;
 }
 
@@ -15,6 +15,9 @@
     background-size: contain;
     border-radius: 8px;
     box-shadow: 0 0 4px #ffffff44;
+}
+.profile-avatar.new {
+    border: 3px solid #7fffd4;
 }
 
 .profile-info {
@@ -55,4 +58,29 @@
 
 .profile-rightActionItem:not(:first-child) {
     margin-top: 12px;
+}
+
+/* Change avatar */
+.avatarForm {
+    font-size: 1.6rem;
+    padding: 12px 0;
+    margin-top: 16px;
+}
+
+#avatarFileLabel {
+    background-color: #f2f3f4;
+    color: #333;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+#avatarFileLabel i {
+    color: #333;
+}
+
+#avatarChangeSubmitBtn {
+    background-color: #f5f5dc;
+    color: #333;
+    border-radius: 4px;
+    padding: 8px 12px;
 }

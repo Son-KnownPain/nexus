@@ -66,6 +66,13 @@ namespace eProject.Areas.Admin.Controllers
             return RedirectToAction("SignIn");
         }
 
+        // GET: Admin/Employee/SignOut
+        public ActionResult SignOut()
+        {
+            AuthManager.Chef.SpoiledEmployee();
+            return Redirect("/Admin");
+        }
+
         // GET: Admin/Employee/Add
         [AdministratorAuthorization]
         public ActionResult Add()
@@ -93,7 +100,7 @@ namespace eProject.Areas.Admin.Controllers
             employee.RetailShowRoomID = null;
             employee.Fullname = data.Fullname;
             employee.StillWorking = true;
-            switch(data.Role)
+            switch (data.Role)
             {
                 case 1:
                     employee.Role = 1;
@@ -297,7 +304,7 @@ namespace eProject.Areas.Admin.Controllers
             {
                 context.SaveChanges();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -338,13 +345,14 @@ namespace eProject.Areas.Admin.Controllers
                 if (employee == null) return RedirectToAction("Index");
 
                 employee.Password = Crypto.HashPassword(data.NewPassword);
+                employee.UpdatedAt = DateTime.Now;
 
                 context.SaveChanges();
 
                 TempData["Success"] = "Successfully update employee password";
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -360,11 +368,76 @@ namespace eProject.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: Admin/Employee/SignOut
-        public ActionResult SignOut()
+        // PUT: Admin/Employee/ChangeMyAvatar
+        [EmployeeAuthorization]
+        [ValidateAntiForgeryToken, HttpPut]
+        public ActionResult ChangeMyAvatar(HttpPostedFileBase AvatarFile)
         {
-            AuthManager.Chef.SpoiledEmployee();
-            return Redirect("/Admin");
+            int id = AuthManager.CurrentEmployee.GetEmployee.EmployeeID;
+            Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeID == id);
+
+            if (AvatarFile != null && AvatarFile.ContentLength > 0)
+            {
+                String prefix = DateTime.Now.ToString("ddMMyyyyHHmmssffff_");
+                String uploadFolderPath = Server.MapPath("~/Uploads/EmployeeAvatars");
+
+                String extName = Path.GetExtension(AvatarFile.FileName);
+
+                Random random = new Random();
+                int randomNumber = random.Next();
+                String newFileName = prefix + "employee-avatar" + randomNumber + extName;
+
+                AvatarFile.SaveAs(uploadFolderPath + "/" + newFileName);
+
+                // Delete old file
+                if (System.IO.File.Exists(uploadFolderPath + "/" + employee.Avatar) && !employee.Avatar.Equals("default-employee-avatar.png"))
+                {
+                    System.IO.File.Delete(uploadFolderPath + "/" + employee.Avatar);
+                }
+
+                employee.Avatar = newFileName;
+                employee.UpdatedAt = DateTime.Now;
+
+                context.SaveChanges();
+
+                TempData["Success"] = "Successfully update avatar";
+            }
+
+            return RedirectToAction("MyProfile");
+        }
+
+        // GET: Admin/Employee/EditMyPassword
+        [EmployeeAuthorization]
+        public ActionResult EditMyPassword()
+        {
+            return View();
+        }
+
+        // PUT: Admin/Employee/UpdateMyPassword
+        [EmployeeAuthorization]
+        [HttpPut, ValidateAntiForgeryToken]
+        public ActionResult UpdateMyPassword(MyPasswordEdit data)
+        {
+            if (!ModelState.IsValid) return View("EditMyPassword");
+
+            int ID = AuthManager.CurrentEmployee.GetEmployee.EmployeeID;
+            Employee myProfile = context.Employees.FirstOrDefault(e => e.EmployeeID == ID);
+            if (myProfile != null && Crypto.VerifyHashedPassword(myProfile.Password, data.CurrentPassword))
+            {
+                myProfile.Password = Crypto.HashPassword(data.NewPassword);
+                myProfile.UpdatedAt = DateTime.Now;
+
+                context.SaveChanges();
+
+                TempData["Success"] = "Successfully update my password";
+
+                return RedirectToAction("MyProfile");
+            }
+            else
+            {
+                ModelState.AddModelError("CurrentPassword", "Current password incorrect, type again!");
+                return View("EditMyPassword");
+            }
         }
     }
 }

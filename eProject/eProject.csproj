@@ -195,6 +195,7 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyPasswordEdit.cs" />
     <Compile Include="Models\PasswordEditViewModel.cs" />
     <Compile Include="Models\PaymentPlan.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
@@ -230,6 +231,7 @@
     <Content Include="Content\Css\AdminCss\Employee\Add.css" />
     <Content Include="Content\Css\AdminCss\Employee\ChangePassword.css" />
     <Content Include="Content\Css\AdminCss\Employee\Edit.css" />
+    <Content Include="Content\Css\AdminCss\Employee\EditMyPassword.css" />
     <Content Include="Content\Css\AdminCss\Employee\Index.css" />
     <Content Include="Content\Css\AdminCss\Contact\ContactDetail.css" />
     <Content Include="Content\Css\AdminCss\Contact\Index.css" />
@@ -318,6 +320,7 @@
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\MyProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\EditMyPassword.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
