@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Reatial Show Room Management";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/RetailShowRoom/Index.css" />
+}
+
+<h1 class="page-title">
+    Service Management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btn" href="~/Admin/RetailShowRoom/AddRetailStore">
+        <i class="fa-solid fa-plus"></i>
+        Add new retail show room
+    </a>
+
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "RetailShowRoom", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            <input class="searchForm-input" name="keyword" placeholder="Enter service name" />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="content-section">
+        <div class="row">
+            @foreach (var retailShowRoom in ViewBag.RetailShowRooms)
+            {
+                <div class="col-xl-4">
+                    <div class="cardItem" href="#">
+                        <img class="cardItem-thumbnail" style="height: 250px;" src="~/Uploads/RetailShowRoomImage/@retailShowRoom.Image" alt="Thumbnail" />
+                        <div class="cardItem-body">
+                            <h3 class="cardItem-headingName">
+                                <i class="fa-solid fa-store"></i>
+                                @retailShowRoom.Name
+                            </h3>
+                            <p class="cardItem-eq">
+                                <i class="fa-solid fa-user"></i>
+                                Employee quantity: @retailShowRoom.EmployeeQuantity
+                            </p>
+                            <p class="cardItem-headingName">
+                                <i class="fa-solid fa-location-dot"></i>
+                                @retailShowRoom.Address
+                            </p>
+                            <p class="cardItem-headingName">
+                                <a href="tel: @retailShowRoom.Phone">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    @retailShowRoom.Phone
+                                </a>
+                            </p>
+                            <a class="card-action" href="/Admin/RetailShowRoom/EditRetailStore?id=@retailShowRoom.RetailShowRoomID">
+                                Edit
+                            </a>
+                            <a class="card-action deleteAction" href="/Admin/RetailShowRoom/Delete?retailShowRoomID=@retailShowRoom.RetailShowRoomID">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>$(".deleteAction").click(e => {
+            if (!confirm("Are you sure you want to delete")) {
+                e.preventDefault();
+            }
+        })</script>
+}
+

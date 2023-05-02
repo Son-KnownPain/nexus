@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Reatial Show Room Page";
 }
 
 @section styles {
@@ -13,73 +13,34 @@
     </h2>
     <div class="content-section">
         <div class="row">
-            <div class="col-xl-4">
-                <div class="cardItem" href="/">
-
-                    <img class="cardItem-thumbnail" src="~/Content/Images/ImageRetailsStore/vienthonga.jpg" alt="Thumbnail" />
-                    <div class="cardItem-body">
-                        <h3 class="cardItem-headingName">
-                            <i class="fa-solid fa-store"></i>
-                            Viễn Thông A
-                        </h3>
-                        <p class="cardItem-headingName">
-                            <i class="fa-solid fa-location-dot"></i>
-                            Lầu 6, Toà nhà ST Moritz số 1014 Phạm Văn Đồng, P. Hiệp Bình Chánh, TP. Thủ Đức, TP. HCM
-                        </p>
-                        <p class="cardItem-headingName">
-                            <a href="tel:84 28 6253 3456">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                84 28 6253 3456
-                            </a>
-                        </p>
+            <div class="row">
+                @foreach (var retailShowRoom in ViewBag.RetailShowRooms)
+                {
+                    <div class="col-xl-4">
+                        <div class="cardItem" href="#">
+                            <img class="cardItem-thumbnail" style="height: 250px;" src="~/Uploads/RetailShowRoomImage/@retailShowRoom.Image" alt="Thumbnail" />
+                            <div class="cardItem-body">
+                                <h3 class="cardItem-headingName">
+                                    <i class="fa-solid fa-store"></i>
+                                    @retailShowRoom.Name
+                                </h3>
+                                <p class="cardItem-headingName">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    @retailShowRoom.Address
+                                </p>
+                                <p class="cardItem-headingName">
+                                    <a href="tel: @retailShowRoom.Phone">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        @retailShowRoom.Phone
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-xl-4">
-                <div class="cardItem" href="/">
-                    <img class="cardItem-thumbnail" src="~/Content/Images/ImageRetailsStore/vnpt.jpg" alt="Thumbnail" />
-                    <div class="cardItem-body">
-                        <h3 class="cardItem-headingName">
-                            <i class="fa-solid fa-store"></i>
-                            VNPT
-                        </h3>
-                        <p class="cardItem-headingName">
-                            <i class="fa-solid fa-location-dot"></i>
-                            Số 75, phố Đinh Tiên Hoàng - Phường Tràng Tiền - Quận Hoàn Kiếm - Hà Nội
-                        </p>
-                        <p class="cardItem-headingName">
-                            <a href="tel:84 28 6253 3456">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                (84 - 24) 3747 1748
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-4">
-                <div class="cardItem" href="/">
-                    <img class="cardItem-thumbnail" style="height: 307px;" src="~/Content/Images/ImageRetailsStore/dangkhoi.jpg" alt="Thumbnail" />
-                    <div class="cardItem-body">
-                        <h3 class="cardItem-headingName">
-                            <i class="fa-solid fa-store"></i>
-                            Viễn Thông Đăng Khôi
-                        </h3>
-                        <p class="cardItem-headingName">
-                            <i class="fa-solid fa-location-dot"></i>
-                            271 Trần Quang Diêu, Bình Thủy, Cần Thơ
-                        </p>
-                        <p class="cardItem-headingName">
-                            <a href="tel:84 28 6253 3456">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                0933 887 995
-                            </a>
-                        </p>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </div>
+
 
