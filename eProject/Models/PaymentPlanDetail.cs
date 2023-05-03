@@ -11,7 +11,8 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PaymentPlanDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +22,19 @@ namespace eProject.Models
             this.CallCharges = new HashSet<CallCharge>();
             this.Orders = new HashSet<Order>();
         }
-    
+
         public int PaymentPlanDetailID { get; set; }
         public int PaymentPlanID { get; set; }
+
+        [Required(ErrorMessage = "Content is require")]
         public string Content { get; set; }
+
+        [Required(ErrorMessage = "Rental cost is require")]
         public int RentalCost { get; set; }
+
+        [Required(ErrorMessage = "Vadility days is require")]
         public int VadilityDays { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

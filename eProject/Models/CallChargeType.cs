@@ -11,7 +11,9 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CallChargeType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +23,10 @@ namespace eProject.Models
         }
     
         public int CallChargeTypeID { get; set; }
+
+        [DisplayName("Type Name")]
+        [Required(ErrorMessage = "Type name is require")]
+        [MaxLength(255, ErrorMessage = "Max length is 255 characters")]
         public string TypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

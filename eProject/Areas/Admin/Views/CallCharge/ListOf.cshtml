@@ -1,0 +1,101 @@
+﻿@using eProject.Helpers;
+@{
+    ViewBag.Title = "Call Charges";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/CallCharge/ListOf.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $(".deleteCallChargeBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete that call charge")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
+
+<h1 class="page-title">
+    @ViewBag.PaymentPlanDetailName
+    <span class="page-subTitle">
+        @ViewBag.PaymentPlanName
+    </span>
+    <span class="page-subTitle">
+        @ViewBag.ServiceName
+    </span>
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/PaymentPlan/Detail?paymentPlanID=@ViewBag.plID">
+        <i class="fa-solid fa-backward"></i>
+        Back
+    </a>
+    <a class="topNav-btnItem" href="/Admin/CallCharge/Add?paymentPlanDetailID=@ViewBag.pldID">
+        <i class="fa-solid fa-plus"></i>
+        Add call charge
+    </a>
+</nav>
+
+@if (ViewBag.listCallCharge.Count != 0)
+{
+    <div class="dataBox">
+        <h3 class="dataBox-heading">
+            List call charge
+        </h3>
+
+        <div class="paymentPlanDetails-title">
+            <div class="row">
+                <div class="col-xl-6">
+                    <span class="paymentPlanDetails-titleValue">
+                        Call Charge Type Name
+                    </span>
+                </div>
+                <div class="col-xl-4">
+                    <span class="paymentPlanDetails-titleValue">
+                        Cost Per Minute
+                    </span>
+                </div>
+                <div class="col-xl-2">
+                    <span class="paymentPlanDetails-titleValue">
+                        Actions
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="paymentPlanDetails">
+            @foreach (eProject.Models.ViewModels.CallCharge.CallChargeViewModel item in ViewBag.listCallCharge)
+            {
+                <div class="paymentPlanDetailItem">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <p class="paymentPlanDetailItem-text">
+                                @item.CallChargeName
+                            </p>
+                        </div>
+                        <div class="col-xl-4">
+                            <p class="paymentPlanDetailItem-text">
+                                @item.CostPerMinute cents
+                            </p>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="paymentPlanDetailItem-action">
+                                Menu
+                                <i class="fa-solid fa-chevron-down"></i>
+                                <div class="actionMenu">
+                                    <a class="actionMenu-item edit" href="/Admin/CallCharge/Edit?callChargeID=@item.CallChargeID">
+                                        Edit
+                                    </a>
+                                    <a class="actionMenu-item delete deleteCallChargeBtn" href="/Admin/CallCharge/Delete?callChargeID=@item.CallChargeID">
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

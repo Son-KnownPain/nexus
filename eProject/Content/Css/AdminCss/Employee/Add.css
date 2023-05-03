@@ -60,9 +60,9 @@
     margin-top: 16px;
 }
 
-    .form-btn:hover {
-        opacity: .8;
-    }
+.form-btn:hover {
+    opacity: .8;
+}
 
 .invalidMessage {
     font-size: 1.6rem;

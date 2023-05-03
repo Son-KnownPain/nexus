@@ -129,9 +129,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CallChargeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CallChargeTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EquipmentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PaymentPlanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PaymentPlanDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\RetailShowRoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteController.cs" />
@@ -151,6 +155,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CallChargeHelper.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -199,6 +204,7 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyPasswordEdit.cs" />
     <Compile Include="Models\PasswordEditViewModel.cs" />
     <Compile Include="Models\PaymentPlan.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
@@ -220,6 +226,9 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\CallCharge\CallChargeViewModel.cs" />
+    <Compile Include="Models\ViewModels\PaymentPlanDetails\PaymentPlanDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\PaymentPlans\PaymentPlanViewModel.cs" />
     <Compile Include="Models\Warehouse.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -231,9 +240,15 @@
   <ItemGroup>
     <Content Include="Content\AdminApp.css" />
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\AdminCss\CallChargeType\Index.css" />
+    <Content Include="Content\Css\AdminCss\CallChargeType\Edit.css" />
+    <Content Include="Content\Css\AdminCss\CallCharge\Add.css" />
+    <Content Include="Content\Css\AdminCss\CallCharge\Edit.css" />
+    <Content Include="Content\Css\AdminCss\CallCharge\ListOf.css" />
     <Content Include="Content\Css\AdminCss\Employee\Add.css" />
     <Content Include="Content\Css\AdminCss\Employee\ChangePassword.css" />
     <Content Include="Content\Css\AdminCss\Employee\Edit.css" />
+    <Content Include="Content\Css\AdminCss\Employee\EditMyPassword.css" />
     <Content Include="Content\Css\AdminCss\Employee\Index.css" />
     <Content Include="Content\Css\AdminCss\Contact\ContactDetail.css" />
     <Content Include="Content\Css\AdminCss\Contact\Index.css" />
@@ -243,6 +258,12 @@
     <Content Include="Content\Css\AdminCss\Equipment\Add.css" />
     <Content Include="Content\Css\AdminCss\Equipment\Edit.css" />
     <Content Include="Content\Css\AdminCss\Equipment\Index.css" />
+    <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Add.css" />
+    <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Edit.css" />
+    <Content Include="Content\Css\AdminCss\PaymentPlan\Add.css" />
+    <Content Include="Content\Css\AdminCss\PaymentPlan\Detail.css" />
+    <Content Include="Content\Css\AdminCss\PaymentPlan\Edit.css" />
+    <Content Include="Content\Css\AdminCss\PaymentPlan\Index.css" />
     <Content Include="Content\Css\AdminCss\RetailShowRoom\EditRetailShowRoom.css" />
     <Content Include="Content\Css\AdminCss\RetailShowRoom\Index.css" />
     <Content Include="Content\Css\AdminCss\Service\Add.css" />
@@ -344,6 +365,18 @@
     <Content Include="Areas\Admin\Views\Supplier\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Supplier\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Supplier\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\EditMyPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentPlan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentPlan\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentPlan\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentPlan\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentPlanDetail\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\PaymentPlanDetail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CallChargeType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CallChargeType\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CallCharge\ListOf.cshtml" />
+    <Content Include="Areas\Admin\Views\CallCharge\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\CallCharge\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

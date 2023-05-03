@@ -7,9 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
 using System.Web.UI.WebControls;
+using eProject.Filters;
 
 namespace eProject.Areas.Admin.Controllers
 {
+    [AdministratorAuthorization]
     public class RetailShowRoomController : Controller
     {
         NexusEntities context = new NexusEntities();

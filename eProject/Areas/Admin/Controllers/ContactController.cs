@@ -7,9 +7,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using eProject.Filters;
 
 namespace eProject.Areas.Admin.Controllers
 {
+    [EmployeeAuthorization]
     public class ContactController : Controller
     {
         NexusEntities context = new NexusEntities();

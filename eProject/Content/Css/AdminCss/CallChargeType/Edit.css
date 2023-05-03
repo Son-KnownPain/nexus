@@ -2,16 +2,6 @@
     padding: 12px;
 }
 
-.highlight {
-    color: #fae7b5;
-}
-
-/* Data box */
-
-.dataBox {
-    margin-top: 16px;
-}
-
 .form-group {
     padding: 12px 0;
 }
@@ -24,13 +14,34 @@
     display: block;
 }
 
-.form-input {
+.form-input, .form-dropDownList {
     margin-top: 8px;
     padding: 8px;
     border-radius: 6px;
     width: 100%;
     color: #333;
     outline: none;
+}
+
+    .form-dropDownList option {
+        color: #333;
+    }
+
+.ck-content * {
+    color: #333;
+    font-size: 1.6rem;
+}
+
+.ck-content h2 {
+    font-size: 2rem;
+}
+
+.ck-content h3 {
+    font-size: 2.4rem;
+}
+
+.ck-content h3 {
+    font-size: 2.8rem;
 }
 
 .form-btn {
@@ -46,9 +57,9 @@
     margin-top: 16px;
 }
 
-.form-btn:hover {
-    opacity: .8;
-}
+    .form-btn:hover {
+        opacity: .8;
+    }
 
 .invalidMessage {
     font-size: 1.6rem;
@@ -76,4 +87,14 @@
     100% {
         margin-left: -10px;
     }
+}
+
+#thumbnailFileInput {
+    font-size: 1.6rem;
+    margin-top: 12px;
+}
+
+#previewThumbnail {
+    max-width: 400px;
+    display: none;
 }

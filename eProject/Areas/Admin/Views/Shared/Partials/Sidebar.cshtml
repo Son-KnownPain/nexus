@@ -6,13 +6,22 @@
         Management Menu
     </h4>
     <nav class="sidebar-menu">
-        <a class="sidebar-menuItem" href="/Admin/Service">
-            Service management
-        </a>
         @if (AuthManager.CurrentEmployee.IsAdmin)
         {
+            <a class="sidebar-menuItem" href="/Admin/Service">
+                Service management
+            </a>
             <a class="sidebar-menuItem" href="/Admin/Employee">
                 Employee management
+            </a>
+            <a class="sidebar-menuItem" href="/Admin/RetailShowRoom">
+                Retail Show Room management
+            </a>
+            <a class="sidebar-menuItem" href="/Admin/PaymentPlan">
+                Payment plan management
+            </a>
+            <a class="sidebar-menuItem" href="/Admin/CallChargeType">
+                Call charge type management
             </a>
         }
         <a class="sidebar-menuItem" href="/Admin/RetailShowRoom">

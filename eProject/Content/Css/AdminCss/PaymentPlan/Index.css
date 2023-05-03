@@ -1,0 +1,101 @@
+﻿.content-main {
+    padding: 12px;
+}
+
+.topNav {
+    padding: 12px 0;
+    border-bottom: 1px solid #555;
+}
+
+.topNav-btnItem, .searchForm-btn {
+    display: inline-block;
+    color: #333;
+    background-color: var(--primary);
+    font-size: 1.6rem;
+    padding: 12px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.topNav-btnItem i, .searchForm-btn i {
+    color: #333;
+}
+
+.topNav-btnItem:not(:first-child) {
+    margin-left: 12px;
+}
+
+.topNav-btnItem:hover, .searchForm-btn:hover {
+    color: #333;
+    opacity: .8;
+}
+
+.topNav-search {
+    display: inline-block;
+}
+
+.searchForm-input {
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 12px;
+    border-radius: 6px;
+    width: 400px;
+    outline: none;
+    color: #333;
+}
+
+/* dataBox */
+
+.dataBox {
+    margin-top: 16px;
+}
+
+.dataBox-heading {
+    font-size: 1.4rem;
+    color: var(--grey);
+    margin-bottom: 16px;
+}
+
+.paymentPlans-title {
+    margin-bottom: 8px;
+}
+
+.paymentPlans-titleValue {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--primary);
+    border-radius: 2px;
+    border: 1px solid var(--primary);
+    padding: 2px 4px;
+    opacity: .8;
+}
+
+.paymentPlanItem {
+    font-size: 1.6rem;
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #ffffff55;
+    margin-top: 12px;
+}
+
+.paymentPlanItem-serviceName, .paymentPlanItem-planName {
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.paymentPlanItem-serviceName {
+    border-right: 1px solid #ffffff55;
+}
+
+.paymentPlanItem-action {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: #333;
+}
+.paymentPlanItem-action:hover {
+    opacity: .8;
+    color: #333;
+}
