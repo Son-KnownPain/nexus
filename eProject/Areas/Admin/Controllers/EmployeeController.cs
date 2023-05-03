@@ -15,7 +15,7 @@ namespace eProject.Areas.Admin.Controllers
     public class EmployeeController : Controller
     {
         private NexusEntities context = new NexusEntities();
-
+         
         // GET: Admin/Employee
         [AdministratorAuthorization]
         public ActionResult Index()

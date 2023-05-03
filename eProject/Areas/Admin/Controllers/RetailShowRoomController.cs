@@ -112,6 +112,7 @@ namespace eProject.Areas.Admin.Controllers
                 newRetailStore.Name = updateRetailShowRoom.Name;
                 newRetailStore.Phone = updateRetailShowRoom.Phone;
                 newRetailStore.Address = updateRetailShowRoom.Address;
+                newRetailStore.EmployeeQuantity = updateRetailShowRoom.EmployeeQuantity;
                 if (imageFile != null && imageFile.ContentLength > 0)
                 {
                     String uploadFolderPath = Server.MapPath("~/Uploads/RetailShowRoomImage");
@@ -134,16 +135,11 @@ namespace eProject.Areas.Admin.Controllers
 
                     newRetailStore.Image = newFileName;
                 }
-                else
-                {
-                    return RedirectToAction("EditRetailStore");
-                }
-                newRetailStore.EmployeeQuantity = updateRetailShowRoom.EmployeeQuantity;
                 context.SaveChanges();
                 TempData["Success"] = "Successfully update retail show room";
             }
 
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Search(string keyword)

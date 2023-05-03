@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<eProject.Models.Contact>
 @{
-    ViewBag.Title = "Contact Management";
+    ViewBag.Title = "Contact management";
 }
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/AdminCss/Contact/Index.css" />
@@ -9,22 +9,22 @@
 }
 
 <h1 class="page-title">
-    Contact Management
+    Contact management
 </h1>
 <nav class="topNav">
     <div class="searchFilterBox">
-            @using (Html.BeginForm("Search", "Contact", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
-            {
-                <div class="searchInputBox">
-                    <input class="searchInput" type="text" name="searchValue" placeholder="Enter your keyword..." />
-                    <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-            }
-        </div>
+        @using (Html.BeginForm("Search", "Contact", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            <div class="searchInputBox">
+                <input class="searchInput" type="text" name="searchValue" placeholder="Enter contactName, content,.." />
+                <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        }
+    </div>
 </nav>
 <div class="dataBox">
     <h3 class="dataBox-heading">
-        List contact
+        List of contacts
     </h3>
 
     <div class="contact">
@@ -48,7 +48,8 @@
                                         <i class="fa-regular fa-circle-check"></i>
                                         Not Read
                                     </span>
-                                } else if (contact.Status.Equals("Seen"))
+                                }
+                                else if (contact.Status.Equals("Seen"))
                                 {
                                     <span class="contactStatus seen">
                                         <i class="fa-solid fa-circle-check"></i>
@@ -63,6 +64,9 @@
                             <a class="contactItem-action" href="~/Admin/Contact/DetailsContact?contactID=@contact.ContactID">
                                 Read
                             </a>
+                            <a class="contactItem-action dlt deleteServiceBtn" href="~/Admin/Contact/Delete?deleteContact=@contact.ContactID">
+                                Delete
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -71,3 +75,14 @@
     </div>
 </div>
 
+@section scripts {
+    <script>
+        $(function () {
+            $(".deleteServiceBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete this contact")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}

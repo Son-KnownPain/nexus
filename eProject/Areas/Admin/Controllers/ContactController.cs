@@ -1,4 +1,5 @@
-﻿using eProject.Models;
+﻿using eProject.Filters;
+using eProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -29,6 +30,24 @@ namespace eProject.Areas.Admin.Controllers
             contactDetail.Status = "Seen";
             context.SaveChanges();
             return View(contactDetail);
+        }
+
+  
+        public ActionResult Delete(int? deleteContact)
+        {
+            if(deleteContact == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Contact contact = context.Contacts.FirstOrDefault(c => c.ContactID == deleteContact);
+            if (contact == null) return RedirectToAction("Index");
+
+            context.Contacts.Remove(contact);
+            context.SaveChanges();
+            TempData["Success"] = "Success delete contact";
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Search(string searchValue)

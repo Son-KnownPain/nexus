@@ -1,0 +1,77 @@
+﻿@model eProject.Models.Supplier
+
+@section Styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Supplier/Add.css" />
+    <link rel="stylesheet" href="~/Content/topNav.css" />
+}
+@{
+    ViewBag.Title = "Update supplier";
+}
+
+<div class="container">
+    <nav class="topNav">
+        <h1 class="page-heading">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            Update supplier
+            <a class="topNav-btnItem" href="/Admin/Supplier">Exit</a>
+        </h1>
+    </nav>
+
+    <div class="content-body">
+        @using (Html.BeginForm("Update", "Supplier", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(supplier => supplier.SupplierID)
+            @Html.AntiForgeryToken()
+            @Html.HttpMethodOverride("PUT")
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(supplier => supplier.CompanyName, new { @class = "form-label" })
+                        @Html.EditorFor(supplier => supplier.CompanyName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter company name" } })
+                        @Html.ValidationMessageFor(supplier => supplier.CompanyName, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(supplier => supplier.ContactName, new { @class = "form-label" })
+                        @Html.EditorFor(supplier => supplier.ContactName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter contact name" } })
+                        @Html.ValidationMessageFor(supplier => supplier.ContactName, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(supplier => supplier.Address, new { @class = "form-label" })
+                        @Html.EditorFor(supplier => supplier.Address, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter address" } })
+                        @Html.ValidationMessageFor(supplier => supplier.Address, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(supplier => supplier.Phone, new { @class = "form-label" })
+                        @Html.EditorFor(supplier => supplier.Phone, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter phone" } })
+                        @Html.ValidationMessageFor(supplier => supplier.Phone, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(supplier => supplier.Fax, new { @class = "form-label" })
+                        @Html.EditorFor(supplier => supplier.Fax, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter fax" } })
+                        @Html.ValidationMessageFor(supplier => supplier.Fax, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        @Html.LabelFor(supplier => supplier.ContactUrl, new { @class = "form-label" })
+                        @Html.EditorFor(supplier => supplier.ContactUrl, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter contact URL" } })
+                        @Html.ValidationMessageFor(supplier => supplier.ContactUrl, null, new { @class = "invalidMessage" })
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="form-group">
+                        <button class="form-btn">Update</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

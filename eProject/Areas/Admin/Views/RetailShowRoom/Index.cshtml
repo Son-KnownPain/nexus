@@ -7,7 +7,7 @@
 }
 
 <h1 class="page-title">
-    Service Management
+    Reatial show room management
 </h1>
 <nav class="topNav">
     <a class="topNav-btn" href="~/Admin/RetailShowRoom/AddRetailStore">
@@ -18,7 +18,7 @@
     <div class="topNav-search">
         @using (Html.BeginForm("Search", "RetailShowRoom", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
         {
-            <input class="searchForm-input" name="keyword" placeholder="Enter service name" />
+            <input class="searchForm-input" name="keyword" placeholder="Enter name, address,..." />
             <button class="searchForm-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -27,7 +27,10 @@
 </nav>
 
 
-<div class="container">
+<div class="container dataBox">
+    <h3 class="dataBox-heading">
+        List of retail show room
+    </h3>
     <div class="content-section">
         <div class="row">
             @foreach (var retailShowRoom in ViewBag.RetailShowRooms)
@@ -54,12 +57,15 @@
                                     @retailShowRoom.Phone
                                 </a>
                             </p>
-                            <a class="card-action" href="/Admin/RetailShowRoom/EditRetailStore?id=@retailShowRoom.RetailShowRoomID">
-                                Edit
-                            </a>
-                            <a class="card-action deleteAction" href="/Admin/RetailShowRoom/Delete?retailShowRoomID=@retailShowRoom.RetailShowRoomID">
-                                Delete
-                            </a>
+                            <div class="retailStoreItem-actions">
+                                <a class="retailStoreItem-action" href="/Admin/RetailShowRoom/EditRetailStore?id=@retailShowRoom.RetailShowRoomID">
+                                    Edit
+                                </a>
+                                <a class="retailStoreItem-action dlt deleteAction" href="/Admin/RetailShowRoom/Delete?retailShowRoomID=@retailShowRoom.RetailShowRoomID">
+                                    Delete
+                                </a>
+                            </div>
+                           
                         </div>
                     </div>
                 </div>

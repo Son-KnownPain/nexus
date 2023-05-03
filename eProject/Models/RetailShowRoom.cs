@@ -30,7 +30,7 @@ namespace eProject.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Phone can not empty")]
-        [Phone(ErrorMessage = "Please enter the correct structure of the phone number")]
+        [RegularExpression("[0-9]{10}", ErrorMessage = "Phone only accept 10 number (0-9)")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Address can not empty")]
@@ -39,6 +39,7 @@ namespace eProject.Models
         public HttpPostedFileBase imageFile { get; set; }
 
         [Required(ErrorMessage = "Quantity can not empty")]
+        [RegularExpression("[1-9]", ErrorMessage = "The number of employees cannot be negative")]
         public int EmployeeQuantity { get; set; }
 
         

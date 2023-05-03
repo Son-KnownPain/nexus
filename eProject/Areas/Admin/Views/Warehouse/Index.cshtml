@@ -1,0 +1,73 @@
+﻿@section styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Warehouse/WarehouseList.css" />
+}
+
+
+<h1 class="page-title">
+    Warehouse management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btn" href="~/Admin/Warehouse/Add">
+        <i class="fa-solid fa-plus"></i>
+        Add new warehouse
+    </a>
+
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "Warehouse", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            <input class="searchForm-input" name="keyword" placeholder="Enter name, address,..." />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+
+<h1 class="page-title-h1">List of warehouses</h1>
+
+<div class="container">
+    <div class="content-section">
+        <div class="row">
+            @foreach (var warehouseItem in ViewBag.warehouseList)
+            {
+                <div class="col-xl-3">
+                    <div class="warehouseItem" href="#">
+                        <div class="warehouseItem-body">
+                            <h3 class="warehouseItem-headingName">
+                                @warehouseItem.Name
+                            </h3>
+                            <p class="warehouseItem-eq">
+                                <i class="fa-solid fa-location-dot"></i>
+                                @warehouseItem.Address
+                            </p>
+                            <p class="warehouseItem-eq">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <a href="tel: @warehouseItem.ContactNumber">
+                                    @warehouseItem.ContactNumber
+                                </a>
+                            </p>
+                            <div class="warehouse-actions">
+                                <a class="warehouse-action" href="/Admin/Warehouse/Edit?id=@warehouseItem.WarehouseID">
+                                    Edit
+                                </a>
+                                <a class="warehouse-action dlt deleteAction" href="/Admin/Warehouse/Delete?id=@warehouseItem.WarehouseID">
+                                    Delete
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>$(".deleteAction").click(e => {
+            if (!confirm("Are you sure you want to delete")) {
+                e.preventDefault();
+            }
+        })</script>
+}
+

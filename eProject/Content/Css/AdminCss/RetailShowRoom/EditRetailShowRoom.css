@@ -43,7 +43,7 @@
 .form-btn {
     padding: 12px 20px;
     border-radius: 6px;
-    background: var(--primary);
+    background: #00ffff;
     color: #333;
     border: none;
     outline: none;
@@ -105,4 +105,27 @@
 .topNav {
     padding: 12px 0;
     border-bottom: 1px solid #555;
+}
+
+.topNav-btnItem {
+    display: inline-block;
+    color: #333;
+    background-color: var(--bgcl-btn);
+    font-size: 1.6rem;
+    padding: 12px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.topNav-btnItem i {
+    color: #333;
+}
+
+.topNav-btnItem:not(:first-child) {
+    margin-left: 60%;
+}
+
+.topNav-btnItem:hover {
+    color: #333;
+    opacity: .8;
 }

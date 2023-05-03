@@ -113,12 +113,43 @@
     margin-left: 10px;
 }
 
-    .serviceItem-action.dlt {
+.serviceItem-action.dlt {
+    background-color: #ff2052;
+    color: #fff;
+}
+
+.serviceItem-action:hover {
+    opacity: .8;
+    color: #444;
+}
+
+.supplierItem-action {
+    margin-top: -8px;
+}
+
+.supplierItem-action {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background-color: #e9d66b;
+    margin-top: 8px;
+    width: 15%;
+    text-align: center;
+}
+
+.supplierItem-action {
+    margin-left: 10px;
+}
+
+    .supplierItem-action.dlt {
         background-color: #ff2052;
         color: #fff;
     }
 
-    .serviceItem-action:hover {
+    .supplierItem-action:hover {
         opacity: .8;
         color: #444;
     }
