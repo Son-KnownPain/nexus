@@ -1,0 +1,33 @@
+﻿@model eProject.Models.ViewModels.CallCharge.CallChargeViewModel
+@{
+    ViewBag.Title = "Add new call charge";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/CallCharge/Edit.css" />
+}
+
+<h1 class="page-title">
+    Edit Call Charge
+</h1>
+
+@using (Html.BeginForm("Update", "CallCharge", new { area = "Admin" }, FormMethod.Post, new { @class = "callChargeForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HttpMethodOverride("PUT")
+    @Html.HiddenFor(m => m.PaymentPlanDetailID)
+    @Html.HiddenFor(m => m.CallChargeID)
+    <div class="form-group">
+        @Html.LabelFor(m => m.CallChargeTypeID, new { @class = "form-label" })
+        @Html.DropDownListFor(m => m.CallChargeTypeID, Model.CallChargeTypeList, new { @class = "form-dropDownList" })
+        @Html.ValidationMessageFor(m => m.CallChargeTypeID, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CostPerMinute, new { @class = "form-label" })
+        @Html.EditorFor(m => m.CostPerMinute, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter cost (cents) / minute" } })
+        @Html.ValidationMessageFor(m => m.CostPerMinute, null, new { @class = "invalidMessage" })
+    </div>
+    <button class="form-btn">
+        Update
+    </button>
+}
+

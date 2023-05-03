@@ -1,0 +1,26 @@
+﻿@model eProject.Models.CallChargeType
+@{
+    ViewBag.Title = "Edit call charge type";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/CallChargeType/Edit.css" />
+}
+
+<h1 class="page-title">
+    Edit Call Charge Type
+</h1>
+
+@using (Html.BeginForm("Update", "CallChargeType", new { area = "Admin" }, FormMethod.Post, new { @class = "serviceForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HttpMethodOverride("PUT")
+    @Html.HiddenFor(c => c.CallChargeTypeID)
+    <div class="form-group">
+        @Html.LabelFor(c => c.TypeName, new { @class = "form-label" })
+        @Html.EditorFor(c => c.TypeName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter type name" } })
+        @Html.ValidationMessageFor(c => c.TypeName, null, new { @class = "invalidMessage" })
+    </div>
+    <button class="form-btn">
+        Update
+    </button>
+}

@@ -1,0 +1,47 @@
+﻿@model eProject.Models.ViewModels.PaymentPlans.PaymentPlanViewModel
+@{
+    ViewBag.Title = "Add new payment plan";
+    var tempModel = new eProject.Models.ViewModels.PaymentPlans.PaymentPlanViewModel();
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/PaymentPlan/Add.css" />
+}
+@section scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+
+<h1 class="page-title">
+    Add New Service
+</h1>
+
+@using (Html.BeginForm("Update", "PaymentPlan", new { area = "Admin" }, FormMethod.Post, new { @class = "paymentPlanForm" }))
+{
+    @Html.HiddenFor(m => m.PaymentPlanID)
+    @Html.HttpMethodOverride("PUT")
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.ServiceID, new { @class = "form-label" })
+        @Html.DropDownListFor(m => m.ServiceID, tempModel.ServiceList, new { @class = "form-dropDownList" })
+        @Html.ValidationMessageFor(m => m.ServiceID, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PlanName, new { @class = "form-label" })
+        @Html.EditorFor(m => m.PlanName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter payment plan name" } })
+        @Html.ValidationMessageFor(m => m.PlanName, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "form-label" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-input", placeHolder = "Enter description", @id = "editor" })
+        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "invalidMessage" })
+    </div>
+    <button class="form-btn">
+        Update
+    </button>
+}

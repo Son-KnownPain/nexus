@@ -1,0 +1,119 @@
+﻿@using eProject.Helpers;
+@model eProject.Models.ViewModels.PaymentPlans.PaymentPlanViewModel
+@{
+    ViewBag.Title = "Payment Plan Detail";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/PaymentPlan/Detail.css" />
+}
+
+<h1 class="page-title">
+    @Model.PlanName
+    <span class="page-subTitle">
+        @Model.ServiceName
+    </span>
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/PaymentPlan">
+        <i class="fa-solid fa-backward"></i>
+        Back
+    </a>
+    <a class="topNav-btnItem" href="/Admin/PaymentPlanDetail/Add?paymentPlanID=@Model.PaymentPlanID">
+        <i class="fa-solid fa-plus"></i>
+        Add new payment plan detail
+    </a>
+    <a class="topNav-btnItem" href="#" style="color: #fff; background-color: #ff2052;">
+        <i class="fa-solid fa-trash" style="color: #fff;"></i>
+        Delete
+    </a>
+    <a class="topNav-btnItem" href="/Admin/PaymentPlan/Edit?paymentPlanID=@Model.PaymentPlanID" style="color: #333; background-color: #ffbf00;">
+        <i class="fa-solid fa-pen" style="color: #333;"></i>
+        Edit
+    </a>
+</nav>
+
+@if (ViewBag.detailItems.Count != 0)
+{
+    <div class="dataBox">
+        <h3 class="dataBox-heading">
+            List payment plan detail
+        </h3>
+
+        <div class="paymentPlanDetails-title">
+            <div class="row">
+                <div class="col-xl-6">
+                    <span class="paymentPlanDetails-titleValue">
+                        Payment Plan Detail
+                    </span>
+                </div>
+                <div class="col-xl-2">
+                    <span class="paymentPlanDetails-titleValue">
+                        Price
+                    </span>
+                </div>
+                <div class="col-xl-2">
+                    <span class="paymentPlanDetails-titleValue">
+                        Vadility days
+                    </span>
+                </div>
+                <div class="col-xl-2">
+                    <span class="paymentPlanDetails-titleValue">
+                        Actions
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="paymentPlanDetails">
+            @foreach (eProject.Models.PaymentPlanDetail item in ViewBag.detailItems)
+            {
+                <div class="paymentPlanDetailItem">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <p class="paymentPlanDetailItem-serviceName">
+                                @item.Content
+                            </p>
+                        </div>
+                        <div class="col-xl-2">
+                            <p class="paymentPlanDetailItem-text">
+                                @item.RentalCost $
+                            </p>
+                        </div>
+                        <div class="col-xl-2">
+                            <p class="paymentPlanDetailItem-text">
+                                @item.VadilityDays
+                            </p>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="paymentPlanDetailItem-action">
+                                Menu
+                                <i class="fa-solid fa-chevron-down"></i>
+                                <div class="actionMenu">
+                                    <a class="actionMenu-item edit" href="/Admin/PaymentPlanDetail/Edit?paymentPlanDetailID=@item.PaymentPlanDetailID">
+                                        Edit
+                                    </a>
+                                    <a class="actionMenu-item delete" href="#">
+                                        Delete
+                                    </a>
+                                    <a class="actionMenu-item" href="/Admin/CallCharge/ListOf?paymentPlanDetailID=@item.PaymentPlanDetailID">
+                                        Call Charge (@CallChargeHelper.GetCallChargeCount(item.PaymentPlanDetailID))
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        Description
+    </h3>
+
+    <div class="paymentPlanDetailItem-descriptionBox">
+        @Html.Raw(Model.Description)
+    </div>
+</div>

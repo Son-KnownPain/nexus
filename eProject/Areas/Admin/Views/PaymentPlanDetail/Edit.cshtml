@@ -1,0 +1,47 @@
+﻿@model eProject.Models.PaymentPlanDetail
+@{
+    ViewBag.Title = "Edit payment plan";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/PaymentPlan/Add.css" />
+}
+@section scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+
+<h1 class="page-title">
+    Edit Payment Plan Detail
+</h1>
+
+@using (Html.BeginForm("Update", "PaymentPlanDetail", new { area = "Admin" }, FormMethod.Post, new { @class = "paymentPlanForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.PaymentPlanDetailID)
+    @Html.HiddenFor(m => m.PaymentPlanID)
+    @Html.HttpMethodOverride("PUT")
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content, new { @class = "form-label" })
+        @Html.EditorFor(m => m.Content, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter payment plan detail content" } })
+        @Html.ValidationMessageFor(m => m.Content, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RentalCost, new { @class = "form-label" })
+        @Html.EditorFor(m => m.RentalCost, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter rental cost" } })
+        @Html.ValidationMessageFor(m => m.RentalCost, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.VadilityDays, new { @class = "form-label" })
+        @Html.EditorFor(m => m.VadilityDays, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter vadility days" } })
+        @Html.ValidationMessageFor(m => m.VadilityDays, null, new { @class = "invalidMessage" })
+    </div>
+    <button class="form-btn">
+        Update
+    </button>
+}

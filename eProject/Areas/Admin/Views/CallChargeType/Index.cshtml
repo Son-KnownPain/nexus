@@ -1,0 +1,51 @@
+﻿@model eProject.Models.CallChargeType
+@{
+    ViewBag.Title = "Call Charge Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/CallChargeType/Index.css" />
+}
+
+<h1 class="page-title">
+    Call Charge Type Management
+</h1>
+<nav class="topNav">
+    <div class="topNav-search">
+        @using (Html.BeginForm("Store", "CallChargeType", new { area = "Admin" }, FormMethod.Post, new { @class = "callCharTypeForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.EditorFor(m => m.TypeName, new { htmlAttributes = new { @class = "searchForm-input", placeHolder = "Enter type name" } })
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-plus"></i>
+                Add
+            </button>
+            @Html.ValidationMessageFor(m => m.TypeName, null, new { @class = "invalidMessage" })
+        }
+    </div>
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List call charge type
+    </h3>
+
+    <div class="callChargeTypes">
+        @foreach (var item in ViewBag.callChargeTypeList)
+        {
+            <div class="callChargeTypes-item">
+                <div class="row">
+                    <div class="col-xl-6">
+                        @item.TypeName
+                    </div>
+                    <div class="col-xl-6">
+                        <a class="callChargeTypes-action dlt" href="#">
+                            Delete
+                        </a>
+                        <a class="callChargeTypes-action edt" href="/Admin/CallChargeType/Edit?callChargeTypeID=@item.CallChargeTypeID">
+                            Edit
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

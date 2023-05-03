@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Payment Plan Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/PaymentPlan/Index.css" />
+}
+
+<h1 class="page-title">
+    Payment Plan Management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/PaymentPlan/Add">
+        <i class="fa-solid fa-plus"></i>
+        Add new payment plan
+    </a>
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "PaymentPlan", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            <input class="searchForm-input" name="keyword" placeholder="Enter payment plan name" />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List payment plan
+    </h3>
+    
+    <div class="paymentPlans-title">
+        <div class="row">
+            <div class="col-xl-4">
+                <span class="paymentPlans-titleValue">
+                    Service
+                </span>
+            </div>
+            <div class="col-xl-6">
+                <span class="paymentPlans-titleValue">
+                    Payment plan name
+                </span>
+            </div>
+            <div class="col-xl-2">
+                <span class="paymentPlans-titleValue">
+                    Action
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="paymentPlans">
+        @foreach (eProject.Models.ViewModels.PaymentPlans.PaymentPlanViewModel item in ViewBag.paymentPlans)
+        {
+            <div class="paymentPlanItem">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <p class="paymentPlanItem-serviceName">
+                            @item.ServiceName
+                        </p>
+                    </div>
+                    <div class="col-xl-6">
+                        <p class="paymentPlanItem-planName">
+                            @item.PlanName
+                        </p>
+                    </div>
+                    <div class="col-xl-2">
+                        <a class="paymentPlanItem-action" href="/Admin/PaymentPlan/Detail?paymentPlanID=@item.PaymentPlanID">
+                            Detail
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

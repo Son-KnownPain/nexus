@@ -1,0 +1,167 @@
+﻿.content-main {
+    padding: 12px;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+}
+.page-subTitle {
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #a8e3ff;
+    color: #3c00ff;
+    margin-left: 8px;
+}
+
+.topNav {
+    padding: 12px 0;
+    border-bottom: 1px solid #555;
+}
+
+.topNav-btnItem, .searchForm-btn {
+    display: inline-block;
+    color: #333;
+    background-color: var(--primary);
+    font-size: 1.6rem;
+    padding: 12px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.topNav-btnItem i, .searchForm-btn i {
+    color: #333;
+}
+
+.topNav-btnItem:not(:first-child) {
+    margin-left: 12px;
+}
+
+.topNav-btnItem:hover, .searchForm-btn:hover {
+    color: #333;
+    opacity: .8;
+}
+
+.topNav-search {
+    display: inline-block;
+}
+
+.searchForm-input {
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 12px;
+    border-radius: 6px;
+    width: 400px;
+    outline: none;
+    color: #333;
+}
+
+/* dataBox */
+
+.dataBox {
+    margin-top: 16px;
+}
+
+.dataBox-heading {
+    font-size: 1.4rem;
+    color: var(--grey);
+    margin-bottom: 16px;
+}
+
+.paymentPlanDetails-title {
+    margin-bottom: 8px;
+}
+
+.paymentPlanDetails-titleValue {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--primary);
+    border-radius: 2px;
+    border: 1px solid var(--primary);
+    padding: 2px 4px;
+    opacity: .8;
+}
+
+.paymentPlanDetailItem {
+    font-size: 1.6rem;
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #ffffff55;
+    margin-top: 12px;
+}
+
+.paymentPlanDetailItem-serviceName, .paymentPlanDetailItem-planName, .paymentPlanDetailItem-text {
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.paymentPlanDetailItem-serviceName, .paymentPlanDetailItem-planName, .paymentPlanDetailItem-text {
+    border-right: 1px solid #ffffff55;
+}
+
+.paymentPlanDetailItem-action {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: #333;
+    cursor: pointer;
+    position: relative;
+}
+.paymentPlanDetailItem-action i {
+    color: #333;
+}
+
+.paymentPlanDetailItem-action:hover .actionMenu {
+    display: block;
+}
+
+.actionMenu {
+    display: none;
+    background-color: #f2f3f4;
+    border-radius: 4px;
+    overflow: hidden;
+    position: absolute;
+    top: 24px;
+    width: 100%;
+    z-index: 1;
+}
+
+.actionMenu-item {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    padding: 4px 8px;
+}
+.actionMenu-item.edit {
+    background-color: #ffbf00;
+}
+.actionMenu-item.delete {
+    background-color: #e52b50;
+    color: #fff;
+}
+.actionMenu-item:hover {
+    color: #333;
+    opacity: .8;
+}
+
+.paymentPlanDetailItem-descriptionBox * {
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.paymentPlanDetailItem-descriptionBox h2 {
+    font-size: 2rem;
+}
+
+.paymentPlanDetailItem-descriptionBox h3 {
+    font-size: 2.4rem;
+}
+
+.paymentPlanDetailItem-descriptionBox h3 {
+    font-size: 2.8rem;
+}
