@@ -1,4 +1,4 @@
-﻿@model eProject.Models.Equipment
+﻿@model eProject.Models.ViewModels.Equipment.EquipmentViewModel
 
 @section Styles{
     <link rel="stylesheet" href="~/Content/Css/AdminCss/Equipment/Add.css" />
@@ -22,7 +22,7 @@
         @using (Html.BeginForm("Store", "Equipment", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="row">
-            
+                @Html.AntiForgeryToken()
                 <div class="form-group">
                     @Html.LabelFor(equipment => equipment.EquipmentName, new { @class = "form-label" })
                     @Html.EditorFor(equipment => equipment.EquipmentName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter equipment name" } })
@@ -31,7 +31,7 @@
                 
                 <div class="form-group">
                     @Html.LabelFor(equipment => equipment.SupplierID, new { @class = "form-label" })
-                    @Html.EditorFor(equipment => equipment.SupplierID, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter supplier id" } })
+                    @Html.DropDownListFor(equipment => equipment.SupplierID, Model.SupplierList, new { @class = "form-input", placeHolder = "Enter supplier id" } )
                     @Html.ValidationMessageFor(equipment => equipment.SupplierID, null, new { @class = "invalidMessage" })
                 </div>
                 

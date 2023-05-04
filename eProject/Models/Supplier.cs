@@ -39,7 +39,6 @@ namespace eProject.Models
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Fax can not empty")]
-        [RegularExpression("[0-9]{10}", ErrorMessage = "Phone only accept 10 number (0-9)")]
         public string Fax { get; set; }
 
         [Required(ErrorMessage = "Contact Url can not empty")]

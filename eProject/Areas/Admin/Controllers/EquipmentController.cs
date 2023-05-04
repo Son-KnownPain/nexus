@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using eProject.Auth;
+using eProject.Models.ViewModels.Equipment;
 
 namespace eProject.Areas.Admin.Controllers
 {
@@ -26,12 +27,14 @@ namespace eProject.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            
-            return View();
+
+            EquipmentViewModel equipmentViewModel = new EquipmentViewModel();
+
+            return View(equipmentViewModel);
         }
 
-        [HttpPost]
-        public ActionResult Store(Equipment equipment, HttpPostedFileBase imageFile)
+        [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
+        public ActionResult Store(EquipmentViewModel equipment, HttpPostedFileBase imageFile)
         {
             if (!ModelState.IsValid)
             {
@@ -108,11 +111,19 @@ namespace eProject.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(equipment);
+
+            EquipmentViewModel equipmentViewModel = new EquipmentViewModel();
+            equipmentViewModel.EquipmentID = equipment.EquipmentID;
+            equipmentViewModel.SupplierID = equipment.SupplierID;
+            equipmentViewModel.EquipmentName = equipment.EquipmentName;
+            equipmentViewModel.Description = equipment.Description;
+            equipmentViewModel.Image = equipment.Image;
+
+            return View(equipmentViewModel);
         }
 
         [HttpPut, ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult Update(Equipment updateEquipment, HttpPostedFileBase imageFile)
+        public ActionResult Update(EquipmentViewModel updateEquipment, HttpPostedFileBase imageFile)
         {
             if (!ModelState.IsValid)
             {

@@ -23,6 +23,10 @@
     outline: none;
 }
 
+.form-input option{
+    color: #333;
+}
+
 .ck-content * {
     color: #333;
     font-size: 1.6rem;

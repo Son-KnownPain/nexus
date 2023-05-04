@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using eProject.Filters;
 
 namespace eProject.Areas.Admin.Controllers
 {
+    [AdministratorAuthorization]
     public class SupplierController : Controller
     {
         NexusEntities context = new NexusEntities();

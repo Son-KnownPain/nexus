@@ -53,9 +53,9 @@
                             <p class="equipmentRow-summary">
                                 SupplierID: @equipment.SupplierID
                             </p>
-                            <p class="equipmentRow-summary">
-                                @equipment.Description
-                            </p>
+                            <div class="equipmentRow-summary">
+                                @Html.Raw(equipment.Description)
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-3">
