@@ -18,15 +18,16 @@ namespace eProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PaymentPlanDetail()
         {
-            this.Accounts = new HashSet<Account>();
             this.CallCharges = new HashSet<CallCharge>();
+            this.Accounts = new HashSet<Account>();
             this.Orders = new HashSet<Order>();
         }
-
+    
         public int PaymentPlanDetailID { get; set; }
         public int PaymentPlanID { get; set; }
 
         [Required(ErrorMessage = "Content is require")]
+        [MaxLength(255, ErrorMessage = "Max length is 255 characters")]
         public string Content { get; set; }
 
         [Required(ErrorMessage = "Rental cost is require")]
@@ -36,11 +37,11 @@ namespace eProject.Models
         public int VadilityDays { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CallCharge> CallCharges { get; set; }
+        public virtual PaymentPlan PaymentPlan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CallCharge> CallCharges { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual PaymentPlan PaymentPlan { get; set; }
     }
 }

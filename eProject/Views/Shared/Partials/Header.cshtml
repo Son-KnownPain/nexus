@@ -14,9 +14,19 @@
                 <a class="header-navItem" href="/Contact">
                     Contact
                 </a>
-                <a class="header-navItem" href="/">
+                <span class="header-navItem">
                     Services
-                </a>
+                    <i class="fa-solid fa-caret-down"></i>
+
+                    <span class="header-subNav">
+                        @foreach (var item in eProject.Helpers.ServiceHelper.GetLv2MenuService())
+                        {
+                            <a class="header-subNavItem" href="/Service/Detail?serviceID=@item.ServiceID">
+                                @item.ServiceName
+                            </a>
+                        }
+                    </span>
+                </span>
                 <a class="header-navItem" href="~/RetailStores/Index">
                     Retails stores
                 </a>
@@ -28,10 +38,6 @@
                     <a class="header-userNavItem" href="/Customer/Login">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         Sign In
-                    </a>
-                    <a class="header-userNavItem" href="/Customer/Register">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Sign Up
                     </a>
                 }
                 else

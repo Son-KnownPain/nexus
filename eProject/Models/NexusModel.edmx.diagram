@@ -18,29 +18,34 @@
         <EntityTypeShape EntityType="NexusModel.Customer" Width="1.5" PointX="3.75" PointY="10" />
         <EntityTypeShape EntityType="NexusModel.PaymentPlan" Width="1.5" PointX="3" PointY="14.125" />
         <AssociationConnector Association="NexusModel.FK_Plans_Services" />
-        <EntityTypeShape EntityType="NexusModel.Account" Width="1.5" PointX="11.75" PointY="13.125" />
-        <EntityTypeShape EntityType="NexusModel.Bill" Width="1.5" PointX="14" PointY="13.25" />
         <EntityTypeShape EntityType="NexusModel.CallCharge" Width="1.5" PointX="7.5" PointY="21.125" />
         <EntityTypeShape EntityType="NexusModel.CallChargeType" Width="1.5" PointX="5.25" PointY="24.375" />
         <EntityTypeShape EntityType="NexusModel.Charge" Width="1.5" PointX="16.25" PointY="13.75" />
         <EntityTypeShape EntityType="NexusModel.Employee" Width="1.5" PointX="11.75" PointY="17.875" />
-        <EntityTypeShape EntityType="NexusModel.Order" Width="1.5" PointX="7.5" PointY="9.125" />
         <EntityTypeShape EntityType="NexusModel.PaymentPlanDetail" Width="1.5" PointX="5.25" PointY="20.875" />
         <EntityTypeShape EntityType="NexusModel.sysdiagram" Width="1.5" PointX="3.375" PointY="4.75" />
+        <AssociationConnector Association="NexusModel.FK_CallCharges_CallChargeTypes" />
+        <AssociationConnector Association="NexusModel.FK_CallCharges_PaymentPlanDetails" />
+        <AssociationConnector Association="NexusModel.FK_Employees_RetailShowRooms" />
+        <AssociationConnector Association="NexusModel.FK_PlanDetails_Plans" />
+        <EntityTypeShape EntityType="NexusModel.Account" Width="1.5" PointX="13.75" PointY="12.875" />
+        <EntityTypeShape EntityType="NexusModel.Bill" Width="1.5" PointX="19" PointY="15.75" />
+        <EntityTypeShape EntityType="NexusModel.City" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="NexusModel.ConnectQuantityDiscount" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="NexusModel.CustomerFeedback" Width="1.5" PointX="16" PointY="17.25" />
+        <EntityTypeShape EntityType="NexusModel.Order" Width="1.5" PointX="11.5" PointY="12.875" />
         <AssociationConnector Association="NexusModel.FK_Accounts_Orders" />
         <AssociationConnector Association="NexusModel.FK_Accounts_PaymentPlanDetails" />
         <AssociationConnector Association="NexusModel.FK_Bills_Accounts" />
         <AssociationConnector Association="NexusModel.FK_Connections_Customers" />
         <AssociationConnector Association="NexusModel.FK_Connections_Services" />
+        <AssociationConnector Association="NexusModel.FK_CustomerFeedbacks_Accounts" />
         <AssociationConnector Association="NexusModel.FK_Bills_Employees" />
         <AssociationConnector Association="NexusModel.FK_Charges_Bills" />
-        <AssociationConnector Association="NexusModel.FK_CallCharges_CallChargeTypes" />
-        <AssociationConnector Association="NexusModel.FK_CallCharges_PaymentPlanDetails" />
+        <AssociationConnector Association="NexusModel.FK_CustomerFeedbacks_Employees" />
         <AssociationConnector Association="NexusModel.FK_Orders_Customers" />
-        <AssociationConnector Association="NexusModel.FK_Employees_RetailShowRooms" />
         <AssociationConnector Association="NexusModel.FK_Orders_PaymentPlanDetails" />
         <AssociationConnector Association="NexusModel.FK_Orders_Services" />
-        <AssociationConnector Association="NexusModel.FK_PlanDetails_Plans" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

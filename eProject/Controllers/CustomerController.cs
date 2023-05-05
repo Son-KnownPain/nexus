@@ -49,50 +49,5 @@ namespace eProject.Controllers
             TempData["Success"] = "Successfully login";
             return Redirect("/");
         }
-
-        // GET: Customer/Register
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        // POST: Customer/Store
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Store(CustomerRegister data)
-        {
-            bool isExistingUsername = context.Customers.FirstOrDefault(acc => acc.Phone == data.Phone) != null;
-
-            if (isExistingUsername)
-            {
-                ModelState.AddModelError("Phone", "Phone existing, try other phone");
-            }
-            if (!ModelState.IsValid) return View("Register");
-
-            Customer customer = new Customer();
-            customer.Phone = data.Phone;
-            customer.Fullname = data.Fullname;
-            customer.Email = "";
-            customer.Password = Crypto.HashPassword(data.Password);
-            customer.Address = "";
-            customer.AddressDetail = "";
-            customer.Avatar = "default-user-avatar.png";
-            customer.CreatedAt = DateTime.Now;
-            customer.UpdatedAt = DateTime.Now;
-
-            context.Customers.Add(customer);
-            try
-            {
-                context.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-            TempData["Success"] = "Successfully account registration";
-
-            return RedirectToAction("Login");
-        }
     }
 }

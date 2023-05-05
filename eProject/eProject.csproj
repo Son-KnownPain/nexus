@@ -141,6 +141,7 @@
     <Compile Include="Auth\AuthManager.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\RetailStoresController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
@@ -153,6 +154,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CallChargeHelper.cs" />
+    <Compile Include="Helpers\ServiceHelper.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -168,7 +170,16 @@
     <Compile Include="Models\Charge.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\City.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConnectQuantityDiscount.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs">
+      <DependentUpon>NexusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerFeedback.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerRegister.cs" />
@@ -224,6 +235,7 @@
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\CallCharge\CallChargeViewModel.cs" />
+    <Compile Include="Models\ViewModels\Order\OrderRegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlanDetails\PaymentPlanDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlans\PaymentPlanViewModel.cs" />
     <Compile Include="Models\Warehouse.cs">
@@ -264,6 +276,7 @@
     <Content Include="Content\Css\AdminCss\Service\Edit.css" />
     <Content Include="Content\Css\AdminCss\Service\Index.css" />
     <Content Include="Content\Css\AdminCss\RetailShowRoom\AddRetailStore.css" />
+    <Content Include="Content\Css\Order\Prepare.css" />
     <Content Include="Content\Css\RetailStores\Index.css" />
     <Content Include="Content\Css\Customer\Login.css" />
     <Content Include="Content\Css\Customer\Register.css" />
@@ -374,6 +387,7 @@
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Service\Detail.cshtml" />
     <Content Include="Views\RetailStores\Index.cshtml" />
+    <Content Include="Views\Order\Prepare.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

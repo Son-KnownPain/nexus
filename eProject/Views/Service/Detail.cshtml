@@ -1,4 +1,6 @@
-﻿@{
+﻿@model eProject.Models.Service
+@using eProject.Helpers
+@{
     ViewBag.Title = "Service Detail";
 }
 @section styles {
@@ -7,40 +9,29 @@
 
 <div class="container">
     <h1 class="page-title">
-        Information Detail Dial-up Service
+        Information Detail @Model.ServiceName Service
     </h1>
     <div class="summaryInfoBox">
         <div class="row">
-            <div class="col-xl-4">
+            <div class="col-xl-6">
                 <div class="summaryInfoItem">
                     <p class="summaryInfoItem-heading">
                         Service Name
                     </p>
                     <h3 class="summaryInfoItem-value">
                         <i class="fa-solid fa-globe"></i>
-                        Dial-up
+                        @Model.ServiceName
                     </h3>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-6">
                 <div class="summaryInfoItem">
                     <p class="summaryInfoItem-heading">
                         Deposit
                     </p>
                     <h3 class="summaryInfoItem-value">
                         <i class="fa-solid fa-money-bill"></i>
-                        325$
-                    </h3>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="summaryInfoItem">
-                    <p class="summaryInfoItem-heading">
-                        Average Speed
-                    </p>
-                    <h3 class="summaryInfoItem-value">
-                        <i class="fa-solid fa-gauge"></i>
-                        40-50 kbit/s
+                        @Model.Deposit $
                     </h3>
                 </div>
             </div>
@@ -48,98 +39,81 @@
     </div>
     <div class="infoBox">
         <div class="row">
-            <div class="col-xl-4">
-                <img style="width: 100%;" class="infoThumbnail" src="~/Content/Images/demo.jpg" alt="Package Thumbnail" />
+            <div class="col-xl-5">
+                <img style="width: 100%;" class="infoThumbnail" src="~/Uploads/ServiceThumbnails/@Model.Thumbnail" alt="Package Thumbnail" />
             </div>
-            <div class="col-xl-8">
+            <div class="col-xl-7">
                 <div class="descriptionBox">
-                    <h3 class="descriptionTitle">
-                        Advantages of service provided by Nexus:
-                    </h3>
-                    <div class="descriptionContent">
-                        <ul>
-                            <li>Equipment for the duration of use.</li>
-                            <li>Free installation and free up to 4 months of freight when customers pay in advance.</li>
-                            <li>Quick installation, 24/7 customer support.</li>
-                            <li>Equal Download/Upload speeds can be up to hundreds of Mbps.</li>
-                            <li>Registration is easy and convenient via call center or at Viettel stores nationwide.</li>
-                            <li>Contact details: 0121685741 (Free).</li>
-                        </ul>
-                    </div>
+                    @Html.Raw(Model.Description)
                 </div>
             </div>
         </div>
     </div>
-    <div class="paymentPlansBox">
+    <div class="paymentPlansBox" id="payment">
         <h1 class="boxTitle">
             <i class="fa-solid fa-credit-card"></i>
             Payment plans
         </h1>
 
-        <div class="paymentPlansBox-content">
-            <div class="paymentPlanItem">
-                <h3 class="paymentPlanItem-title">
-                    <i class="fa-solid fa-caret-down"></i>
-                    Hourly basis
-                </h3>
-                <ul class="paymentPlanItem-childrenList">
-                    <li class="paymentPlanItem-childrenItem">
-                        10 Hours - 50$ (Validity is for 1 month)
-                    </li>
-                    <li class="paymentPlanItem-childrenItem">
-                        30 Hours - 130$ (Validity is for 3 month)
-                    </li>
-                    <li class="paymentPlanItem-childrenItem">
-                        60 Hours - 260$ (Validity is for 6 month)
-                    </li>
-                </ul>
+        <span style="display: none;" id="hiddenServiceID" data-service-id="@Model.ServiceID"></span>
+
+        @foreach (eProject.Models.PaymentPlan pl in ViewBag.pls)
+        {
+            <div class="paymentPlansBox-content">
+                <div class="paymentPlanItem">
+                    <h3 class="paymentPlanItem-title">
+                        <i class="fa-solid fa-caret-down"></i>
+                        <span class="paymentPlanDetailItem-titleValue">
+                            @pl.PlanName
+                        </span>
+                    </h3>
+                    <div class="paymentPlanItem-description">
+                        @Html.Raw(pl.Description)
+                    </div>
+                    <ul class="paymentPlanItem-childrenList">
+                        @foreach(eProject.Models.PaymentPlanDetail pld in ServiceHelper.GetPldByID(pl.PaymentPlanID))
+                        {
+                            <li class="paymentPlanItem-childrenItem" data-pld-id="@pld.PaymentPlanDetailID">
+                                <span class="paymentPlanItem-childrenItemValue">
+                                    @pld.Content
+                                </span>
+
+                                @if (CallChargeHelper.GetCallChargeCount(pld.PaymentPlanDetailID) != 0)
+                                {
+                                    <p class="paymentPlanDetailItem-callChargeTitle">
+                                        Call Charge:
+                                    </p>
+
+                                    <ul class="paymentPlanDetailItem-callChargeList">
+                                        @foreach (eProject.Models.ViewModels.CallCharge.CallChargeViewModel ccItem in CallChargeHelper.GetCallCharge(pld.PaymentPlanDetailID))
+                                        {
+                                            <li class="paymentPlanDetailItem-callChargeItem">
+                                                @ccItem.CallChargeName: @ccItem.CostPerMinute cents / minute
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="paymentPlansBox-content">
-            <div class="paymentPlanItem active">
-                <h3 class="paymentPlanItem-title">
-                    <i class="fa-solid fa-caret-down"></i>
-                    Unlimited 28Kbps
-                </h3>
-                <ul class="paymentPlanItem-childrenList">
-                    <li class="paymentPlanItem-childrenItem active">
-                        Monthly - 75$
-                    </li>
-                    <li class="paymentPlanItem-childrenItem">
-                        Quarterly (equivalent to 3 months) - 150$
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="paymentPlansBox-content">
-            <div class="paymentPlanItem">
-                <h3 class="paymentPlanItem-title">
-                    <i class="fa-solid fa-caret-down"></i>
-                    Unlimited 56Kbps
-                </h3>
-                <ul class="paymentPlanItem-childrenList">
-                    <li class="paymentPlanItem-childrenItem ">
-                        Monthly - 100$
-                    </li>
-                    <li class="paymentPlanItem-childrenItem">
-                        Quarterly (equivalent to 3 months) - 180$
-                    </li>
-                </ul>
-            </div>
-        </div>
+        }
+
+        
 
         <p class="currentPayment">
             Current payment plan is
-            <span class="currentPayment-plan">
-                Unlimited 28Kbps
+            <span class="currentPayment-plan" id="currentPayment-plan">
+                ?
             </span>
             /
-            <span class="currentPayment-planDetail">
-                Monthly - 75$
+            <span class="currentPayment-planDetail" id="currentPayment-planDetail">
+                ?
             </span>
         </p>
-        
-        <a class="registerBtn" href="/">
+
+        <a class="registerBtn disabled" href="/">
             <i class="fa-solid fa-inbox"></i>
             Register service
         </a>
@@ -150,36 +124,24 @@
         </h1>
 
         <div class="row mt-5">
-            <div class="col-xl-3">
-                <div class="cardItem" href="/">
-                    <h3 class="cardItem-headingName">
-                        Broadband
-                    </h3>
-                    <img class="cardItem-thumbnail" src="~/Content/Images/demo.jpg" alt="Thumbnail" />
-                    <p class="cardItem-price">
-                        <i class="fa-solid fa-money-bill"></i>
-                        Deposit: 500$
-                    </p>
-                    <a class="cardItem-detailBtn" href="/">
-                        View Detail <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+            @foreach (eProject.Models.Service item in ServiceHelper.GetOtherServiceID(Model.ServiceID))
+            {
+                <div class="col-xl-3">
+                    <div class="cardItem">
+                        <h3 class="cardItem-headingName">
+                            @item.ServiceName
+                        </h3>
+                        <img class="cardItem-thumbnail" src="~/Uploads/ServiceThumbnails/@item.Thumbnail" alt="Thumbnail" />
+                        <p class="cardItem-price">
+                            <i class="fa-solid fa-money-bill"></i>
+                            Deposit: @item.Deposit $
+                        </p>
+                        <a class="cardItem-detailBtn" href="/Service/Detail?serviceID=@item.ServiceID">
+                            View Detail <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="cardItem" href="/">
-                    <h3 class="cardItem-headingName">
-                        Landline
-                    </h3>
-                    <img class="cardItem-thumbnail" src="~/Content/Images/demo.jpg" alt="Thumbnail" />
-                    <p class="cardItem-price">
-                        <i class="fa-solid fa-money-bill"></i>
-                        Deposit: 250$
-                    </p>
-                    <a class="cardItem-detailBtn" href="/">
-                        View Detail <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

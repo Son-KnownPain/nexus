@@ -1,0 +1,89 @@
+﻿.page-title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--grey);
+    margin: 32px 0;
+}
+
+.boxSection {
+    border-radius: 4px;
+    box-shadow: 0 0 6px #77777755;
+    padding: 24px;
+}
+
+.serviceItem-name {
+    font-size: 2.8rem;
+    color: var(--grey);
+}
+
+.service-line {
+    font-size: 1.6rem;
+    color: var(--grey);
+    font-weight: 300;
+}
+
+.service-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.paymentSide {
+    margin-top: 18px;
+}
+
+.paymentPlan {
+    font-size: 2rem;
+}
+
+.payment-line {
+    font-size: 1.6rem;
+    color: var(--grey);
+    font-weight: 300;
+    margin-top: 12px;
+}
+
+.callChargeItem {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+/* Form */
+.form-group {
+    padding: 12px 0;
+}
+
+.form-label, .form-input, .form-btn, .form-dropDownList {
+    font-size: 1.6rem;
+}
+
+.form-label {
+    display: block;
+}
+
+.form-input, .form-dropDownList {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    color: #333;
+    outline: none;
+}
+
+.form-dropDownList option {
+    color: #333;
+}
+
+.form-btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #333;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+    margin-top: 16px;
+}

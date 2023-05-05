@@ -38,72 +38,31 @@
             Current Nexus services
         </h1>
 
-        <div class="serviceItem">
-            <div class="row">
-                <div class="col-xl-4">
-                    <img style="width: 100%;" class="serviceItem-thumbnail" src="~/Content/Images/demo.jpg" alt="Service Thumbnail" />
-                </div>
-                <div class="col-xl-8">
-                    <h2 class="serviceItem-name">
-                        Dial-up
-                    </h2>
-                    <p class="serviceItem-summary">
-                        A dial-up connection is established when two or more communication devices use a public switched telephone network (PSTN) to connect to an Internet service provider (ISP).
-                    </p>
-                    <p class="serviceItem-deposit">
-                        With a deposit of <span class="serviceItem-depositValue">325$</span>
-                    </p>
-                    <a href="/Service/Detail" class="serviceItem-detailBtn">
-                        View Detail
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="serviceItem">
-            <div class="row">
-                <div class="col-xl-4">
-                    <img style="width: 100%;" class="serviceItem-thumbnail" src="~/Content/Images/demo.jpg" alt="Service Thumbnail" />
-                </div>
-                <div class="col-xl-8">
-                    <h2 class="serviceItem-name">
-                        Broadband
-                    </h2>
-                    <p class="serviceItem-summary">
-                        The term broadband commonly refers to high-speed Internet access that is always on and faster than the traditional dial-up access. Broadband includes several high-speed transmission technologies such as: Digital Subscriber Line (DSL) Cable Modem. Fiber.
-                    </p>
-                    <p class="serviceItem-deposit">
-                        With a deposit of <span class="serviceItem-depositValue">500$</span>
-                    </p>
-                    <a href="/Service/Detail" class="serviceItem-detailBtn">
-                        View Detail
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+        @foreach (eProject.Models.Service item in ViewBag.services)
+        {
+            <div class="serviceItem">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <img style="width: 100%;" class="serviceItem-thumbnail" src="~/Uploads/ServiceThumbnails/@item.Thumbnail" alt="Service Thumbnail" />
+                    </div>
+                    <div class="col-xl-8">
+                        <h2 class="serviceItem-name">
+                            @item.ServiceName
+                        </h2>
+                        <p class="serviceItem-summary">
+                            @item.Summary
+                        </p>
+                        <p class="serviceItem-deposit">
+                            With a deposit of <span class="serviceItem-depositValue">@item.Deposit $</span>
+                        </p>
+                        <a href="/Service/Detail?serviceID=@item.ServiceID" class="serviceItem-detailBtn">
+                            View Detail
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="serviceItem">
-            <div class="row">
-                <div class="col-xl-4">
-                    <img style="width: 100%;" class="serviceItem-thumbnail" src="~/Content/Images/demo.jpg" alt="Service Thumbnail" />
-                </div>
-                <div class="col-xl-8">
-                    <h2 class="serviceItem-name">
-                        Landline
-                    </h2>
-                    <p class="serviceItem-summary">
-                        A Digital Subscriber Line (DSL) broadband connection uses the wiring placed for phone services to provide Internet access for your home or business.
-                    </p>
-                    <p class="serviceItem-deposit">
-                        With a deposit of <span class="serviceItem-depositValue">250$</span>
-                    </p>
-                    <a href="/Service/Detail" class="serviceItem-detailBtn">
-                        View Detail
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 
     <div class="content-section">

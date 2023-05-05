@@ -29,6 +29,8 @@ namespace eProject.Models
         public string Address { get; set; }
         public string AddressDetail { get; set; }
         public int ConnectQuantity { get; set; }
+        public int Deposit { get; set; }
+        public double DepositDiscount { get; set; }
         public System.DateTime OrderDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

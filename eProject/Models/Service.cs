@@ -13,7 +13,6 @@ namespace eProject.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Web;
 
     public partial class Service
     {
@@ -24,7 +23,7 @@ namespace eProject.Models
             this.Accounts = new HashSet<Account>();
             this.Orders = new HashSet<Order>();
         }
-
+    
         public int ServiceID { get; set; }
 
         [DisplayName("Service Name")]
@@ -41,9 +40,7 @@ namespace eProject.Models
         public string Description { get; set; }
 
         public string Thumbnail { get; set; }
-
-        public HttpPostedFileBase ThumbnailFile { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentPlan> PaymentPlans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

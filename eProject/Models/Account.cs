@@ -18,6 +18,7 @@ namespace eProject.Models
         public Account()
         {
             this.Bills = new HashSet<Bill>();
+            this.CustomerFeedbacks = new HashSet<CustomerFeedback>();
         }
     
         public string AccountID { get; set; }
@@ -25,6 +26,7 @@ namespace eProject.Models
         public int ServiceID { get; set; }
         public int PaymentPlanDetailID { get; set; }
         public int CustomerID { get; set; }
+        public int ConnectQuantity { get; set; }
         public string Status { get; set; }
         public string ContactNumber { get; set; }
         public System.DateTime ConnectedAt { get; set; }
@@ -36,5 +38,7 @@ namespace eProject.Models
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Service Service { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerFeedback> CustomerFeedbacks { get; set; }
     }
 }

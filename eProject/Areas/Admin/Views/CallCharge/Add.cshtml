@@ -1,6 +1,7 @@
 ﻿@model eProject.Models.ViewModels.CallCharge.CallChargeViewModel
 @{
     ViewBag.Title = "Add new call charge";
+    eProject.Models.ViewModels.CallCharge.CallChargeViewModel tempModel = new eProject.Models.ViewModels.CallCharge.CallChargeViewModel();
 }
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/AdminCss/CallCharge/Add.css" />
@@ -16,7 +17,7 @@
     @Html.HiddenFor(m => m.PaymentPlanDetailID)
     <div class="form-group">
         @Html.LabelFor(m => m.CallChargeTypeID, new { @class = "form-label" })
-        @Html.DropDownListFor(m => m.CallChargeTypeID, Model.CallChargeTypeList, new { @class = "form-dropDownList" })
+        @Html.DropDownListFor(m => m.CallChargeTypeID, tempModel.CallChargeTypeList, new { @class = "form-dropDownList" })
         @Html.ValidationMessageFor(m => m.CallChargeTypeID, null, new { @class = "invalidMessage" })
     </div>
     <div class="form-group">

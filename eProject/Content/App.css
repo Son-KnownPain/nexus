@@ -41,6 +41,7 @@ body {
     text-decoration: none;
     color: var(--white);
     font-size: 1.6rem;
+    cursor: pointer;
 }
 
 .header-container {
@@ -52,6 +53,40 @@ body {
 
 .header-logoImg {
     height: 70px;
+}
+
+.header-navItem {
+    position: relative;
+    display: inline-block;
+    color: var(--white);
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.header-navItem:hover .header-subNav {
+    display: inline-block;
+}
+
+.header-subNav {
+    display: none;
+    position: absolute;
+    left: 8px;
+    top: 32px;
+    background-color: #292929;
+    box-shadow: 0 0 5px #ffffff55;
+    border-radius: 4px;
+}
+
+.header-subNavItem {
+    display: inline-block;
+    padding: 10px 16px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.header-subNavItem:hover {
+    background-color: var(--primary);
+    color: #333;
 }
 
 .header-navItem, .header-userNavItem {
