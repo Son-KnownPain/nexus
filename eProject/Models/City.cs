@@ -11,11 +11,20 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel;
+
     public partial class City
     {
         public int CityID { get; set; }
+
+        [Required(ErrorMessage = "City name is require")]
+        [MaxLength(50, ErrorMessage = "Max length is 50 characters")]
+        [DisplayName("City Name")]
         public string CityName { get; set; }
+
+        [Required(ErrorMessage = "City code is require")]
+        [RegularExpression("[0-9]{3}", ErrorMessage = "Code only accept 3 number (0-9)")]
         public string Code { get; set; }
     }
 }

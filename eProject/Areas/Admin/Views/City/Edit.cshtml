@@ -1,0 +1,31 @@
+﻿@model eProject.Models.City
+@{
+    ViewBag.Title = "Edit city";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/City/Add.css" />
+}
+
+<h1 class="page-title">
+    Edit City
+</h1>
+
+@using (Html.BeginForm("Update", "City", new { area = "Admin" }, FormMethod.Post, new { @class = "cityForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c => c.CityID)
+    @Html.HttpMethodOverride("PUT")
+    <div class="form-group">
+        @Html.LabelFor(c => c.CityName, new { @class = "form-label" })
+        @Html.EditorFor(c => c.CityName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter name" } })
+        @Html.ValidationMessageFor(c => c.CityName, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Code, new { @class = "form-label" })
+        @Html.EditorFor(c => c.Code, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter city code" } })
+        @Html.ValidationMessageFor(c => c.Code, null, new { @class = "invalidMessage" })
+    </div>
+    <button class="form-btn">
+        Update 
+    </button>
+}

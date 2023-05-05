@@ -131,6 +131,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeController.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EquipmentController.cs" />
@@ -258,6 +259,8 @@
     <Content Include="Content\Css\AdminCss\CallCharge\Add.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\Edit.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\ListOf.css" />
+    <Content Include="Content\Css\AdminCss\City\Add.css" />
+    <Content Include="Content\Css\AdminCss\City\Index.css" />
     <Content Include="Content\Css\AdminCss\Employee\Add.css" />
     <Content Include="Content\Css\AdminCss\Employee\ChangePassword.css" />
     <Content Include="Content\Css\AdminCss\Employee\Edit.css" />
@@ -391,6 +394,9 @@
     <Content Include="Areas\Admin\Views\CallCharge\ListOf.cshtml" />
     <Content Include="Areas\Admin\Views\CallCharge\Add.cshtml" />
     <Content Include="Areas\Admin\Views\CallCharge\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\City\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\City\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\City\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
