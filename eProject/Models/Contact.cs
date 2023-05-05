@@ -17,17 +17,27 @@ namespace eProject.Models
     public partial class Contact
     {
         public int ContactID { get; set; }
+
         [DisplayName("Contact Name")]
         [Required(ErrorMessage = "Contact name can not empty")]
+        [MaxLength(100, ErrorMessage = "Max length is 100 characters")]
         public string ContactName { get; set; }
+
         [Required(ErrorMessage = "Phone can not empty")]
+        [RegularExpression("[0-9]{10}", ErrorMessage = "Phone only accept 10 number")]
         public string Phone { get; set; }
+
         [Required(ErrorMessage = "Email can not empty")]
+        [MaxLength(100, ErrorMessage = "Max length is 100 characters")]
         public string Email { get; set; }
+
         [DisplayName("Message")]
         [Required(ErrorMessage = "Message can not empty")]
+        [MaxLength(255, ErrorMessage = "Max length is 255 characters")]
         public string Content { get; set; }
+
         public string Status { get; set; }
+
         public System.DateTime ContactedAt { get; set; }
     }
 }

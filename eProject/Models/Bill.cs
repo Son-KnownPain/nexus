@@ -23,9 +23,10 @@ namespace eProject.Models
         public int BillID { get; set; }
         public string AccountID { get; set; }
         public int EmployeeID { get; set; }
-        public int InitialDueAmount { get; set; }
-        public int AmountPaid { get; set; }
-        public int VatCost { get; set; }
+        public double InitialDueAmount { get; set; }
+        public double AmountPaid { get; set; }
+        public double Discount { get; set; }
+        public double VatCost { get; set; }
         public string PaidContent { get; set; }
         public string Status { get; set; }
         public System.DateTime CreatedDate { get; set; }

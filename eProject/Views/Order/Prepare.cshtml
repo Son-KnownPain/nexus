@@ -1,0 +1,120 @@
+﻿@model eProject.Models.ViewModels.Order.OrderRegisterViewModel
+@{ 
+    ViewBag.Title = "Order Service";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Order/Prepare.css" />
+}
+
+<div class="container">
+    <h1 class="page-title">
+        <i class="fa-solid fa-parachute-box"></i>
+        Order Service
+    </h1>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="boxSection">
+                <div class="serviceSide">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <img style="width: 100%;" class="service-thumbnail" src="~/Uploads/ServiceThumbnails/260420231603014365_service-thumbnail102911442.png" alt="Service thumbnail" />
+                        </div>
+                        <div class="col-xl-6">
+                            <h2 class="serviceItem-name">
+                                @ViewBag.service.ServiceName
+                            </h2>
+                            <p class="service-line">
+                                Deposit: @ViewBag.service.Deposit $
+                            </p>
+                            <p class="service-line service-summary">
+                                @ViewBag.service.Summary
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="paymentSide">
+                    <h3 class="paymentPlan">
+                        <i class="fa-solid fa-credit-card"></i>
+                        Payment plan of order
+                    </h3>
+
+                    <p class="payment-line">
+                        <i class="fa-regular fa-circle-right"></i>
+                        @ViewBag.pl.PlanName
+                    </p>
+
+                    <p class="payment-line">
+                        <i class="fa-regular fa-circle-right"></i>
+                        @ViewBag.pld.Content
+                    </p>
+
+                    <p class="payment-line">
+                        Call charge:
+                    </p>
+
+                    <ul class="callChargeList">
+                        @foreach (var item in eProject.Helpers.CallChargeHelper.GetCallCharge(ViewBag.pld.PaymentPlanDetailID))
+                        {
+                            <li class="callChargeItem">
+                                @item.CallChargeName: @item.CostPerMinute cents / minute
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="boxSection">
+                @using (Html.BeginForm("Store", "Order", FormMethod.Post, new { @class = "orderForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(a => a.ServiceID, new { @Value = ViewBag.service.ServiceID })
+                    @Html.HiddenFor(a => a.PaymentPlanDetailID, new { @Value = ViewBag.pld.PaymentPlanDetailID })
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.Fullname, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.Fullname, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.ValidationMessageFor(a => a.Fullname, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.Phone, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.Phone, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your phone" } })
+                        @Html.ValidationMessageFor(a => a.Phone, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.Address, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.Address, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address" } })
+                        @Html.ValidationMessageFor(a => a.Address, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.AddressDetail, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.AddressDetail, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.ValidationMessageFor(a => a.AddressDetail, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.ConnectQuantity, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.ConnectQuantity, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.ValidationMessageFor(a => a.ConnectQuantity, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.Email, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.ValidationMessageFor(a => a.Email, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.Password, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.Password, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.ValidationMessageFor(a => a.Password, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.PasswordConfirm, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.PasswordConfirm, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.ValidationMessageFor(a => a.PasswordConfirm, null, new { @class = "invalidMessage" })
+                    </div>
+
+                    <button class="form-btn">Order</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

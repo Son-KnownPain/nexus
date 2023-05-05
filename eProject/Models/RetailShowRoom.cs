@@ -11,8 +11,8 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Web;
 
     public partial class RetailShowRoom
@@ -24,16 +24,11 @@ namespace eProject.Models
         }
     
         public int RetailShowRoomID { get; set; }
-
-        
-        [Required(ErrorMessage = "Employee name can not empty")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Phone can not empty")]
         [RegularExpression("[0-9]{10}", ErrorMessage = "Phone only accept 10 number (0-9)")]
         public string Phone { get; set; }
-
-        [Required(ErrorMessage = "Address can not empty")]
         public string Address { get; set; }
         public string Image { get; set; }
         public HttpPostedFileBase imageFile { get; set; }
@@ -41,9 +36,7 @@ namespace eProject.Models
         [Required(ErrorMessage = "Quantity can not empty")]
         [RegularExpression("[1-9]", ErrorMessage = "The number of employees cannot be negative")]
         public int EmployeeQuantity { get; set; }
-
-        
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
     }

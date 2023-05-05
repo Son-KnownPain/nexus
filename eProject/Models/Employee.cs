@@ -18,6 +18,7 @@ namespace eProject.Models
         public Employee()
         {
             this.Bills = new HashSet<Bill>();
+            this.CustomerFeedbacks = new HashSet<CustomerFeedback>();
         }
     
         public int EmployeeID { get; set; }
@@ -35,8 +36,10 @@ namespace eProject.Models
         public System.DateTime CreatedAt { get; set; }
         public System.DateTime UpdatedAt { get; set; }
     
+        public virtual RetailShowRoom RetailShowRoom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
-        public virtual RetailShowRoom RetailShowRoom { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerFeedback> CustomerFeedbacks { get; set; }
     }
 }

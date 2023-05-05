@@ -34,14 +34,17 @@ namespace eProject.Models
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<PaymentPlan> PaymentPlans { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<CallCharge> CallCharges { get; set; }
         public virtual DbSet<CallChargeType> CallChargeTypes { get; set; }
         public virtual DbSet<Charge> Charges { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<PaymentPlanDetail> PaymentPlanDetails { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<City> Citys { get; set; }
+        public virtual DbSet<ConnectQuantityDiscount> ConnectQuantityDiscounts { get; set; }
+        public virtual DbSet<CustomerFeedback> CustomerFeedbacks { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

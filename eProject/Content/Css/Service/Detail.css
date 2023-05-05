@@ -6,6 +6,7 @@
     padding: 120px 10px;
     background-color: #21abcd33;
     border-radius: 2px;
+    background-image: linear-gradient(45deg, #111, transparent);
 }
 
 .summaryInfoBox {
@@ -35,6 +36,11 @@
     margin-top: 24px;
 }
 
+.summaryInfoItem-value.link {
+    text-decoration: none;
+    display: block;
+}
+
 .infoBox {
     margin: 16px auto 0;
 }
@@ -58,6 +64,23 @@
     font-weight: 300;
 }
 
+.descriptionBox * {
+    color: #ccc;
+    font-size: 1.6rem;
+}
+
+.descriptionBox h2 {
+    font-size: 2rem;
+}
+
+.descriptionBox h3 {
+    font-size: 2.4rem;
+}
+
+.descriptionBox h3 {
+    font-size: 2.8rem;
+}
+
 /* Payment plans */
 .paymentPlansBox {
     margin-top: 60px;
@@ -74,7 +97,7 @@
     box-shadow: 0 0 15px #7fffd488;
 }
 
-.paymentPlanItem-title, .paymentPlanItem-childrenItem {
+.paymentPlanItem-title, .paymentPlanItem-childrenItemValue {
     font-size: 1.6rem;
     color: var(--grey);
 }
@@ -86,6 +109,27 @@
 }
 .paymentPlanItem-title i {
     margin-right: 4px;
+}
+
+.paymentPlanItem-description {
+    margin-left: 30px;
+}
+
+.paymentPlanItem-description * {
+    color: #ccc;
+    font-size: 1.6rem;
+}
+
+.paymentPlanItem-description h2 {
+    font-size: 2rem;
+}
+
+.paymentPlanItem-description h3 {
+    font-size: 2.4rem;
+}
+
+.paymentPlanItem-description h3 {
+    font-size: 2.8rem;
 }
 
 .paymentPlanItem-childrenItem {
@@ -100,6 +144,24 @@
 }
 .paymentPlanItem-childrenItem.active {
     border-color: var(--primary);
+}
+
+.paymentPlanItem-childrenItemValue {
+    font-weight: 300;
+}
+
+.paymentPlanDetailItem-callChargeList {
+    margin-top: 8px;
+}
+
+.paymentPlanDetailItem-callChargeItem, .paymentPlanDetailItem-callChargeTitle {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #ececec;
+}
+
+.paymentPlanDetailItem-callChargeTitle {
+    margin-top: 8px;
 }
 
 .currentPayment {
@@ -134,6 +196,10 @@
     position: relative;
     left: 100%;
     transform: translateX(-100%);
+}
+.registerBtn.disabled {
+    pointer-events: none;
+    opacity: .5;
 }
 .registerBtn i {
     color: #333;
