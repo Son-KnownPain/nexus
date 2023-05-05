@@ -133,11 +133,14 @@
     <Compile Include="Areas\Admin\Controllers\CallChargeTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EquipmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentPlanController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentPlanDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\RetailShowRoomController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WarehouseController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -236,6 +239,7 @@
     </Compile>
     <Compile Include="Models\ViewModels\CallCharge\CallChargeViewModel.cs" />
     <Compile Include="Models\ViewModels\Order\OrderRegisterViewModel.cs" />
+    <Compile Include="Models\ViewModels\Equipment\EquipmentViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlanDetails\PaymentPlanDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlans\PaymentPlanViewModel.cs" />
     <Compile Include="Models\Warehouse.cs">
@@ -264,6 +268,9 @@
     <Content Include="Content\Css\AdminCss\Contact\SearchCotact.css" />
     <Content Include="Content\Css\AdminCss\Employee\MyProfile.css" />
     <Content Include="Content\Css\AdminCss\Employee\SignIn.css" />
+    <Content Include="Content\Css\AdminCss\Equipment\Add.css" />
+    <Content Include="Content\Css\AdminCss\Equipment\Edit.css" />
+    <Content Include="Content\Css\AdminCss\Equipment\Index.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Add.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Edit.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlan\Add.css" />
@@ -277,6 +284,10 @@
     <Content Include="Content\Css\AdminCss\Service\Index.css" />
     <Content Include="Content\Css\AdminCss\RetailShowRoom\AddRetailStore.css" />
     <Content Include="Content\Css\Order\Prepare.css" />
+    <Content Include="Content\Css\AdminCss\Supplier\Add.css" />
+    <Content Include="Content\Css\AdminCss\Supplier\Index.css" />
+    <Content Include="Content\Css\AdminCss\Warehouse\AddWarehouse.css" />
+    <Content Include="Content\Css\AdminCss\Warehouse\WarehouseList.css" />
     <Content Include="Content\Css\RetailStores\Index.css" />
     <Content Include="Content\Css\Customer\Login.css" />
     <Content Include="Content\Css\Customer\Register.css" />
@@ -286,9 +297,6 @@
     <Content Include="Content\Css\Package\Detail.css" />
     <Content Include="Content\Css\Site\HowToOrderService.css" />
     <Content Include="Content\Css\Site\Index.css" />
-    <Content Include="Content\Images\ImageRetailsStore\dangkhoi.jpg" />
-    <Content Include="Content\Images\ImageRetailsStore\vienthonga.jpg" />
-    <Content Include="Content\Images\ImageRetailsStore\vnpt.jpg" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
     <Content Include="Content\Images\logo-nobg.jpg" />
@@ -298,6 +306,7 @@
     <Content Include="Content\Js\Service\Detail.js" />
     <Content Include="Content\Libraries\ToastMessage\ToastMessage.css" />
     <Content Include="Content\Libraries\ToastMessage\ToastMessage.js" />
+    <Content Include="Content\topNav.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -312,10 +321,6 @@
       <LastGenOutput>NexusModel.cs</LastGenOutput>
     </Content>
     <Content Include="Uploads\CustomerAvatars\default-user-avatar.png" />
-    <Content Include="Uploads\RetailShowRoomImage\280420231051308503_retailShowRoom-image1807563635.jpg" />
-    <Content Include="Uploads\RetailShowRoomImage\280420231643051307_retailShowRoom-image1984787930.jpg" />
-    <Content Include="Uploads\RetailShowRoomImage\280420232043083247_retailShowRoom-image328490236.jpg" />
-    <Content Include="Uploads\RetailShowRoomImage\280420232302257630_retailShowRoom-image844238618.jpg" />
     <Content Include="Uploads\EmployeeAvatars\default-employee-avatar.png" />
     <Content Include="Uploads\ServiceThumbnails\260420231603014365_service-thumbnail102911442.png" />
     <Content Include="Uploads\ServiceThumbnails\260420231603098623_service-thumbnail1962623907.jpg" />
@@ -329,6 +334,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Uploads\EquipmentImage\" />
+    <Folder Include="Uploads\RetailShowRoomImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -363,6 +370,15 @@
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\MyProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\Warehouse\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Warehouse\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Warehouse\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Equipment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Equipment\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Equipment\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\EditMyPassword.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentPlan\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentPlan\Add.cshtml" />

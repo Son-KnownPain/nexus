@@ -4,19 +4,20 @@
     <link rel="stylesheet" href="~/Content/Css/AdminCss/RetailShowRoom/AddRetailStore.css" />
 }
 @{
-    ViewBag.Title = "Create Retail Show Room";
+    ViewBag.Title = "Create retail show room";
 }
 
 <div class="container">
     <nav class="topNav">
         <h1 class="page-heading">
             <i class="fa-solid fa-plus"></i>
-            Create Retail Show Room
+            Create retail show Room
+            <a class="topNav-btnItem" href="/Admin/RetailShowRoom">Exit</a>
         </h1>
     </nav>
-    
+
     <div class="content-body">
-        @using (Html.BeginForm("Store", "RetailShowRoom", FormMethod.Post, new {enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Store", "RetailShowRoom", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="row">
                 <div class="col-xl-6">

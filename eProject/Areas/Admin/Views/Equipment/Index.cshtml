@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Equipment management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Equipment/Index.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $("#deleteServiceBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete this equipment")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
+
+<h1 class="page-title">
+    Equipment management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="~/Admin/Equipment/Add">
+        <i class="fa-solid fa-plus"></i>
+        Add new equipment
+    </a>
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "Equipment", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            <input class="searchForm-input" name="keyword" placeholder="Enter equipment name" />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List of Equipments
+    </h3>
+
+    <div class="equipment">
+        @foreach (var equipment in ViewBag.EquipmentList)
+        {
+            <div class="equipmentRow">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <img class="equipmentRow-img" src="~/Uploads/EquipmentImage/@equipment.Image" alt="Thumbnail" />
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="equipmentRow-body">
+                            <h3 class="equipmentRow-name">@equipment.EquipmentName</h3>
+                            <p class="equipmentRow-summary">
+                                SupplierID: @equipment.SupplierID
+                            </p>
+                            <div class="equipmentRow-summary">
+                                @Html.Raw(equipment.Description)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="equipmentRow-actions">
+                            <a class="equipmentRow-action" href="/Admin/Equipment/Edit?id=@equipment.EquipmentID">
+                                Edit
+                            </a>
+                            <a class="equipmentRow-action dlt" id="deleteServiceBtn" href="/Admin/Equipment/Delete?id=@equipment.EquipmentID">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

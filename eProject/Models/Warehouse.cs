@@ -11,7 +11,8 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Warehouse
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,12 @@ namespace eProject.Models
         }
     
         public int WarehouseID { get; set; }
+        [Required(ErrorMessage = "Name can not empty")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Address can not empty")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "Contact number can not empty")]
+        [RegularExpression("[0-9]{10}", ErrorMessage = "Contact number only accept 10 number (0-9)")]
         public string ContactNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

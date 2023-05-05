@@ -10,15 +10,17 @@
 .topNav-btnItem, .searchForm-btn {
     display: inline-block;
     color: #333;
-    background-color: var(--primary);
+    background-color: #00ffff;
     font-size: 1.6rem;
     padding: 12px 16px;
     border-radius: 6px;
     text-decoration: none;
 }
+
 .topNav-btnItem i, .searchForm-btn i {
     color: #333;
 }
+
 .topNav-btnItem:not(:first-child) {
     margin-left: 12px;
 }
@@ -49,56 +51,57 @@
 }
 
 .dataBox-heading {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--grey);
     margin-bottom: 16px;
 }
 
-.services {
+.equipment {
     padding: 12px;
 }
 
-.serviceItem {
+.equipmentRow {
     box-shadow: 0 0 10px #55555588;
     border-radius: 4px;
 }
 
-    .serviceItem:not(:first-child) {
-        margin-top: 12px;
-    }
+.equipmentRow:not(:first-child) {
+    margin-top: 12px;
+}
 
-.serviceItem-img {
+.equipmentRow-img {
     width: 100%;
     border-radius: 4px;
 }
 
-.serviceItem-body, .serviceItem-actions {
+.equipmentRow-body, .equipmentRow-actions {
     padding: 12px 0;
 }
 
-.serviceItem-name {
+.equipmentRow-name {
     font-size: 2.2rem;
 }
 
-.serviceItem-summary, .serviceItem-deposit {
-    font-size: 1.4rem;
+.equipmentRow-summary{
+    font-size: 1.6rem;
     font-weight: 400;
     color: var(--grey);
     margin-top: 10px;
 }
 
-.serviceItem-summary {
+.equipmentRow-summary {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
-.serviceItem-actions {
-    margin-top: -8px;
+.equipmentRow-actions {
+    margin-top: 40px;
+    padding-left: 70px;
 }
 
-.serviceItem-action {
+.equipmentRow-action {
     display: inline-block;
     font-size: 1.6rem;
     padding: 8px;
@@ -107,49 +110,21 @@
     color: #333;
     background-color: #e9d66b;
     margin-top: 8px;
+    width: 35%;
+    text-align: center;
 }
 
-.serviceItem-action {
+.equipmentRow-action {
     margin-left: 10px;
 }
 
-.serviceItem-action.dlt {
+.equipmentRow-action.dlt {
     background-color: #ff2052;
     color: #fff;
 }
 
-.serviceItem-action:hover {
+.equipmentRow-action:hover {
     opacity: .8;
     color: #444;
 }
 
-.supplierItem-action {
-    margin-top: -8px;
-}
-
-.supplierItem-action {
-    display: inline-block;
-    font-size: 1.6rem;
-    padding: 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: #333;
-    background-color: #e9d66b;
-    margin-top: 8px;
-    width: 15%;
-    text-align: center;
-}
-
-.supplierItem-action {
-    margin-left: 10px;
-}
-
-    .supplierItem-action.dlt {
-        background-color: #ff2052;
-        color: #fff;
-    }
-
-    .supplierItem-action:hover {
-        opacity: .8;
-        color: #444;
-    }

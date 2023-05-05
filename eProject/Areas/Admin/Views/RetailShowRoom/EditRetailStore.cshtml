@@ -11,10 +11,11 @@
     <nav class="topNav">
         <h1 class="page-heading">
             <i class="fa fa-pencil" aria-hidden="true"></i>
-            Update Retail Show Room
+            Update retail show room
+            <a class="topNav-btnItem" href="/Admin/RetailShowRoom">Exit</a>
         </h1>
     </nav>
-    
+
     <div class="content-body">
         @using (Html.BeginForm("Update", "RetailShowRoom", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {

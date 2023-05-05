@@ -1,0 +1,69 @@
+﻿@model eProject.Models.ViewModels.Equipment.EquipmentViewModel
+
+@section Styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Equipment/Add.css" />
+    <link rel="stylesheet" href="~/Content/topNav.css" />
+}
+@{
+    ViewBag.Title = "Create equipment";
+}
+
+<div class="container">
+    <nav class="topNav">
+        <h1 class="page-heading">
+            <i class="fa-solid fa-plus"></i>
+            Create equipment
+            <a class="topNav-btnItem" href="/Admin/Equipment">Exit</a>
+        </h1>
+
+    </nav>
+
+    <div class="content-body">
+        @using (Html.BeginForm("Store", "Equipment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(equipment => equipment.EquipmentName, new { @class = "form-label" })
+                    @Html.EditorFor(equipment => equipment.EquipmentName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter equipment name" } })
+                    @Html.ValidationMessageFor(equipment => equipment.EquipmentName, null, new { @class = "invalidMessage" })
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(equipment => equipment.SupplierID, new { @class = "form-label" })
+                    @Html.DropDownListFor(equipment => equipment.SupplierID, Model.SupplierList, new { @class = "form-input", placeHolder = "Enter supplier id" } )
+                    @Html.ValidationMessageFor(equipment => equipment.SupplierID, null, new { @class = "invalidMessage" })
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(equipment => equipment.Description, new { @class = "form-label" })
+                    @Html.TextAreaFor(equipment => equipment.Description, new { @class = "form-input", placeHolder = "Enter description", @id = "editor" })
+                    @Html.ValidationMessageFor(equipment => equipment.Description, null, new { @class = "invalidMessage" })
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(equipment => equipment.Image, new { @class = "form-label" })
+                    <input type="file" name="imageFile" class="form-inputFile" />
+                </div>
+                
+                <div class="col-xl-12">
+                    <div class="form-group">
+                        <button class="form-btn">Add</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+    </script>
+}

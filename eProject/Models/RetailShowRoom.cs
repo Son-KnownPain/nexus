@@ -22,9 +22,16 @@ namespace eProject.Models
     
         public int RetailShowRoomID { get; set; }
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Phone can not empty")]
+        [RegularExpression("[0-9]{10}", ErrorMessage = "Phone only accept 10 number (0-9)")]
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Image { get; set; }
+        public HttpPostedFileBase imageFile { get; set; }
+
+        [Required(ErrorMessage = "Quantity can not empty")]
+        [RegularExpression("[1-9]", ErrorMessage = "The number of employees cannot be negative")]
         public int EmployeeQuantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

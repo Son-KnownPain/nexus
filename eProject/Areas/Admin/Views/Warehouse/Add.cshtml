@@ -1,0 +1,51 @@
+﻿@model eProject.Models.Warehouse
+
+@section Styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/RetailShowRoom/AddRetailStore.css" />
+    <link rel="stylesheet" href="~/Content/topNav.css" />
+}
+@{
+    ViewBag.Title = "Create warehouse";
+}
+
+<div class="container">
+    <nav class="topNav">
+        <h1 class="page-heading">
+            <i class="fa-solid fa-plus"></i>
+            Create warehouse
+            <a class="topNav-btnItem" href="/Admin/Warehouse">Exit</a>
+        </h1>
+    </nav>
+
+    <div class="content-body">
+        @using (Html.BeginForm("Store", "Warehouse", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(warehouse => warehouse.Name, new { @class = "form-label" })
+                    @Html.EditorFor(warehouse => warehouse.Name, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter name" } })
+                    @Html.ValidationMessageFor(warehouse => warehouse.Name, null, new { @class = "invalidMessage" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(retaistore => retaistore.Address, new { @class = "form-label" })
+                    @Html.EditorFor(retaistore => retaistore.Address, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter address" } })
+                    @Html.ValidationMessageFor(retaistore => retaistore.Address, null, new { @class = "invalidMessage" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(warehouse => warehouse.ContactNumber, new { @class = "form-label" })
+                    @Html.EditorFor(warehouse => warehouse.ContactNumber, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter contact number" } })
+                    @Html.ValidationMessageFor(warehouse => warehouse.ContactNumber, null, new { @class = "invalidMessage" })
+                </div>
+
+                <div class="col-xl-12">
+                    <div class="form-group">
+                        <button class="form-btn">Add</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -11,7 +11,9 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web;
+
     public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +23,14 @@ namespace eProject.Models
         }
     
         public int EquipmentID { get; set; }
+        [Required(ErrorMessage = "Supplier id can not empty")]
         public int SupplierID { get; set; }
+        [Required(ErrorMessage = "Equipment name can not empty")]
         public string EquipmentName { get; set; }
+        [Required(ErrorMessage = "Description can not empty")]
         public string Description { get; set; }
         public string Image { get; set; }
-    
+        public HttpPostedFileBase imageFile { get; set; }
         public virtual Supplier Supplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseEquipment> WarehouseEquipments { get; set; }

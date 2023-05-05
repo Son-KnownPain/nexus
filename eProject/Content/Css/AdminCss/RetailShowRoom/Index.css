@@ -103,28 +103,6 @@ h2 {
     opacity: .8;
 }
 
-.card-action {
-    display: inline-block;
-    font-size: 1.6rem;
-    padding: 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: #333;
-    background-color: #00ffff;
-    margin-top: 8px;
-    width: 25%;
-    text-align: center;
-}
-
-.card-action {
-    margin-left: 10px;
-}
-
-
-.card-action:hover {
-    opacity: .8;
-    color: #444;
-}
 
 .topNav-search {
     display: inline-block;
@@ -162,9 +140,52 @@ h2 {
 
 .page-title{
     margin-left: 12px;
+    margin-top: 10px
 }
 
 .cardItem-eq {
     padding: 5px 4px;
     font-size: 1.6rem;
+}
+
+.dataBox {
+    margin-top: 10px;
+}
+
+.dataBox-heading {
+    font-size: 1.6rem;
+    color: var(--grey);
+    margin-bottom: 16px;
+    padding: 12px;
+}
+
+.retailStoreItem-action {
+    margin-top: -8px;
+}
+
+.retailStoreItem-action {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background-color: #e9d66b;
+    margin-top: 8px;
+    width: 25%;
+    text-align: center;
+}
+
+.retailStoreItem-action {
+    margin-left: 10px;
+}
+
+.retailStoreItem-action.dlt {
+    background-color: #ff2052;
+    color: #fff;
+}
+
+.retailStoreItem-action:hover {
+    opacity: .8;
+    color: #444;
 }
