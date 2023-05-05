@@ -27,10 +27,7 @@ namespace eProject.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-
-            EquipmentViewModel equipmentViewModel = new EquipmentViewModel();
-
-            return View(equipmentViewModel);
+            return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken, ValidateInput(false)]
@@ -62,11 +59,6 @@ namespace eProject.Areas.Admin.Controllers
 
                 newEquipment.Image = newFlieName;
             }
-            else
-            {
-                return RedirectToAction("Add");
-            }
-
             context.Equipments.Add(newEquipment);
             context.SaveChanges();
 

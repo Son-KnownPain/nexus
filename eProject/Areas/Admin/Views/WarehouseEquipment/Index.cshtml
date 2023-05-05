@@ -1,0 +1,60 @@
+﻿@section styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/WarehouseEquipment/Index.css" />
+}
+
+
+<h1 class="page-title">
+    Warehouse equipment management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btn" href="~/Admin/WarehouseEquipment/Add">
+        <i class="fa-solid fa-plus"></i>
+        Add new warehouse equipment
+    </a>
+</nav>
+
+<h1 class="page-title-h1">List of warehouses equipment</h1>
+
+<div class="container">
+    <div class="content-section">
+        <div class="row">
+            @foreach (var warehouseEquipment in ViewBag.WarehouseEquipmentList)
+            {
+                <div class="col-xl-3">
+                    <div class="warehouseEquipment" href="#">
+                        <div class="warehouseEquipment-body">
+                            <p class="warehouseEquipment-eq">
+                                WarehouseID: @warehouseEquipment.WarehouseID
+                            </p>
+                            <p class="warehouseEquipment-eq">
+                                EquipmentID: @warehouseEquipment.EquipmentID
+                            </p>
+                            <p class="warehouseEquipment-eq">
+                                Quantity: @warehouseEquipment.Quantity
+                            </p>
+                            <div class="warehouseEquipment-actions">
+                                <a class="warehouseEquipment-action" href="/Admin/WarehouseEquipment/Edit?id=@warehouseEquipment.ID">
+                                    Edit
+                                </a>
+                                <a class="warehouseEquipment-action dlt deleteAction" href="/Admin/WarehouseEquipment/Delete?id=@warehouseEquipment.ID">
+                                    Delete
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+    $(".deleteAction").click(e => {
+            if (!confirm("Are you sure you want to delete")) {
+                e.preventDefault();
+            }
+        })</script>
+}
+

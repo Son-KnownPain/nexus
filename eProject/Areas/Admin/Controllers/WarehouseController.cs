@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using eProject.Auth;
 using eProject.Filters;
+using eProject.Models.ViewModels.WarehouseEquipment;
+
 namespace eProject.Areas.Admin.Controllers
 {
 
@@ -111,5 +113,6 @@ namespace eProject.Areas.Admin.Controllers
             ViewBag.warehouseList = context.Warehouses.Where(w => w.Name.Contains(keyword) || w.Address.Contains(keyword)).ToList();
             return View("Index");
         }
+
     }
 }
