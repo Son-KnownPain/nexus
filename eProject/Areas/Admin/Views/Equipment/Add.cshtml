@@ -6,6 +6,7 @@
 }
 @{
     ViewBag.Title = "Create equipment";
+    eProject.Models.ViewModels.Equipment.EquipmentViewModel equipmentView = new eProject.Models.ViewModels.Equipment.EquipmentViewModel();
 }
 
 <div class="container">
@@ -31,7 +32,7 @@
                 
                 <div class="form-group">
                     @Html.LabelFor(equipment => equipment.SupplierID, new { @class = "form-label" })
-                    @Html.DropDownListFor(equipment => equipment.SupplierID, Model.SupplierList, new { @class = "form-input", placeHolder = "Enter supplier id" } )
+                    @Html.DropDownListFor(equipment => equipment.SupplierID, equipmentView.SupplierList, new { @class = "form-input", placeHolder = "Enter supplier id" } )
                     @Html.ValidationMessageFor(equipment => equipment.SupplierID, null, new { @class = "invalidMessage" })
                 </div>
                 

@@ -1,0 +1,138 @@
+﻿* {
+    font-size: 1.6rem;
+}
+
+.topNav {
+    padding: 12px 0;
+    border-bottom: 1px solid #555;
+    padding-left: 12px;
+}
+
+.topNav-btn, .searchForm-btn {
+    display: inline-block;
+    color: #333;
+    background-color: #00ffff;
+    font-size: 1.6rem;
+    padding: 12px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+    .topNav-btn i, .searchForm-btn i {
+        color: #333;
+    }
+
+    .topNav-btn:not(:first-child) {
+        margin-left: 12px;
+    }
+
+    .topNav-btn:hover, .searchForm-btn:hover {
+        color: #333;
+        opacity: .8;
+    }
+
+.topNav-search {
+    display: inline-block;
+}
+
+.searchForm-input {
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 12px;
+    border-radius: 6px;
+    width: 400px;
+    outline: none;
+    color: #333;
+}
+
+.page-title-h1 {
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    color: var(--grey);
+    padding: 12px;
+}
+
+.page-title {
+    padding: 12px;
+}
+
+.content-section {
+    margin: 10px 0 0 10px; /* trêm dưới phải trái.*/
+}
+
+.content-sectionTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--grey);
+    text-align: center;
+    padding: 12px 0;
+    margin-bottom: 24px;
+}
+
+
+.warehouseEquipment {
+    display: block;
+    text-decoration: none;
+    border: 1px solid #555;
+    border-radius: 6px;
+    box-shadow: 0 0 6px #666;
+    background-color: #303030;
+    margin-top: 12px;
+}
+
+.warehouseEquipment-headingName {
+    font-size: 2rem;
+    color: var(--white);
+    padding: 5px 4px;
+    text-align: center;
+}
+
+.warehouseEquipment-detailBtn {
+    text-decoration: none;
+    display: block;
+    width: 96%;
+    background-color: var(--primary);
+    color: #333;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0 auto 12px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+    .warehouseEquipment-detailBtn i {
+        color: #333;
+    }
+
+.warehouseEquipment-body {
+    padding: 12px;
+}
+
+.warehouseEquipment-action {
+    margin-top: -8px;
+    margin-left: 20px;
+}
+
+.warehouseEquipment-action {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background-color: #e9d66b;
+    margin-top: 8px;
+    width: 30%;
+    text-align: center;
+}
+
+.warehouseEquipment-action.dlt {
+    background-color: #ff2052;
+    color: #fff;
+}
+
+.warehouseEquipment-action:hover {
+    opacity: .8;
+    color: #444;
+}

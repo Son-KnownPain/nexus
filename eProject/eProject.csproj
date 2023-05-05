@@ -142,6 +142,7 @@
     <Compile Include="Areas\Admin\Controllers\SiteController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Admin\Controllers\WarehouseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WarehouseEquipmentController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Models\ViewModels\Equipment\EquipmentViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlanDetails\PaymentPlanDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlans\PaymentPlanViewModel.cs" />
+    <Compile Include="Models\ViewModels\WarehouseEquipment\WarehouseEquipmentViewModel.cs" />
     <Compile Include="Models\Warehouse.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -289,6 +291,8 @@
     <Content Include="Content\Css\Order\Prepare.css" />
     <Content Include="Content\Css\AdminCss\Supplier\Add.css" />
     <Content Include="Content\Css\AdminCss\Supplier\Index.css" />
+    <Content Include="Content\Css\AdminCss\WarehouseEquipment\Add.css" />
+    <Content Include="Content\Css\AdminCss\WarehouseEquipment\Index.css" />
     <Content Include="Content\Css\AdminCss\Warehouse\AddWarehouse.css" />
     <Content Include="Content\Css\AdminCss\Warehouse\WarehouseList.css" />
     <Content Include="Content\Css\RetailStores\Index.css" />
@@ -397,6 +401,9 @@
     <Content Include="Areas\Admin\Views\City\Index.cshtml" />
     <Content Include="Areas\Admin\Views\City\Add.cshtml" />
     <Content Include="Areas\Admin\Views\City\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\WarehouseEquipment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\WarehouseEquipment\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\WarehouseEquipment\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
