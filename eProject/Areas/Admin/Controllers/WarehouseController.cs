@@ -11,7 +11,6 @@ using eProject.Models.ViewModels.WarehouseEquipment;
 
 namespace eProject.Areas.Admin.Controllers
 {
-
     [AdministratorAuthorization]
 
     public class WarehouseController : Controller

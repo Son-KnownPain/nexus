@@ -11,12 +11,24 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ConnectQuantityDiscount
     {
         public int DiscountID { get; set; }
+
+        [Required(ErrorMessage = "Quantity value cannot be empty")]
+        [Range(0, 9999, ErrorMessage = "Quantity value is not a negative number.")]
         public double DiscountValue { get; set; }
+
+        [Required(ErrorMessage = "Quantity from cannot be empty")]
+        [RegularExpression("[0-9]+", ErrorMessage = "Quantity from is not a negative number.")]
+        [Range(1, 9999, ErrorMessage = "Quantity from not equal to 0.")]
         public int QuantityFrom { get; set; }
+
+        [Required(ErrorMessage = "Quantity to cannot be empty.")]
+        [RegularExpression("[0-9]+", ErrorMessage = "Quantitaty to is not a negative number.")]
+        [Range(1, 9999, ErrorMessage = "Quantity to not equal to 0.")]
         public int QuantityTo { get; set; }
     }
 }
