@@ -33,21 +33,25 @@ namespace eProject.Areas.Admin.Controllers
             {
                 return View("Add");
             }
-
-            if (context.ConnectQuantityDiscounts.FirstOrDefault(w => w.QuantityFrom == connectQuantityDiscount.QuantityFrom && w.QuantityTo == connectQuantityDiscount.QuantityTo) != null)
+            if (context.ConnectQuantityDiscounts.FirstOrDefault(
+                w => 
+                (w.QuantityFrom <= connectQuantityDiscount.QuantityFrom && connectQuantityDiscount.QuantityFrom <= w.QuantityTo) ||
+                (w.QuantityFrom <= connectQuantityDiscount.QuantityTo && connectQuantityDiscount.QuantityTo <= w.QuantityTo)
+                ) != null
+            )
             {
-                TempData["Error"] = "Exists, Please edit";
+                TempData["Error"] = "Discount has connect quantity range already existing, please try other quantity!";
                 return RedirectToAction("Add");
             }
 
             ConnectQuantityDiscount newConnectQuantityDiscount = new ConnectQuantityDiscount();
-            newConnectQuantityDiscount.DiscountValue = connectQuantityDiscount.DiscountValue;
+            newConnectQuantityDiscount.DiscountValue = (connectQuantityDiscount.DiscountValue / 100);
             newConnectQuantityDiscount.QuantityFrom = connectQuantityDiscount.QuantityFrom;
             newConnectQuantityDiscount.QuantityTo = connectQuantityDiscount.QuantityTo;
 
             if(connectQuantityDiscount.QuantityTo <= connectQuantityDiscount.QuantityFrom)
             {
-                TempData["Error"] = "The number of to connections must be greater than the number of from, Please edit";
+                TempData["Error"] = "The \"quantity to\" must be greater than the \"quantity from\", please try again";
                 return RedirectToAction("Add");
             }
 
