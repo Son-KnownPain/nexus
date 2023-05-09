@@ -240,8 +240,10 @@
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\CallCharge\CallChargeViewModel.cs" />
+    <Compile Include="Models\ViewModels\Customer\CustomerChangeInfoViewModel.cs" />
     <Compile Include="Models\ViewModels\Order\OrderRegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\Equipment\EquipmentViewModel.cs" />
+    <Compile Include="Models\ViewModels\Order\OrderViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlanDetails\PaymentPlanDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlans\PaymentPlanViewModel.cs" />
     <Compile Include="Models\ViewModels\WarehouseEquipment\WarehouseEquipmentViewModel.cs" />
@@ -288,6 +290,11 @@
     <Content Include="Content\Css\AdminCss\Service\Edit.css" />
     <Content Include="Content\Css\AdminCss\Service\Index.css" />
     <Content Include="Content\Css\AdminCss\RetailShowRoom\AddRetailStore.css" />
+    <Content Include="Content\Css\Customer\EditInformation.css" />
+    <Content Include="Content\Css\Customer\EditPassword.css" />
+    <Content Include="Content\Css\Customer\MyOrders.css" />
+    <Content Include="Content\Css\Customer\Profile.css" />
+    <Content Include="Content\Css\Order\Detail.css" />
     <Content Include="Content\Css\Order\Prepare.css" />
     <Content Include="Content\Css\AdminCss\Supplier\Add.css" />
     <Content Include="Content\Css\AdminCss\Supplier\Index.css" />
@@ -297,7 +304,6 @@
     <Content Include="Content\Css\AdminCss\Warehouse\WarehouseList.css" />
     <Content Include="Content\Css\RetailStores\Index.css" />
     <Content Include="Content\Css\Customer\Login.css" />
-    <Content Include="Content\Css\Customer\Register.css" />
     <Content Include="Content\Css\Service\Detail.css" />
     <Content Include="Content\Css\Site\Faq.css" />
     <Content Include="Content\Css\Contact\Index.css" />
@@ -413,10 +419,15 @@
     <Content Include="Views\Site\HowToOrderAService.cshtml" />
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
-    <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\Service\Detail.cshtml" />
     <Content Include="Views\RetailStores\Index.cshtml" />
     <Content Include="Views\Order\Prepare.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
+    <Content Include="Views\Customer\_ProfileSidebar.cshtml" />
+    <Content Include="Views\Customer\EditPassword.cshtml" />
+    <Content Include="Views\Customer\EditInformation.cshtml" />
+    <Content Include="Views\Customer\MyOrders.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

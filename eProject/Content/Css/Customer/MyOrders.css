@@ -1,0 +1,52 @@
+﻿.rightContent-heading {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--grey);
+}
+
+.orderItem {
+    margin-top: 12px;
+}
+
+.orderItem-thumbnail {
+    width: 100%;
+    box-shadow: 0 0 4px #ffffff44;
+}
+
+.orderItem-serviceName {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.orderItem-line {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--grey);
+    margin-top: 6px;
+}
+
+.orderItem-address {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.orderItem-actionItem {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--text);
+    background-color: #f2f3f4;
+    text-decoration: none;
+    text-align: center;
+}
+.orderItem-actionItem:not(:first-child) {
+    margin-top: 12px;
+}
+.orderItem-actionItem:hover {
+    color: var(--black);
+    opacity: .85;
+}

@@ -1,24 +1,22 @@
 ﻿using eProject.Auth;
+using eProject.Filters;
 using eProject.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using eProject.Models.ViewModels.Customer;
+using eProject.Models.ViewModels.Order;
+using System.Security.Policy;
 
 namespace eProject.Controllers
 {
     public class CustomerController : Controller
     {
         private NexusEntities context = new NexusEntities();
-
-        private string GenerateCustomerID()
-        {
-            string result = "P" + "000" + DateTime.Now.ToString("ddHHmmssffff");
-
-            return result;
-        }
 
         // GET: Customer/Login
         public ActionResult Login()
@@ -44,10 +42,175 @@ namespace eProject.Controllers
             }
 
 
-
-            AuthManager.CurrentCustomer.Update(customer);
+            AuthManager.Chef.PreservationCustomerCookies(customer);
             TempData["Success"] = "Successfully login";
-            return Redirect("/");
+            return RedirectToAction("Profile");
+        }
+
+        // GET: Customer/SignOut
+        [CustomerAuthorization]
+        public ActionResult SignOut()
+        {
+            AuthManager.Chef.SpoiledCustomer();
+            TempData["Success"] = "Successfully sign out";
+            return RedirectToAction("Login");
+        }
+
+        // GET: Customer/Profile
+        [CustomerAuthorization]
+        public new ActionResult Profile()
+        {
+            Customer customer = context.Customers.FirstOrDefault(c => c.CustomerID == AuthManager.CurrentCustomer.GetCustomer.CustomerID);
+            if (customer == null) return Redirect("/");
+            return View(customer);
+        }
+
+        // PUT: Customer/ChangeAvatar
+        [HttpPut]
+        [ValidateAntiForgeryToken]
+        [CustomerAuthorization]
+        public ActionResult ChangeAvatar(HttpPostedFileBase AvatarFile)
+        {
+            int id = AuthManager.CurrentCustomer.GetCustomer.CustomerID;
+            Customer customer = context.Customers.FirstOrDefault(e => e.CustomerID == id);
+
+            if (AvatarFile != null && AvatarFile.ContentLength > 0 && customer != null)
+            {
+                String prefix = DateTime.Now.ToString("ddMMyyyyHHmmssffff_");
+                String uploadFolderPath = Server.MapPath("~/Uploads/CustomerAvatars");
+
+                String extName = Path.GetExtension(AvatarFile.FileName);
+
+                Random random = new Random();
+                int randomNumber = random.Next();
+                String newFileName = prefix + "customer-avatar" + randomNumber + extName;
+
+                AvatarFile.SaveAs(uploadFolderPath + "/" + newFileName);
+
+                // Delete old file
+                if (System.IO.File.Exists(uploadFolderPath + "/" + customer.Avatar) && !customer.Avatar.Equals("default-customer-avatar.png"))
+                {
+                    System.IO.File.Delete(uploadFolderPath + "/" + customer.Avatar);
+                }
+
+                customer.Avatar = newFileName;
+                customer.UpdatedAt = DateTime.Now;
+
+                context.SaveChanges();
+
+                TempData["Success"] = "Successfully update avatar";
+            }
+
+            return RedirectToAction("Profile");
+        }
+
+        // GET: Customer/EditPassword
+        [CustomerAuthorization]
+        public ActionResult EditPassword()
+        {
+            return View();
+        }
+
+        // PUT: Customer/UpdatePassword
+        [HttpPut]
+        [ValidateAntiForgeryToken]
+        [CustomerAuthorization]
+        public ActionResult UpdatePassword(MyPasswordEdit data)
+        {
+            if (!ModelState.IsValid) return View("EditPassword");
+
+            int id = AuthManager.CurrentCustomer.GetCustomer.CustomerID;
+            Customer customer = context.Customers.FirstOrDefault(e => e.CustomerID == id);
+            if (customer != null && Crypto.VerifyHashedPassword(customer.Password, data.CurrentPassword))
+            {
+                customer.Password = Crypto.HashPassword(data.NewPassword);
+                customer.UpdatedAt = DateTime.Now;
+
+                context.SaveChanges();
+
+                TempData["Success"] = "Successfully update my password";
+
+                return RedirectToAction("Profile");
+            }
+            else
+            {
+                ModelState.AddModelError("CurrentPassword", "Current password incorrect, type again!");
+                return View("EditPassword");
+            }
+        }
+
+        // GET: Customer/EditInformation
+        [CustomerAuthorization]
+        public ActionResult EditInformation()
+        {
+            int id = AuthManager.CurrentCustomer.GetCustomer.CustomerID;
+            Customer customer = context.Customers.FirstOrDefault(e => e.CustomerID == id);
+            if (customer == null) return Redirect("/");
+
+            CustomerChangeInfoViewModel model = new CustomerChangeInfoViewModel();
+
+            model.CustomerID = customer.CustomerID;
+            model.Fullname = customer.Fullname;
+            model.Phone = customer.Phone;
+            model.Email = customer.Email;
+            model.Address = customer.Address;
+            model.AddressDetail = customer.AddressDetail;
+
+            return View(model);
+        }
+
+        // PUT: Customer/UpdateInformation
+        [HttpPut, ValidateAntiForgeryToken]
+        [CustomerAuthorization]
+        public ActionResult UpdateInformation(CustomerChangeInfoViewModel data)
+        {
+            Customer customer = context.Customers.FirstOrDefault(c => c.CustomerID == data.CustomerID);
+
+            customer.CustomerID = data.CustomerID;
+            customer.Fullname = data.Fullname;
+            customer.Phone = data.Phone;
+            customer.Email = data.Email;
+            customer.Address = data.Address;
+            customer.AddressDetail = data.AddressDetail;
+
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully update information";
+
+            return RedirectToAction("Profile");
+        }
+
+        // GET: Customer/MyOrders
+        [CustomerAuthorization]
+        public ActionResult MyOrders()
+        {
+            int customerID = AuthManager.CurrentCustomer.GetCustomer.CustomerID;
+            ViewBag.orders = context.Orders
+                .Join(context.PaymentPlanDetails, o => o.PaymentPlanDetailID, pld => pld.PaymentPlanDetailID, (o, pld) => new
+                {
+                    o,
+                    pld
+                })
+                .Join(context.Services, x => x.o.ServiceID, s => s.ServiceID, (x, s) =>
+                    new OrderViewModel
+                    {
+                        CustomerID = x.o.CustomerID,
+                        PaymentPlanDetailID = x.pld.PaymentPlanDetailID,
+                        Content = x.pld.Content,
+                        ServiceName = s.ServiceName,
+                        Thumbnail = s.Thumbnail,
+                        OrderID = x.o.OrderID,
+                        Status = x.o.Status,
+                        Phone = x.o.Phone,
+                        Address = x.o.Address,
+                        AddressDetail = x.o.AddressDetail,
+                        ConnectQuantity = x.o.ConnectQuantity,
+                        Deposit = x.o.Deposit,
+                        DepositDiscount = x.o.DepositDiscount,
+                        OrderDate = x.o.OrderDate
+                    }
+                ).Where(o => o.CustomerID == customerID).ToList();
+            return View();
         }
     }
 }

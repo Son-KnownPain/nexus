@@ -1,0 +1,87 @@
+﻿@model eProject.Models.Customer
+@{
+    ViewBag.Title = "Profile";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Customer/Profile.css" />
+}
+@section scripts {
+    <script>
+        const avtFileInput = document.getElementById("avatarFileInput");
+        avtFileInput.onchange = e => {
+            const [file] = avtFileInput.files;
+            if (file) {
+                const avtImg = document.querySelector(".profile-avatar");
+                avtImg.style.backgroundImage = `url('${URL.createObjectURL(file)}')`;
+                avtImg.classList.add("new")
+                $("#avatarFileLabel").hide();
+                $("#avatarChangeSubmitBtn").show();
+
+            }
+        }
+    </script>
+}
+
+<div class="container">
+    <div class="content-main">
+        @{
+            Html.RenderPartial("~/Views/Customer/_ProfileSidebar.cshtml");
+        }
+        <div class="rightContent">
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="profile-avatar" style="background-image: url('/Uploads/CustomerAvatars/@Model.Avatar')"></div>
+                </div>
+                <div class="col-xl-5">
+                    <div class="profile-info">
+                        <h1 class="profile-fullname">
+                            @Model.Fullname
+                        </h1>
+                        <p class="profile-line">
+                            <i class="fa-solid fa-phone"></i>
+                            @Model.Phone
+                        </p>
+                        <p class="profile-line">
+                            <i class="fa-solid fa-location-dot"></i>
+                            @Model.Address
+                        </p>
+                        <p class="profile-line">
+                            <i class="fa-solid fa-location-dot"></i>
+                            @Model.AddressDetail
+                        </p>
+                        <p class="profile-line">
+                            <i class="fa-solid fa-envelope"></i>
+                            @Model.Email
+                        </p>
+                        @using (Html.BeginForm("ChangeAvatar", "Customer", FormMethod.Post, new { @class = "avatarForm", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HttpMethodOverride("PUT")
+                            <label id="avatarFileLabel" for="avatarFileInput">
+                                <i class="fa-solid fa-upload"></i>
+                                Upload new avatar
+                            </label>
+                            <input id="avatarFileInput" name="AvatarFile" type="file" style="display: none;" />
+                            <button id="avatarChangeSubmitBtn" style="display: none;">
+                                Post
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-xl-3">
+                    <div class="profile-rightActions">
+                        <a class="profile-rightActionItem" href="/Customer/EditPassword">
+                            <i class="fa-solid fa-ellipsis"></i>
+                            Change Password
+                        </a>
+                        <a class="profile-rightActionItem" href="/Customer/EditInformation">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Change Information
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
