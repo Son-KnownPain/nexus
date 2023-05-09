@@ -31,7 +31,7 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Add");
+                return View("Add");
             }
 
             if (context.ConnectQuantityDiscounts.FirstOrDefault(w => w.QuantityFrom == connectQuantityDiscount.QuantityFrom && w.QuantityTo == connectQuantityDiscount.QuantityTo) != null)
@@ -55,7 +55,7 @@ namespace eProject.Areas.Admin.Controllers
             context.SaveChanges();
 
             TempData["Success"] = "Successfully add connect quantity discount";
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int? id)
@@ -98,7 +98,7 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Edit");
+                return View("Edit");
             }
 
             if (context.ConnectQuantityDiscounts.FirstOrDefault(w => w.QuantityFrom == quantityDiscount.QuantityFrom && w.QuantityTo == quantityDiscount.QuantityTo) != null)

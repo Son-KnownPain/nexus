@@ -159,7 +159,16 @@ namespace eProject.Areas.Admin.Controllers
 
         public ActionResult Search(string keyword)
         {
-            ViewBag.EquipmentList = context.Equipments.Where(e => e.EquipmentName.Contains(keyword)).ToList();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.EquipmentList = context.Equipments.Where(e => e.EquipmentName.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+           
             return View("Index");
         }
     }

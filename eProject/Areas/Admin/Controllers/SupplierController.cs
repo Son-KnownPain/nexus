@@ -32,7 +32,7 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Add");
+                return View("Add");
             }
 
             Supplier newSupplier = new Supplier();
@@ -73,7 +73,7 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Edit");
+                return View("Edit");
             }
 
             Supplier updateSupllier = context.Suppliers.FirstOrDefault(s => s.SupplierID == supplier.SupplierID);
@@ -116,7 +116,16 @@ namespace eProject.Areas.Admin.Controllers
 
         public ActionResult Search(string keyword)
         {
-            ViewBag.Suppliers = context.Suppliers.Where(s => s.CompanyName.Contains(keyword) || s.ContactName.Contains(keyword)).ToList();
+            if(!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.Suppliers = context.Suppliers.Where(s => s.CompanyName.Contains(keyword) || s.ContactName.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+
             return View("Index");
         }
     }

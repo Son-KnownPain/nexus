@@ -161,7 +161,16 @@ namespace eProject.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Search(string keyword)
         {
-            ViewBag.services = context.Services.Where(s => s.ServiceName.Contains(keyword)).ToList();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.services = context.Services.Where(s => s.ServiceName.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+            
             return View("Index");
         }
     }

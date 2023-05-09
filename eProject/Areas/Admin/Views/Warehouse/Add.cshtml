@@ -20,8 +20,8 @@
     <div class="content-body">
         @using (Html.BeginForm("Store", "Warehouse", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.AntiForgeryToken()
             <div class="row">
+                @Html.AntiForgeryToken()
                 <div class="form-group">
                     @Html.LabelFor(warehouse => warehouse.Name, new { @class = "form-label" })
                     @Html.EditorFor(warehouse => warehouse.Name, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter name" } })

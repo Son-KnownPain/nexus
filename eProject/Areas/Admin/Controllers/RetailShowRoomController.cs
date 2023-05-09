@@ -146,7 +146,16 @@ namespace eProject.Areas.Admin.Controllers
 
         public ActionResult Search(string keyword)
         {
-            ViewBag.RetailShowRooms = context.RetailShowRooms.Where(r => r.Name.Contains(keyword) || r.Address.Contains(keyword)).ToList();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.RetailShowRooms = context.RetailShowRooms.Where(r => r.Name.Contains(keyword) || r.Address.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+            
             return View("Index");
         }
     }
