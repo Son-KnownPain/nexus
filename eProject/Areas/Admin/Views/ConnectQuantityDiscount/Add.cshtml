@@ -1,0 +1,53 @@
+﻿@model eProject.Models.ConnectQuantityDiscount
+
+@section Styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/ConnectQuantityDiscount/Add.css" />
+}
+@{
+    ViewBag.Title = "Create connect quantity discount";
+   
+}
+
+<div class="container">
+    <nav class="topNav">
+        <h1 class="page-heading">
+            <i class="fa-solid fa-plus"></i>
+            Create connect quantity discount
+            <a class="topNav-btnItem" href="/Admin/ConnectQuantityDiscount">Exit</a>
+        </h1>
+
+    </nav>
+
+    <div class="content-body">
+        @using (Html.BeginForm("Store", "ConnectQuantityDiscount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+         {
+            
+            <div class="row">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(connectQuantityDiscount => connectQuantityDiscount.DiscountValue, new { @class = "form-label" })
+                    @Html.EditorFor(connectQuantityDiscount => connectQuantityDiscount.DiscountValue, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter discount value" } })
+                    @Html.ValidationMessageFor(connectQuantityDiscount => connectQuantityDiscount.DiscountValue, null, new { @class = "invalidMessage" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(connectQuantityDiscount => connectQuantityDiscount.QuantityFrom, new { @class = "form-label" })
+                    @Html.EditorFor(connectQuantityDiscount => connectQuantityDiscount.QuantityFrom, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter quantity from" } })
+                    @Html.ValidationMessageFor(connectQuantityDiscount => connectQuantityDiscount.QuantityFrom, null, new { @class = "invalidMessage" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(connectQuantityDiscount => connectQuantityDiscount.QuantityTo, new { @class = "form-label" })
+                    @Html.EditorFor(connectQuantityDiscount => connectQuantityDiscount.QuantityTo, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter quantity to" } })
+                    @Html.ValidationMessageFor(connectQuantityDiscount => connectQuantityDiscount.QuantityTo, null, new { @class = "invalidMessage" })
+                </div>
+
+                <div class="col-xl-12">
+                    <div class="form-group">
+                        <button class="form-btn">Add</button>
+                    </div>
+                </div>
+            </div>
+         }
+    </div>
+</div>

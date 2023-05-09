@@ -11,7 +11,6 @@ using eProject.Models.ViewModels.WarehouseEquipment;
 
 namespace eProject.Areas.Admin.Controllers
 {
-
     [AdministratorAuthorization]
 
     public class WarehouseController : Controller
@@ -37,7 +36,7 @@ namespace eProject.Areas.Admin.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return RedirectToAction("AddWarehouse");
+                return View("Add");
             }
 
             Warehouse newWarehouse = new Warehouse();
@@ -110,7 +109,16 @@ namespace eProject.Areas.Admin.Controllers
 
         public ActionResult Search(string keyword)
         {
-            ViewBag.warehouseList = context.Warehouses.Where(w => w.Name.Contains(keyword) || w.Address.Contains(keyword)).ToList();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.warehouseList = context.Warehouses.Where(w => w.Name.Contains(keyword) || w.Address.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+            
             return View("Index");
         }
 

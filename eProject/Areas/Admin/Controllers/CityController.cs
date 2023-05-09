@@ -100,7 +100,16 @@ namespace eProject.Areas.Admin.Controllers
         // GET: Admin/City/Search
         public ActionResult Search(string keyword)
         {
-            ViewBag.citys = context.Citys.Where(c => c.CityName.Contains(keyword) || c.Code.Contains(keyword)).ToList();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.citys = context.Citys.Where(c => c.CityName.Contains(keyword) || c.Code.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+
             return View("Index");
         }
     }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
 using eProject.Filters;
+using System.Web.Razor.Tokenizer.Symbols;
 
 namespace eProject.Areas.Admin.Controllers
 {
@@ -54,7 +55,16 @@ namespace eProject.Areas.Admin.Controllers
 
         public ActionResult Search(string searchValue)
         {
-            ViewBag.contactList = context.Contacts.Where(c => c.ContactName.Contains(searchValue) || c.Content.Contains(searchValue)).ToList();
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                ViewBag.contactList = context.Contacts.Where(c => c.ContactName.Contains(searchValue) || c.Content.Contains(searchValue)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+            
             return View("Index");
         }
     }

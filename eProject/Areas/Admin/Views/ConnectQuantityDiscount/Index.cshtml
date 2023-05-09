@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Connect quantity discount management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/ConnectQuantityDiscount/Index.css" />
+}
+
+<h1 class="page-title">
+    Connect quantity discount management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="~/Admin/ConnectQuantityDiscount/Add">
+        <i class="fa-solid fa-plus"></i>
+        Add new connect quantity discount
+    </a>
+    @*<div class="topNav-search">
+            @using (Html.BeginForm("Search", "PaymentPlan", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+            {
+                <input class="searchForm-input" name="keyword" placeholder="Enter payment plan name" />
+                <button class="searchForm-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            }
+        </div>*@
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List connect quantity discount
+    </h3>
+
+    <div class="connectquantitydiscount-title">
+        <div class="row">
+            <div class="col-xl-3">
+                <span class="connectquantitydiscount-titleValue">
+                    Discount value
+                </span>
+            </div>
+            <div class="col-xl-3">
+                <span class="connectquantitydiscount-titleValue">
+                    Discount from
+                </span>
+            </div>
+            <div class="col-xl-3">
+                <span class="connectquantitydiscount-titleValue">
+                    Discount to
+                </span>
+            </div>
+            <div class="col-xl-3">
+                <span class="connectquantitydiscount-titleValue">
+                    Action
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="connectquantitydiscount">
+        @foreach (eProject.Models.ConnectQuantityDiscount connectQuantity in ViewBag.connectQuantityDiscountList)
+        {
+            <div class="connectquantitydiscountItem">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <p class="connectquantitydiscountItem-serviceName">
+                            @connectQuantity.DiscountValue
+                        </p>
+                    </div>
+                    <div class="col-xl-3">
+                        <p class="connectquantitydiscountItem-planName">
+                            @connectQuantity.QuantityFrom
+                        </p>
+                    </div>
+                    <div class="col-xl-3">
+                        <p class="connectquantitydiscountItem-planName">
+                            @connectQuantity.QuantityTo
+                        </p>
+                    </div>
+                    <div class="col-xl-3">
+                        <div>
+                            <a class="connectquantitydiscountRow-action" href="/Admin/ConnectQuantityDiscount/Edit?editID=@connectQuantity.DiscountID">
+                                Edit
+                            </a>
+                            <a class="connectquantitydiscountRow-action dlt deleteServiceBtn" href="/Admin/ConnectQuantityDiscount/Delete?id=@connectQuantity.DiscountID">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $(".deleteServiceBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete this connect quantity discount")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}

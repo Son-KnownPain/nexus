@@ -131,6 +131,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeController.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ConnectQuantityDiscountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
@@ -263,6 +264,8 @@
     <Content Include="Content\Css\AdminCss\CallCharge\Add.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\Edit.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\ListOf.css" />
+    <Content Include="Content\Css\AdminCss\ConnectQuantityDiscount\Add.css" />
+    <Content Include="Content\Css\AdminCss\ConnectQuantityDiscount\Index.css" />
     <Content Include="Content\Css\AdminCss\City\Add.css" />
     <Content Include="Content\Css\AdminCss\City\Index.css" />
     <Content Include="Content\Css\AdminCss\Employee\Add.css" />
@@ -410,6 +413,9 @@
     <Content Include="Areas\Admin\Views\WarehouseEquipment\Index.cshtml" />
     <Content Include="Areas\Admin\Views\WarehouseEquipment\Add.cshtml" />
     <Content Include="Areas\Admin\Views\WarehouseEquipment\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

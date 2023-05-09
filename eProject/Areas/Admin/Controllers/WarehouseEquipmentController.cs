@@ -106,6 +106,12 @@ namespace eProject.Areas.Admin.Controllers
                 return View("Edit");
             }
 
+            if (context.WarehouseEquipments.FirstOrDefault(w => w.WarehouseID == warehouseEquipment.WarehouseID && w.EquipmentID == warehouseEquipment.EquipmentID) != null)
+            {
+                TempData["Error"] = "Exists, Please edit";
+                return RedirectToAction("Edit");
+            }
+
             WarehouseEquipment warehouseEquipmentUpdate = context.WarehouseEquipments.FirstOrDefault(we => we.ID == warehouseEquipment.ID);
             if (warehouseEquipmentUpdate != null)
             {

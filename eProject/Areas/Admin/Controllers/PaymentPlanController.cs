@@ -132,7 +132,9 @@ namespace eProject.Areas.Admin.Controllers
         // GET: Admin/PaymentPlan/Search
         public ActionResult Search(string keyword)
         {
-            ViewBag.paymentPlans = context.PaymentPlans.Join(context.Services, p => p.ServiceID, s => s.ServiceID, (p, s) => new PaymentPlanViewModel
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.paymentPlans = context.PaymentPlans.Join(context.Services, p => p.ServiceID, s => s.ServiceID, (p, s) => new PaymentPlanViewModel
             {
                 PaymentPlanID = p.PaymentPlanID,
                 ServiceID = s.ServiceID,
@@ -140,6 +142,13 @@ namespace eProject.Areas.Admin.Controllers
                 PlanName = p.PlanName,
                 Description = p.Description
             }).Where(m => m.ServiceName.Contains(keyword) || m.PlanName.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+            
             return View("Index");
         }
     }

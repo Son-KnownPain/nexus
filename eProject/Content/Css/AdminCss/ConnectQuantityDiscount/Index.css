@@ -1,0 +1,103 @@
+﻿.content-main {
+    padding: 12px;
+}
+
+.topNav {
+    padding: 12px 0;
+    border-bottom: 1px solid #555;
+}
+
+.topNav-btnItem, .searchForm-btn {
+    display: inline-block;
+    color: #333;
+    background-color: var(--primary);
+    font-size: 1.6rem;
+    padding: 12px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.topNav-btnItem i, .searchForm-btn i {
+    color: #333;
+}
+
+.topNav-btnItem:not(:first-child) {
+    margin-left: 12px;
+}
+
+.topNav-btnItem:hover{
+    color: #333;
+    opacity: .8;
+}
+
+/* dataBox */
+
+.dataBox {
+    margin-top: 16px;
+}
+
+.dataBox-heading {
+    font-size: 1.6rem;
+    color: var(--grey);
+    margin-bottom: 16px;
+}
+
+.connectquantitydiscount-title {
+    margin-bottom: 8px;
+}
+
+.connectquantitydiscount-titleValue {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--primary);
+    border-radius: 2px;
+    border: 1px solid var(--primary);
+    padding: 2px 4px;
+    opacity: .8;
+}
+
+.connectquantitydiscountItem {
+    font-size: 1.6rem;
+    padding: 12px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #ffffff55;
+    margin-top: 12px;
+}
+
+.connectquantitydiscountItem-serviceName, .connectquantitydiscountItem-planName {
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+
+.connectquantitydiscountRow-actions {
+    margin-top: 40px;
+    padding-left: 70px;
+}
+
+.connectquantitydiscountRow-action {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background-color: #e9d66b;
+    margin-top: 8px;
+    width: 35%;
+    text-align: center;
+}
+
+.connectquantitydiscountRow-action {
+    margin-left: 10px;
+}
+
+.connectquantitydiscountRow-action.dlt {
+    background-color: #ff2052;
+    color: #fff;
+}
+
+.connectquantitydiscountRow-action:hover {
+    opacity: .8;
+    color: #444;
+}

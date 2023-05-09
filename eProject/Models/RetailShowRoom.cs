@@ -24,11 +24,13 @@ namespace eProject.Models
         }
     
         public int RetailShowRoomID { get; set; }
+        [Required(ErrorMessage = "Name can not empty")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Phone can not empty")]
         [RegularExpression("[0-9]{10}", ErrorMessage = "Phone only accept 10 number (0-9)")]
         public string Phone { get; set; }
+        [Required(ErrorMessage = "Address can not empty")]
         public string Address { get; set; }
         public string Image { get; set; }
         public HttpPostedFileBase imageFile { get; set; }
