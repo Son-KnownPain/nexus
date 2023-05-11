@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\ConnectQuantityDiscountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerFeedbackController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EquipmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentPlanController.cs" />
@@ -241,6 +242,7 @@
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\CallCharge\CallChargeViewModel.cs" />
+    <Compile Include="Models\ViewModels\CustomerFeedback\CustomerFeedbackViewModel.cs" />
     <Compile Include="Models\ViewModels\Order\OrderRegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\Equipment\EquipmentViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlanDetails\PaymentPlanDetailViewModel.cs" />
@@ -279,6 +281,8 @@
     <Content Include="Content\Css\AdminCss\Equipment\Add.css" />
     <Content Include="Content\Css\AdminCss\Equipment\Edit.css" />
     <Content Include="Content\Css\AdminCss\Equipment\Index.css" />
+    <Content Include="Content\Css\AdminCss\Feedback\Add.css" />
+    <Content Include="Content\Css\AdminCss\Feedback\Index.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Add.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Edit.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlan\Add.css" />
@@ -410,6 +414,8 @@
     <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Add.cshtml" />
     <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerFeedback\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerFeedback\Reply.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

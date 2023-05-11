@@ -17,8 +17,8 @@ namespace eProject.Models
     {
         public int DiscountID { get; set; }
 
-        [Required(ErrorMessage = "Quantity value cannot be empty")]
-        [Range(0, 9999, ErrorMessage = "Quantity value is not a negative number.")]
+        [Required(ErrorMessage = "Discount value cannot be empty")]
+        [Range(0, 9999, ErrorMessage = "Discount value is not a negative number.")]
         public double DiscountValue { get; set; }
 
         [Required(ErrorMessage = "Quantity from cannot be empty")]

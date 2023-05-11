@@ -1,0 +1,50 @@
+﻿@model eProject.Models.ViewModels.CustomerFeedback.CustomerFeedbackViewModel
+@section Styles{
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Feedback/Add.css" />
+}
+@{
+    ViewBag.Title = "Reply to customer feedback";
+}
+
+<div class="container">
+    <nav class="topNav">
+        <h1 class="page-heading">
+            <i class="fa fa-reply" aria-hidden="true"></i>
+            Reply to customer feedback
+            <a class="topNav-btnItem" href="/Admin/CustomerFeedback">Exit</a>
+        </h1>
+
+    </nav>
+
+    <div class="content-body">
+        @using (Html.BeginForm("ReplyStore", "CustomerFeedback", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                @Html.HiddenFor(customer => customer.CustomerFeedbackID)
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(customer => customer.ReplyContent, new { @class = "form-label" })
+                    @Html.TextAreaFor(customer => customer.ReplyContent, new { @class = "form-input", placeHolder = "Enter reply content", @id = "editor" })
+                    @Html.ValidationMessageFor(customer => customer.ReplyContent, null, new { @class = "invalidMessage" })
+                </div>
+                <div class="col-xl-12">
+                    <div class="form-group">
+                        <button class="form-btn">Reply</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+    </script>
+}
