@@ -129,13 +129,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BillController.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeController.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ConnectQuantityDiscountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EquipmentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentPlanController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentPlanDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\RetailShowRoomController.cs" />
@@ -145,6 +149,7 @@
     <Compile Include="Areas\Admin\Controllers\WarehouseController.cs" />
     <Compile Include="Areas\Admin\Controllers\WarehouseEquipmentController.cs" />
     <Compile Include="Auth\AuthManager.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -240,8 +245,13 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\Account\AccountViewModel.cs" />
     <Compile Include="Models\ViewModels\CallCharge\CallChargeViewModel.cs" />
+    <Compile Include="Models\ViewModels\CustomerFeedback\CustomerFeedbackViewModel.cs" />
     <Compile Include="Models\ViewModels\Customer\CustomerChangeInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\Customer\CustomerEditViewModel.cs" />
+    <Compile Include="Models\ViewModels\Customer\CustomerPasswordEditViewModel.cs" />
+    <Compile Include="Models\ViewModels\Order\OrderCompleteViewModel.cs" />
     <Compile Include="Models\ViewModels\Order\OrderRegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\Equipment\EquipmentViewModel.cs" />
     <Compile Include="Models\ViewModels\Order\OrderViewModel.cs" />
@@ -259,6 +269,10 @@
   <ItemGroup>
     <Content Include="Content\AdminApp.css" />
     <Content Include="Content\App.css" />
+    <Content Include="Content\Css\Account\Detail.css" />
+    <Content Include="Content\Css\Account\Feedback.css" />
+    <Content Include="Content\Css\AdminCss\Account\Detail.css" />
+    <Content Include="Content\Css\AdminCss\Account\Index.css" />
     <Content Include="Content\Css\AdminCss\CallChargeType\Index.css" />
     <Content Include="Content\Css\AdminCss\CallChargeType\Edit.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\Add.css" />
@@ -268,6 +282,9 @@
     <Content Include="Content\Css\AdminCss\ConnectQuantityDiscount\Index.css" />
     <Content Include="Content\Css\AdminCss\City\Add.css" />
     <Content Include="Content\Css\AdminCss\City\Index.css" />
+    <Content Include="Content\Css\AdminCss\Customer\ChangePassword.css" />
+    <Content Include="Content\Css\AdminCss\Customer\Edit.css" />
+    <Content Include="Content\Css\AdminCss\Customer\Index.css" />
     <Content Include="Content\Css\AdminCss\Employee\Add.css" />
     <Content Include="Content\Css\AdminCss\Employee\ChangePassword.css" />
     <Content Include="Content\Css\AdminCss\Employee\Edit.css" />
@@ -281,6 +298,9 @@
     <Content Include="Content\Css\AdminCss\Equipment\Add.css" />
     <Content Include="Content\Css\AdminCss\Equipment\Edit.css" />
     <Content Include="Content\Css\AdminCss\Equipment\Index.css" />
+    <Content Include="Content\Css\AdminCss\Order\CompleteOrder.css" />
+    <Content Include="Content\Css\AdminCss\Order\Detail.css" />
+    <Content Include="Content\Css\AdminCss\Order\Index.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Add.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Edit.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlan\Add.css" />
@@ -295,6 +315,7 @@
     <Content Include="Content\Css\AdminCss\RetailShowRoom\AddRetailStore.css" />
     <Content Include="Content\Css\Customer\EditInformation.css" />
     <Content Include="Content\Css\Customer\EditPassword.css" />
+    <Content Include="Content\Css\Customer\MyConnections.css" />
     <Content Include="Content\Css\Customer\MyOrders.css" />
     <Content Include="Content\Css\Customer\Profile.css" />
     <Content Include="Content\Css\Order\Detail.css" />
@@ -349,6 +370,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Bill\" />
+    <Folder Include="Content\Css\AdminCss\Bill\" />
     <Folder Include="Scripts\" />
     <Folder Include="Uploads\EquipmentImage\" />
     <Folder Include="Uploads\RetailShowRoomImage\" />
@@ -416,6 +439,14 @@
     <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Add.cshtml" />
     <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ConnectQuantityDiscount\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\CompleteOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\ChangePassword.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
@@ -434,6 +465,9 @@
     <Content Include="Views\Customer\EditInformation.cshtml" />
     <Content Include="Views\Customer\MyOrders.cshtml" />
     <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="Views\Customer\MyConnections.cshtml" />
+    <Content Include="Views\Account\Feedback.cshtml" />
+    <Content Include="Views\Account\Detail.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

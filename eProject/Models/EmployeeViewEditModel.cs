@@ -10,6 +10,7 @@ namespace eProject.Models
 {
     public class EmployeeViewEditModel
     {
+        [Required(ErrorMessage = "Employee ID is require")]
         public int EmployeeID { get; set; }
 
         public bool StillWorking { get; set; }

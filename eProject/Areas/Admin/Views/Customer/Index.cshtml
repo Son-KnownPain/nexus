@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Employee Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Customer/Index.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $(".deleteCustomerBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete that employee")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
+
+<h1 class="page-title">
+    Customer Management
+</h1>
+<nav class="topNav">
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "Customer", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input class="searchForm-input" name="keyword" placeholder="Enter name, phone,..." />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List customer
+    </h3>
+
+    <div class="persons">
+        @foreach (eProject.Models.Customer customer in ViewBag.customers)
+        {
+            <div class="personItem">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="personItem-avt" style="background-image: url('/Uploads/CustomerAvatars/@customer.Avatar');"></div>
+                    </div>
+                    <div class="col-xl-8">
+                        <div class="personItem-body">
+                            <h2 class="personItem-name">
+                                @customer.Fullname
+                            </h2>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        <i class="fa-solid fa-phone"></i>
+                                        @customer.Phone
+                                    </p>
+                                </div>
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        Created date: @customer.CreatedAt.ToString("dd/MM/yyyy")
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                        @customer.Email
+                                    </p>
+                                </div>
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        Updated date: @customer.UpdatedAt.ToString("dd/MM/yyyy")
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="personItem-line">
+                                <i class="fa-solid fa-location-dot"></i>
+                                @customer.Address
+                            </p>
+                            <p class="personItem-line">
+                                <i class="fa-solid fa-location-dot"></i>
+                                @customer.AddressDetail
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="personItem-actions">
+                            <a href="/Admin/Customer/Edit?customerID=@customer.CustomerID" class="personItem-actionItem edit">
+                                Edit
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                            <a href="#" class="personItem-actionItem delete deleteCustomerBtn">
+                                Delete
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <a href="/Admin/Customer/ChangePassword?customerID=@customer.CustomerID" class="personItem-actionItem">
+                                Change Password
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

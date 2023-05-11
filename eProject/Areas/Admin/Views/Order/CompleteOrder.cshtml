@@ -1,0 +1,30 @@
+﻿@model eProject.Models.ViewModels.Order.OrderCompleteViewModel
+@{ 
+    ViewBag.Title = "Complete Order";
+    eProject.Models.ViewModels.Order.OrderCompleteViewModel tempModel = new eProject.Models.ViewModels.Order.OrderCompleteViewModel();
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Order/CompleteOrder.css" />
+}
+
+<h1 class="page-title">
+    Complete order
+</h1>
+
+<div class="dataBox">
+    @using(Html.BeginForm("Complete", "Order", new { area = "Admin" }, FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.OrderID)
+        @Html.HttpMethodOverride("PUT")
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => m.CityCode, new { @class = "form-label" })
+            @Html.DropDownListFor(m => m.CityCode, tempModel.CityList, new { @class = "form-dropDownList" })
+            @Html.ValidationMessageFor(m => m.CityCode, null, new { @class = "invalidMessage" })
+        </div>
+
+        <button class="form-btn">
+            Complete order
+        </button>
+    }
+</div>

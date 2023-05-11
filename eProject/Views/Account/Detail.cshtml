@@ -1,0 +1,125 @@
+﻿@model eProject.Models.Account
+@{
+    ViewBag.Title = "Account Detail";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Account/Detail.css" />
+}
+
+<div class="container">
+    <h1 class="page-title">
+        <i style="color: green;" class="fa-solid fa-rss"></i>
+        Account View Detail
+    </h1>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="boxSection">
+                <div class="serviceSide">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <img style="width: 100%;" class="service-thumbnail" src="~/Uploads/ServiceThumbnails/@ViewBag.service.Thumbnail" alt="Service thumbnail" />
+                        </div>
+                        <div class="col-xl-6">
+                            <h2 class="serviceItem-name">
+                                @ViewBag.service.ServiceName
+                            </h2>
+                            <p class="service-line service-summary">
+                                @ViewBag.service.Summary
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="paymentSide">
+                    <h3 class="paymentPlan">
+                        <i class="fa-solid fa-credit-card"></i>
+                        Payment plan of order
+                    </h3>
+
+                    <p class="payment-line">
+                        <i class="fa-regular fa-circle-right"></i>
+                        @ViewBag.pl.PlanName
+                    </p>
+
+                    <p class="payment-line">
+                        <i class="fa-regular fa-circle-right"></i>
+                        @ViewBag.pld.Content
+                    </p>
+
+                    @if (eProject.Helpers.CallChargeHelper.GetCallChargeCount(ViewBag.pld.PaymentPlanDetailID) != 0)
+                    {
+                        <p class="payment-line">
+                            Call charge:
+                        </p>
+
+                        <ul class="callChargeList">
+                            @foreach (var item in eProject.Helpers.CallChargeHelper.GetCallCharge(ViewBag.pld.PaymentPlanDetailID))
+                            {
+                                <li class="callChargeItem">
+                                    @item.CallChargeName: @item.CostPerMinute cents / minute
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="boxSection">
+                <h2 class="order-heading">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Account information
+                </h2>
+
+                @if (ViewBag.customer != null)
+                {
+                    <p class="order-line">
+                        <i class="fa-solid fa-user-tie"></i>
+                        Customer:
+                        @ViewBag.customer.Fullname
+                    </p>
+                }
+                <p class="order-line">
+                    Status:
+                    @Model.Status
+                </p>
+                <p class="order-line">
+                    <i class="fa-solid fa-phone"></i>
+                    @Model.ContactNumber
+                </p>
+                <p class="order-line">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Connected At:
+                    @Model.ConnectedAt.ToString("dd/MM/yyyy")
+                </p>
+                <p class="order-line">
+                    Connect Quantity:
+                    @Model.ConnectQuantity
+                </p>
+                <p class="order-line">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Due Date:
+                    @Model.DueDate.ToString("dd/MM/yyyy")
+                </p>
+                @if (DateTime.Now.Date == Model.DueDate.Date)
+                {
+                    <p class="order-line" style="color: #a4c639;">
+                        The due date for payment.
+                    </p>
+                }
+
+            <div class="order-actions">
+                <a class="order-actionItem" href="/Account/Feedback?accountID=@Model.AccountID" style="background: #f0f8ff; color: #333;">
+                    <i style="color: #333;" class="fa-solid fa-star-half-stroke"></i>
+                    Feedback
+                </a>
+                <a class="order-actionItem" href="/Bill/List" style="background: #00ab80; color: #fff;">
+                    <i class="fa-solid fa-money-bills"></i>
+                    View bills
+                </a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+

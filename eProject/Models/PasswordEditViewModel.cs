@@ -9,6 +9,7 @@ namespace eProject.Models
 {
     public class PasswordEditViewModel
     {
+        [Required(ErrorMessage = "Employee ID is require")]
         public int EmployeeID { get; set; }
 
         [Required(ErrorMessage = "New password is require")]

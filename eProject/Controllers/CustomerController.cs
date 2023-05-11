@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using eProject.Models.ViewModels.Customer;
 using eProject.Models.ViewModels.Order;
 using System.Security.Policy;
+using eProject.Models.ViewModels.Account;
 
 namespace eProject.Controllers
 {
@@ -88,7 +89,7 @@ namespace eProject.Controllers
                 AvatarFile.SaveAs(uploadFolderPath + "/" + newFileName);
 
                 // Delete old file
-                if (System.IO.File.Exists(uploadFolderPath + "/" + customer.Avatar) && !customer.Avatar.Equals("default-customer-avatar.png"))
+                if (System.IO.File.Exists(uploadFolderPath + "/" + customer.Avatar) && !customer.Avatar.Equals("default-user-avatar.png"))
                 {
                     System.IO.File.Delete(uploadFolderPath + "/" + customer.Avatar);
                 }
@@ -172,6 +173,7 @@ namespace eProject.Controllers
             customer.Email = data.Email;
             customer.Address = data.Address;
             customer.AddressDetail = data.AddressDetail;
+            customer.UpdatedAt = DateTime.Now;
 
             context.SaveChanges();
 
@@ -210,6 +212,38 @@ namespace eProject.Controllers
                         OrderDate = x.o.OrderDate
                     }
                 ).Where(o => o.CustomerID == customerID).ToList();
+            return View();
+        }
+
+        // GET: Admin/Customer/MyConnections
+        [CustomerAuthorization]
+        public ActionResult MyConnections()
+        {
+            int customerID = AuthManager.CurrentCustomer.GetCustomer.CustomerID;
+            ViewBag.accounts = context.Accounts
+                .Join(context.Customers, a => a.CustomerID, c => c.CustomerID, (a, c) => new
+                {
+                    a,
+                    c
+                })
+                .Join(context.Services, x => x.a.ServiceID, s => s.ServiceID, (x, s) =>
+                    new AccountViewModel
+                    {
+                        AccountID = x.a.AccountID,
+                        CustomerID = x.a.CustomerID,
+                        CustomerName = x.c.Fullname,
+                        PaymentPlanDetailID = x.a.PaymentPlanDetailID,
+                        ServiceName = s.ServiceName,
+                        Thumbnail = s.Thumbnail,
+                        OrderID = x.a.OrderID,
+                        Status = x.a.Status,
+                        ContactNumber = x.a.ContactNumber,
+                        ConnectQuantity = x.a.ConnectQuantity,
+                        DueDate = x.a.DueDate,
+                        ConnectedAt = x.a.ConnectedAt,
+                    }
+                ).Where(c => c.CustomerID == customerID).ToList();
+
             return View();
         }
     }

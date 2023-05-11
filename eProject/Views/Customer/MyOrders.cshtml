@@ -4,6 +4,7 @@
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/Customer/Profile.css" />
     <link rel="stylesheet" href="~/Content/Css/Customer/MyOrders.css" />
+    <link rel="stylesheet" href="~/Content/Css/Customer/MyConnections.css" />
 }
 @section scripts {
     <script>
@@ -27,6 +28,12 @@
                 List my orders
             </h1>
             <div class="orders">
+                @if (ViewBag.orders.Count == 0)
+                {
+                    <h3 class="orderItem-noRecord">
+                        You have no any order!
+                    </h3>
+                }
                 @foreach (eProject.Models.ViewModels.Order.OrderViewModel order in ViewBag.orders)
                 {
                     <div class="orderItem">

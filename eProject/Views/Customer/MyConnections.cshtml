@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "My Connections";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Customer/Profile.css" />
+    <link rel="stylesheet" href="~/Content/Css/Customer/MyOrders.css" />
+    <link rel="stylesheet" href="~/Content/Css/Customer/MyConnections.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $(".cancelBtn").click(function (e) {
+                if (!confirm("Are you sure you want to cancel that order")) {
+                    e.preventDefault()
+                }
+            })
+        })
+    </script>
+}
+
+<div class="container">
+    <div class="content-main">
+        @{
+            Html.RenderPartial("~/Views/Customer/_ProfileSidebar.cshtml");
+        }
+        <div class="rightContent">
+            <h1 class="rightContent-heading">
+                List my connections
+            </h1>
+            <div class="orders">
+                @if (ViewBag.accounts.Count == 0)
+                {
+                    <h3 class="orderItem-noRecord">
+                        You have no any connection!
+                    </h3>
+                }
+                @foreach (eProject.Models.ViewModels.Account.AccountViewModel account in ViewBag.accounts)
+                {
+                    <div class="orderItem">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img class="orderItem-thumbnail" src="~/Uploads/ServiceThumbnails/@account.Thumbnail" alt="Thumbnail" />
+                            </div>
+                            <div class="col-xl-6">
+                                <h3 class="orderItem-serviceName">
+                                    @account.ServiceName
+                                </h3>
+                                <p class="orderItem-line">
+                                    <i style="color: green;" class="fa-solid fa-rss"></i>
+                                    Status:
+                                    @account.Status
+                                </p>
+                                <p class="orderItem-line">
+                                    <i class="fa-solid fa-phone"></i>
+                                    @account.ContactNumber
+                                </p>
+                                <p class="orderItem-line">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    Connected At:
+                                    @account.ConnectedAt.ToString("dd/MM/yyyy")
+                                </p>
+                                <p class="orderItem-line">
+                                    Connect Quantity:
+                                    @account.ConnectQuantity
+                                </p>
+                                <p class="orderItem-line">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    Due Date:
+                                    @if (DateTime.Now.Date == account.DueDate.Date)
+                                    {
+                                        <span style="color: #a4c639;">Today</span>
+                                    }
+                                    else
+                                    {
+                                        @account.DueDate.ToString("dd/MM/yyyy")
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-xl-2">
+                                <div class="orderItem-actions">
+                                    <a class="orderItem-actionItem" href="/Account/Detail?accountID=@account.AccountID">
+                                        Detail
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
