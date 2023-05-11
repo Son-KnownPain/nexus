@@ -18,6 +18,7 @@ namespace eProject.Models
     {
         public int DiscountID { get; set; }
 
+
         [Required(ErrorMessage = "Discount value value cannot be empty")]
         [Range(0, 100, ErrorMessage = "Value from 0 to 100 percent")]
         [DisplayName("Discount Value")]

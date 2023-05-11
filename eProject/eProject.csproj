@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerFeedbackController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EquipmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
@@ -301,6 +302,8 @@
     <Content Include="Content\Css\AdminCss\Order\CompleteOrder.css" />
     <Content Include="Content\Css\AdminCss\Order\Detail.css" />
     <Content Include="Content\Css\AdminCss\Order\Index.css" />
+    <Content Include="Content\Css\AdminCss\Feedback\Add.css" />
+    <Content Include="Content\Css\AdminCss\Feedback\Index.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Add.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlanDetail\Edit.css" />
     <Content Include="Content\Css\AdminCss\PaymentPlan\Add.css" />
@@ -447,6 +450,8 @@
     <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerFeedback\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerFeedback\Reply.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
