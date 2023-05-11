@@ -1,0 +1,129 @@
+﻿@model eProject.Models.Order
+@{
+    ViewBag.Title = "Order Service";
+
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Order/Detail.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $(".cancelBtn").click(function (e) {
+                if (!confirm("Are you sure you want to cancel that order")) {
+                    e.preventDefault()
+                }
+            })
+        })
+    </script>
+}
+
+<div class="container">
+    <h1 class="page-title">
+        <i class="fa-solid fa-parachute-box"></i>
+        Order View Detail
+    </h1>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="boxSection">
+                <div class="serviceSide">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <img style="width: 100%;" class="service-thumbnail" src="~/Uploads/ServiceThumbnails/260420231603014365_service-thumbnail102911442.png" alt="Service thumbnail" />
+                        </div>
+                        <div class="col-xl-6">
+                            <h2 class="serviceItem-name">
+                                @ViewBag.service.ServiceName
+                            </h2>
+                            <p class="service-line service-summary">
+                                @ViewBag.service.Summary
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="paymentSide">
+                    <h3 class="paymentPlan">
+                        <i class="fa-solid fa-credit-card"></i>
+                        Payment plan of order
+                    </h3>
+
+                    <p class="payment-line">
+                        <i class="fa-regular fa-circle-right"></i>
+                        @ViewBag.pl.PlanName
+                    </p>
+
+                    <p class="payment-line">
+                        <i class="fa-regular fa-circle-right"></i>
+                        @ViewBag.pld.Content
+                    </p>
+
+                    @if (eProject.Helpers.CallChargeHelper.GetCallChargeCount(ViewBag.pld.PaymentPlanDetailID) != 0)
+                    {
+                        <p class="payment-line">
+                            Call charge:
+                        </p>
+
+                        <ul class="callChargeList">
+                            @foreach (var item in eProject.Helpers.CallChargeHelper.GetCallCharge(ViewBag.pld.PaymentPlanDetailID))
+                            {
+                                <li class="callChargeItem">
+                                    @item.CallChargeName: @item.CostPerMinute cents / minute
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="boxSection">
+                <h2 class="order-heading">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Order information
+                </h2>
+                <p class="order-line">
+                    Status:
+                    @Model.Status
+                </p>
+                <p class="order-line">
+                    @Model.Phone
+                </p>
+                <p class="order-line">
+                    <i class="fa-solid fa-location-dot"></i>
+                    @Model.Address
+                </p>
+                <p class="order-line">
+                    <i class="fa-solid fa-location-dot"></i>
+                    @Model.AddressDetail
+                </p>
+                <p class="order-line">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    @Model.OrderDate
+                </p>
+                <p class="order-line">
+                    Connect Quantity:
+                    @Model.ConnectQuantity
+                </p>
+                <p class="order-line">
+                    Deposit:
+                    @if ((Model.Deposit - (Model.Deposit * Model.DepositDiscount)) != Model.Deposit)
+                    {
+                        <s>@Model.Deposit</s>
+                    }
+                    @(Model.Deposit - (Model.Deposit * Model.DepositDiscount))
+                    $
+                </p>
+
+                <div class="order-actions">
+                    @if (Model.Status.Equals("Pending"))
+                    {
+                        <a class="order-actionItem cancelBtn" href="/Order/Cancel?orderID=@Model.OrderID" style="background: #de3163; color: #fff;">
+                            Cancel order
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

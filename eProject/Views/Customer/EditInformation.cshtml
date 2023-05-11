@@ -1,0 +1,49 @@
+﻿@model eProject.Models.ViewModels.Customer.CustomerChangeInfoViewModel
+@{
+    ViewBag.Title = "Change My Password";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Customer/EditPassword.css" />
+}
+
+<div class="container">
+    <h1 class="page-title">
+        Change My Password
+    </h1>
+    <div class="dataBox">
+        @using (Html.BeginForm("UpdateInformation", "Customer", FormMethod.Post, new { @class = "infoForm" }))
+        {
+            @Html.HiddenFor(p => p.CustomerID)
+            @Html.AntiForgeryToken()
+            @Html.HttpMethodOverride("PUT")
+            <div class="form-group">
+                @Html.LabelFor(p => p.Fullname, new { @class = "form-label" })
+                @Html.EditorFor(p => p.Fullname, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter fulname" } })
+                @Html.ValidationMessageFor(p => p.Fullname, null, new { @class = "invalidMessage" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Phone, new { @class = "form-label" })
+                @Html.EditorFor(p => p.Phone, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter phone" } })
+                @Html.ValidationMessageFor(p => p.Phone, null, new { @class = "invalidMessage" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Email, new { @class = "form-label" })
+                @Html.EditorFor(p => p.Email, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter email" } })
+                @Html.ValidationMessageFor(p => p.Email, null, new { @class = "invalidMessage" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Address, new { @class = "form-label" })
+                @Html.EditorFor(p => p.Address, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter address" } })
+                @Html.ValidationMessageFor(p => p.Address, null, new { @class = "invalidMessage" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.AddressDetail, new { @class = "form-label" })
+                @Html.EditorFor(p => p.AddressDetail, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter address detail" } })
+                @Html.ValidationMessageFor(p => p.AddressDetail, null, new { @class = "invalidMessage" })
+            </div>
+            <button class="form-btn">
+                Update information
+            </button>
+        }
+    </div>
+</div>

@@ -69,26 +69,19 @@
     margin-bottom: 0;
 }
 
-
-.connectquantitydiscountRow-actions {
-    margin-top: 40px;
-    padding-left: 70px;
-}
-
 .connectquantitydiscountRow-action {
     display: inline-block;
     font-size: 1.6rem;
-    padding: 8px;
+    padding: 4px 8px;
     border-radius: 4px;
     text-decoration: none;
     color: #333;
     background-color: #e9d66b;
-    margin-top: 8px;
     width: 35%;
     text-align: center;
 }
 
-.connectquantitydiscountRow-action {
+.connectquantitydiscountRow-action:not(:first-child) {
     margin-left: 10px;
 }
 

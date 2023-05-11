@@ -1,6 +1,7 @@
 ﻿@model eProject.Models.ViewModels.Order.OrderRegisterViewModel
 @{ 
     ViewBag.Title = "Order Service";
+
 }
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/Order/Prepare.css" />
@@ -49,18 +50,21 @@
                         @ViewBag.pld.Content
                     </p>
 
-                    <p class="payment-line">
-                        Call charge:
-                    </p>
+                    @if (eProject.Helpers.CallChargeHelper.GetCallChargeCount(ViewBag.pld.PaymentPlanDetailID) != 0)
+                    {
+                        <p class="payment-line">
+                            Call charge:
+                        </p>
 
-                    <ul class="callChargeList">
-                        @foreach (var item in eProject.Helpers.CallChargeHelper.GetCallCharge(ViewBag.pld.PaymentPlanDetailID))
-                        {
-                            <li class="callChargeItem">
-                                @item.CallChargeName: @item.CostPerMinute cents / minute
-                            </li>
-                        }
-                    </ul>
+                        <ul class="callChargeList">
+                            @foreach (var item in eProject.Helpers.CallChargeHelper.GetCallCharge(ViewBag.pld.PaymentPlanDetailID))
+                            {
+                                <li class="callChargeItem">
+                                    @item.CallChargeName: @item.CostPerMinute cents / minute
+                                </li>
+                            }
+                        </ul>
+                    }
                 </div>
             </div>
         </div>
@@ -73,7 +77,7 @@
                     @Html.HiddenFor(a => a.PaymentPlanDetailID, new { @Value = ViewBag.pld.PaymentPlanDetailID })
                     <div class="form-group">
                         @Html.LabelFor(a => a.Fullname, new { @class = "form-label" })
-                        @Html.EditorFor(a => a.Fullname, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.EditorFor(a => a.Fullname, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your fullname" } })
                         @Html.ValidationMessageFor(a => a.Fullname, null, new { @class = "invalidMessage" })
                     </div>
                     <div class="form-group">
@@ -93,25 +97,33 @@
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(a => a.ConnectQuantity, new { @class = "form-label" })
-                        @Html.EditorFor(a => a.ConnectQuantity, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
+                        @Html.EditorFor(a => a.ConnectQuantity, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter connect quantity", @Value = 1 } })
                         @Html.ValidationMessageFor(a => a.ConnectQuantity, null, new { @class = "invalidMessage" })
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(a => a.Email, new { @class = "form-label" })
-                        @Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
-                        @Html.ValidationMessageFor(a => a.Email, null, new { @class = "invalidMessage" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(a => a.Password, new { @class = "form-label" })
-                        @Html.EditorFor(a => a.Password, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
-                        @Html.ValidationMessageFor(a => a.Password, null, new { @class = "invalidMessage" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(a => a.PasswordConfirm, new { @class = "form-label" })
-                        @Html.EditorFor(a => a.PasswordConfirm, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your address detail" } })
-                        @Html.ValidationMessageFor(a => a.PasswordConfirm, null, new { @class = "invalidMessage" })
-                    </div>
-
+                    if (!eProject.Auth.AuthManager.IsCustomerAuthenticated)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(a => a.Email, new { @class = "form-label" })
+                            @Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter your email" } })
+                            @Html.ValidationMessageFor(a => a.Email, null, new { @class = "invalidMessage" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(a => a.Password, new { @class = "form-label" })
+                            @Html.EditorFor(a => a.Password, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter password" } })
+                            @Html.ValidationMessageFor(a => a.Password, null, new { @class = "invalidMessage" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(a => a.PasswordConfirm, new { @class = "form-label" })
+                            @Html.EditorFor(a => a.PasswordConfirm, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter confirm password" } })
+                            @Html.ValidationMessageFor(a => a.PasswordConfirm, null, new { @class = "invalidMessage" })
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(a => a.Email)
+                        @Html.HiddenFor(a => a.Password, new { @Value = "random" })
+                        @Html.HiddenFor(a => a.PasswordConfirm, new { @Value = "random" })
+                    }
                     <button class="form-btn">Order</button>
                 }
             </div>

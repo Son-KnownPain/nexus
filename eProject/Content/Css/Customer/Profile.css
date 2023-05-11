@@ -1,0 +1,127 @@
+﻿.content-main {
+    background-color: #303030;
+    border-radius: 4px;
+    box-shadow: 0 0 6px #ffffff11;
+    padding: 8px;
+    display: flex;
+}
+
+.leftSidebar {
+    border-right: 1px solid #444;
+    width: 25%;
+}
+
+.leftSidebar-heading {
+    font-size: 1.3rem;
+    color: var(--grey);
+    margin-bottom: 0;
+}
+
+.leftSidebar-nav {
+    display: block;
+    margin-top: 12px;
+    padding: 12px;
+}
+
+.leftSidebar-navItem {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 300;
+    text-decoration: none;
+    color: var(--grey);
+    transition: all ease-out .15s;
+}
+.leftSidebar-navItem:not(:first-child) {
+    margin-top: 12px;
+}
+.leftSidebar-navItem:hover {
+    color: var(--primary);
+    padding-left: 4px;
+}
+
+.rightContent {
+    flex: 1;
+    padding: 12px;
+}
+
+.profile-avatar {
+    width: 100%;
+    padding-top: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    box-shadow: 0 0 4px #ffffff44;
+}
+
+.profile-avatar.new {
+    border: 3px solid #7fffd4;
+}
+
+.profile-info {
+    padding: 12px;
+}
+
+.profile-fullname {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.profile-line {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--grey);
+    margin-top: 16px;
+}
+
+.profile-rightActions {
+    padding: 12px;
+}
+
+.profile-rightActionItem {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--grey);
+    padding: 8px;
+    display: block;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+}
+
+.profile-rightActionItem i {
+    color: #333;
+}
+
+.profile-rightActionItem:not(:first-child) {
+    margin-top: 12px;
+}
+
+/* Change avatar */
+.avatarForm {
+    font-size: 1.6rem;
+    padding: 12px 0;
+    margin-top: 16px;
+}
+
+#avatarFileLabel {
+    background-color: #f2f3f4;
+    color: #333;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#avatarFileLabel i {
+    color: #333;
+}
+
+#avatarChangeSubmitBtn {
+    background-color: #f5f5dc;
+    color: #333;
+    border-radius: 4px;
+    padding: 8px 12px;
+}

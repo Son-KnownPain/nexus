@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "My Orders";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Customer/Profile.css" />
+    <link rel="stylesheet" href="~/Content/Css/Customer/MyOrders.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $(".cancelBtn").click(function (e) {
+                if (!confirm("Are you sure you want to cancel that order")) {
+                    e.preventDefault()
+                }
+            })
+        })
+    </script>
+}
+
+<div class="container">
+    <div class="content-main">
+        @{
+            Html.RenderPartial("~/Views/Customer/_ProfileSidebar.cshtml");
+        }
+        <div class="rightContent">
+            <h1 class="rightContent-heading">
+                List my orders
+            </h1>
+            <div class="orders">
+                @foreach (eProject.Models.ViewModels.Order.OrderViewModel order in ViewBag.orders)
+                {
+                    <div class="orderItem">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img class="orderItem-thumbnail" src="~/Uploads/ServiceThumbnails/@order.Thumbnail" alt="Thumbnail" />
+                            </div>
+                            <div class="col-xl-6">
+                                <h3 class="orderItem-serviceName">
+                                    @order.ServiceName
+                                </h3>
+                                <p class="orderItem-line">
+                                    Status:
+                                    @order.Status
+                                    @if (order.Status.Equals("Pending"))
+                                    {
+                                        <i class="fa-regular fa-circle-pause"></i>
+                                    }
+                                    else if (order.Status.Equals("Customer has canceled"))
+                                    {
+                                        <i class="fa-solid fa-xmark"></i>
+                                    }
+                                </p>
+                                <p class="orderItem-line orderItem-address">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    @order.Address
+                                </p>
+                                <p class="orderItem-line orderItem-address">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    @order.AddressDetail
+                                </p>
+                                <p class="orderItem-line">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    @order.OrderDate.ToString("dd/MM/yyyy")
+                                </p>
+                                <p class="orderItem-line">
+                                    Connect Quantity:
+                                    @order.ConnectQuantity
+                                </p>
+                            </div>
+                            <div class="col-xl-2">
+                                <div class="orderItem-actions">
+                                    <a class="orderItem-actionItem" href="/Order/Detail?orderID=@order.OrderID">
+                                        Detail
+                                    </a>
+                                    @if (order.Status.Equals("Pending"))
+                                    {
+                                        <a class="orderItem-actionItem cancelBtn" href="/Order/Cancel?orderID=@order.OrderID" style="background: #de3163; color: #fff;">
+                                            Cancel order
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
