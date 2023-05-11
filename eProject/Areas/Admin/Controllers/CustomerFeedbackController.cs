@@ -79,5 +79,30 @@ namespace eProject.Areas.Admin.Controllers
             TempData["Success"] = "Successfully delete customer feedback";
             return RedirectToAction("Index");
         }
+
+        public ActionResult Search(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ViewBag.feedbackList = (from c in context.CustomerFeedbacks join e in context.Employees on c.EmployeeID equals e.EmployeeID select new CustomerFeedbackViewModel
+                    {
+                        CustomerFeedbackID = c.CustomerFeedbackID,
+                        EmployeeID = e.EmployeeID,
+                        AccountID = c.AccountID,
+                        Content = c.Content,
+                        ReplyContent = c.ReplyContent,
+                        FeedbackAt = c.FeedbackAt,
+                        Avatar = e.Avatar,
+                        Fullname = e.Fullname,
+                    }).Where(c=>c.Content.Contains(keyword)).ToList();
+            }
+            else
+            {
+                TempData["Error"] = "No keyword entered, please enter your keyword";
+                return RedirectToAction("Index");
+            }
+
+            return View("Index");
+        }
     }
 }

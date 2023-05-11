@@ -10,17 +10,17 @@
 <h1 class="page-title">
     Customer feedback management
 </h1>
-@*<nav class="topNav">
-    <div class="searchFilterBox">
-        @using (Html.BeginForm("Search", "", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+<nav class="topNav">
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "CustomerFeedback", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
         {
-            <div class="searchInputBox">
-                <input class="searchInput" type="text" name="searchValue" placeholder="Enter contactName, content,.." />
-                <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            <input class="searchForm-input" name="keyword" placeholder="Enter content, ..." />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         }
     </div>
-</nav>*@
+</nav>
 <div class="dataBox">
     <h3 class="dataBox-heading">
         List of customer feedback
