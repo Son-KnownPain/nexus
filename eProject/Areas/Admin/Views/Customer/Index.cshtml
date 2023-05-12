@@ -2,12 +2,12 @@
     ViewBag.Title = "Employee Management";
 }
 @section styles {
-    <link rel="stylesheet" href="~/Content/Css/AdminCss/Employee/Index.css" />
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Customer/Index.css" />
 }
 @section scripts {
     <script>
         $(function () {
-            $("#deleteEmployeeBtn").click(function (e) {
+            $(".deleteCustomerBtn").click(function (e) {
                 if (!confirm("Are you sure you want to delete that employee")) {
                     e.preventDefault();
                 }
@@ -17,15 +17,11 @@
 }
 
 <h1 class="page-title">
-    Employee Management
+    Customer Management
 </h1>
 <nav class="topNav">
-    <a class="topNav-btnItem" href="/Admin/Employee/Add">
-        <i class="fa-solid fa-plus"></i>
-        Add new employee
-    </a>
     <div class="topNav-search">
-        @using (Html.BeginForm("Search", "Employee", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        @using (Html.BeginForm("Search", "Customer", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
         {
             @Html.AntiForgeryToken()
             <input class="searchForm-input" name="keyword" placeholder="Enter name, phone,..." />
@@ -37,44 +33,32 @@
 </nav>
 <div class="dataBox">
     <h3 class="dataBox-heading">
-        List employee
+        List customer
     </h3>
 
     <div class="persons">
-        @foreach (eProject.Models.Employee employee in ViewBag.employees)
+        @foreach (eProject.Models.Customer customer in ViewBag.customers)
         {
             <div class="personItem">
                 <div class="row">
                     <div class="col-xl-2">
-                        <div class="personItem-avt" style="background-image: url('/Uploads/EmployeeAvatars/@employee.Avatar');"></div>
+                        <div class="personItem-avt" style="background-image: url('/Uploads/CustomerAvatars/@customer.Avatar');"></div>
                     </div>
                     <div class="col-xl-8">
                         <div class="personItem-body">
                             <h2 class="personItem-name">
-                                @employee.Fullname
-                                @if (employee.StillWorking)
-                                {
-                                    <span class="personItem-status work">
-                                        Still working
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span class="personItem-status">
-                                        Quit job
-                                    </span>
-                                }
+                                @customer.Fullname
                             </h2>
                             <div class="row">
                                 <div class="col-xl-6">
                                     <p class="personItem-line">
                                         <i class="fa-solid fa-phone"></i>
-                                        @employee.Phone
+                                        @customer.Phone
                                     </p>
                                 </div>
                                 <div class="col-xl-6">
                                     <p class="personItem-line">
-                                        Join work date: @employee.CreatedAt.ToString("dd/MM/yyyy")
+                                        Created date: @customer.CreatedAt.ToString("dd/MM/yyyy")
                                     </p>
                                 </div>
                             </div>
@@ -82,48 +66,36 @@
                                 <div class="col-xl-6">
                                     <p class="personItem-line">
                                         <i class="fa-solid fa-paper-plane"></i>
-                                        @employee.Email
+                                        @customer.Email
                                     </p>
                                 </div>
                                 <div class="col-xl-6">
                                     <p class="personItem-line">
-                                        Updated date: @employee.UpdatedAt.ToString("dd/MM/yyyy")
+                                        Updated date: @customer.UpdatedAt.ToString("dd/MM/yyyy")
                                     </p>
                                 </div>
                             </div>
                             <p class="personItem-line">
                                 <i class="fa-solid fa-location-dot"></i>
-                                @employee.Address
+                                @customer.Address
                             </p>
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <p class="personItem-line">
-                                        <i class="fa-solid fa-clipboard-user"></i>
-                                        @employee.Department
-                                    </p>
-                                </div>
-                                <div class="col-xl-6">
-                                    @if (employee.Role == eProject.Auth.AuthManager.EmployeeRoles.AdminRole)
-                                    {
-                                        <p class="personItem-adminLine">
-                                            Admin
-                                        </p>
-                                    }
-                                </div>
-                            </div>
+                            <p class="personItem-line">
+                                <i class="fa-solid fa-location-dot"></i>
+                                @customer.AddressDetail
+                            </p>
                         </div>
                     </div>
                     <div class="col-xl-2">
                         <div class="personItem-actions">
-                            <a href="/Admin/Employee/Edit?employeeID=@employee.EmployeeID" class="personItem-actionItem edit">
+                            <a href="/Admin/Customer/Edit?customerID=@customer.CustomerID" class="personItem-actionItem edit">
                                 Edit
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
-                            <a href="/Admin/Employee/Delete?employeeID=@employee.EmployeeID" class="personItem-actionItem delete" id="deleteEmployeeBtn">
+                            <a href="#" class="personItem-actionItem delete deleteCustomerBtn">
                                 Delete
                                 <i class="fa-solid fa-trash"></i>
                             </a>
-                            <a href="/Admin/Employee/ChangePassword?employeeID=@employee.EmployeeID" class="personItem-actionItem" id="deleteEmployeeBtn">
+                            <a href="/Admin/Customer/ChangePassword?customerID=@customer.CustomerID" class="personItem-actionItem">
                                 Change Password
                                 <i class="fa-solid fa-ellipsis"></i>
                             </a>

@@ -1,0 +1,120 @@
+﻿.form-group {
+    padding: 12px 0;
+}
+
+.form-label, .form-input, .form-btn {
+    font-size: 1.6rem;
+}
+
+.form-label {
+    display: block;
+}
+
+.form-input {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    color: #333;
+    outline: none;
+}
+
+.form-btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #333;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+    margin-top: 16px;
+}
+
+.form-btn:hover {
+    opacity: .8;
+}
+
+.invalidMessage {
+    font-size: 1.6rem;
+    color: red;
+    animation: ringring ease-out .3s;
+}
+
+@keyframes ringring {
+    0% {
+        margin-left: 0;
+    }
+
+    25% {
+        margin-left: 10px;
+    }
+
+    50% {
+        margin-left: -10px;
+    }
+
+    75% {
+        margin-left: 10px;
+    }
+
+    100% {
+        margin-left: -10px;
+    }
+}
+
+/* Feedback */
+.feedbacks-title {
+    font-size: 1.4rem;
+    color: var(--grey);
+}
+
+.feedbacks {
+    margin-top: 12px;
+}
+
+.feedbackItem {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px #ffffff55;
+}
+
+.feedbackItem-date {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.feedbackItem-content {
+    margin-top: 12px;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--grey);
+}
+
+.feedbackItem-replyBox {
+    margin-top: 12px;
+    margin-left: 12px;
+    background-color: #313131;
+    border-radius: 2px;
+    padding: 8px;
+}
+
+.feedbackItem-replyBox * {
+    color: #f2f3f4;
+    font-size: 1.6rem;
+}
+
+.feedbackItem-replyBox h2 {
+    font-size: 2rem;
+}
+
+.feedbackItem-replyBox h3 {
+    font-size: 2.4rem;
+}
+
+.feedbackItem-replyBox h3 {
+    font-size: 2.8rem;
+}

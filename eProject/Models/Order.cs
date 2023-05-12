@@ -11,7 +11,8 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,6 +26,23 @@ namespace eProject.Models
         public int CustomerID { get; set; }
         public int PaymentPlanDetailID { get; set; }
         public string Status { get; set; }
+        public IEnumerable<SelectListItem> StatusList
+        {
+            get
+            {
+                return new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Pending", Value = "Pending" },
+                    new SelectListItem { Text = "Preparing order", Value = "Preparing order" },
+                    new SelectListItem { Text = "Delivery in progress", Value = "Delivery in progress" },
+                    new SelectListItem { Text = "The order has been completed", Value = "The order has been completed" },
+                    new SelectListItem { Text = "Has been canceled by admin", Value = "Has been canceled by admin" },
+                    new SelectListItem { Text = "Canceled due to unfeasible", Value = "Canceled due to unfeasible" },
+                    new SelectListItem { Text = "Canceled due to invalid order information", Value = "Canceled due to invalid order information" },
+                    new SelectListItem { Text = "Customer has canceled", Value = "Customer has canceled" },
+                };
+            }
+        }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string AddressDetail { get; set; }

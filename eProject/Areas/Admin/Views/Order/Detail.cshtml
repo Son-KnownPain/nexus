@@ -1,10 +1,10 @@
 ﻿@model eProject.Models.Order
 @{
     ViewBag.Title = "Order Service";
-
+    eProject.Models.Order tempModel = new eProject.Models.Order();
 }
 @section styles {
-    <link rel="stylesheet" href="~/Content/Css/Order/Detail.css" />
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Order/Detail.css" />
 }
 @section scripts {
     <script>
@@ -30,7 +30,7 @@
                 <div class="serviceSide">
                     <div class="row">
                         <div class="col-xl-6">
-                            <img style="width: 100%;" class="service-thumbnail" src="~/Uploads/ServiceThumbnails/260420231603014365_service-thumbnail102911442.png" alt="Service thumbnail" />
+                            <img style="width: 100%;" class="service-thumbnail" src="~/Uploads/ServiceThumbnails/@ViewBag.service.Thumbnail" alt="Service thumbnail" />
                         </div>
                         <div class="col-xl-6">
                             <h2 class="serviceItem-name">
@@ -82,11 +82,17 @@
                     <i class="fa-solid fa-circle-info"></i>
                     Order information
                 </h2>
+
+                @if (ViewBag.customer != null)
+                {
+                    <p class="order-line">
+                        <i class="fa-solid fa-user-tie"></i>
+                        Customer:
+                        @ViewBag.customer.Fullname
+                    </p>
+                }
                 <p class="order-line">
-                    Status:
-                    @Model.Status
-                </p>
-                <p class="order-line">
+                    <i class="fa-solid fa-phone"></i>
                     @Model.Phone
                 </p>
                 <p class="order-line">
@@ -114,16 +120,30 @@
                     @(Model.Deposit - (Model.Deposit * Model.DepositDiscount))
                     $
                 </p>
+                @using (Html.BeginForm("ChangeStatus", "Order", new { area = "Admin" }, FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.OrderID)
+                    @Html.HttpMethodOverride("PUT")
+                    @Html.AntiForgeryToken()
+                    <div class="form-info">
+                        @Html.LabelFor(m => m.Status, new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.Status, tempModel.StatusList, new { @class = "form-dropDownList" })
+                    </div>
+                    <button class="form-btn">
+                        Change status
+                    </button>
+                }
 
                 <div class="order-actions">
-                    @if (Model.Status.Equals("Pending"))
-                    {
-                        <a class="order-actionItem cancelBtn" href="/Order/Cancel?orderID=@Model.OrderID" style="background: #de3163; color: #fff;">
-                            Cancel order
-                        </a>
-                    }
+                    <a class="order-actionItem" href="/Admin/Order/CompleteOrder?orderID=@Model.OrderID" style="background: #00cc99; color: #fff;">
+                        Complete order
+                    </a>
+                    <a class="order-actionItem" href="/Admin/Order/" style="background: #ffbf00; color: #333;">
+                        Back
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

@@ -1,0 +1,159 @@
+﻿.content-main {
+    padding: 12px;
+}
+
+.boxSection {
+    border-radius: 4px;
+    box-shadow: 0 0 6px #77777755;
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.serviceItem-name {
+    font-size: 2.8rem;
+    color: var(--grey);
+}
+
+.service-line {
+    font-size: 1.6rem;
+    color: var(--grey);
+    font-weight: 300;
+}
+
+.service-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.paymentSide {
+    margin-top: 18px;
+}
+
+.paymentPlan {
+    font-size: 2rem;
+}
+
+.payment-line {
+    font-size: 1.6rem;
+    color: var(--grey);
+    font-weight: 300;
+    margin-top: 12px;
+}
+
+.callChargeItem {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+/* Form */
+.form-group {
+    padding: 12px 0;
+}
+
+.form-info {
+    border: 1px solid #555555;
+    padding: 8px;
+    border-radius: 2px;
+    margin: 12px 0;
+}
+
+.form-label, .form-input, .form-btn, .form-dropDownList {
+    font-size: 1.6rem;
+}
+
+.form-label {
+    display: block;
+}
+
+.form-input, .form-dropDownList {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    color: #333;
+    outline: none;
+}
+
+    .form-dropDownList option {
+        color: #333;
+    }
+
+.form-btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #333;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+    margin-top: 16px;
+}
+
+.invalidMessage {
+    font-size: 1.6rem;
+    color: red;
+    animation: ringring ease-out .3s;
+}
+
+@keyframes ringring {
+    0% {
+        margin-left: 0;
+    }
+
+    25% {
+        margin-left: 10px;
+    }
+
+    50% {
+        margin-left: -10px;
+    }
+
+    75% {
+        margin-left: 10px;
+    }
+
+    100% {
+        margin-left: -10px;
+    }
+}
+
+/* Order */
+.order-heading {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.order-line {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--grey);
+}
+
+.order-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-actionItem {
+    font-size: 1.6rem;
+    font-weight: 400;
+    background-color: #f2f3f4;
+    color: #333;
+    padding: 6px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+    .order-actionItem:not(:first-child) {
+        margin-left: 12px;
+    }
+
+    .order-actionItem:hover {
+        color: #333;
+        opacity: .85;
+    }

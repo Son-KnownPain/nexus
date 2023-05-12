@@ -193,19 +193,13 @@ namespace eProject.Controllers
             try
             {
                 context.Orders.Add(order);
-                if (!AuthManager.IsCustomerAuthenticated)
-                {
-                    context.Customers.Add(customer);
-                }
+                context.Customers.Add(customer);
                 context.SaveChanges();
             }
             catch (Exception e)
             {
                 context.Orders.Remove(order);
-                if (!AuthManager.IsCustomerAuthenticated)
-                {
-                    context.Customers.Remove(customer);
-                }
+                context.Customers.Remove(customer);
                 return Store(data);
             }
 

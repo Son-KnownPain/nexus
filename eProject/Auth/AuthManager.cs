@@ -151,19 +151,19 @@ namespace eProject.Auth
         {
             public static bool IsRetailStoreEmployeeRole
             {
-                get => GetEmployee.Role == EmployeeRoles.RetailStoreEmployeeRole;
+                get => GetEmployee != null && GetEmployee.Role == EmployeeRoles.RetailStoreEmployeeRole;
             }
             public static bool IsTechnicalEmployeeRole
             {
-                get => GetEmployee.Role == EmployeeRoles.TechnicalEmployeeRole;
+                get => GetEmployee != null && GetEmployee.Role == EmployeeRoles.TechnicalEmployeeRole;
             }
             public static bool IsAccountEmployeeRole
             {
-                get => GetEmployee.Role == EmployeeRoles.AccountEmployeeRole;
+                get => GetEmployee != null && GetEmployee.Role == EmployeeRoles.AccountEmployeeRole;
             }
             public static bool IsAdmin
             {
-                get => GetEmployee.Role == EmployeeRoles.AdminRole;
+                get => GetEmployee != null && GetEmployee.Role == EmployeeRoles.AdminRole;
             }
             public static Employee GetEmployee
             {

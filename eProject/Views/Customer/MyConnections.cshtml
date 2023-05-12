@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "My Orders";
+    ViewBag.Title = "My Connections";
 }
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/Customer/Profile.css" />
@@ -25,66 +25,62 @@
         }
         <div class="rightContent">
             <h1 class="rightContent-heading">
-                List my orders
+                List my connections
             </h1>
             <div class="orders">
-                @if (ViewBag.orders.Count == 0)
+                @if (ViewBag.accounts.Count == 0)
                 {
                     <h3 class="orderItem-noRecord">
-                        You have no any order!
+                        You have no any connection!
                     </h3>
                 }
-                @foreach (eProject.Models.ViewModels.Order.OrderViewModel order in ViewBag.orders)
+                @foreach (eProject.Models.ViewModels.Account.AccountViewModel account in ViewBag.accounts)
                 {
                     <div class="orderItem">
                         <div class="row">
                             <div class="col-xl-4">
-                                <img class="orderItem-thumbnail" src="~/Uploads/ServiceThumbnails/@order.Thumbnail" alt="Thumbnail" />
+                                <img class="orderItem-thumbnail" src="~/Uploads/ServiceThumbnails/@account.Thumbnail" alt="Thumbnail" />
                             </div>
                             <div class="col-xl-6">
                                 <h3 class="orderItem-serviceName">
-                                    @order.ServiceName
+                                    @account.ServiceName
                                 </h3>
                                 <p class="orderItem-line">
+                                    <i style="color: green;" class="fa-solid fa-rss"></i>
                                     Status:
-                                    @order.Status
-                                    @if (order.Status.Equals("Pending"))
-                                    {
-                                        <i class="fa-regular fa-circle-pause"></i>
-                                    }
-                                    else if (order.Status.Equals("Customer has canceled"))
-                                    {
-                                        <i class="fa-solid fa-xmark"></i>
-                                    }
+                                    @account.Status
                                 </p>
-                                <p class="orderItem-line orderItem-address">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    @order.Address
-                                </p>
-                                <p class="orderItem-line orderItem-address">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    @order.AddressDetail
+                                <p class="orderItem-line">
+                                    <i class="fa-solid fa-phone"></i>
+                                    @account.ContactNumber
                                 </p>
                                 <p class="orderItem-line">
                                     <i class="fa-solid fa-calendar-days"></i>
-                                    @order.OrderDate.ToString("dd/MM/yyyy")
+                                    Connected At:
+                                    @account.ConnectedAt.ToString("dd/MM/yyyy")
                                 </p>
                                 <p class="orderItem-line">
                                     Connect Quantity:
-                                    @order.ConnectQuantity
+                                    @account.ConnectQuantity
+                                </p>
+                                <p class="orderItem-line">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    Due Date:
+                                    @if (DateTime.Now.Date == account.DueDate.Date)
+                                    {
+                                        <span style="color: #a4c639;">Today</span>
+                                    }
+                                    else
+                                    {
+                                        @account.DueDate.ToString("dd/MM/yyyy")
+                                    }
                                 </p>
                             </div>
                             <div class="col-xl-2">
                                 <div class="orderItem-actions">
-                                    <a class="orderItem-actionItem" href="/Order/Detail?orderID=@order.OrderID">
+                                    <a class="orderItem-actionItem" href="/Account/Detail?accountID=@account.AccountID">
                                         Detail
                                     </a>
-                                    @if (order.Status.Equals("Pending"))
-                                    {
-                                        <a class="orderItem-actionItem cancelBtn" href="/Order/Cancel?orderID=@order.OrderID" style="background: #de3163; color: #fff;">
-                                            Cancel order
-                                        </a>
-                                    }
                                 </div>
                             </div>
                         </div>

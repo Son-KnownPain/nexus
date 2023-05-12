@@ -5,12 +5,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
-namespace eProject.Models
+namespace eProject.Models.ViewModels.Customer
 {
-    public class PasswordEditViewModel
+    public class CustomerPasswordEditViewModel
     {
-        [Required(ErrorMessage = "Employee ID is require")]
-        public int EmployeeID { get; set; }
+        [Required(ErrorMessage = "CustomerID is require")]
+        public int CustomerID { get; set; }
 
         [Required(ErrorMessage = "New password is require")]
         [DisplayName("New Password")]

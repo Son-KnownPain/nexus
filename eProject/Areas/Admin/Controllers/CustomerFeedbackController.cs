@@ -18,7 +18,7 @@ namespace eProject.Areas.Admin.Controllers
         // GET: Admin/CustomerFeedback
         public ActionResult Index()
         {
-            ViewBag.feedbackList = (from c in context.CustomerFeedbacks join e in context.Employees on c.EmployeeID equals e.EmployeeID select new CustomerFeedbackViewModel
+            ViewBag.feedbackList = (from c in context.CustomerFeedbacks join e in context.Employees on c.EmployeeID equals e.EmployeeID select new FeedbackReplyModel
             {
                 CustomerFeedbackID = c.CustomerFeedbackID,
                 EmployeeID = e.EmployeeID,
@@ -36,7 +36,7 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (customerFeedbackID == null) return RedirectToAction("Index");
 
-            CustomerFeedbackViewModel viewModel = context.CustomerFeedbacks.Join(context.Employees, c => c.EmployeeID, e => e.EmployeeID, (c, e) => new CustomerFeedbackViewModel
+            FeedbackReplyModel viewModel = context.CustomerFeedbacks.Join(context.Employees, c => c.EmployeeID, e => e.EmployeeID, (c, e) => new FeedbackReplyModel
             {
                 CustomerFeedbackID = c.CustomerFeedbackID,
                 ReplyContent = c.ReplyContent,
@@ -48,7 +48,7 @@ namespace eProject.Areas.Admin.Controllers
         }
 
         [ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult ReplyStore(CustomerFeedbackViewModel customerFeedback)
+        public ActionResult ReplyStore(FeedbackReplyModel customerFeedback)
         {
 
             if (!ModelState.IsValid) return View("Reply");
@@ -84,8 +84,8 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!string.IsNullOrEmpty(keyword))
             {
-                ViewBag.feedbackList = (from c in context.CustomerFeedbacks join e in context.Employees on c.EmployeeID equals e.EmployeeID select new CustomerFeedbackViewModel
-                    {
+                ViewBag.feedbackList = (from c in context.CustomerFeedbacks join e in context.Employees on c.EmployeeID equals e.EmployeeID select new FeedbackReplyModel
+                {
                         CustomerFeedbackID = c.CustomerFeedbackID,
                         EmployeeID = e.EmployeeID,
                         AccountID = c.AccountID,

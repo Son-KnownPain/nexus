@@ -109,12 +109,12 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(a => a.Password, new { @class = "form-label" })
-                            @Html.EditorFor(a => a.Password, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter password" } })
+                            @Html.PasswordFor(a => a.Password, new { @class = "form-input", placeHolder = "Enter password" })
                             @Html.ValidationMessageFor(a => a.Password, null, new { @class = "invalidMessage" })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(a => a.PasswordConfirm, new { @class = "form-label" })
-                            @Html.EditorFor(a => a.PasswordConfirm, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter confirm password" } })
+                            @Html.PasswordFor(a => a.PasswordConfirm, new { @class = "form-input", placeHolder = "Enter confirm password" })
                             @Html.ValidationMessageFor(a => a.PasswordConfirm, null, new { @class = "invalidMessage" })
                         </div>
                     }

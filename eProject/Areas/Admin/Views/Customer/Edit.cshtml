@@ -1,0 +1,73 @@
+﻿@model eProject.Models.ViewModels.Customer.CustomerEditViewModel
+@{
+    ViewBag.Title = "Edit customer information";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Customer/Edit.css" />
+}
+
+<h1 class="page-title">
+    Edit Customer Information
+</h1>
+
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/Employee/ChangePassword?employeeID=@Model.CustomerID">
+        Change Password
+    </a>
+</nav>
+
+@using (Html.BeginForm("Update", "Customer", new { area = "Admin" }, FormMethod.Post, new { @class = "serviceForm", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(e => e.CustomerID)
+    @Html.AntiForgeryToken()
+    @Html.HttpMethodOverride("PUT")
+    <div class="form-group">
+        @Html.LabelFor(e => e.Fullname, new { @class = "form-label" })
+        @Html.EditorFor(e => e.Fullname, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter name" } })
+        @Html.ValidationMessageFor(e => e.Fullname, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Phone, new { @class = "form-label" })
+        @Html.EditorFor(e => e.Phone, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter phone" } })
+        @Html.ValidationMessageFor(e => e.Phone, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Email, new { @class = "form-label" })
+        @Html.EditorFor(e => e.Email, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter email" } })
+        @Html.ValidationMessageFor(e => e.Email, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Address, new { @class = "form-label" })
+        @Html.EditorFor(e => e.Address, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter address" } })
+        @Html.ValidationMessageFor(e => e.Address, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.AddressDetail, new { @class = "form-label" })
+        @Html.EditorFor(e => e.AddressDetail, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter address" } })
+        @Html.ValidationMessageFor(e => e.AddressDetail, null, new { @class = "invalidMessage" })
+    </div>
+    <div class="form-group">
+        <label class="form-label">Avatar</label>
+        <img id="previewThumbnail" src="~/Uploads/CustomerAvatars/@Model.Avatar" alt="THumbnail preview" />
+        <input type="file" name="AvatarFile" class="form-inputFile" id="thumbnailFileInput" />
+    </div>
+    <button class="form-btn">
+        Update
+    </button>
+}
+
+@section scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script>
+        // Handle preview thumbnail
+        const imgFileInput = document.querySelector("#thumbnailFileInput");
+        imgFileInput.onchange = e => {
+            const [file] = imgFileInput.files;
+            if (file) {
+                const imgPreview = document.querySelector("#previewThumbnail");
+                imgPreview.src = URL.createObjectURL(file);
+                imgPreview.style.display = "block";
+            }
+        }
+    </script>
+}

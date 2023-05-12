@@ -1,0 +1,51 @@
+﻿@model eProject.Models.ViewModels.CustomerFeedback.CustomerFeedbackViewModel
+@{
+    ViewBag.Title = "Feedback";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/Account/Feedback.css" />
+}
+
+<div class="container">
+    <h1 class="page-title">
+        Feedback
+    </h1>
+
+    @using(Html.BeginForm("FeedbackStore", "Account", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.AccountID)
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => m.Content, new { @class = "form-label" })
+            @Html.TextAreaFor(m => m.Content, new { @class = "form-input", placeHolder = "Enter content" })
+            @Html.ValidationMessageFor(m => m.Content, null, new { @class = "invalidMessage" })
+        </div>
+        <button class="form-btn">
+            Feedback
+        </button>
+    }
+
+    <h3 class="feedbacks-title">
+        Feedbacks you sent
+    </h3>
+
+    <div class="feedbacks">
+        @foreach (eProject.Models.CustomerFeedback feedback in ViewBag.feedbacks)
+        {
+            <div class="feedbackItem">
+                <p class="feedbackItem-date">
+                    Sent at @feedback.FeedbackAt.ToString("dd/MM/yyyy")
+                </p>
+                <p class="feedbackItem-content">
+                    @feedback.Content
+                </p>
+                @if (!feedback.ReplyContent.IsEmpty())
+                {
+                    <div class="feedbackItem-replyBox">
+                        <p>Thank you, sir!</p>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

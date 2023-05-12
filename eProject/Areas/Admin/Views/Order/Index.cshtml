@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Order Management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Order/Index.css" />
+}
+
+<h1 class="page-title">
+    Order Management
+</h1>
+<nav class="topNav">
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "Order", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            <input class="searchForm-input" name="keyword" placeholder="Enter order id" />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List order
+    </h3>
+
+    <div class="orders">
+        @foreach (eProject.Models.ViewModels.Order.OrderViewModel order in ViewBag.orders)
+        {
+            <div class="orderItem">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <img class="orderItem-thumbnail" src="~/Uploads/ServiceThumbnails/@order.Thumbnail" alt="Thumbnail" />
+                    </div>
+                    <div class="col-xl-6">
+                        <h3 class="orderItem-serviceName">
+                            @order.ServiceName
+                        </h3>
+                        <p class="orderItem-line">
+                            Status:
+                            @order.Status
+                            @if (order.Status.Equals("Pending"))
+                            {
+                                <i style="color: #ffe135;" class="fa-regular fa-circle-pause"></i>
+                            }
+                            else if (order.Status.Equals("Customer has canceled"))
+                            {
+                                <i style="color: #ff2052;" class="fa-solid fa-xmark"></i>
+                            }
+                            else if (order.Status.Equals("The order has been completed"))
+                            {
+                                <i style="color: #66ff00;" class="fa-solid fa-circle-check"></i>
+                            }
+                        </p>
+                        <p class="orderItem-line orderItem-address">
+                            Order ID:
+                            @order.OrderID
+                        </p>
+                        <p class="orderItem-line orderItem-address">
+                            <i class="fa-solid fa-location-dot"></i>
+                            @order.Address
+                        </p>
+                        <p class="orderItem-line orderItem-address">
+                            <i class="fa-solid fa-location-dot"></i>
+                            @order.AddressDetail
+                        </p>
+                        <p class="orderItem-line">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            @order.OrderDate.ToString("dd/MM/yyyy")
+                        </p>
+                        <p class="orderItem-line">
+                            Connect Quantity:
+                            @order.ConnectQuantity
+                        </p>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="orderItem-actions">
+                            <a class="orderItem-actionItem" href="/Admin/Order/Detail?orderID=@order.OrderID">
+                                Detail
+                            </a>
+                            <a class="orderItem-actionItem" href="#" style="background: #e52b50; color: #fff;">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

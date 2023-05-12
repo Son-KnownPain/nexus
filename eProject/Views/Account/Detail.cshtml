@@ -1,27 +1,15 @@
-﻿@model eProject.Models.Order
+﻿@model eProject.Models.Account
 @{
-    ViewBag.Title = "Order Service";
-
+    ViewBag.Title = "Account Detail";
 }
 @section styles {
-    <link rel="stylesheet" href="~/Content/Css/Order/Detail.css" />
-}
-@section scripts {
-    <script>
-        $(function () {
-            $(".cancelBtn").click(function (e) {
-                if (!confirm("Are you sure you want to cancel that order")) {
-                    e.preventDefault()
-                }
-            })
-        })
-    </script>
+    <link rel="stylesheet" href="~/Content/Css/Account/Detail.css" />
 }
 
 <div class="container">
     <h1 class="page-title">
-        <i class="fa-solid fa-parachute-box"></i>
-        Order View Detail
+        <i style="color: green;" class="fa-solid fa-rss"></i>
+        Account View Detail
     </h1>
 
     <div class="row">
@@ -30,7 +18,7 @@
                 <div class="serviceSide">
                     <div class="row">
                         <div class="col-xl-6">
-                            <img style="width: 100%;" class="service-thumbnail" src="~/Uploads/ServiceThumbnails/260420231603014365_service-thumbnail102911442.png" alt="Service thumbnail" />
+                            <img style="width: 100%;" class="service-thumbnail" src="~/Uploads/ServiceThumbnails/@ViewBag.service.Thumbnail" alt="Service thumbnail" />
                         </div>
                         <div class="col-xl-6">
                             <h2 class="serviceItem-name">
@@ -80,50 +68,58 @@
             <div class="boxSection">
                 <h2 class="order-heading">
                     <i class="fa-solid fa-circle-info"></i>
-                    Order information
+                    Account information
                 </h2>
+
+                @if (ViewBag.customer != null)
+                {
+                    <p class="order-line">
+                        <i class="fa-solid fa-user-tie"></i>
+                        Customer:
+                        @ViewBag.customer.Fullname
+                    </p>
+                }
                 <p class="order-line">
                     Status:
                     @Model.Status
                 </p>
                 <p class="order-line">
-                    @Model.Phone
-                </p>
-                <p class="order-line">
-                    <i class="fa-solid fa-location-dot"></i>
-                    @Model.Address
-                </p>
-                <p class="order-line">
-                    <i class="fa-solid fa-location-dot"></i>
-                    @Model.AddressDetail
+                    <i class="fa-solid fa-phone"></i>
+                    @Model.ContactNumber
                 </p>
                 <p class="order-line">
                     <i class="fa-solid fa-calendar-days"></i>
-                    @Model.OrderDate.ToString("dd/MM/yyyy")
+                    Connected At:
+                    @Model.ConnectedAt.ToString("dd/MM/yyyy")
                 </p>
                 <p class="order-line">
                     Connect Quantity:
                     @Model.ConnectQuantity
                 </p>
                 <p class="order-line">
-                    Deposit:
-                    @if ((Model.Deposit - (Model.Deposit * Model.DepositDiscount)) != Model.Deposit)
-                    {
-                        <s>@Model.Deposit</s>
-                    }
-                    @(Model.Deposit - (Model.Deposit * Model.DepositDiscount))
-                    $
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Due Date:
+                    @Model.DueDate.ToString("dd/MM/yyyy")
                 </p>
+                @if (DateTime.Now.Date == Model.DueDate.Date)
+                {
+                    <p class="order-line" style="color: #a4c639;">
+                        The due date for payment.
+                    </p>
+                }
 
-                <div class="order-actions">
-                    @if (Model.Status.Equals("Pending"))
-                    {
-                        <a class="order-actionItem cancelBtn" href="/Order/Cancel?orderID=@Model.OrderID" style="background: #de3163; color: #fff;">
-                            Cancel order
-                        </a>
-                    }
-                </div>
+            <div class="order-actions">
+                <a class="order-actionItem" href="/Account/Feedback?accountID=@Model.AccountID" style="background: #f0f8ff; color: #333;">
+                    <i style="color: #333;" class="fa-solid fa-star-half-stroke"></i>
+                    Feedback
+                </a>
+                <a class="order-actionItem" href="/Bill/List" style="background: #00ab80; color: #fff;">
+                    <i class="fa-solid fa-money-bills"></i>
+                    View bills
+                </a>
+            </div>
             </div>
         </div>
     </div>
 </div>
+

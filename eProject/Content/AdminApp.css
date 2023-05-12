@@ -5,6 +5,7 @@
     --dark-bg-content: #292929;
     --white: #fff;
     --grey: #ccc;
+    --text: #333;
     --header-height: 80px;
 
     --sidebar-width: 360px;
@@ -87,22 +88,43 @@ body {
     position: fixed;
     z-index: 10;
     box-shadow: 2px 2px 4px #55555544;
+    overflow-y: auto;
+    padding-bottom: 36px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #444;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #999;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
 }
 
 .sidebar-heading {
     font-size: 1.4rem;
     font-weight: 600;
-    color: var(--grey);
     padding: 12px;
 }
-
-.sidebar-menu {
+.sidebar-heading:not(:first-child) {
     margin-top: 12px;
 }
 
 .sidebar-menuItem {
     padding: 12px 0 12px 22px;
     font-size: 1.6rem;
+    font-weight: 300;
     display: block;
     text-decoration: none;
     color: var(--grey);
