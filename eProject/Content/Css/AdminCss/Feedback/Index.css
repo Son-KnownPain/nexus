@@ -147,23 +147,9 @@ summary {
     text-decoration: none;
 }
 
-img.feedback-Avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-span.feedback-fullname {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-left: 12px;
-    color: #ffffff;
-}
-
 .feedback-replycontent {
     font-size: 1.6rem;
-    margin-left: 5rem;
+    margin-left: 2rem;
 }
 
 .feedback-date{

@@ -18,17 +18,8 @@ namespace eProject.Areas.Admin.Controllers
         // GET: Admin/CustomerFeedback
         public ActionResult Index()
         {
-            ViewBag.feedbackList = (from c in context.CustomerFeedbacks join e in context.Employees on c.EmployeeID equals e.EmployeeID select new FeedbackReplyModel
-            {
-                CustomerFeedbackID = c.CustomerFeedbackID,
-                EmployeeID = e.EmployeeID,
-                AccountID = c.AccountID,
-                Content = c.Content,
-                ReplyContent = c.ReplyContent,
-                FeedbackAt = c.FeedbackAt,
-                Avatar = e.Avatar,
-                Fullname = e.Fullname,
-            }).ToList();
+            List<CustomerFeedback> customerFeedbacks = context.CustomerFeedbacks.ToList();
+            ViewBag.feedbackList = customerFeedbacks;
             return View();
         }
 
@@ -36,19 +27,14 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (customerFeedbackID == null) return RedirectToAction("Index");
 
-            FeedbackReplyModel viewModel = context.CustomerFeedbacks.Join(context.Employees, c => c.EmployeeID, e => e.EmployeeID, (c, e) => new FeedbackReplyModel
-            {
-                CustomerFeedbackID = c.CustomerFeedbackID,
-                ReplyContent = c.ReplyContent,
-            }).FirstOrDefault(f => f.CustomerFeedbackID == customerFeedbackID);
+            CustomerFeedback customerFeedback = context.CustomerFeedbacks.FirstOrDefault(c => c.CustomerFeedbackID == customerFeedbackID);
+            if(customerFeedback == null) return RedirectToAction("Index");
 
-            if (viewModel == null) return RedirectToAction("Index");
-
-            return View(viewModel);
+            return View(customerFeedback);
         }
 
         [ValidateAntiForgeryToken, ValidateInput(false)]
-        public ActionResult ReplyStore(FeedbackReplyModel customerFeedback)
+        public ActionResult ReplyStore(CustomerFeedback customerFeedback)
         {
 
             if (!ModelState.IsValid) return View("Reply");
@@ -84,17 +70,7 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!string.IsNullOrEmpty(keyword))
             {
-                ViewBag.feedbackList = (from c in context.CustomerFeedbacks join e in context.Employees on c.EmployeeID equals e.EmployeeID select new FeedbackReplyModel
-                {
-                        CustomerFeedbackID = c.CustomerFeedbackID,
-                        EmployeeID = e.EmployeeID,
-                        AccountID = c.AccountID,
-                        Content = c.Content,
-                        ReplyContent = c.ReplyContent,
-                        FeedbackAt = c.FeedbackAt,
-                        Avatar = e.Avatar,
-                        Fullname = e.Fullname,
-                    }).Where(c=>c.Content.Contains(keyword)).ToList();
+                ViewBag.feedbackList = context.CustomerFeedbacks.Where(c=>c.Content.Contains(keyword)).ToList();
             }
             else
             {
