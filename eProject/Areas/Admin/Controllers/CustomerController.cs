@@ -17,9 +17,21 @@ namespace eProject.Areas.Admin.Controllers
         private NexusEntities context = new NexusEntities();
 
         // GET: Admin/Customer
-        public ActionResult Index()
+        public ActionResult Index(int? customerID)
         {
-            ViewBag.customers = context.Customers.ToList();
+            List<Customer> listCustomer;
+
+            if (customerID != null)
+            {
+                listCustomer = context.Customers.Where(c => c.CustomerID == customerID)
+                    .OrderByDescending(c => c.CustomerID)
+                    .ToList();
+            } else
+            {
+                listCustomer = context.Customers.OrderByDescending(c => c.CustomerID).ToList();
+            }
+
+            ViewBag.customers = listCustomer;
             return View();
         }
 

@@ -134,12 +134,12 @@
 }
 
 .order-actions {
-    margin-top: 24px;
-    display: flex;
-    justify-content: flex-end;
+    margin-top: 12px;
 }
 
 .order-actionItem {
+    display: inline-block;
+    margin-top: 12px;
     font-size: 1.6rem;
     font-weight: 400;
     background-color: #f2f3f4;
@@ -149,11 +149,11 @@
     text-decoration: none;
 }
 
-    .order-actionItem:not(:first-child) {
-        margin-left: 12px;
-    }
+.order-actionItem:not(:first-child) {
+    margin-left: 12px;
+}
 
-    .order-actionItem:hover {
-        color: #333;
-        opacity: .85;
-    }
+.order-actionItem:hover {
+    color: #333;
+    opacity: .85;
+}

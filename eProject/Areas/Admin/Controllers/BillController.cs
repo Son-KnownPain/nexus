@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using eProject.Auth;
 using eProject.Filters;
 using eProject.Models;
+using eProject.Models.ViewModels.Bill;
 
 namespace eProject.Areas.Admin.Controllers
 {
@@ -15,9 +16,19 @@ namespace eProject.Areas.Admin.Controllers
         private NexusEntities context = new NexusEntities();
 
         // GET: Admin/Bill/Index
-        public ActionResult Index()
+        public ActionResult Index(string accountID)
         {
-            ViewBag.bills = context.Bills.OrderByDescending(b => b.BillID).ToList();
+            List<Bill> listBill;
+            if (accountID != null)
+            {
+                listBill = context.Bills.Where(b => b.AccountID == accountID)
+                    .OrderByDescending(b => b.BillID)
+                    .ToList();
+            } else
+            {
+                listBill = context.Bills.OrderByDescending(b => b.BillID).ToList();
+            }
+            ViewBag.bills = listBill;
             return View();
         }
 
@@ -130,9 +141,71 @@ namespace eProject.Areas.Admin.Controllers
 
             if (bill == null) return RedirectToAction("Index");
 
-            bill.Paid = bill.Status.Equals("Paid");
+            ViewBag.charges = context.Charges.Where(c => c.BillID == bill.BillID).ToList();
+
+            BillEditModel model = new BillEditModel();
+
+            model.BillID = bill.BillID;
+            model.InitialDueAmount = bill.InitialDueAmount;
+            model.Discount = bill.Discount;
+            model.VatCost = bill.VatCost;
+            model.AmountPaid = bill.AmountPaid;
+            model.PaidContent = bill.PaidContent;
+            model.Paid = bill.Status.Equals("Paid");
 
             return View(bill);
+        }
+
+        // PUT: Admin/Bill/Update
+        [HttpPut, ValidateAntiForgeryToken]
+        public ActionResult Update(BillEditModel data)
+        {
+            if (!ModelState.IsValid) return View("Edit");
+
+            Bill bill = context.Bills.FirstOrDefault(a => a.BillID == data.BillID);
+
+            if (bill == null) return RedirectToAction("Index");
+
+            bill.InitialDueAmount = data.InitialDueAmount;
+            bill.Discount = data.Discount;
+            bill.VatCost = data.VatCost;
+            bill.AmountPaid = data.AmountPaid;
+            bill.PaidContent = data.PaidContent;
+
+            if (data.Paid)
+            {
+                bill.Status = "Paid";
+            }
+            else
+            {
+                bill.Status = "Unpaid";
+            }
+
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully update bill";
+
+            return RedirectToAction("Index");
+        }
+
+        // POST: Admin/Bill/Search
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Search(string keyword, string status)
+        {
+            switch(status)
+            {
+                case "Paid":
+                    ViewBag.bills = context.Bills.Where(b => b.AccountID.Contains(keyword) && b.Status.Equals("Paid")).OrderByDescending(b => b.BillID).ToList();
+                    break;
+                case "Unpaid":
+                    ViewBag.bills = context.Bills.Where(b => b.AccountID.Contains(keyword) && b.Status.Equals("Unpaid")).OrderByDescending(b => b.BillID).ToList();
+                    break;
+                default:
+                    ViewBag.bills = context.Bills.Where(b => b.AccountID.Contains(keyword)).OrderByDescending(b => b.BillID).ToList();
+                    break;
+            }
+            
+            return View("Index");
         }
     }
 }

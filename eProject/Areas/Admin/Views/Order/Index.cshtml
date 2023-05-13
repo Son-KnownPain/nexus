@@ -12,7 +12,22 @@
     <div class="topNav-search">
         @using (Html.BeginForm("Search", "Order", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
         {
+            @Html.AntiForgeryToken()
             <input class="searchForm-input" name="keyword" placeholder="Enter order id" />
+            <select class="topNav-filterSelect" name="filter">
+                <option class="topNav-filterSelectOption" value="All" selected>
+                    All
+                </option>
+                <option class="topNav-filterSelectOption" value="PendingOrder">
+                    Pending order
+                </option>
+                <option class="topNav-filterSelectOption" value="SuccessOrder">
+                    Success order
+                </option>
+                <option class="topNav-filterSelectOption" value="OtherStatus">
+                    Other status
+                </option>
+            </select>
             <button class="searchForm-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>

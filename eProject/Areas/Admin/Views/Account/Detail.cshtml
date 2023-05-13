@@ -70,6 +70,11 @@
                 Account information
             </h2>
 
+            <p class="order-line">
+                AccountID:
+                @Model.AccountID
+            </p>
+
             @if (ViewBag.customer != null)
             {
                 <p class="order-line">
@@ -109,6 +114,12 @@
             }
 
             <div class="order-actions">
+                <a class="order-actionItem" href="/Admin/Customer/Index?customerID=@Model.CustomerID" style="background: #a4c639; color: #000;" target="_blank">
+                    Search customer of account
+                </a>
+                <a class="order-actionItem" href="/Admin/Bill/Index?accountID=@Model.AccountID" style="background: #a1caf1; color: #333;" target="_blank">
+                    Bills of account
+                </a>
                 @if (Model.Status.Equals("Connecting"))
                 {
                     <a class="order-actionItem" href="/Admin/Account/ToggleStatus?accountID=@Model.AccountID" style="background: #ff033e; color: #fff;">

@@ -82,7 +82,10 @@
                     <i class="fa-solid fa-circle-info"></i>
                     Order information
                 </h2>
-
+                <p class="order-line">
+                    Order ID:
+                    @Model.OrderID
+                </p>
                 @if (ViewBag.customer != null)
                 {
                     <p class="order-line">
