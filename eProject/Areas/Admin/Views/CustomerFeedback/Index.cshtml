@@ -1,4 +1,4 @@
-﻿@model IEnumerable<eProject.Models.ViewModels.CustomerFeedback.CustomerFeedbackViewModel>
+﻿@model eProject.Models.CustomerFeedback
 @{
     ViewBag.Title = "feedback classmanagement";
 }
@@ -47,13 +47,6 @@
                                     <br />
                                     <div class="feedbackItem-replyContent">
                                         <a class="feedback-customer">
-                                            <div>
-                                                <img class="feedback-Avatar" src="~/Uploads/EmployeeAvatars/@feedback.Avatar" alt="Customerfeedback avatar" />
-                                                <span class="feedback-fullname">
-                                                    @feedback.Fullname
-                                                </span>
-                                            </div>
-                                            
                                             <div class="feedback-replycontent">
                                                 @Html.Raw(feedback.ReplyContent)
                                             </div>
