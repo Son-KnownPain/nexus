@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Bill management";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Bill/Index.css" />
+}
+
+<h1 class="page-title">
+    <i class="fa-solid fa-money-bill"></i>
+    Bill Management
+</h1>
+
+<nav class="topNav">
+    <div class="topNav-search">
+        @using (Html.BeginForm("Search", "Service", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            <input class="searchForm-input" name="keyword" placeholder="Enter service name" />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List bills
+    </h3>
+
+    <div class="bills">
+        @foreach (eProject.Models.Bill bill in ViewBag.bills)
+        {
+            <div class="billItem">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <h4 class="billItem-lineStrong">
+                            Account ID:
+                            @bill.AccountID
+                        </h4>
+                        <p class="billItem-line">
+                            Status:
+                            @if (bill.Status.Equals("Paid"))
+                            {
+                                @bill.Status
+                                <i style="color: #a4c639;" class="fa-solid fa-check-double"></i>
+                            }
+                            else
+                            {
+                                @bill.Status
+                                <i style="color: #ff033e;" class="fa-solid fa-xmark"></i>
+                            }
+                        </p>
+                        <p class="billItem-line">
+                            Initial Due Amount: @bill.InitialDueAmount $
+                        </p>
+                        <p class="billItem-line">
+                            Discount: @(bill.Discount * 100) %
+                        </p>
+                        <p class="billItem-line">
+                            VAT Cost: @bill.VatCost $
+                        </p>
+                        <p class="billItem-line">
+                            Amount Paid: @bill.AmountPaid $
+                        </p>
+                        <p class="billItem-line">
+                            Paid Content: @bill.PaidContent
+                        </p>
+                        <p class="billItem-line">
+                            Created Date: @bill.CreatedDate.ToString("dd/MM/yyyy")
+                        </p>
+                    </div>
+                    <div class="col-xl-2">
+                        <a class="billItem-link" href="/Admin/Account/Detail?accountID=@bill.AccountID">
+                            Go to account
+                        </a>
+                        <a class="billItem-link" href="/Admin/Bill/Edit?billID=@bill.BillID" style="background: #ffbf00; color: #333;">
+                            Edit
+                        </a>
+                        <a class="billItem-link" href="/Admin/Bill/Delete?billID=@bill.BillID" style="background: #e32636; color: #eee;">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

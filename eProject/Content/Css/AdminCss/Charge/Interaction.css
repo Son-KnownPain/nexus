@@ -1,0 +1,100 @@
+﻿.form-group {
+    padding: 12px 0;
+}
+
+.form-label, .form-input, .form-btn, .form-dropDownList {
+    font-size: 1.6rem;
+}
+
+.form-label {
+    display: block;
+}
+
+.form-input, .form-dropDownList {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    width: 100%;
+    color: #333;
+    outline: none;
+}
+
+.form-input.changed {
+    outline: 1px solid #66ff00;
+}
+
+.form-check {
+    transform: scale(1.8);
+    margin-left: 8px;
+    margin-top: 8px;
+}
+
+.form-dropDownList option {
+    color: #333;
+}
+
+.ck-content * {
+    color: #333;
+    font-size: 1.6rem;
+}
+
+.ck-content h2 {
+    font-size: 2rem;
+}
+
+.ck-content h3 {
+    font-size: 2.4rem;
+}
+
+.ck-content h3 {
+    font-size: 2.8rem;
+}
+
+.form-btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #333;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+    margin-top: 16px;
+}
+
+.form-btn:hover {
+    opacity: .8;
+}
+
+.invalidMessage {
+    font-size: 1.6rem;
+    color: red;
+    animation: ringring ease-out .3s;
+}
+
+@keyframes ringring {
+    0% {
+        margin-left: 0;
+    }
+
+    25% {
+        margin-left: 10px;
+    }
+
+    50% {
+        margin-left: -10px;
+    }
+
+    75% {
+        margin-left: 10px;
+    }
+
+    100% {
+        margin-left: -10px;
+    }
+}
+
+.dataBox {
+    margin-top: 16px;
+}

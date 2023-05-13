@@ -63,5 +63,27 @@ namespace eProject.Areas.Admin.Controllers
 
             return View(account);
         }
+
+        // GET: Admin/Account/ToggleStatus
+        public ActionResult ToggleStatus(string accountID)
+        {
+            if (accountID == null) return RedirectToAction("Index");
+
+            Account account = context.Accounts.FirstOrDefault(a => a.AccountID == accountID);
+
+            if (account == null) return RedirectToAction("Index");
+
+            if (account.Status.Equals("Connecting"))
+            {
+                account.Status = "Disconnect";
+            } else
+            {
+                account.Status = "Connecting";
+            }
+
+            context.SaveChanges();
+
+            return Redirect(Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "/Account/Detail?accountID=" + account.AccountID);
+        }
     }
 }

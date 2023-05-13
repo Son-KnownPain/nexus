@@ -1,0 +1,24 @@
+﻿@model eProject.Models.Charge
+@{
+    ViewBag.Title = "Add charge";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Charge/Interaction.css" />
+}
+
+
+<h1 class="page-title">
+    Add a charge for bill
+</h1>
+
+<div class="dataBox">
+    @using (Html.BeginForm("Store", "Charge", new { area = "Admin" }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(a => a.ChargeName, new { @class = "form-label" })
+            @Html.EditorFor(a => a.ChargeName, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter charge name" } })
+            @Html.ValidationMessageFor(a => a.ChargeName, null, new { @class = "invalidMessage" })
+        </div>
+    }
+</div>

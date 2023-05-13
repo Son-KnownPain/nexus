@@ -109,6 +109,24 @@
             }
 
             <div class="order-actions">
+                @if (Model.Status.Equals("Connecting"))
+                {
+                    <a class="order-actionItem" href="/Admin/Account/ToggleStatus?accountID=@Model.AccountID" style="background: #ff033e; color: #fff;">
+                        <i class="fa-solid fa-xmark"></i>
+                        Disconnect
+                    </a>
+                }
+                else
+                {
+                    <a class="order-actionItem" href="/Admin/Account/ToggleStatus?accountID=@Model.AccountID" style="background: #f2f3f4; color: #333;">
+                        <i style="color: green;" class="fa-solid fa-rss"></i>
+                        Connect
+                    </a>
+                }
+                <a class="order-actionItem" href="/Admin/Bill/Generate?accountID=@Model.AccountID" style="background: #5d8aa8; color: #fff;">
+                    <i class="fa-solid fa-money-bills"></i>
+                    Generate bill
+                </a>
                 <a class="order-actionItem" href="/Admin/Bill/Filter" style="background: #00ab80; color: #fff;">
                     <i class="fa-solid fa-money-bills"></i>
                     View bills

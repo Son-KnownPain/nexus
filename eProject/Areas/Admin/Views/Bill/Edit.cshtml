@@ -1,0 +1,102 @@
+﻿@model eProject.Models.Bill
+@{
+    ViewBag.Title = "Bill Edit";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Bill/Edit.css" />
+}
+
+<h1 class="page-title">
+    <i class="fa-solid fa-money-bill"></i>
+    Bill Edit
+</h1>
+
+<div class="dataBox">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="bill">
+                <h3 class="charge-heading">
+                    Charges
+                </h3>
+                <nav class="charge-nav">
+                    <a href="#" class="chargeNav-itemLink">
+                        Add charge
+                    </a>
+                </nav>
+
+                <div class="charges">
+                    <h3 class="charge-heading">
+                        List charges
+                    </h3>
+
+                    <div class="charges-item">
+                        <h4 class="chargeItem-name">
+                            Sửa modem
+                        </h4>
+                        <p class="chargeItem-line">
+                            Phí: 145.000 đ
+                        </p>
+                        <p class="chargeItem-desc">
+                            Chi phí sửa modem cho khách hàng!
+                        </p>
+                        <p class="chargeItem-line">
+                            Created Date: 13/5/2023
+                        </p>
+
+                        <div class="callChargeItem-actions">
+                            <a style="background: #e52b50; color: #fff;" href="#" class="callChargeItem-actionItem">
+                                Delete
+                            </a>
+                            <a style="background: #ffbf00; color: #333;" href="#" class="callChargeItem-actionItem">
+                                Edit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="bill">
+                @using (Html.BeginForm("Store", "Bill", new { area = "Admin" }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(a => a.AccountID)
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.InitialDueAmount, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.InitialDueAmount, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter initial due amount" } })
+                        @Html.ValidationMessageFor(a => a.InitialDueAmount, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.Discount, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.Discount, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter discount" } })
+                        @Html.ValidationMessageFor(a => a.Discount, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.VatCost, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.VatCost, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter VAT cost" } })
+                        @Html.ValidationMessageFor(a => a.VatCost, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.AmountPaid, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.AmountPaid, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter amount paid" } })
+                        @Html.ValidationMessageFor(a => a.AmountPaid, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.PaidContent, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.PaidContent, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter paid content" } })
+                        @Html.ValidationMessageFor(a => a.PaidContent, null, new { @class = "invalidMessage" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.Paid, new { @class = "form-label" })
+                        @Html.EditorFor(a => a.Paid, new { htmlAttributes = new { @class = "form-check" } })
+                        @Html.ValidationMessageFor(a => a.Paid, null, new { @class = "invalidMessage" })
+                    </div>
+                    <button class="form-btn">
+                        Generate
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

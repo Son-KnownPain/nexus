@@ -133,6 +133,7 @@
     <Compile Include="Areas\Admin\Controllers\BillController.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeController.cs" />
     <Compile Include="Areas\Admin\Controllers\CallChargeTypeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChargeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ConnectQuantityDiscountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Models\ViewModels\Account\AccountViewModel.cs" />
     <Compile Include="Models\ViewModels\CallCharge\CallChargeViewModel.cs" />
     <Compile Include="Models\ViewModels\CustomerFeedback\CustomerFeedbackViewModel.cs" />
+    <Compile Include="Models\ViewModels\CustomerFeedback\FeedbackReplyModel.cs" />
     <Compile Include="Models\ViewModels\Customer\CustomerChangeInfoViewModel.cs" />
     <Compile Include="Models\ViewModels\Customer\CustomerEditViewModel.cs" />
     <Compile Include="Models\ViewModels\Customer\CustomerPasswordEditViewModel.cs" />
@@ -274,11 +276,15 @@
     <Content Include="Content\Css\Account\Feedback.css" />
     <Content Include="Content\Css\AdminCss\Account\Detail.css" />
     <Content Include="Content\Css\AdminCss\Account\Index.css" />
+    <Content Include="Content\Css\AdminCss\Bill\Edit.css" />
+    <Content Include="Content\Css\AdminCss\Bill\Generate.css" />
+    <Content Include="Content\Css\AdminCss\Bill\Index.css" />
     <Content Include="Content\Css\AdminCss\CallChargeType\Index.css" />
     <Content Include="Content\Css\AdminCss\CallChargeType\Edit.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\Add.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\Edit.css" />
     <Content Include="Content\Css\AdminCss\CallCharge\ListOf.css" />
+    <Content Include="Content\Css\AdminCss\Charge\Interaction.css" />
     <Content Include="Content\Css\AdminCss\ConnectQuantityDiscount\Add.css" />
     <Content Include="Content\Css\AdminCss\ConnectQuantityDiscount\Index.css" />
     <Content Include="Content\Css\AdminCss\City\Add.css" />
@@ -343,6 +349,7 @@
     <Content Include="Content\Images\logo-removebg.png" />
     <Content Include="Content\Images\logo-with-text.png" />
     <Content Include="Content\Images\user-login.png" />
+    <Content Include="Content\Js\Bill\Bill.js" />
     <Content Include="Content\Js\Service\Detail.js" />
     <Content Include="Content\Libraries\ToastMessage\ToastMessage.css" />
     <Content Include="Content\Libraries\ToastMessage\ToastMessage.js" />
@@ -373,8 +380,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Bill\" />
-    <Folder Include="Content\Css\AdminCss\Bill\" />
     <Folder Include="Scripts\" />
     <Folder Include="Uploads\EquipmentImage\" />
     <Folder Include="Uploads\RetailShowRoomImage\" />
@@ -452,6 +457,10 @@
     <Content Include="Areas\Admin\Views\Customer\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerFeedback\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerFeedback\Reply.cshtml" />
+    <Content Include="Areas\Admin\Views\Bill\Generate.cshtml" />
+    <Content Include="Areas\Admin\Views\Bill\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Bill\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Charge\Add.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

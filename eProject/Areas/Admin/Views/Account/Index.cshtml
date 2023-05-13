@@ -38,7 +38,14 @@
                             @account.ServiceName
                         </h3>
                         <p class="orderItem-line">
-                            <i style="color: green;" class="fa-solid fa-rss"></i>
+                            @if (account.Status.Equals("Connecting"))
+                            {
+                                <i style="color: green;" class="fa-solid fa-rss"></i>
+                            }
+                            else
+                            {
+                                <i style="color: red;" class="fa-solid fa-xmark"></i>
+                            }
                             Status:
                             @account.Status
                         </p>
