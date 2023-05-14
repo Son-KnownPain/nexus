@@ -151,5 +151,27 @@ namespace eProject.Areas.Admin.Controllers
             
             return View("Index");
         }
+
+        public ActionResult Delete(int? paymentPlanID)
+        {
+            if (paymentPlanID == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            PaymentPlan paymentPlan = context.PaymentPlans.FirstOrDefault(p => p.PaymentPlanID == paymentPlanID);
+            if (paymentPlan == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            context.PaymentPlanDetails.RemoveRange(context.PaymentPlanDetails.Where(s => s.PaymentPlanID == paymentPlanID));
+
+            context.PaymentPlans.Remove(paymentPlan);
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully delete payment plan";
+            return Redirect("Index"); 
+        }
     }
 }

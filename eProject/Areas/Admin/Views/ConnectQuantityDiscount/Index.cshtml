@@ -78,7 +78,7 @@
                             <a class="connectquantitydiscountRow-action" href="/Admin/ConnectQuantityDiscount/Edit?editID=@connectQuantity.DiscountID">
                                 Edit
                             </a>
-                            <a class="connectquantitydiscountRow-action dlt deleteServiceBtn" href="/Admin/ConnectQuantityDiscount/Delete?id=@connectQuantity.DiscountID">
+                            <a class="connectquantitydiscountRow-action dlt deleteConnectQuantityDiscountBtn" href="/Admin/ConnectQuantityDiscount/Delete?id=@connectQuantity.DiscountID">
                                 Delete
                             </a>
                         </div>
@@ -92,7 +92,7 @@
 @section scripts {
     <script>
         $(function () {
-            $(".deleteServiceBtn").click(function (e) {
+            $(".deleteConnectQuantityDiscountBtn").click(function (e) {
                 if (!confirm("Are you sure you want to delete this connect quantity discount")) {
                     e.preventDefault();
                 }

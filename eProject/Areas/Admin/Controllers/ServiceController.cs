@@ -141,22 +141,7 @@ namespace eProject.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Admin/Service/Delete
-        public ActionResult Delete(int? serviceID)
-        {
-            //if (serviceID == null) return RedirectToAction("Index");
-            //Service serviceToDelete = context.Services.FirstOrDefault(s => s.ServiceID == serviceID);
-            //if (serviceToDelete == null) return RedirectToAction("Index");
-
-            // Handle remove relationships of Service
-
-            //context.Services.Remove(serviceToDelete);
-
-            TempData["Error"] = "Delete function is not work now";
-
-            return RedirectToAction("Index");
-        }
-
+        
         // POST: Admin/Service/Search
         [HttpPost]
         public ActionResult Search(string keyword)
@@ -172,6 +157,31 @@ namespace eProject.Areas.Admin.Controllers
             }
             
             return View("Index");
+        }
+
+        // GET: Admin/Service/Delete
+        public ActionResult Delete(int? serviceID)
+        {
+            if (serviceID == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Service service = context.Services.FirstOrDefault(s => s.ServiceID == serviceID);
+            if (service == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            context.Accounts.RemoveRange(context.Accounts.Where(a => a.ServiceID == serviceID));
+            context.PaymentPlans.RemoveRange(context.PaymentPlans.Where(a => a.ServiceID == serviceID));
+            context.Orders.RemoveRange(context.Orders.Where(a => a.ServiceID == serviceID));
+
+            context.Services.Remove(service);
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully delete service";
+            return RedirectToAction("Index");
         }
     }
 }

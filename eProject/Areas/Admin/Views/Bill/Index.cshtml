@@ -76,7 +76,7 @@
                         <a class="billItem-link" href="/Admin/Bill/Edit?billID=@bill.BillID" style="background: #ffbf00; color: #333;">
                             Edit
                         </a>
-                        <a class="billItem-link" href="/Admin/Bill/Delete?billID=@bill.BillID" style="background: #e32636; color: #eee;">
+                        <a class="billItem-link deleteBillBtn" href="/Admin/Bill/Delete?billID=@bill.BillID" style="background: #e32636; color: #eee;">
                             Delete
                         </a>
                     </div>
@@ -85,3 +85,15 @@
         }
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $(".deleteBillBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete this bill")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}

@@ -27,7 +27,8 @@
     </h3>
 
     <div class="feedback">
-        @foreach (var feedback in ViewBag.feedbackList) {
+        @foreach (var feedback in ViewBag.feedbackList)
+        {
             <div class="feedbackItem">
                 <div class="row">
                     <div class="col-xl-12">
@@ -36,7 +37,7 @@
                                 @feedback.FeedbackAt.ToString("dd/MM/yyyy")
                             </p>
                             <p class="feedback-account">
-                                <i class="fa fa-plug" aria-hidden="true"></i> 
+                                <i class="fa fa-plug" aria-hidden="true"></i>
                                 Client account code: @feedback.AccountID
                             </p>
                             <div class="col">
@@ -62,7 +63,7 @@
                                 <i class="fa fa-reply" aria-hidden="true" style="color: lightsteelblue;"></i>
                                 Reply
                             </a>
-                            <a class="feedbackItem-action dlt deleteServiceBtn" href="~/Admin/CustomerFeedback/Delete?id=@feedback.CustomerFeedbackID">
+                            <a class="feedbackItem-action dlt deleteCustomerFeedbackBtn" href="~/Admin/CustomerFeedback/Delete?id=@feedback.CustomerFeedbackID">
                                 <i class="fa fa-trash" aria-hidden="true" style="color: #808080;"></i>
                                 Delete
                             </a>
@@ -75,9 +76,10 @@
 </div>
 
 @section scripts {
+    <a href="~/Areas/Admin/Views/CustomerFeedback/Index.cshtml">~/Areas/Admin/Views/CustomerFeedback/Index.cshtml</a>
     <script>
         $(function () {
-            $(".deleteServiceBtn").click(function (e) {
+            $(".deleteCustomerFeedbackBtn").click(function (e) {
                 if (!confirm("Are you sure you want to delete this customer feedback")) {
                     e.preventDefault();
                 }

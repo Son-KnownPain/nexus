@@ -134,5 +134,29 @@ namespace eProject.Areas.Admin.Controllers
 
             return View(bill);
         }
+
+        // GET: Admin/Bill/Delete
+        public ActionResult Delete(int? billID)
+        {
+            if (billID == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Bill bill = context.Bills.FirstOrDefault(b => b.BillID == billID);
+            if (bill == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            
+            context.Charges.RemoveRange(context.Charges.Where(c => c.BillID == billID));
+
+            context.Bills.Remove(bill);
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully delete bill";
+            return RedirectToAction("Index");
+        }
     }
 }

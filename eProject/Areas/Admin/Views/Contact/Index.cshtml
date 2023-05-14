@@ -64,7 +64,7 @@
                             <a class="contactItem-action" href="~/Admin/Contact/DetailsContact?contactID=@contact.ContactID">
                                 Read
                             </a>
-                            <a class="contactItem-action dlt deleteServiceBtn" href="~/Admin/Contact/Delete?deleteContact=@contact.ContactID">
+                            <a class="contactItem-action dlt deleteContactBtn" href="~/Admin/Contact/Delete?deleteContact=@contact.ContactID">
                                 Delete
                             </a>
                         </div>
@@ -78,7 +78,7 @@
 @section scripts {
     <script>
         $(function () {
-            $(".deleteServiceBtn").click(function (e) {
+            $(".deleteContactBtn").click(function (e) {
                 if (!confirm("Are you sure you want to delete this contact")) {
                     e.preventDefault();
                 }

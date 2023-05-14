@@ -345,6 +345,7 @@
     <Content Include="Content\Css\Site\Index.css" />
     <Content Include="Content\Images\demo.jpg" />
     <Content Include="Content\Images\demo2.png" />
+    <Content Include="Content\Images\internet_nexus.jpg" />
     <Content Include="Content\Images\logo-nobg.jpg" />
     <Content Include="Content\Images\logo-removebg.png" />
     <Content Include="Content\Images\logo-with-text.png" />

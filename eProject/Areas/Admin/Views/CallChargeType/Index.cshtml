@@ -37,7 +37,7 @@
                         @item.TypeName
                     </div>
                     <div class="col-xl-6">
-                        <a class="callChargeTypes-action dlt" href="#">
+                        <a class="callChargeTypes-action dlt deleteCallChargeTypeBtn" href="/Admin/CallChargeType/Delete?callChargeTypeID=@item.CallChargeTypeID">
                             Delete
                         </a>
                         <a class="callChargeTypes-action edt" href="/Admin/CallChargeType/Edit?callChargeTypeID=@item.CallChargeTypeID">
@@ -49,3 +49,15 @@
         }
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $(".deleteCallChargeTypeBtn").click(function (e) {
+                if (!confirm("Are you sure you want to delete this call charge type")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}

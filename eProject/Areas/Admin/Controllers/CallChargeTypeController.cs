@@ -71,5 +71,29 @@ namespace eProject.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // GET: Admin/CallChargeType/Delete
+        public ActionResult Delete(int? callChargeTypeID)
+        {
+            if (callChargeTypeID == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            CallChargeType callChargeType = context.CallChargeTypes.FirstOrDefault(c => c.CallChargeTypeID == callChargeTypeID);
+            if (callChargeType == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            context.CallCharges.RemoveRange(context.CallCharges.Where(c => c.CallChargeTypeID == callChargeTypeID));
+            
+
+            context.CallChargeTypes.Remove(callChargeType);
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully delete call charge type";
+            return RedirectToAction("Index");
+        }
     }
 }

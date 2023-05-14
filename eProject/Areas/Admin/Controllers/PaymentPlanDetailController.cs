@@ -76,5 +76,33 @@ namespace eProject.Areas.Admin.Controllers
 
             return Redirect("/Admin/PaymentPlan/Detail?paymentPlanID=" + data.PaymentPlanID);
         }
+
+        public ActionResult Delete(int? paymentPlanDetailID)
+        {
+            if (paymentPlanDetailID == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            PaymentPlanDetail paymentPlanDetail = context.PaymentPlanDetails.FirstOrDefault(p => p.PaymentPlanDetailID == paymentPlanDetailID);
+            if (paymentPlanDetail == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+
+
+
+            //context.Bills.RemoveRange(context.Bills.Where(b => listCmt == paymentPlanDetailID));
+            context.Accounts.RemoveRange(context.Accounts.Where(a => a.PaymentPlanDetailID == paymentPlanDetailID));
+            context.CallCharges.RemoveRange(context.CallCharges.Where(c => c.PaymentPlanDetailID == paymentPlanDetailID));
+            context.Orders.RemoveRange(context.Orders.Where(o => o.PaymentPlanDetailID == paymentPlanDetailID));
+
+            context.PaymentPlanDetails.Remove(paymentPlanDetail);
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully delete payment plan detail";
+            return Redirect("Index");
+        }
     }
 }
