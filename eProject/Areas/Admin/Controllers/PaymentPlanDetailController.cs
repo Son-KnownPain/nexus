@@ -81,28 +81,71 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (paymentPlanDetailID == null)
             {
-                return RedirectToAction("Index");
+                return Redirect("/Admin");
             }
 
             PaymentPlanDetail paymentPlanDetail = context.PaymentPlanDetails.FirstOrDefault(p => p.PaymentPlanDetailID == paymentPlanDetailID);
+
             if (paymentPlanDetail == null)
             {
-                return RedirectToAction("Index");
+                return Redirect("/Admin");
             }
 
+            // Call charge -> PLD
+            var callCharges = context.CallCharges.Where(x => x.PaymentPlanDetailID == paymentPlanDetail.PaymentPlanDetailID);
+
+            // ------------------------------------------------------------
+
+            // Order -> PLD
+            var orders = context.Orders.Where(x => x.PaymentPlanDetailID == paymentPlanDetail.PaymentPlanDetailID);
+            // Account -> Order
+            var accountsOfOrder = context.Accounts.Where(x => orders.Select(o => o.OrderID).ToList().Contains(x.OrderID));
+            // Bill -> Account
+            var billsOfAccountsOfOrder = context.Bills.Where(x => accountsOfOrder.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // CustomerFeedback -> Account
+            var cfOfAccountsOfOrder = context.CustomerFeedbacks.Where(x => accountsOfOrder.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // Charge -> Bill
+            var chargesOfBillsOfAccountsOfOrder = context.Charges.Where(x => billsOfAccountsOfOrder.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+            // ------------------------------------------------------------
+
+            // Account -> PLD
+            var accounts = context.Accounts.Where(x => x.PaymentPlanDetailID == paymentPlanDetail.PaymentPlanDetailID);
+            // Bill -> Account
+            var billsOfAccounts = context.Bills.Where(x => accounts.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // CustomerFeedback -> Account
+            var cfOfAccounts = context.CustomerFeedbacks.Where(x => accounts.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // Charge -> Bill
+            var chargesOfBillsOfAccounts = context.Charges.Where(x => billsOfAccounts.Select(a => a.BillID).ToList().Contains(x.BillID));
 
 
+            // Remove Charges
+            context.Charges.RemoveRange(chargesOfBillsOfAccounts);
+            context.Charges.RemoveRange(chargesOfBillsOfAccountsOfOrder);
 
-            //context.Bills.RemoveRange(context.Bills.Where(b => listCmt == paymentPlanDetailID));
-            context.Accounts.RemoveRange(context.Accounts.Where(a => a.PaymentPlanDetailID == paymentPlanDetailID));
-            context.CallCharges.RemoveRange(context.CallCharges.Where(c => c.PaymentPlanDetailID == paymentPlanDetailID));
-            context.Orders.RemoveRange(context.Orders.Where(o => o.PaymentPlanDetailID == paymentPlanDetailID));
+            // Remove Bills
+            context.Bills.RemoveRange(billsOfAccounts);
+            context.Bills.RemoveRange(billsOfAccountsOfOrder);
+
+            // Remove CF
+            context.CustomerFeedbacks.RemoveRange(cfOfAccounts);
+            context.CustomerFeedbacks.RemoveRange(cfOfAccountsOfOrder);
+
+            // Remove Accounts
+            context.Accounts.RemoveRange(accounts);
+            context.Accounts.RemoveRange(accountsOfOrder);
+
+            // Remove Orders
+            context.Orders.RemoveRange(orders);
+
+            // Remove Call Charges
+            context.CallCharges.RemoveRange(callCharges);
 
             context.PaymentPlanDetails.Remove(paymentPlanDetail);
             context.SaveChanges();
 
             TempData["Success"] = "Successfully delete payment plan detail";
-            return Redirect("Index");
+            return Redirect("/Admin/PaymentPlan/Detail?paymentPlanID=" + paymentPlanDetail.PaymentPlanID);
         }
     }
 }

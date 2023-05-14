@@ -7,7 +7,7 @@
 @section scripts {
     <script>
         $(function () {
-            $("#deleteEmployeeBtn").click(function (e) {
+            $(".deleteEmployeeBtn").click(function (e) {
                 if (!confirm("Are you sure you want to delete that employee")) {
                     e.preventDefault();
                 }
@@ -119,7 +119,7 @@
                                 Edit
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
-                            <a href="/Admin/Employee/Delete?employeeID=@employee.EmployeeID" class="personItem-actionItem delete" id="deleteEmployeeBtn">
+                            <a href="/Admin/Employee/Delete?employeeID=@employee.EmployeeID" class="personItem-actionItem delete deleteEmployeeBtn">
                                 Delete
                                 <i class="fa-solid fa-trash"></i>
                             </a>

@@ -4,6 +4,17 @@
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/AdminCss/Account/Index.css" />
 }
+@section scripts {
+    <script>
+        $(function () {
+            $('.deleteAccountBtn').click(function (e) {
+                if (!confirm('Are you sure you want to delete that')) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
 
 <h1 class="page-title">
     Account Management
@@ -99,7 +110,7 @@
                             <a class="orderItem-actionItem" href="/Admin/Account/Detail?accountID=@account.AccountID">
                                 Detail
                             </a>
-                            <a class="orderItem-actionItem" href="#" style="background: #e52b50; color: #fff;">
+                            <a class="orderItem-actionItem deleteAccountBtn" href="/Admin/Account/Delete?accountID=@account.AccountID" style="background: #e52b50; color: #fff;">
                                 Delete
                             </a>
                             <a class="orderItem-actionItem" href="/Admin/Customer/Index?customerID=@account.CustomerID" style="background: #a4c639; color: #000;" target="_blank">

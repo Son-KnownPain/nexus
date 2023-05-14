@@ -4,6 +4,17 @@
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/AdminCss/Order/Index.css" />
 }
+@section scripts {
+    <script>
+        $(function () {
+            $('.deleteOrderBtn').click(function (e) {
+                if (!confirm('Are you sure you want to delete that')) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
 
 <h1 class="page-title">
     Order Management
@@ -94,7 +105,7 @@
                             <a class="orderItem-actionItem" href="/Admin/Order/Detail?orderID=@order.OrderID">
                                 Detail
                             </a>
-                            <a class="orderItem-actionItem" href="#" style="background: #e52b50; color: #fff;">
+                            <a class="orderItem-actionItem deleteOrderBtn" href="/Admin/Order/Delete?orderID=@order.OrderID" style="background: #e52b50; color: #fff;">
                                 Delete
                             </a>
                         </div>

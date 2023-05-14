@@ -173,9 +173,74 @@ namespace eProject.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            context.Accounts.RemoveRange(context.Accounts.Where(a => a.ServiceID == serviceID));
-            context.PaymentPlans.RemoveRange(context.PaymentPlans.Where(a => a.ServiceID == serviceID));
-            context.Orders.RemoveRange(context.Orders.Where(a => a.ServiceID == serviceID));
+            // Order -> Service
+            var ordersOfService = context.Orders.Where(x => x.ServiceID == service.ServiceID);
+
+            // Accounts -> Service
+            var accountsOfService = context.Accounts.Where(x => x.ServiceID == service.ServiceID);
+
+            // PL -> Service
+            var pls = context.PaymentPlans.Where(x => x.ServiceID == service.ServiceID);
+
+            // PLD -> PL
+            var plds = context.PaymentPlanDetails.Where(x => pls.Select(a => a.PaymentPlanID).ToList().Contains(x.PaymentPlanID));
+
+            // Call charge -> PLD
+            var callCharges = context.CallCharges.Where(x => plds.Select(s => s.PaymentPlanDetailID).ToList().Contains(x.PaymentPlanDetailID));
+
+            // ------------------------------------------------------------
+
+            // Order -> PLD
+            var ordersOfPLDs = context.Orders.Where(x => plds.Select(s => s.PaymentPlanDetailID).ToList().Contains(x.PaymentPlanDetailID));
+            // Account -> Order
+            var accountsOfOrder = context.Accounts.Where(x => ordersOfPLDs.Select(o => o.OrderID).ToList().Contains(x.OrderID));
+            // Bill -> Account
+            var billsOfAccountsOfOrder = context.Bills.Where(x => accountsOfOrder.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // CustomerFeedback -> Account
+            var cfOfAccountsOfOrder = context.CustomerFeedbacks.Where(x => accountsOfOrder.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // Charge -> Bill
+            var chargesOfBillsOfAccountsOfOrder = context.Charges.Where(x => billsOfAccountsOfOrder.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+            // ------------------------------------------------------------
+
+            // Account -> PLD
+            var accountsOfPLDs = context.Accounts.Where(x => plds.Select(s => s.PaymentPlanDetailID).ToList().Contains(x.PaymentPlanDetailID));
+            // Bill -> Account
+            var billsOfAccounts = context.Bills.Where(x => accountsOfPLDs.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // CustomerFeedback -> Account
+            var cfOfAccounts = context.CustomerFeedbacks.Where(x => accountsOfPLDs.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // Charge -> Bill
+            var chargesOfBillsOfAccounts = context.Charges.Where(x => billsOfAccounts.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+            // Remove Charges
+            context.Charges.RemoveRange(chargesOfBillsOfAccounts);
+            context.Charges.RemoveRange(chargesOfBillsOfAccountsOfOrder);
+
+            // Remove Bills
+            context.Bills.RemoveRange(billsOfAccounts);
+            context.Bills.RemoveRange(billsOfAccountsOfOrder);
+
+            // Remove CF
+            context.CustomerFeedbacks.RemoveRange(cfOfAccounts);
+            context.CustomerFeedbacks.RemoveRange(cfOfAccountsOfOrder);
+
+            // Remove Accounts
+            context.Accounts.RemoveRange(accountsOfPLDs);
+            context.Accounts.RemoveRange(accountsOfOrder);
+            context.Accounts.RemoveRange(accountsOfService);
+
+            // Remove Orderes
+            context.Orders.RemoveRange(ordersOfPLDs);
+            context.Orders.RemoveRange(ordersOfService);
+
+            // Remove Call Charges
+            context.CallCharges.RemoveRange(callCharges);
+
+            // Remove Payment Plan Detail
+            context.PaymentPlanDetails.RemoveRange(plds);
+
+            // Remove Payment Plan
+            context.PaymentPlans.RemoveRange(pls);
 
             context.Services.Remove(service);
             context.SaveChanges();

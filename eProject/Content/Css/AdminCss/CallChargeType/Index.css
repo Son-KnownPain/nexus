@@ -85,3 +85,9 @@
     background-color: #ffbf00;
     color: #333;
 }
+
+.invalidMessage {
+    font-size: 1.6rem;
+    color: red;
+    margin-left: 8px;
+}

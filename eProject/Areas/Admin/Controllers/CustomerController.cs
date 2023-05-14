@@ -161,5 +161,63 @@ namespace eProject.Areas.Admin.Controllers
                 .ToList();
             return View("Index");
         }
+
+        // GET: Admin/Customer/Delete
+        public ActionResult Delete(int? customerID)
+        {
+            if (customerID == null) return RedirectToAction("Index");
+
+            Customer customer = context.Customers.FirstOrDefault(c => c.CustomerID == customerID);
+
+            if (customer == null) return RedirectToAction("Index");
+
+            // Order -> Customer
+            var orders = context.Orders.Where(x => x.CustomerID == customer.CustomerID);
+            // Account -> Order
+            var accountsOfOrder = context.Accounts.Where(x => orders.Select(o => o.OrderID).ToList().Contains(x.OrderID));
+            // Bill -> Account
+            var billsOfAccountsOfOrder = context.Bills.Where(x => accountsOfOrder.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // CustomerFeedback -> Account
+            var cfOfAccountsOfOrder = context.CustomerFeedbacks.Where(x => accountsOfOrder.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // Charge -> Bill
+            var chargesOfBillsOfAccountsOfOrder = context.Charges.Where(x => billsOfAccountsOfOrder.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+            // ------------------------------------------------------------
+
+            // Account -> Customer
+            var accounts = context.Accounts.Where(x => x.CustomerID == customer.CustomerID);
+            // Bill -> Account
+            var billsOfAccounts = context.Bills.Where(x => accounts.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // CustomerFeedback -> Account
+            var cfOfAccounts = context.CustomerFeedbacks.Where(x => accounts.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // Charge -> Bill
+            var chargesOfBillsOfAccounts = context.Charges.Where(x => billsOfAccounts.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+
+            // Remove Charges
+            context.Charges.RemoveRange(chargesOfBillsOfAccounts);
+            context.Charges.RemoveRange(chargesOfBillsOfAccountsOfOrder);
+
+            // Remove Bills
+            context.Bills.RemoveRange(billsOfAccounts);
+            context.Bills.RemoveRange(billsOfAccountsOfOrder);
+
+            // Remove CF
+            context.CustomerFeedbacks.RemoveRange(cfOfAccounts);
+            context.CustomerFeedbacks.RemoveRange(cfOfAccountsOfOrder);
+
+            // Remove Accounts
+            context.Accounts.RemoveRange(accounts);
+            context.Accounts.RemoveRange(accountsOfOrder);
+
+            // Remove Orders
+            context.Orders.RemoveRange(orders);
+
+            context.Customers.Remove(customer);
+            context.SaveChanges();
+            TempData["Success"] = "Successfully to delete customer";
+
+            return RedirectToAction("Index");
+        }
     }
 }

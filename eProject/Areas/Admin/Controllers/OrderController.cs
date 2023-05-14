@@ -218,5 +218,50 @@ namespace eProject.Areas.Admin.Controllers
             ViewBag.orders = listOrder;
             return View("Index");
         }
+
+        // GET: Admin/Order/Delete
+        public ActionResult Delete(string orderID)
+        {
+            if (orderID == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Order order = context.Orders.FirstOrDefault(a => a.OrderID == orderID);
+
+            if (order == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Accounts -> Orders
+            var accounts = context.Accounts.Where(x => x.OrderID == order.OrderID);
+
+            // Bills -> Accounts
+            var billsOfAccounts = context.Bills.Where(x => accounts.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // CF -> Accounts
+            var cfOfAccounts = context.CustomerFeedbacks.Where(x => accounts.Select(a => a.AccountID).ToList().Contains(x.AccountID));
+            // Charges -> Bills
+            var chargesOfBillsOfAccounts = context.Charges.Where(x => billsOfAccounts.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+            // Remove Charges
+            context.Charges.RemoveRange(chargesOfBillsOfAccounts);
+
+            // Remove CF
+            context.CustomerFeedbacks.RemoveRange(cfOfAccounts);
+
+            // Remove Bills
+            context.Bills.RemoveRange(billsOfAccounts);
+
+            // Remove Accounts
+            context.Accounts.RemoveRange(accounts);
+
+            context.Orders.Remove(order);
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully to delete order";
+
+            return RedirectToAction("Index");
+        }
     }
 }

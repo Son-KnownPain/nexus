@@ -298,6 +298,31 @@ namespace eProject.Areas.Admin.Controllers
                 System.IO.File.Delete(uploadFolderPath + "/" + employeeData.Avatar);
             }
 
+            // Update CF
+            List<CustomerFeedback> listCF = context.CustomerFeedbacks.Where(x => x.EmployeeID == employeeData.EmployeeID).ToList();
+            listCF.ForEach(CF =>
+            {
+                CF.EmployeeID = null;
+                CF.ReplyContent = "";
+            });
+
+            // Bills -> Employee
+            var bills = context.Bills.Where(x => x.EmployeeID == employeeData.EmployeeID);
+            // Charges -> Bills
+            var chargesOfBills = context.Charges.Where(x => bills.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+            // Remove Charges
+            context.Charges.RemoveRange(chargesOfBills);
+
+            // Remove Bills
+            context.Bills.RemoveRange(bills);
+
+            if (employeeData.RetailShowRoomID != null)
+            {
+                RetailShowRoom rsr = context.RetailShowRooms.FirstOrDefault(x => x.RetailShowRoomID == employeeData.RetailShowRoomID);
+                rsr.EmployeeQuantity -= 1;
+            }
+
             context.Employees.Remove(employeeData);
 
             try

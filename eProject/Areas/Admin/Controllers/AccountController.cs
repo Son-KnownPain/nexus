@@ -134,5 +134,44 @@ namespace eProject.Areas.Admin.Controllers
             ViewBag.accounts = listAccount;
             return View("Index");
         }
+
+        // GET: Admin/Order/Delete
+        public ActionResult Delete(string accountID)
+        {
+            if (accountID == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Account account = context.Accounts.FirstOrDefault(a => a.AccountID == accountID);
+
+            if (account == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Bills -> Accounts
+            var bills = context.Bills.Where(x => x.AccountID == account.AccountID);
+            // CF -> Accounts
+            var cfs = context.CustomerFeedbacks.Where(x => x.AccountID == account.AccountID);
+            // Charges -> Bills
+            var chargesOfBills = context.Charges.Where(x => bills.Select(a => a.BillID).ToList().Contains(x.BillID));
+
+            // Remove Charges
+            context.Charges.RemoveRange(chargesOfBills);
+
+            // Remove CF
+            context.CustomerFeedbacks.RemoveRange(cfs);
+
+            // Remove Bills
+            context.Bills.RemoveRange(bills);
+
+            context.Accounts.Remove(account);
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully to delete account";
+
+            return RedirectToAction("Index");
+        }
     }
 }

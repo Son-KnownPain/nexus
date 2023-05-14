@@ -43,13 +43,6 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="form-group">
-                        @Html.LabelFor(retaistore => retaistore.EmployeeQuantity, new { @class = "form-label" })
-                        @Html.EditorFor(retaistore => retaistore.EmployeeQuantity, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter employee quantity" } })
-                        @Html.ValidationMessageFor(retaistore => retaistore.EmployeeQuantity, null, new { @class = "invalidMessage" })
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="form-group">
                         @Html.LabelFor(retaistore => retaistore.Image, new { @class = "form-label" })
                         <input type="file" name="imageFile" class="form-inputFile" />
                     </div>

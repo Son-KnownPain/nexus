@@ -55,14 +55,14 @@ namespace eProject.Areas.Admin.Controllers
             }
             else
             {
+                TempData["Error"] = "You must upload retail show room image";
                 return RedirectToAction("AddRetailStore");
             }
 
             newRetailStore.Name = retailShowRoom.Name;
             newRetailStore.Phone = retailShowRoom.Phone;
             newRetailStore.Address = retailShowRoom.Address;
-
-            newRetailStore.EmployeeQuantity = retailShowRoom.EmployeeQuantity;
+            newRetailStore.EmployeeQuantity = 0;
 
             context.RetailShowRooms.Add(newRetailStore);
             context.SaveChanges();

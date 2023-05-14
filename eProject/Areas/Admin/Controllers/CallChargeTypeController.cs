@@ -25,7 +25,11 @@ namespace eProject.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Store(CallChargeType data)
         {
-            if (!ModelState.IsValid) return View("Index");
+            if (!ModelState.IsValid)
+            {
+                ViewBag.callChargeTypeList = context.CallChargeTypes.ToList();
+                return View("Index");
+            }
 
             CallChargeType callChargeType = new CallChargeType();
 
@@ -57,7 +61,7 @@ namespace eProject.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Update(CallChargeType data)
         {
-            if (!ModelState.IsValid) return View("Index");
+            if (!ModelState.IsValid) return View("Edit");
 
             CallChargeType callChargeType = context.CallChargeTypes.FirstOrDefault(c => c.CallChargeTypeID == data.CallChargeTypeID);
 

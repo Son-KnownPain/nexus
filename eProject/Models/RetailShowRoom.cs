@@ -34,10 +34,6 @@ namespace eProject.Models
         public string Address { get; set; }
         public string Image { get; set; }
         public HttpPostedFileBase imageFile { get; set; }
-
-        [Required(ErrorMessage = "Quantity can not empty")]
-        [RegularExpression("[0-9]+", ErrorMessage = "The number of employees cannot be negative")]
-        [Range(1, 1000, ErrorMessage = "Number of employees does not start with 0")]
         public int EmployeeQuantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
