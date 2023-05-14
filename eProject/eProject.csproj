@@ -256,6 +256,7 @@
     <Compile Include="Models\ViewModels\Customer\CustomerChangeInfoViewModel.cs" />
     <Compile Include="Models\ViewModels\Customer\CustomerEditViewModel.cs" />
     <Compile Include="Models\ViewModels\Customer\CustomerPasswordEditViewModel.cs" />
+    <Compile Include="Models\ViewModels\Employee\RetailStoreEmployeeDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\Order\OrderCompleteViewModel.cs" />
     <Compile Include="Models\ViewModels\Order\OrderRegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\Equipment\EquipmentViewModel.cs" />
@@ -387,6 +388,7 @@
     <Folder Include="Scripts\" />
     <Folder Include="Uploads\EquipmentImage\" />
     <Folder Include="Uploads\RetailShowRoomImage\" />
+    <Folder Include="Views\EmployeeDetail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -466,6 +468,8 @@
     <Content Include="Areas\Admin\Views\Bill\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Charge\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Charge\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RetailShowRoom\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\RetailShowRoom\AddRetailStoreEmployee.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

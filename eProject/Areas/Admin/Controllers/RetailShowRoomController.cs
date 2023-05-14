@@ -8,6 +8,10 @@ using System.Web.Mvc;
 using System.Web.Services.Description;
 using System.Web.UI.WebControls;
 using eProject.Filters;
+using System.Web.Razor.Tokenizer.Symbols;
+using eProject.Models.ViewModels.Employee;
+using System.Web.Helpers;
+using eProject.Auth;
 
 namespace eProject.Areas.Admin.Controllers
 {
@@ -157,6 +161,90 @@ namespace eProject.Areas.Admin.Controllers
             }
             
             return View("Index");
+        }
+
+        public ActionResult Detail(int? retailShowRoomID)
+        {
+            if (retailShowRoomID == null)
+            {
+                return RedirectToAction("Index");
+            }
+            RetailShowRoom retailShowRoom = context.RetailShowRooms.FirstOrDefault(r => r.RetailShowRoomID == retailShowRoomID);
+            if (retailShowRoom == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewBag.rsrID = retailShowRoomID;
+            ViewBag.Employees = context.Employees.Where(r => r.RetailShowRoomID == retailShowRoomID).ToList();
+            return View("Detail");
+        }
+
+        public ActionResult AddRetailStoreEmployee(int? rsrID)
+        {
+            if(rsrID == null)
+            {
+                return RedirectToAction("Index");
+            }
+            RetailShowRoom retailShowRoom = context.RetailShowRooms.FirstOrDefault(r => r.RetailShowRoomID == rsrID);
+            if(retailShowRoom == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.rsrID = rsrID;
+            ViewBag.employees = context.Employees.Where(e => e.RetailShowRoomID == null && e.Role == AuthManager.EmployeeRoles.RetailStoreEmployeeRole).ToList();
+            return View();
+        }
+
+        public ActionResult StoreEmployee(int? employeeID, int? rsrID)
+        {
+            if(employeeID == null || rsrID == null) return RedirectToAction("Index");
+
+            Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeID == employeeID);
+            RetailShowRoom retailShowRoom = context.RetailShowRooms.FirstOrDefault(r => r.RetailShowRoomID == rsrID);
+
+            if(employee == null || retailShowRoom == null) return RedirectToAction("Index");
+            
+            employee.RetailShowRoomID = rsrID;
+            retailShowRoom.EmployeeQuantity += 1;
+
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully add new retail store eployee";
+            return RedirectToAction("Detail", new { retailShowRoomID = rsrID });
+        }
+
+        public ActionResult Remove(int? employeeID, int? rsrID)
+        {
+            if (employeeID == null || rsrID == null) return RedirectToAction("Index");
+
+            Employee employee = context.Employees.FirstOrDefault(e => e.EmployeeID == employeeID);
+            RetailShowRoom retailShowRoom = context.RetailShowRooms.FirstOrDefault(r => r.RetailShowRoomID == rsrID);
+
+            if (employee == null || retailShowRoom == null || employee.RetailShowRoomID != rsrID) return RedirectToAction("Index");
+
+            employee.RetailShowRoomID = null;
+            retailShowRoom.EmployeeQuantity -= 1;
+
+            context.SaveChanges();
+
+            TempData["Success"] = "Successfully add new retail store eployee";
+            return RedirectToAction("Detail", new { retailShowRoomID = rsrID });
+        }
+
+        public ActionResult SearchRSE(string keyword)
+        {
+
+            ViewBag.employees = context.Employees.Where(r => r.Fullname.Contains(keyword) && r.Role == AuthManager.EmployeeRoles.RetailStoreEmployeeRole).ToList();
+            return View("Detail");
+
+        }
+
+        public ActionResult SearchAdd(string keyword)
+        {
+            ViewBag.employees = context.Employees.Where(r => r.Fullname.Contains(keyword) && r.Role == AuthManager.EmployeeRoles.RetailStoreEmployeeRole).ToList();
+
+            return View("AddRetailStoreEmployee");
         }
     }
 }
