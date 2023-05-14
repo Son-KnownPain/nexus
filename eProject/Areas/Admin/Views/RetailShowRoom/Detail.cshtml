@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "store staff details";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Employee/Index.css" />
+}
+
+<h1 class="page-title">
+    store staff details
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/RetailShowRoom/AddRetailStoreEmployee?rsrID=@ViewBag.rsrID">
+        <i class="fa-solid fa-plus"></i>
+        Add new retail store employee
+    </a>
+    <div class="topNav-search">
+        @using (Html.BeginForm("SearchRSE", "RetailShowRoom", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input class="searchForm-input" name="keyword" placeholder="Enter name, phone,..." />
+            <button class="searchForm-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        }
+    </div>
+</nav>
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List retail store employee
+    </h3>
+
+    <div class="persons">
+        @foreach (var retailStoreEployee in ViewBag.Employees)
+        {
+            <div class="personItem">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="personItem-avt" style="background-image: url('/Uploads/EmployeeAvatars/@retailStoreEployee.Avatar');"></div>
+                    </div>
+                    <div class="col-xl-8">
+                        <div class="personItem-body">
+                            <h2 class="personItem-name">
+                                @retailStoreEployee.Fullname
+                            </h2>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        <i class="fa-solid fa-phone"></i>
+                                        @retailStoreEployee.Phone
+                                    </p>
+                                </div>
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        Join work date: @retailStoreEployee.CreatedAt.ToString("dd/MM/yyyy")
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                        @retailStoreEployee.Email
+                                    </p>
+                                </div>
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        Updated date: @retailStoreEployee.UpdatedAt.ToString("dd/MM/yyyy")
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="personItem-line">
+                                <i class="fa-solid fa-location-dot"></i>
+                                @retailStoreEployee.Address
+                            </p>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <p class="personItem-line">
+                                        <i class="fa-solid fa-clipboard-user"></i>
+                                        @retailStoreEployee.Department
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="personItem-actions">
+                            <a href="/Admin/RetailShowRoom/Remove?employeeID=@retailStoreEployee.EmployeeID&rsrID=@ViewBag.rsrID" class="personItem-actionItem edit RemoveRetailStoreEmployeeBtn">
+                                Remove
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $(".RemoveRetailStoreEmployeeBtn").click(function (e) {
+                if (!confirm("Are you sure you want to remove this retail store employee")) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
