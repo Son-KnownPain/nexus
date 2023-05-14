@@ -19,7 +19,7 @@ namespace eProject.Controllers
         // GET: Account/Detail
         public ActionResult Detail(string accountID)
         {
-            if (accountID == null) return RedirectToAction("Index");
+            if (accountID == null) return Redirect("Customer/MyConnections");
 
             Account account = context.Accounts.FirstOrDefault(a => a.AccountID == accountID);
 

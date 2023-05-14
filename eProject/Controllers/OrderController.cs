@@ -56,7 +56,7 @@ namespace eProject.Controllers
         // Method handle generate next order id
         private string GetOrderID(int serviceID, int paymentPlanDetaiID)
         {
-            Order lastOrder = context.Orders.OrderByDescending(o => o.OrderDate).FirstOrDefault();
+            Order lastOrder = context.Orders.ToList().LastOrDefault();
             Service service = context.Services.FirstOrDefault(s => s.ServiceID == serviceID);
             if (service == null) return null;
             PaymentPlanDetail pld = context.PaymentPlanDetails.FirstOrDefault(p => p.PaymentPlanDetailID == paymentPlanDetaiID);

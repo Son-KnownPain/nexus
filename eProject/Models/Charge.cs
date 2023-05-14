@@ -11,13 +11,25 @@ namespace eProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Charge
     {
         public int ChargeID { get; set; }
+
+        [Required(ErrorMessage = "BillID is require")]
         public int BillID { get; set; }
+
+        [DisplayName("Charge Name")]
+        [Required(ErrorMessage = "Charge name is require")]
         public string ChargeName { get; set; }
+
+        [DisplayName("Charge Value (cents)")]
+        [Required(ErrorMessage = "Charge value is require")]
         public int Value { get; set; }
+
+        [Required(ErrorMessage = "Description is require")]
         public string Description { get; set; }
         public System.DateTime CreatedAt { get; set; }
     

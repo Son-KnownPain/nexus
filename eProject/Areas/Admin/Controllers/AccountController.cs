@@ -85,5 +85,54 @@ namespace eProject.Areas.Admin.Controllers
 
             return Redirect(Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "/Account/Detail?accountID=" + account.AccountID);
         }
+
+        // GET: Admin/Account/Search
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Search(string keyword, string filter)
+        {
+            List<AccountViewModel> listAccount = context.Accounts
+                .Join(context.Customers, a => a.CustomerID, c => c.CustomerID, (a, c) => new
+                {
+                    a,
+                    c
+                })
+                .Join(context.Services, x => x.a.ServiceID, s => s.ServiceID, (x, s) =>
+                    new AccountViewModel
+                    {
+                        AccountID = x.a.AccountID,
+                        CustomerID = x.a.CustomerID,
+                        CustomerName = x.c.Fullname,
+                        PaymentPlanDetailID = x.a.PaymentPlanDetailID,
+                        ServiceName = s.ServiceName,
+                        Thumbnail = s.Thumbnail,
+                        OrderID = x.a.OrderID,
+                        Status = x.a.Status,
+                        ContactNumber = x.a.ContactNumber,
+                        ConnectQuantity = x.a.ConnectQuantity,
+                        DueDate = x.a.DueDate,
+                        ConnectedAt = x.a.ConnectedAt,
+                    }
+                ).Where(x => x.ContactNumber.Contains(keyword) || x.CustomerName.Contains(keyword) || x.AccountID.Equals(keyword)).ToList();
+
+            switch (filter)
+            {
+                case "Connecting":
+                    listAccount = listAccount.Where(a => a.Status.Equals("Connecting")).ToList();
+                    break;
+                case "Disconnect":
+                    listAccount = listAccount.Where(a => a.Status.Equals("Disconnect")).ToList();
+                    break;
+                case "DueToday":
+                    listAccount = listAccount.Where(a => a.DueDate.Date == DateTime.Now.Date).ToList();
+                    break;
+                default:
+                    // Do nothing
+                    break;
+            }
+
+            listAccount.Reverse();
+            ViewBag.accounts = listAccount;
+            return View("Index");
+        }
     }
 }

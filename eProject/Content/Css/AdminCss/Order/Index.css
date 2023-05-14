@@ -7,6 +7,22 @@
     border-bottom: 1px solid #555;
 }
 
+.topNav-filterSelect {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #333;
+    padding: 12px;
+    border-radius: 4px;
+    outline: none;
+    margin: 0 4px;
+}
+
+.topNav-filterSelectOption {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #333;
+}
+
 .topNav-btnItem, .searchForm-btn {
     display: inline-block;
     color: #333;

@@ -8,12 +8,14 @@
 
 
 <h1 class="page-title">
-    Add a charge for bill
+    Edit charge
 </h1>
 
 <div class="dataBox">
-    @using (Html.BeginForm("Store", "Charge", new { area = "Admin" }, FormMethod.Post))
+    @using (Html.BeginForm("Update", "Charge", new { area = "Admin" }, FormMethod.Post))
     {
+        @Html.HttpMethodOverride("PUT")
+        @Html.HiddenFor(a => a.ChargeID)
         @Html.HiddenFor(a => a.BillID)
         @Html.AntiForgeryToken()
         <div class="form-group">

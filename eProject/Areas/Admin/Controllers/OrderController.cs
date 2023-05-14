@@ -167,5 +167,56 @@ namespace eProject.Areas.Admin.Controllers
 
             return RedirectToAction("Detail", new { orderID = data.OrderID });
         }
+
+        // POST: Admin/Order/Search
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Search(string keyword, string filter)
+        {
+            List<OrderViewModel> listOrder = context.Orders
+                    .Join(context.PaymentPlanDetails, o => o.PaymentPlanDetailID, pld => pld.PaymentPlanDetailID, (o, pld) => new
+                    {
+                        o,
+                        pld
+                    })
+                    .Join(context.Services, x => x.o.ServiceID, s => s.ServiceID, (x, s) =>
+                        new OrderViewModel
+                        {
+                            CustomerID = x.o.CustomerID,
+                            PaymentPlanDetailID = x.pld.PaymentPlanDetailID,
+                            Content = x.pld.Content,
+                            ServiceName = s.ServiceName,
+                            Thumbnail = s.Thumbnail,
+                            OrderID = x.o.OrderID,
+                            Status = x.o.Status,
+                            Phone = x.o.Phone,
+                            Address = x.o.Address,
+                            AddressDetail = x.o.AddressDetail,
+                            ConnectQuantity = x.o.ConnectQuantity,
+                            Deposit = x.o.Deposit,
+                            DepositDiscount = x.o.DepositDiscount,
+                            OrderDate = x.o.OrderDate
+                        }
+                    ).Where(d => d.OrderID.Contains(keyword)).ToList();
+
+            switch (filter)
+            {
+                case "PendingOrder":
+                    listOrder = listOrder.Where(a => a.Status.Equals("Pending")).ToList();
+                    break;
+                case "SuccessOrder":
+                    listOrder = listOrder.Where(a => a.Status.Equals("The order has been completed")).ToList();
+                    break;
+                case "OtherStatus":
+                    listOrder = listOrder.Where(a => !a.Status.Equals("The order has been completed") && !a.Status.Equals("Pending")).ToList();
+                    break;
+                default:
+                    // Do nothing
+                    break;
+            }
+
+            listOrder.Reverse();
+            ViewBag.orders = listOrder;
+            return View("Index");
+        }
     }
 }

@@ -12,9 +12,21 @@
 
 <nav class="topNav">
     <div class="topNav-search">
-        @using (Html.BeginForm("Search", "Service", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+        @using (Html.BeginForm("Search", "Bill", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
         {
-            <input class="searchForm-input" name="keyword" placeholder="Enter service name" />
+            @Html.AntiForgeryToken()
+            <input class="searchForm-input" name="keyword" placeholder="Enter account ID" />
+            <select class="topNav-filterSelect" name="status">
+                <option class="topNav-filterSelectOption" value="All" selected>
+                    All
+                </option>
+                <option class="topNav-filterSelectOption" value="Paid">
+                    Paid
+                </option>
+                <option class="topNav-filterSelectOption" value="Unpaid">
+                    Unpaid
+                </option>
+            </select>
             <button class="searchForm-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>

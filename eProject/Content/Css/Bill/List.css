@@ -2,31 +2,14 @@
     padding: 12px;
 }
 
+.page-title {
+    font-size: 2rem;
+    color: var(--grey);
+}
+
 .topNav {
     padding: 12px 0;
     border-bottom: 1px solid #555;
-}
-
-.topNav-title {
-    font-size: 1.4rem;
-    color: var(--grey);
-    margin-top: 8px;
-}
-
-.topNav-filterSelect {
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: #333;
-    padding: 12px;
-    border-radius: 4px;
-    outline: none;
-    margin: 0 4px;
-}
-
-.topNav-filterSelectOption {
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: #333;
 }
 
 .topNav-btnItem, .searchForm-btn {
@@ -78,6 +61,12 @@
     margin-bottom: 16px;
 }
 
+.noBills {
+    margin-top: 12px;
+    font-size: 2rem;
+    text-align: center;
+}
+
 .billItem {
     margin-top: 16px;
     padding: 12px;
@@ -109,6 +98,7 @@
     text-decoration: none;
     text-align: center;
 }
+
 .billItem-link:not(:first-child) {
     margin-top: 12px;
 }
