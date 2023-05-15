@@ -10,7 +10,7 @@ using System.Web.Services.Protocols;
 
 namespace eProject.Areas.Admin.Controllers
 {
-    [AdministratorAuthorization]
+    [EmployeeAuthorization]
     public class AccountController : Controller
     {
         private NexusEntities context = new NexusEntities();

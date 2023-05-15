@@ -88,6 +88,13 @@ namespace eProject.Areas.Admin.Controllers
                 return RedirectToAction("Index"); 
             }
 
+            List<Employee> employees = context.Employees.Where(e => e.RetailShowRoomID == retailShowRoomID).ToList();
+
+            employees.ForEach(e =>
+            {
+                e.RetailShowRoomID = null;
+            });
+
             context.RetailShowRooms.Remove(retailShowDelete);
             context.SaveChanges();
 
@@ -118,7 +125,6 @@ namespace eProject.Areas.Admin.Controllers
                 newRetailStore.Name = updateRetailShowRoom.Name;
                 newRetailStore.Phone = updateRetailShowRoom.Phone;
                 newRetailStore.Address = updateRetailShowRoom.Address;
-                newRetailStore.EmployeeQuantity = updateRetailShowRoom.EmployeeQuantity;
                 if (imageFile != null && imageFile.ContentLength > 0)
                 {
                     String uploadFolderPath = Server.MapPath("~/Uploads/RetailShowRoomImage");

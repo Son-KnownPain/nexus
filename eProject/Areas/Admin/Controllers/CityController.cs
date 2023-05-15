@@ -33,6 +33,12 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid) return View("Add");
 
+            if (context.Citys.FirstOrDefault(c => c.Code == data.Code) != null)
+            {
+                ModelState.AddModelError("Code", "Code already existing");
+                return View("Add");
+            }
+
             City newCity = new City();
             newCity.CityName = data.CityName;
             newCity.Code = data.Code;

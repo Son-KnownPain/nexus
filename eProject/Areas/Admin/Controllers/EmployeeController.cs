@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using eProject.Auth;
 using eProject.Models;
 using eProject.Filters;
-using Microsoft.Ajax.Utilities;
 
 namespace eProject.Areas.Admin.Controllers
 {

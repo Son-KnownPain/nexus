@@ -40,10 +40,6 @@
                 <i class="fa-solid fa-lines-leaning"></i>
                 Warehouses
             </a>
-            <a class="sidebar-menuItem" href="/Admin/WarehouseEquipment">
-                <i class="fa-solid fa-lines-leaning"></i>
-                Equipment In Warehouse
-            </a>
             <a class="sidebar-menuItem" href="/Admin/Supplier">
                 <i class="fa-solid fa-lines-leaning"></i>
                 Suppliers
@@ -71,17 +67,41 @@
         Work Menu
     </h4>
     <nav class="sidebar-menu">
-        <a class="sidebar-menuItem" href="/Admin/Order">
-            <i class="fa-solid fa-lines-leaning"></i>
-            Orders
-        </a>
-        <a class="sidebar-menuItem" href="/Admin/Account">
-            <i class="fa-solid fa-lines-leaning"></i>
-            Accounts
-        </a>
-        <a class="sidebar-menuItem" href="/Admin/Bill">
-            <i class="fa-solid fa-lines-leaning"></i>
-            Bills
-        </a>
+        @if (
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.AdminRole ||
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.RetailStoreEmployeeRole ||
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.TechnicalEmployeeRole
+
+        )
+        {
+            <a class="sidebar-menuItem" href="/Admin/Order">
+                <i class="fa-solid fa-lines-leaning"></i>
+                Orders
+            </a>
+        }
+        @if (
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.AdminRole ||
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.AccountEmployeeRole ||
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.TechnicalEmployeeRole ||
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.RetailStoreEmployeeRole
+
+        )
+        {
+            <a class="sidebar-menuItem" href="/Admin/Account">
+                <i class="fa-solid fa-lines-leaning"></i>
+                Accounts
+            </a>
+        }
+        @if (
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.AdminRole ||
+                AuthManager.CurrentEmployee.GetEmployee.Role == AuthManager.EmployeeRoles.AccountEmployeeRole
+
+        )
+        {
+            <a class="sidebar-menuItem" href="/Admin/Bill">
+                <i class="fa-solid fa-lines-leaning"></i>
+                Bills
+            </a>
+        }
     </nav>
 </div>

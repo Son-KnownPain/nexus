@@ -264,6 +264,7 @@
     <Compile Include="Models\ViewModels\PaymentPlanDetails\PaymentPlanDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\PaymentPlans\PaymentPlanViewModel.cs" />
     <Compile Include="Models\ViewModels\WarehouseEquipment\WarehouseEquipmentViewModel.cs" />
+    <Compile Include="Models\ViewModels\WarehouseEquipment\WEListViewModel.cs" />
     <Compile Include="Models\Warehouse.cs">
       <DependentUpon>NexusModel.tt</DependentUpon>
     </Compile>
@@ -470,6 +471,7 @@
     <Content Include="Areas\Admin\Views\Charge\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RetailShowRoom\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\RetailShowRoom\AddRetailStoreEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\WarehouseEquipment\List.cshtml" />
     <None Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />

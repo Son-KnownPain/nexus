@@ -58,6 +58,10 @@ namespace eProject.Areas.Admin.Controllers
                 imageFile.SaveAs(uploadFolderPath + "/" + newFlieName);
 
                 newEquipment.Image = newFlieName;
+            } else
+            {
+                ModelState.AddModelError("Image", "You must be upload image");
+                return View("Add");
             }
             context.Equipments.Add(newEquipment);
             context.SaveChanges();
@@ -80,7 +84,7 @@ namespace eProject.Areas.Admin.Controllers
             }
 
             //Delete relationship
-            context.WarehouseEquipments.RemoveRange(context.WarehouseEquipments.Where(e => e.EquipmentID == id));
+            context.WarehouseEquipments.RemoveRange(context.WarehouseEquipments.Where(e => e.EquipmentID == equipmentDelete.EquipmentID));
 
             context.Equipments.Remove(equipmentDelete);
             context.SaveChanges();

@@ -12,19 +12,25 @@ namespace eProject.Areas.Admin.Controllers
     [AdministratorAuthorization]
     public class WarehouseEquipmentController : Controller
     {
-        NexusEntities context = new NexusEntities();
+        private NexusEntities context = new NexusEntities();
+
         // GET: Admin/WarehouseEquipment
         public ActionResult Index()
         {
-            List<WarehouseEquipment> warehouseEquipment = context.WarehouseEquipments.ToList();
-            ViewBag.WarehouseEquipmentList = warehouseEquipment;
+            ViewBag.warehouses = context.Warehouses.ToList();
             return View();
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Add(int? warehouseID)
         {
-            return View();
+            if (warehouseID == null) return Redirect("/Admin/Warehouse");
+            if (context.Warehouses.FirstOrDefault(w => w.WarehouseID == warehouseID) == null) return Redirect("/Admin/Warehouse");
+
+            WarehouseEquipmentViewModel model = new WarehouseEquipmentViewModel();
+            model.WarehouseID = (int) warehouseID;
+            
+            return View(model);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -37,8 +43,8 @@ namespace eProject.Areas.Admin.Controllers
 
             if(context.WarehouseEquipments.FirstOrDefault(w => w.WarehouseID == warehouseEquipmentViewModel.WarehouseID && w.EquipmentID == warehouseEquipmentViewModel.EquipmentID) != null)
             {
-                TempData["Error"] = "Exists, Please edit";
-                return RedirectToAction("Add");
+                ModelState.AddModelError("EquipmentID", "That warehouse already has this equipment");
+                return View("Add");
             }
 
             WarehouseEquipment warehouseEquipment = new WarehouseEquipment();
@@ -51,7 +57,7 @@ namespace eProject.Areas.Admin.Controllers
 
             TempData["Success"] = "Successfully add new ware equipment";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("List", new { warehouseID = warehouseEquipment.WarehouseID });
 
         }
 
@@ -59,20 +65,20 @@ namespace eProject.Areas.Admin.Controllers
         {
             if(id == null)
             {
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Warehouse");
             }
 
             WarehouseEquipment warehouseEquipment = context.WarehouseEquipments.FirstOrDefault(e => e.ID == id);
             if(warehouseEquipment == null)
             {
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Warehouse");
             }
 
             context.WarehouseEquipments.Remove(warehouseEquipment);
             context.SaveChanges();
 
             TempData["Success"] = "Success delete warehouse equipment";
-            return RedirectToAction("Index");
+            return RedirectToAction("List", new { warehouseID = warehouseEquipment.WarehouseID });
         }
 
         [HttpGet]
@@ -80,13 +86,13 @@ namespace eProject.Areas.Admin.Controllers
         {
             if(id == null)
             {
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Warehouse");
             }
 
             WarehouseEquipment warehouseEquipment = context.WarehouseEquipments.FirstOrDefault(we => we.ID == id);
             if(warehouseEquipment == null)
             {
-                return RedirectToAction("Index");
+                return Redirect("/Admin/Warehouse");
             }
 
             WarehouseEquipmentViewModel warehouseEquipmentViewModel = new WarehouseEquipmentViewModel();
@@ -115,15 +121,33 @@ namespace eProject.Areas.Admin.Controllers
             WarehouseEquipment warehouseEquipmentUpdate = context.WarehouseEquipments.FirstOrDefault(we => we.ID == warehouseEquipment.ID);
             if (warehouseEquipmentUpdate != null)
             {
-                warehouseEquipmentUpdate.WarehouseID = warehouseEquipment.WarehouseID;
-                warehouseEquipmentUpdate.EquipmentID = warehouseEquipment.EquipmentID;
                 warehouseEquipmentUpdate.Quantity = warehouseEquipment.Quantity;
 
                 context.SaveChanges();
                 TempData["Success"] = "Successfully update warehouse equipment";
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("List", new { warehouseID = warehouseEquipmentUpdate.WarehouseID });
         }
         
+        // GET: Admin/WarehouseEquipment/List
+        public ActionResult List(int? warehouseID)
+        {
+            if (warehouseID == null) return Redirect("/Admin/Warehouse");
+            if (context.Warehouses.FirstOrDefault(w => w.WarehouseID == warehouseID) == null) return Redirect("/Admin/Warehouse");
+            ViewBag.equipments = context.WarehouseEquipments.Join(context.Equipments, we => we.EquipmentID, e => e.EquipmentID, (we, e) => new WEListViewModel
+            {
+                ID = we.ID,
+                WarehouseID = we.WarehouseID,
+                EquipmentID = e.EquipmentID,
+                EquipmentName = e.EquipmentName,
+                Description = e.Description,
+                Image = e.Image,
+                Quantity = we.Quantity
+            }).Where(x => x.WarehouseID == warehouseID).ToList();
+
+            ViewBag.warehouseID = warehouseID;
+
+            return View();
+        }
     }
 }

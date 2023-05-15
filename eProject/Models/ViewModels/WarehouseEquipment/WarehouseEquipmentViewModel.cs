@@ -11,14 +11,18 @@ namespace eProject.Models.ViewModels.WarehouseEquipment
     public class WarehouseEquipmentViewModel
     {
         public int ID { get; set; }
-        [DisplayName("Supplier list")]
+
+        [Required(ErrorMessage = "Warehouse ID is require")]
+        [DisplayName("Warehouse")]
         public int WarehouseID { get; set; }
-        [DisplayName("Equipment list")]
+
+        [Required(ErrorMessage = "Equipment ID is require")]
+        [DisplayName("Equipment")]
         public int EquipmentID { get; set; }
 
         [Required(ErrorMessage = "Number of devices cannot be empty")]
         [RegularExpression("[0-9]+", ErrorMessage = "The number of devices is negative")]
-        [Range(1, 9999, ErrorMessage = "The number of devices is neither zero")]
+        [Range(0, 9999, ErrorMessage = "Quantity from 0 to 9999")]
         public int Quantity { get; set; }
 
         public IEnumerable<SelectListItem> WarehouseList

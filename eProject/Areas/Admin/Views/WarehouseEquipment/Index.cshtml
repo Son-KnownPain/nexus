@@ -1,4 +1,8 @@
-﻿@section styles{
+﻿
+@{ 
+    ViewBag.Title = "Warehouse Equipment";
+}
+@section styles{
     <link rel="stylesheet" href="~/Content/Css/AdminCss/WarehouseEquipment/Index.css" />
 }
 
@@ -18,26 +22,18 @@
 <div class="container">
     <div class="content-section">
         <div class="row">
-            @foreach (var warehouseEquipment in ViewBag.WarehouseEquipmentList)
+            @foreach (var warehouse in ViewBag.warehouses)
             {
                 <div class="col-xl-3">
                     <div class="warehouseEquipment" href="#">
                         <div class="warehouseEquipment-body">
                             <p class="warehouseEquipment-eq">
-                                WarehouseID: @warehouseEquipment.WarehouseID
-                            </p>
-                            <p class="warehouseEquipment-eq">
-                                EquipmentID: @warehouseEquipment.EquipmentID
-                            </p>
-                            <p class="warehouseEquipment-eq">
-                                Quantity: @warehouseEquipment.Quantity
+                                <i class="fa-solid fa-warehouse"></i>
+                                @warehouse.Name
                             </p>
                             <div class="warehouseEquipment-actions">
-                                <a class="warehouseEquipment-action" href="/Admin/WarehouseEquipment/Edit?id=@warehouseEquipment.ID">
-                                    Edit
-                                </a>
-                                <a class="warehouseEquipment-action dlt deleteAction" href="/Admin/WarehouseEquipment/Delete?id=@warehouseEquipment.ID">
-                                    Delete
+                                <a class="warehouseEquipment-action" href="/Admin/WarehouseEquipment/List?warehouseID=@warehouse.WarehouseID">
+                                    View Equipment In Warehouse
                                 </a>
                             </div>
 

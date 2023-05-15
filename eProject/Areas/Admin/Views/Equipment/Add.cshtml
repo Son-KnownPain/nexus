@@ -45,6 +45,7 @@
                 <div class="form-group">
                     @Html.LabelFor(equipment => equipment.Image, new { @class = "form-label" })
                     <input type="file" name="imageFile" class="form-inputFile" />
+                    @Html.ValidationMessageFor(equipment => equipment.Image, null, new { @class = "invalidMessage" })
                 </div>
                 
                 <div class="col-xl-12">

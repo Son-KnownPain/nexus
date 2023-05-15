@@ -49,13 +49,6 @@
                         <input type="file" name="imageFile" class="form-inputFile" />
                     </div>
                 </div>
-                <div class="col-xl-6">
-                    <div class="form-group">
-                        @Html.LabelFor(retaistore => retaistore.EmployeeQuantity, new { @class = "form-label" })
-                        @Html.EditorFor(retaistore => retaistore.EmployeeQuantity, new { htmlAttributes = new { @class = "form-input", placeHolder = "Enter employee quantity" } })
-                        @Html.ValidationMessageFor(retaistore => retaistore.EmployeeQuantity, null, new { @class = "invalidMessage" })
-                    </div>
-                </div>
                 <div class="col-xl-12">
                     <div class="form-group">
                         <button class="form-btn">Update</button>

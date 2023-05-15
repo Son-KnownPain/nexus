@@ -1,6 +1,9 @@
 ﻿@section styles{
     <link rel="stylesheet" href="~/Content/Css/AdminCss/Warehouse/WarehouseList.css" />
 }
+@{ 
+    ViewBag.Title = "Warehouses";
+}
 
 
 <h1 class="page-title">
@@ -30,10 +33,11 @@
         <div class="row">
             @foreach (var warehouseItem in ViewBag.warehouseList)
             {
-                <div class="col-xl-3">
-                    <div class="warehouseItem" href="#">
+                <div class="col-xl-4">
+                    <div class="warehouseItem">
                         <div class="warehouseItem-body">
                             <h3 class="warehouseItem-headingName">
+                                <i class="fa-solid fa-warehouse"></i>
                                 @warehouseItem.Name
                             </h3>
                             <p class="warehouseItem-eq">
@@ -52,6 +56,9 @@
                                 </a>
                                 <a class="warehouse-action dlt deleteAction" href="/Admin/Warehouse/Delete?id=@warehouseItem.WarehouseID">
                                     Delete
+                                </a>
+                                <a style="background: #5d8aa8; color: #fff;" class="warehouse-action" href="/Admin/WarehouseEquipment/List?warehouseID=@warehouseItem.WarehouseID">
+                                    List Equipment
                                 </a>
                             </div>
                             

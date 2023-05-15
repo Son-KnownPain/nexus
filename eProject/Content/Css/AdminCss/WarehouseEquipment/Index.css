@@ -18,18 +18,18 @@
     text-decoration: none;
 }
 
-    .topNav-btn i, .searchForm-btn i {
-        color: #333;
-    }
+.topNav-btn i, .searchForm-btn i {
+    color: #333;
+}
 
-    .topNav-btn:not(:first-child) {
-        margin-left: 12px;
-    }
+.topNav-btn:not(:first-child) {
+    margin-left: 12px;
+}
 
-    .topNav-btn:hover, .searchForm-btn:hover {
-        color: #333;
-        opacity: .8;
-    }
+.topNav-btn:hover, .searchForm-btn:hover {
+    color: #333;
+    opacity: .8;
+}
 
 .topNav-search {
     display: inline-block;
@@ -109,9 +109,8 @@
     padding: 12px;
 }
 
-.warehouseEquipment-action {
-    margin-top: -8px;
-    margin-left: 20px;
+.warehouseEquipment-action:not(:first-child) {
+    margin-left: 8px;
 }
 
 .warehouseEquipment-action {
@@ -123,7 +122,6 @@
     color: #333;
     background-color: #e9d66b;
     margin-top: 8px;
-    width: 30%;
     text-align: center;
 }
 

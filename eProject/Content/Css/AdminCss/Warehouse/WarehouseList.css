@@ -84,8 +84,8 @@
 .warehouseItem-headingName {
     font-size: 2rem;
     color: var(--white);
-    padding: 5px 4px;
     text-align: center;
+    margin: 12px 0;
 }
 
 .warehouseItem-detailBtn {
@@ -109,9 +109,8 @@
     padding: 12px;
 }
 
-.warehouse-action {
-    margin-top: -8px;
-    margin-left: 20px;
+.warehouse-action:not(:first-child) {
+    margin-left: 8px;
 }
 
 .warehouse-action {
@@ -123,7 +122,6 @@
     color: #333;
     background-color: #e9d66b;
     margin-top: 8px;
-    width: 30%;
     text-align: center;
 }
 

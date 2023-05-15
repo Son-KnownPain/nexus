@@ -1,17 +1,21 @@
 ﻿@{
-    ViewBag.Title = "store staff details";
+    ViewBag.Title = "List Employee of Retail Show Room";
 }
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/AdminCss/Employee/Index.css" />
 }
 
 <h1 class="page-title">
-    store staff details
+    List Employee of Retail Show Room
 </h1>
 <nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/RetailShowRoom/">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+    </a>
     <a class="topNav-btnItem" href="/Admin/RetailShowRoom/AddRetailStoreEmployee?rsrID=@ViewBag.rsrID">
         <i class="fa-solid fa-plus"></i>
-        Add new retail store employee
+        Add employee
     </a>
     <div class="topNav-search">
         @using (Html.BeginForm("SearchRSE", "RetailShowRoom", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))

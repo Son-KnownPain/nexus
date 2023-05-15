@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="~/Content/Css/AdminCss/WarehouseEquipment/Add.css" />
 }
 @{
-    ViewBag.Title = "Create ware equipment";
+    ViewBag.Title = "Add equipment";
 
     eProject.Models.ViewModels.WarehouseEquipment.WarehouseEquipmentViewModel warehouseEquipment = new eProject.Models.ViewModels.WarehouseEquipment.WarehouseEquipmentViewModel();
     
@@ -27,11 +27,7 @@
         {
             <div class="row">
                 @Html.AntiForgeryToken()
-                <div class="form-group">
-                    @Html.LabelFor(we => we.WarehouseID, new { @class = "form-label" })
-                    @Html.DropDownListFor(we => we.WarehouseID, warehouseEquipment.WarehouseList, new { @class = "form-input"})
-                    @Html.ValidationMessageFor(we => we.WarehouseID, null, new { @class = "invalidMessage" })
-                </div>
+                @Html.HiddenFor(we => we.WarehouseID)
 
                 <div class="form-group">
                     @Html.LabelFor(we => we.EquipmentID, new { @class = "form-label" })

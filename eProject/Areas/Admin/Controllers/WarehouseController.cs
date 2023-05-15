@@ -60,7 +60,9 @@ namespace eProject.Areas.Admin.Controllers
             }
 
             Warehouse warehouseDelete = context.Warehouses.FirstOrDefault(w => w.WarehouseID == id);
-            if(warehouseDelete == null) { return RedirectToAction("Index"); }
+            if(warehouseDelete == null) return RedirectToAction("Index");
+
+            context.WarehouseEquipments.RemoveRange(context.WarehouseEquipments.Where(a => a.WarehouseID == warehouseDelete.WarehouseID));
 
             context.Warehouses.Remove(warehouseDelete);
             context.SaveChanges();

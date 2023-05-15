@@ -1,6 +1,6 @@
 ﻿@model eProject.Models.ViewModels.Customer.CustomerChangeInfoViewModel
 @{
-    ViewBag.Title = "Change My Password";
+    ViewBag.Title = "Change My Information";
 }
 @section styles {
     <link rel="stylesheet" href="~/Content/Css/Customer/EditPassword.css" />
@@ -8,7 +8,7 @@
 
 <div class="container">
     <h1 class="page-title">
-        Change My Password
+        Change My Information
     </h1>
     <div class="dataBox">
         @using (Html.BeginForm("UpdateInformation", "Customer", FormMethod.Post, new { @class = "infoForm" }))

@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Equipments in warehouse";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Css/AdminCss/Account/Index.css" />
+}
+@section scripts {
+    <script>
+        $(function () {
+            $('.deleteAccountBtn').click(function (e) {
+                if (!confirm('Are you sure you want to delete that')) {
+                    e.preventDefault();
+                }
+            })
+        })
+    </script>
+}
+
+<h1 class="page-title">
+    Account Management
+</h1>
+<nav class="topNav">
+    <a class="topNav-btnItem" href="/Admin/WarehouseEquipment/Add?warehouseID=@ViewBag.warehouseID">
+        <i class="fa-solid fa-plus"></i>
+        Add equipment to warehouse
+    </a>
+    <div class="topNav-search">
+        @*@using (Html.BeginForm("Search", "Account", new { area = "Admin" }, FormMethod.Post, new { @class = "searchForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <input class="searchForm-input" name="keyword" placeholder="Enter customer name, phone, id" />
+                <select class="topNav-filterSelect" name="filter">
+                    <option class="topNav-filterSelectOption" value="All" selected>
+                        All
+                    </option>
+                    <option class="topNav-filterSelectOption" value="Connecting">
+                        Are connecting
+                    </option>
+                    <option class="topNav-filterSelectOption" value="Disconnect">
+                        Are disconnect
+                    </option>
+                    <option class="topNav-filterSelectOption" value="DueToday">
+                        Due today
+                    </option>
+                </select>
+                <button class="searchForm-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            }*@
+    </div>
+</nav>
+
+<div class="dataBox">
+    <h3 class="dataBox-heading">
+        List equipments
+    </h3>
+
+    <div class="orders">
+        @foreach (eProject.Models.ViewModels.WarehouseEquipment.WEListViewModel we in ViewBag.equipments)
+        {
+            <div class="orderItem">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <img class="orderItem-thumbnail" src="~/Uploads/EquipmentImage/@we.Image" alt="Thumbnail" />
+                    </div>
+                    <div class="col-xl-8">
+                        <h3 class="orderItem-serviceName">
+                            @we.EquipmentName
+                        </h3>
+                        <p class="orderItem-line">
+                            Quantity:
+                            @we.Quantity
+                        </p>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="orderItem-actions">
+                            <a class="orderItem-actionItem" href="/Admin/WarehouseEquipment/Edit?id=@we.ID" style="background: #ffbf00; color: #333;">
+                                Edit
+                            </a>
+                            <a class="orderItem-actionItem deleteAccountBtn" href="/Admin/WarehouseEquipment/Delete?id=@we.ID" style="background: #e52b50; color: #fff;">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

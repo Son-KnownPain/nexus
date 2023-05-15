@@ -10,7 +10,7 @@ using eProject.Auth;
 
 namespace eProject.Areas.Admin.Controllers
 {
-    [AdministratorAuthorization]
+    [EmployeeAuthorization]
     public class OrderController : Controller
     {
         private NexusEntities context = new NexusEntities();
