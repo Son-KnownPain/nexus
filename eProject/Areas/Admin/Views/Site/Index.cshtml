@@ -1,1 +1,24 @@
-﻿<h1 style="padding: 12px;">Admin Home Page</h1>
+﻿@section styles {
+    <style>
+        .boxMain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 36px;
+        }
+        .text {
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-top: 24px;
+        }
+    </style>
+}
+
+<div class="boxMain">
+    <img class="logo" src="~/Content/Images/logo-with-text.png" />
+    <h1 class="text">
+        <i class="fa-solid fa-hammer"></i>
+        Administrator Page
+    </h1>
+</div>

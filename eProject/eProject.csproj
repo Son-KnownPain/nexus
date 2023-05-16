@@ -354,6 +354,7 @@
     <Content Include="Content\Images\logo-nobg.jpg" />
     <Content Include="Content\Images\logo-removebg.png" />
     <Content Include="Content\Images\logo-with-text.png" />
+    <Content Include="Content\Images\subimage.png" />
     <Content Include="Content\Images\user-login.png" />
     <Content Include="Content\Js\Bill\Bill.js" />
     <Content Include="Content\Js\Service\Detail.js" />

@@ -192,7 +192,7 @@ namespace eProject.Controllers
 
             try
             {
-                if (!AuthManager.IsCustomerAuthenticated)
+                if (customer != null)
                 {
                     context.Customers.Add(customer);
                 }
@@ -203,7 +203,7 @@ namespace eProject.Controllers
             catch (Exception e)
             {
                 context.Orders.Remove(order);
-                if (!AuthManager.IsCustomerAuthenticated)
+                if (customer != null)
                 {
                     context.Customers.Remove(customer);
                 }
