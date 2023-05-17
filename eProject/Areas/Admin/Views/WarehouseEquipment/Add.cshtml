@@ -1,23 +1,19 @@
 ﻿@model eProject.Models.ViewModels.WarehouseEquipment.WarehouseEquipmentViewModel
-
+@using eProject.Models.ViewModels.WarehouseEquipment
 @section Styles{
     <link rel="stylesheet" href="~/Content/Css/AdminCss/WarehouseEquipment/Add.css" />
 }
 @{
     ViewBag.Title = "Add equipment";
-
-    eProject.Models.ViewModels.WarehouseEquipment.WarehouseEquipmentViewModel warehouseEquipment = new eProject.Models.ViewModels.WarehouseEquipment.WarehouseEquipmentViewModel();
-    
+    WarehouseEquipmentViewModel tempModel = new WarehouseEquipmentViewModel();
 }
-
-
 
 <div class="container">
     <nav class="topNav">
         <h1 class="page-heading">
             <i class="fa-solid fa-plus"></i>
             Create ware equipment
-            <a class="topNav-btnItem" href="/Admin/WarehouseEquipment">Exit</a>
+            <a class="topNav-btnItem" href="/Admin/WarehouseEquipment/List?warehouseID=@Model.WarehouseID">Exit</a>
         </h1>
 
     </nav>
@@ -31,7 +27,7 @@
 
                 <div class="form-group">
                     @Html.LabelFor(we => we.EquipmentID, new { @class = "form-label" })
-                    @Html.DropDownListFor(we => we.EquipmentID, warehouseEquipment.EquipmentList, new { @class = "form-input"})
+                    @Html.DropDownListFor(we => we.EquipmentID, tempModel.EquipmentList, new { @class = "form-input"})
                     @Html.ValidationMessageFor(we => we.EquipmentID, null, new { @class = "invalidMessage" })
                 </div>
 

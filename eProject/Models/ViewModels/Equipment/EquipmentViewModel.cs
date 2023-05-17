@@ -20,6 +20,7 @@ namespace eProject.Models.ViewModels.Equipment
         [DisplayName("Equipment Name")]
         public string EquipmentName { get; set; }
         [Required(ErrorMessage = "Description can not empty")]
+        [MaxLength(1000, ErrorMessage = "Max length is 1000")]
         public string Description { get; set; }
         public string Image { get; set; }
         public HttpPostedFileBase imageFile { get; set; }

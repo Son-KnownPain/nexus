@@ -26,9 +26,11 @@ namespace eProject.Models
         public int SupplierID { get; set; }
 
         [Required(ErrorMessage = "Company name can not empty")]
+        [DisplayName("Company Name")]
         public string CompanyName { get; set; }
 
         [Required(ErrorMessage = "Contact name can not empty")]
+        [DisplayName("Contact Name")]
         public string ContactName { get; set; }
 
         [Required(ErrorMessage = "Address can not empty")]
@@ -42,6 +44,7 @@ namespace eProject.Models
         public string Fax { get; set; }
 
         [Required(ErrorMessage = "Contact Url can not empty")]
+        [DisplayName("Contact URL")]
         public string ContactUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

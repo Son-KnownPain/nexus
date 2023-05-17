@@ -36,10 +36,9 @@
                             <p class="feedback-sentDate">
                                 @feedback.FeedbackAt.ToString("dd/MM/yyyy")
                             </p>
-                            <p class="feedback-account">
-                                <i class="fa fa-plug" aria-hidden="true"></i>
-                                Client account code: @feedback.AccountID
-                            </p>
+                            <a class="feedback-account" href="/Admin/Account/Detail?accountID=@feedback.AccountID">
+                                Account ID: @feedback.AccountID
+                            </a>
                             <div class="col">
                                 <details>
                                     <summary>

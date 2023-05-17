@@ -42,8 +42,7 @@ namespace eProject.Areas.Admin.Controllers
                         DepositDiscount = x.o.DepositDiscount,
                         OrderDate = x.o.OrderDate
                     }
-                ).ToList();
-            listOrder.Reverse();
+                ).OrderByDescending(o => o.OrderDate).ToList();
             ViewBag.orders = listOrder;
             return View();
         }
@@ -79,16 +78,16 @@ namespace eProject.Areas.Admin.Controllers
 
             if (data.Status.Equals(completeStatus)) return RedirectToAction("CompleteOrder", new { orderID = data.OrderID });
 
-            //if (!order.Status.Equals(completeStatus))
-            //{
-            order.Status = data.Status;
-            //}
-            //else
-            //{
-            //    TempData["Error"] = "The order was completed, cannot change order status";
+            if (!order.Status.Equals(completeStatus))
+            {
+                order.Status = data.Status;
+            }
+            else
+            {
+                TempData["Error"] = "The order was completed, cannot change order status";
 
-            //    return Redirect(Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "/Admin/Order");
-            //}
+                return Redirect(Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "/Admin/Order");
+            }
 
             context.SaveChanges();
             TempData["Success"] = "Successfully change order status";
@@ -122,7 +121,7 @@ namespace eProject.Areas.Admin.Controllers
 
             order.Status = "The order has been completed";
 
-            Account lastAccount = context.Accounts.ToList().LastOrDefault();
+            Account lastAccount = context.Accounts.ToList().LastOrDefault(a => a.AccountID[0].Equals(order.OrderID[0]));
 
             string accountID;
             if (lastAccount == null)

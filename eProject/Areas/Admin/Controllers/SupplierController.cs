@@ -103,9 +103,13 @@ namespace eProject.Areas.Admin.Controllers
             Supplier deleteSupplier = context.Suppliers.FirstOrDefault(s => s.SupplierID == id);
             if(deleteSupplier == null) return RedirectToAction("Index");
 
-            context.Equipments.RemoveRange(context.Equipments.Where(e => e.SupplierID == deleteSupplier.SupplierID));
+            var equipments = context.Equipments.Where(e => e.SupplierID == deleteSupplier.SupplierID);
+
+            context.WarehouseEquipments.RemoveRange(context.WarehouseEquipments.Where(we => equipments.Select(e => e.EquipmentID).ToList().Contains(we.EquipmentID)));
+            context.Equipments.RemoveRange(equipments);
 
             context.Suppliers.Remove(deleteSupplier);
+
             context.SaveChanges();
 
             TempData["Success"] = "Successfully to delete supplier";

@@ -38,13 +38,13 @@ namespace eProject.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Add");
+                return View("Add", warehouseEquipmentViewModel);
             }
 
             if(context.WarehouseEquipments.FirstOrDefault(w => w.WarehouseID == warehouseEquipmentViewModel.WarehouseID && w.EquipmentID == warehouseEquipmentViewModel.EquipmentID) != null)
             {
                 ModelState.AddModelError("EquipmentID", "That warehouse already has this equipment");
-                return View("Add");
+                return View("Add", warehouseEquipmentViewModel);
             }
 
             WarehouseEquipment warehouseEquipment = new WarehouseEquipment();

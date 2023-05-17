@@ -11,6 +11,11 @@
         <i style="color: green;" class="fa-solid fa-rss"></i>
         Account View Detail
     </h1>
+    <div class="">
+        <a style="font-size: 1.4rem; color: #999;" href="/Customer/MyConnections">
+            Back to my accounts
+        </a>
+    </div>
 
     <div class="row">
         <div class="col-xl-6">
@@ -108,16 +113,16 @@
                     </p>
                 }
 
-            <div class="order-actions">
-                <a class="order-actionItem" href="/Account/Feedback?accountID=@Model.AccountID" style="background: #f0f8ff; color: #333;">
-                    <i style="color: #333;" class="fa-solid fa-star-half-stroke"></i>
-                    Feedback
-                </a>
-                <a class="order-actionItem" href="/Bill/List?accountID=@Model.AccountID" style="background: #00ab80; color: #fff;">
-                    <i class="fa-solid fa-money-bills"></i>
-                    View bills
-                </a>
-            </div>
+                <div class="order-actions">
+                    <a class="order-actionItem" href="/Account/Feedback?accountID=@Model.AccountID" style="background: #f0f8ff; color: #333;">
+                        <i style="color: #333;" class="fa-solid fa-star-half-stroke"></i>
+                        Feedback
+                    </a>
+                    <a class="order-actionItem" href="/Bill/List?accountID=@Model.AccountID" style="background: #00ab80; color: #fff;">
+                        <i class="fa-solid fa-money-bills"></i>
+                        View bills
+                    </a>
+                </div>
             </div>
         </div>
     </div>

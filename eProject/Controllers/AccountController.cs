@@ -56,7 +56,7 @@ namespace eProject.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult FeedbackStore(CustomerFeedbackViewModel data)
         {
-            if (!ModelState.IsValid) return View("Feedback");
+            if (!ModelState.IsValid) return View("Feedback", data);
 
             Account account = context.Accounts.FirstOrDefault(a => a.AccountID == data.AccountID);
 

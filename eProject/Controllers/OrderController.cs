@@ -184,15 +184,11 @@ namespace eProject.Controllers
             order.DepositDiscount = GetDepositDiscount(data.ConnectQuantity);
             order.ConnectQuantity = data.ConnectQuantity;
 
-            // Login
-            if (!AuthManager.IsCustomerAuthenticated)
-            {
-                AuthManager.Chef.PreservationCustomerCookies(customer);
-            }
+            
 
             try
             {
-                if (customer != null)
+                if (!AuthManager.IsCustomerAuthenticated)
                 {
                     context.Customers.Add(customer);
                 }
@@ -203,12 +199,18 @@ namespace eProject.Controllers
             catch (Exception e)
             {
                 context.Orders.Remove(order);
-                if (customer != null)
+                if (!AuthManager.IsCustomerAuthenticated)
                 {
                     context.Customers.Remove(customer);
                 }
                 
                 return Store(data);
+            }
+
+            // Login
+            if (!AuthManager.IsCustomerAuthenticated)
+            {
+                AuthManager.Chef.PreservationCustomerCookies(customer);
             }
 
             // Redirect to customer's order

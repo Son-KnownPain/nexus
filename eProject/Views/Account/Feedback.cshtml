@@ -8,8 +8,14 @@
 
 <div class="container">
     <h1 class="page-title">
+        <i class="fa-solid fa-star-half-stroke"></i>
         Feedback
     </h1>
+    <div class="">
+        <a style="font-size: 1.4rem; color: #999;" href="/Account/Detail?accountID=@Model.AccountID">
+            Back to account detail
+        </a>
+    </div>
 
     @using(Html.BeginForm("FeedbackStore", "Account", FormMethod.Post))
     {
@@ -42,7 +48,7 @@
                 @if (!feedback.ReplyContent.IsEmpty())
                 {
                     <div class="feedbackItem-replyBox">
-                        <p>Thank you, sir!</p>
+                        @Html.Raw(feedback.ReplyContent)
                     </div>
                 }
             </div>

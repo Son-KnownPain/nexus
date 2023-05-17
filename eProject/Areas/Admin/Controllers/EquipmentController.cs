@@ -86,6 +86,13 @@ namespace eProject.Areas.Admin.Controllers
             //Delete relationship
             context.WarehouseEquipments.RemoveRange(context.WarehouseEquipments.Where(e => e.EquipmentID == equipmentDelete.EquipmentID));
 
+            // Delete avatar
+            String uploadFolderPath = Server.MapPath("~/Uploads/EquipmentImage");
+            if (System.IO.File.Exists(uploadFolderPath + "/" + equipmentDelete.Image))
+            {
+                System.IO.File.Delete(uploadFolderPath + "/" + equipmentDelete.Image);
+            }
+
             context.Equipments.Remove(equipmentDelete);
             context.SaveChanges();
 
